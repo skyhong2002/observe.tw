@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、YouTube 紀錄等主題的資料彙整與公開網站。">
+<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、YouTube 資料與觀看紀錄等主題的資料彙整與公開網站。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
@@ -12,32 +12,29 @@
   :root {
     --bg: #0b0e14;
     --surface: #12161f;
-    --surface-hover: #171c27;
     --border: #232a38;
     --text: #d8dee9;
     --text-dim: #8b94a7;
     --text-faint: #5c6577;
     --accent: #7aa2f7;
     --live: #4ade80;
-    --auth: #fbbf24;
-    --down: #6b7280;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { color-scheme: dark; }
+  html { color-scheme: dark; scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-    line-height: 1.7;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
   }
   .wrap {
-    max-width: 880px;
+    max-width: 1020px;
     margin: 0 auto;
     padding: 0 24px;
   }
   header {
-    padding: 96px 0 64px;
+    padding: 96px 0 40px;
     background:
       radial-gradient(ellipse 60% 45% at 70% 0%, rgba(122, 162, 247, 0.10), transparent),
       radial-gradient(ellipse 40% 35% at 20% 10%, rgba(74, 222, 128, 0.05), transparent);
@@ -54,83 +51,172 @@
     margin-top: 14px;
     font-size: 17px;
     color: var(--text-dim);
-    max-width: 34em;
+    max-width: 36em;
   }
   .tagline b { color: var(--text); font-weight: 600; }
-  section { padding: 24px 0 8px; }
-  h2 {
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-faint);
-    margin-bottom: 20px;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
-    gap: 14px;
-  }
-  .card {
-    display: block;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 22px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s, border-color 0.15s, transform 0.15s;
-  }
-  a.card:hover {
-    background: var(--surface-hover);
-    border-color: #2e364c;
-    transform: translateY(-1px);
-  }
-  .card-head {
+  nav.toc {
     display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
   }
-  .domain {
+  nav.toc a {
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 13px;
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 14px;
+    transition: color 0.15s, border-color 0.15s;
   }
-  .status {
+  nav.toc a:hover { color: var(--accent); border-color: #2e364c; }
+
+  .site {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 48px;
+    align-items: center;
+    padding: 64px 0;
+    border-top: 1px solid var(--border);
+  }
+  .site:first-of-type { border-top: none; }
+  .site.flip .shot { order: -1; }
+  .site-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .logo.boxed { background: #fff; padding: 6px; }
+  .site-head-text { min-width: 0; }
+  .domain {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: var(--text-faint);
-    margin-left: auto;
-    white-space: nowrap;
+    gap: 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    color: var(--accent);
   }
-  .dot { width: 7px; height: 7px; border-radius: 50%; }
-  .dot.live { background: var(--live); box-shadow: 0 0 6px rgba(74, 222, 128, 0.6); }
-  .dot.auth { background: var(--auth); }
-  .dot.down { background: var(--down); }
-  .card h3 { font-size: 16.5px; font-weight: 650; margin-bottom: 4px; }
-  .card p { font-size: 14px; color: var(--text-dim); }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+  }
+  .site h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .site .sub {
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .site .desc {
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+  .site .desc + .desc { margin-top: 10px; }
+  .site .desc b { color: var(--text); font-weight: 600; }
+  ul.feats {
+    list-style: none;
+    margin: 18px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  ul.feats li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding-left: 22px;
+    position: relative;
+  }
+  ul.feats li::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 0.72em;
+    width: 7px; height: 7px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.65;
+  }
+  ul.feats li b { color: var(--text); font-weight: 600; }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .visit {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0b0e14;
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 8px 18px;
+    text-decoration: none;
+    transition: filter 0.15s;
+  }
+  .visit:hover { filter: brightness(1.12); }
   .repo {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 12px;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
     font-size: 12.5px;
     color: var(--text-faint);
+    text-decoration: none;
   }
+  a.repo:hover { color: var(--text-dim); }
   .repo svg { flex-shrink: 0; opacity: 0.7; }
+
+  .shot {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  a.shot:hover { border-color: #364461; transform: translateY(-2px); }
+  .shot-bar {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .shot-bar span {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .note {
-    margin-top: 28px;
+    padding: 40px 0 8px;
+    border-top: 1px solid var(--border);
     font-size: 13.5px;
     color: var(--text-faint);
   }
   .note a { color: var(--text-dim); }
   footer {
-    margin-top: 72px;
+    margin-top: 48px;
     padding: 28px 0 48px;
     border-top: 1px solid var(--border);
     font-size: 13.5px;
@@ -138,6 +224,15 @@
   }
   footer a { color: var(--text-dim); text-decoration: none; }
   footer a:hover { color: var(--accent); }
+
+  @media (max-width: 800px) {
+    .site {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 48px 0;
+    }
+    .site.flip .shot { order: 0; }
+  }
 </style>
 </head>
 <body>
@@ -150,87 +245,191 @@
       一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
+    <nav class="toc">
+      <a href="#harmonica">harmonica</a>
+      <a href="#chumei">chumei</a>
+      <a href="#mayor2026">mayor2026</a>
+      <a href="#youtube">youtube</a>
+      <a href="#urtube">urtube</a>
+    </nav>
   </div>
 </header>
 
 <div class="wrap">
 
-<section>
-  <h2>觀測站</h2>
-  <div class="grid">
-
-    <a class="card" href="https://harmonica.observe.tw" target="_blank" rel="noopener">
-      <div class="card-head">
-        <span class="domain">harmonica</span>
-        <span class="status"><span class="dot live"></span>在線</span>
+<section class="site" id="harmonica">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/harmonica-logo.svg" alt="臺灣口琴觀測站 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>harmonica.observe.tw</span>
+        <h2>臺灣口琴觀測站</h2>
       </div>
-      <h3>臺灣口琴觀測站</h3>
-      <p>口琴活動、社團、演奏者與比賽指定曲的公開索引，附 RSS feed 與資料 API。</p>
-      <span class="repo">
+    </div>
+    <p class="sub">口琴活動、社團、演奏者與比賽指定曲索引</p>
+    <p class="desc">
+      整理臺灣與世界各地的公開口琴資訊：活動、學生社團、樂團、演奏者、教學工作室、場館、
+      比賽指定曲與口琴譜源。監看<b>近 800 個公開來源</b>（RSSHub、Apify 與公開目錄），
+      涵蓋二十多個國家的社團與演奏者。
+    </p>
+    <ul class="feats">
+      <li><b>近 24 小時限動牆</b> — 追蹤口琴圈 Instagram Stories 動態</li>
+      <li><b>公開活動日曆</b> — 臺灣／國外／線上活動，Google Calendar 與 ICS 訂閱</li>
+      <li><b>完整貼文河道</b> — 依平台、國家、區域與 tag 篩選，附 RSS feed 與資料 API</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://harmonica.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/Harmonica-in-Taiwan" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         skyhong2002/Harmonica-in-Taiwan
-      </span>
-    </a>
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="臺灣口琴觀測站網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-harmonica.webp" alt="臺灣口琴觀測站首頁截圖" width="1280" height="800">
+  </a>
+</section>
 
-    <a class="card" href="https://chumei.observe.tw" target="_blank" rel="noopener">
-      <div class="card-head">
-        <span class="domain">chumei</span>
-        <span class="status"><span class="dot live"></span>在線</span>
+<section class="site flip" id="chumei">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/chumei-logo.png" alt="竹梅活動觀測站 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>chumei.observe.tw</span>
+        <h2>竹梅活動觀測站</h2>
       </div>
-      <h3>竹梅活動觀測站</h3>
-      <p>清大 × 陽明交大校園活動自動彙整：社團 IG/FB/Threads/X 與校園公告，經 LLM 抽取後輸出網站、Telegram、RSS 與 ICS 行事曆。</p>
-      <span class="repo">
+    </div>
+    <p class="sub">清大 × 陽明交大校園活動貼文河道</p>
+    <p class="desc">
+      自動彙整<b>清華大學與陽明交通大學</b>的社團與校方公開貼文 ——
+      Instagram、Facebook、Threads、X 與校園公告，經 LLM 抽取活動名稱、時間與地點，
+      整理成可依<b>校區、平台、活動類型與主辦單位</b>篩選的河道。
+    </p>
+    <ul class="feats">
+      <li><b>活動列表與日曆</b> — 迎新、招生、演出、講座一目瞭然</li>
+      <li><b>限動牆</b> — 兩校社團近 24 小時的 Instagram Stories</li>
+      <li><b>多管道訂閱</b> — Telegram 推播、RSS 與 ICS 行事曆</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://chumei.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         skyhong2002/chumei
-      </span>
-    </a>
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="竹梅活動觀測站網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-chumei.webp" alt="竹梅活動觀測站首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
 
-    <a class="card" href="https://mayor2026.observe.tw" target="_blank" rel="noopener">
-      <div class="card-head">
-        <span class="domain">mayor2026</span>
-        <span class="status"><span class="dot live"></span>在線</span>
+<section class="site" id="mayor2026">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/mayor2026-logo.svg" alt="2026 市長官方來源觀測站 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>mayor2026.observe.tw</span>
+        <h2>2026 市長官方來源觀測站</h2>
       </div>
-      <h3>2026 市長官方來源觀測站</h3>
-      <p>2026 縣市長選舉各參選人官方來源（官網、社群帳號）的彙整與追蹤。</p>
-      <span class="repo">
+    </div>
+    <p class="sub">六都市長候選人官方發文時間軸</p>
+    <p class="desc">
+      收錄臺北、新北、桃園、臺中、臺南、高雄<b>市長候選人的官方公開發文</b>，
+      目前監看 13 位候選人、已收錄超過 3,500 則貼文，跨平台合併成單一時間軸，
+      並以議題自動分類統計比例。
+    </p>
+    <ul class="feats">
+      <li><b>六都總覽</b> — 各市候選人陣營與發文量對照</li>
+      <li><b>議題選擇器與議題光譜</b> — 看每位候選人談什麼、談多少</li>
+      <li><b>主動發文判別</b> — 區分主動發文與回應他方觀點</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://mayor2026.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         skyhong2002/mayor2026
-      </span>
-    </a>
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="2026 市長官方來源觀測站網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-mayor2026.webp" alt="2026 市長官方來源觀測站首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
 
-    <a class="card" href="https://urtube.observe.tw" target="_blank" rel="noopener">
-      <div class="card-head">
-        <span class="domain">urtube</span>
-        <span class="status"><span class="dot live"></span>在線</span>
+<section class="site flip" id="youtube">
+  <div class="info">
+    <div class="site-head">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
+        <h2>YouTube Board</h2>
       </div>
-      <h3>urtube</h3>
-      <p>Your YouTube life, remembered — 個人 YouTube 觀看紀錄的整理與回顧。</p>
-      <span class="repo">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/urtube.observe.tw
-      </span>
-    </a>
-
-    <a class="card" href="https://youtube.observe.tw" target="_blank" rel="noopener">
-      <div class="card-head">
-        <span class="domain">youtube</span>
-        <span class="status"><span class="dot live"></span>在線</span>
-      </div>
-      <h3>YouTube Board</h3>
-      <p>公開 YouTube 頻道與直播的即時資料儀表板：直播熱度排行、分類與關鍵字追蹤、文字雲、趨勢與 AI 摘要。</p>
+    </div>
+    <p class="sub">即時 YouTube 資料儀表板</p>
+    <p class="desc">
+      把公開 YouTube 頻道、直播、影片、關鍵字與主題群組整理成<b>即時資料儀表板</b>：
+      監看 1,100 多個頻道、8 個分類（新聞、電視台、政治光譜等），
+      追蹤的週觀看總量超過 <b>14 億次</b>。
+    </p>
+    <ul class="feats">
+      <li><b>直播熱度</b> — 目前直播排行、帶狀直播、單日與期間排行</li>
+      <li><b>關鍵字追蹤</b> — 人物、事件與詞彙的影片、文字雲和趨勢</li>
+      <li><b>AI 摘要</b> — 每日、每小時與期間事件的頻道重點摘要</li>
+      <li><b>市長報表</b> — 縣市候選人與地方政治關鍵字</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
       <span class="repo">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         skyhong2002/youtube-board（私有）
       </span>
-    </a>
-
+    </div>
   </div>
-
-  <p class="note">
-    這一頁本身也是開源的：<a href="https://github.com/skyhong2002/observe.tw" target="_blank" rel="noopener">skyhong2002/observe.tw</a>
-  </p>
+  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-youtube.webp" alt="YouTube Board 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
 </section>
 
+<section class="site" id="urtube">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>urtube.observe.tw</span>
+        <h2>urtube</h2>
+      </div>
+    </div>
+    <p class="sub">Your YouTube life, remembered</p>
+    <p class="desc">
+      私人的 YouTube <b>注意力封存庫</b>：每日同步 Google My Activity 的跨裝置觀看紀錄，
+      搭配 Chrome 擴充功能量測實際觀看秒數，加上觀看進度、頻道與 AI 主題分類，
+      看見自己的注意力隨時間怎麼移動。
+    </p>
+    <ul class="feats">
+      <li><b>每個來源、同一條時間軸</b> — 不抽樣、不會過期</li>
+      <li><b>隱私即架構</b> — 每個帳號獨立資料庫，搜尋詞加密儲存，儀表板預設私人</li>
+      <li><b>看見自己的變化</b> — 注意力轉移、頻道動能與跨人比較</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://urtube.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/urtube.observe.tw" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/urtube.observe.tw
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://urtube.observe.tw" target="_blank" rel="noopener" aria-label="urtube 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-urtube.webp" alt="urtube 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<p class="note">
+  這一頁本身也是開源的：<a href="https://github.com/skyhong2002/observe.tw" target="_blank" rel="noopener">skyhong2002/observe.tw</a>
+</p>
 
 <footer>
   <div class="wrap" style="padding: 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">

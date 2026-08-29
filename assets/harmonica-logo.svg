@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 136" role="img" aria-labelledby="title desc">
+  <title id="title">臺灣口琴觀測站 favicon</title>
+  <desc id="desc">A compact harmonica mark with a data pulse and signal dot.</desc>
+  <rect width="136" height="136" rx="18" fill="#0f766e"/>
+  <path d="M24 80h88" stroke="#ffffff" stroke-width="18" stroke-linecap="round"/>
+  <g fill="#0f766e">
+    <circle cx="40" cy="80" r="5.5"/>
+    <circle cx="58" cy="80" r="5.5"/>
+    <circle cx="76" cy="80" r="5.5"/>
+    <circle cx="94" cy="80" r="5.5"/>
+  </g>
+  <path d="M30 45h20l10-16 18 35 12-19h20" fill="none" stroke="#f2b84b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="110" cy="45" r="8" fill="#c85f44"/>
+</svg>
