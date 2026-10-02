@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo 1 · 章節與展品標籤 — observe.tw</title>
+<title data-en="Demo 1 · Chapters and object labels — observe.tw">Demo 1 · 章節與展品標籤 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/demo/shared.css">
@@ -72,7 +72,7 @@
   <div class="wrap">
     <div class="scope">🔭</div>
     <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline">
+    <p class="tagline" data-en="A collection of <b>observatories</b> — each subdomain is a small automated system that keeps collecting, organizing and publishing something worth keeping a record of.">
       一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
@@ -90,12 +90,12 @@
   </footer>
 </div>
 <script type="module">
-  import { CHAPTERS, byId, entryHTML, topicsHTML, wireFilter, loadPulse, fmt, DEMO_NAV } from '/demo/common.js';
+  import { CHAPTERS, byId, entryHTML, topicsHTML, wireFilter, loadPulse, fmt, t, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
   document.getElementById('topics').innerHTML = topicsHTML();
   document.getElementById('toc').innerHTML = CHAPTERS.map((c) =>
-    `<a href="#${c.id}"><span class="no">${c.no}</span><b>${c.title}</b><small>${c.ids.length} 個專案</small></a>`).join('');
+    `<a href="#${c.id}"><span class="no">${c.no}</span><b>${c.title}</b><small>${t(`${c.ids.length} 個專案`, `${c.ids.length} projects`)}</small></a>`).join('');
 
   function render(pulse) {
     let i = 0;

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo 4 · 年表 — observe.tw</title>
+<title data-en="Demo 4 · Timeline — observe.tw">Demo 4 · 年表 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/demo/shared.css">
@@ -159,14 +159,14 @@
   <div class="wrap">
     <div class="scope">🔭</div>
     <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline">
+    <p class="tagline" data-en="From a single civic-tech reporter in 2024 to 16 systems running today. Ordered by when each one started, newest first.">
       從 2024 年的一個公民科技記者，到現在 16 個持續運轉的小系統。
       依開始的時間排列，最新的在最上面。
     </p>
     <div class="stats" id="stats"></div>
     <div class="growth">
-      <h2>累積專案數</h2>
-      <svg id="growth" viewBox="0 0 960 180" role="img" aria-label="累積專案數隨時間成長"></svg>
+      <h2 data-en="Projects over time">累積專案數</h2>
+      <svg id="growth" viewBox="0 0 960 180" role="img" aria-label="累積專案數隨時間成長" data-aria-en="Cumulative number of projects over time"></svg>
       <div class="gtip" id="gtip"></div>
     </div>
   </div>
@@ -181,7 +181,7 @@
   </footer>
 </div>
 <script type="module">
-  import { PROJECTS, chapterOf, logoHTML, labelHTML, shotHTML, linksHTML, since, loadPulse, DEMO_NAV } from '/demo/common.js';
+  import { PROJECTS, chapterOf, logoHTML, labelHTML, shotHTML, linksHTML, since, loadPulse, t, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
   const pulse = await loadPulse();
@@ -194,9 +194,9 @@
   const commits = PROJECTS.reduce((n, p) => n + p.commits, 0);
   const thisYear = PROJECTS.filter((p) => p.label.since.startsWith('2026')).length;
   document.getElementById('stats').innerHTML = [
-    [PROJECTS.length, '個專案'],
-    [thisYear, '個在 2026 年開始'],
-    [commits.toLocaleString('en-US'), '次 commit'],
+    [PROJECTS.length, t('個專案', 'projects')],
+    [thisYear, t('個在 2026 年開始', 'started in 2026')],
+    [commits.toLocaleString('en-US'), t('次 commit', 'commits')],
   ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
 
   // Cumulative step chart
@@ -230,17 +230,17 @@
     <g class="axis">${axis}</g>
     <path class="area" d="${area}"/>
     <path class="step" d="${d}"/>
-    ${pts.map((t, i) => `<circle class="hit" data-i="${i}" cx="${t.px}" cy="${t.py}" r="12"/><circle class="mark" cx="${t.px}" cy="${t.py}" r="4.5"/>`).join('')}
-    <text class="callout" x="${last.px - 10}" y="${last.py - 10}" text-anchor="end">現在 ${last.n} 個</text>`;
+    ${pts.map((pt, i) => `<circle class="hit" data-i="${i}" cx="${pt.px}" cy="${pt.py}" r="12"/><circle class="mark" cx="${pt.px}" cy="${pt.py}" r="4.5"/>`).join('')}
+    <text class="callout" x="${last.px - 10}" y="${last.py - 10}" text-anchor="end">${t(`現在 ${last.n} 個`, `${last.n} today`)}</text>`;
 
   const tip = document.getElementById('gtip');
   const wrap = svg.parentElement;
   svg.addEventListener('pointerover', (e) => {
     const h = e.target.closest('.hit');
     if (!h) return;
-    const t = pts[h.dataset.i];
+    const pt = pts[h.dataset.i];
     const b = h.getBoundingClientRect(), w = wrap.getBoundingClientRect();
-    tip.innerHTML = `<b>${t.p.name}</b> · ${since(t.p)} · 第 ${t.n} 個`;
+    tip.innerHTML = t(`<b>${pt.p.name}</b> · ${since(pt.p)} · 第 ${pt.n} 個`, `<b>${pt.p.name}</b> · ${since(pt.p)} · #${pt.n}`);
     tip.style.left = `${b.left + b.width / 2 - w.left}px`;
     tip.style.top = `${b.top + b.height / 2 - w.top}px`;
     tip.classList.add('show');
@@ -252,7 +252,7 @@
   });
 
   // Timeline, newest first
-  let html = '<div class="year now"><span>現在</span></div>';
+  let html = `<div class="year now"><span>${t('現在', 'Now')}</span></div>`;
   let year = null;
   desc.forEach((p, i) => {
     const yr = p.label.since.slice(0, 4);
@@ -272,7 +272,7 @@
         <p class="sub">${p.sub}</p>
         ${labelHTML(p, pulse)}
         <details>
-          <summary>展開介紹 ↓</summary>
+          <summary>${t('展開介紹 ↓', 'Read more ↓')}</summary>
           <p class="desc">${p.desc}</p>
         </details>
         ${linksHTML(p)}

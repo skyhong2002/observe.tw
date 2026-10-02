@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>排版 demo — observe.tw</title>
+<title data-en="Layout demos — observe.tw">排版 demo — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/demo/shared.css">
@@ -45,38 +45,49 @@
 <header>
   <div class="wrap">
     <div class="scope">🔭</div>
-    <h1>排版 demo</h1>
-    <p class="tagline">同一份內容，四種呈現方式。全部讀同一份資料，即時讀數每小時更新一次。</p>
+    <h1 data-en="Layout demos">排版 demo</h1>
+    <p class="tagline" data-en="The same content, presented four ways. Every page reads the same data, and the live readings refresh hourly.">同一份內容，四種呈現方式。全部讀同一份資料，即時讀數每小時更新一次。</p>
   </div>
 </header>
 <div class="wrap">
   <div class="list">
-    <a class="demo current" href="/">
+    <a class="demo current" href="/" data-path="/">
       <span class="no">00</span>
-      <div><h2>目前的首頁</h2><p>一條長清單、主題篩選、「更多專案」分隔。比較用的基準。</p></div>
+      <div><h2 data-en="Current home page">目前的首頁</h2><p data-en="One long list, topic filters and a &quot;more projects&quot; divider. The baseline to compare against.">一條長清單、主題篩選、「更多專案」分隔。比較用的基準。</p></div>
       <span class="path">/</span>
     </a>
     <a class="demo" href="/demo/1/">
       <span class="no">01</span>
-      <div><h2>章節與展品標籤</h2><p>分成「觀測世界／觀測自己／一起思考／幕後」四章，每個專案多一張觀測對象、頻率、始於、產出的標籤，附即時讀數。最接近現在的版面。</p></div>
+      <div><h2 data-en="Chapters and object labels">章節與展品標籤</h2><p data-en="Four chapters — observing the world, observing myself, thinking together, backstage — and a museum-style label on every project (what it observes, how often, since when, what it produces) with a live reading. Closest to the current layout.">分成「觀測世界／觀測自己／一起思考／幕後」四章，每個專案多一張觀測對象、頻率、始於、產出的標籤，附即時讀數。最接近現在的版面。</p></div>
       <span class="path">/demo/1/</span>
     </a>
     <a class="demo" href="/demo/2/">
       <span class="no">02</span>
-      <div><h2>控制室</h2><p>16 格儀表板，每格顯示此刻的即時讀數；點一格，右側面板展開截圖、標籤與介紹。一眼看完全部。</p></div>
+      <div><h2 data-en="Control room">控制室</h2><p data-en="A 16-tile dashboard, each tile showing its live reading. Click a tile and the panel on the right opens its screenshot, label and description. Everything at a glance.">16 格儀表板，每格顯示此刻的即時讀數；點一格，右側面板展開截圖、標籤與介紹。一眼看完全部。</p></div>
       <span class="path">/demo/2/</span>
     </a>
     <a class="demo" href="/demo/3/">
       <span class="no">03</span>
-      <div><h2>星圖</h2><p>每個專案是一顆星，亮度是 commit 數，四個星區是四個章節。選主題時，相關的星連成星座。下方是卡片目錄。</p></div>
+      <div><h2 data-en="Star map">星圖</h2><p data-en="Each project is a star, brighter with more commits, in one of four regions for the four chapters. Pick a topic and the related stars join into a constellation. A card catalog sits below.">每個專案是一顆星，亮度是 commit 數，四個星區是四個章節。選主題時，相關的星連成星座。下方是卡片目錄。</p></div>
       <span class="path">/demo/3/</span>
     </a>
     <a class="demo" href="/demo/4/">
       <span class="no">04</span>
-      <div><h2>年表</h2><p>依開始時間排列的時間軸，最新的在最上面，頂部一張累積專案數的成長曲線。說的是「怎麼一路做過來」。</p></div>
+      <div><h2 data-en="Timeline">年表</h2><p data-en="Projects in the order they started, newest first, under a chart of the cumulative project count. It tells how the work got here.">依開始時間排列的時間軸，最新的在最上面，頂部一張累積專案數的成長曲線。說的是「怎麼一路做過來」。</p></div>
       <span class="path">/demo/4/</span>
     </a>
   </div>
 </div>
+<div id="nav"></div>
+<script type="module">
+  import { LANG, href, DEMO_NAV } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+  document.querySelector('.demo-nav a').remove();
+  for (const a of document.querySelectorAll('.demo')) {
+    a.href = a.dataset.path ? (LANG === 'en' ? '/en/' : '/') : href(a.getAttribute('href'));
+    if (a.dataset.path && LANG === 'en') a.querySelector('.path').textContent = '/en/';
+  }
+</script>
 </body>
 </html>

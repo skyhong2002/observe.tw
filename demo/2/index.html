@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo 2 · 控制室 — observe.tw</title>
+<title data-en="Demo 2 · Control room — observe.tw">Demo 2 · 控制室 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/demo/shared.css">
@@ -128,8 +128,8 @@
   <div class="wrap">
     <div class="head-row">
       <div>
-        <h1>observe<span class="tld">.tw</span> <span style="color: var(--text-faint); font-weight: 500;">控制室</span></h1>
-        <p class="tagline">16 個持續運轉的小系統。點任何一格，看它在觀測什麼、此刻讀到多少。</p>
+        <h1>observe<span class="tld">.tw</span> <span style="color: var(--text-faint); font-weight: 500;" data-en="control room">控制室</span></h1>
+        <p class="tagline" data-en="16 small systems, always running. Click any tile to see what it observes and what it reads right now.">16 個持續運轉的小系統。點任何一格，看它在觀測什麼、此刻讀到多少。</p>
       </div>
       <div class="clock" id="clock"></div>
     </div>
@@ -148,7 +148,7 @@
   </footer>
 </div>
 <script type="module">
-  import { CHAPTERS, byId, logoHTML, shotHTML, linksHTML, labelHTML, fmt, loadPulse, agoText, DEMO_NAV } from '/demo/common.js';
+  import { CHAPTERS, byId, logoHTML, shotHTML, linksHTML, labelHTML, fmt, loadPulse, agoText, t, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
   const board = document.getElementById('board');
@@ -201,8 +201,8 @@
   function renderClock() {
     const live = Object.values(pulse?.items || {}).filter((r) => r.value != null).length;
     document.getElementById('clock').innerHTML = pulse
-      ? `<b>● ${live} 個讀數</b><br>資料更新於 ${agoText(pulse.updated)}`
-      : '讀數載入中…';
+      ? t(`<b>● ${live} 個讀數</b><br>資料更新於 ${agoText(pulse.updated)}`, `<b>● ${live} live readings</b><br>updated ${agoText(pulse.updated)}`)
+      : t('讀數載入中…', 'Loading readings…');
   }
 
   board.addEventListener('click', (e) => {

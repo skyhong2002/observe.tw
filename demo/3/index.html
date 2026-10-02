@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo 3 · 星圖 — observe.tw</title>
+<title data-en="Demo 3 · Star map — observe.tw">Demo 3 · 星圖 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/demo/shared.css">
@@ -35,6 +35,7 @@
     fill: #4b5674;
     font-weight: 600;
   }
+  html[lang="en"] .region text { letter-spacing: 0.06em; }
   .region .no { font-family: ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; fill: #4b5878; }
   .lines line {
     stroke: #7aa2f7;
@@ -141,17 +142,17 @@
 <header>
   <div class="wrap">
     <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline">
+    <p class="tagline" data-en="16 stars in four regions. The brighter the star, the more work went into it (commits). Pick a topic to see which projects form a constellation.">
       16 顆星，四個星區。星越亮代表投入越多（commit 數），
       選一個主題，看哪些專案連成同一個星座。
     </p>
     <div class="sky" id="sky">
-      <svg viewBox="0 0 1000 560" role="img" aria-label="observe.tw 專案星圖" id="map"></svg>
+      <svg viewBox="0 0 1000 560" role="img" aria-label="observe.tw 專案星圖" data-aria-en="Star map of observe.tw projects" id="map"></svg>
       <div class="tip" id="tip"></div>
     </div>
     <div class="legend">
-      <span>● 亮度 = commit 數 · 位置 = 所屬章節</span>
-      <span>點星星跳到介紹</span>
+      <span data-en="● Brightness = commits · position = chapter">● 亮度 = commit 數 · 位置 = 所屬章節</span>
+      <span data-en="Click a star to jump to it">點星星跳到介紹</span>
     </div>
     <div id="topics"></div>
   </div>
@@ -166,7 +167,7 @@
   </footer>
 </div>
 <script type="module">
-  import { CHAPTERS, PROJECTS, byId, TAG_LABEL, logoHTML, topicsHTML, since, DEMO_NAV } from '/demo/common.js';
+  import { CHAPTERS, PROJECTS, byId, TAG_LABEL, logoHTML, topicsHTML, since, t, LANG, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
 
@@ -240,7 +241,7 @@
     const p = byId[star.dataset.id];
     const box = sky.getBoundingClientRect();
     const c = star.querySelector('.core').getBoundingClientRect();
-    tip.innerHTML = `<b>${p.name}</b>${p.sub}<small>${since(p)} 起 · ${p.commits.toLocaleString('en-US')} commits</small>`;
+    tip.innerHTML = `<b>${p.name}</b>${p.sub}<small>${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.commits.toLocaleString('en-US')} commits</small>`;
     tip.style.left = `${c.left + c.width / 2 - box.left}px`;
     tip.style.top = `${c.top - box.top}px`;
     tip.classList.add('show');
@@ -269,7 +270,7 @@
       const p = byId[id];
       const href = p.url || p.repoUrl;
       const thumb = p.shot
-        ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${p.name} 截圖" loading="lazy"></a>`
+        ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" loading="lazy"></a>`
         : `<a class="thumb ph" href="${href}" target="_blank" rel="noopener"><img src="/${p.logo}" alt=""></a>`;
       return `<article class="card" id="${id}" data-tags="${p.tags.join(' ')}">
         ${thumb}
@@ -277,7 +278,7 @@
           <div class="card-title">${logoHTML(p)}<b>${p.name}</b></div>
           <p>${p.sub}</p>
           <p style="color: var(--text-faint)">${p.label.subject} · ${p.label.cadence}</p>
-          <div class="meta">${since(p)} 起 · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
+          <div class="meta">${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
         </div>
       </article>`;
     }).join('')}</div>`).join('');
