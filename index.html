@@ -58,7 +58,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 28px;
+    margin-top: 16px;
   }
   nav.toc a {
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
@@ -71,6 +71,51 @@
     transition: color 0.15s, border-color 0.15s;
   }
   nav.toc a:hover { color: var(--accent); border-color: #2e364c; }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .topics button, .tags button {
+    font: inherit;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+  }
+  .topics button {
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    border-color: var(--border);
+    padding: 6px 14px;
+  }
+  .topics button span { color: var(--text-faint); font-size: 12px; margin-left: 2px; }
+  .topics button:hover { border-color: #364461; }
+  .topics button[aria-pressed="true"] {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .topics button[aria-pressed="true"] span { color: rgba(11, 14, 20, 0.6); }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: -4px 0 14px;
+  }
+  .tags button {
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(122, 162, 247, 0.08);
+    padding: 1px 10px;
+  }
+  .tags button:hover { border-color: rgba(122, 162, 247, 0.4); }
+  .site[hidden], .more[hidden] { display: none; }
+  .filtering .site { border-top: 1px solid var(--border); }
+  .filtering .site.first { border-top: none; }
 
   .site {
     display: grid;
@@ -269,7 +314,22 @@
       一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
-    <nav class="toc">
+    <div class="topics" role="group" aria-label="依主題篩選">
+      <button type="button" data-tag="" aria-pressed="true">全部 <span>16</span></button>
+      <button type="button" data-tag="meeting" aria-pressed="false">會議工具 <span>2</span></button>
+      <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>5</span></button>
+      <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>3</span></button>
+      <button type="button" data-tag="politics" aria-pressed="false">選舉政治 <span>3</span></button>
+      <button type="button" data-tag="civic" aria-pressed="false">公民科技 <span>3</span></button>
+      <button type="button" data-tag="social" aria-pressed="false">社群貼文 <span>3</span></button>
+      <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
+      <button type="button" data-tag="lifelog" aria-pressed="false">個人數位足跡 <span>5</span></button>
+      <button type="button" data-tag="research" aria-pressed="false">研究 <span>2</span></button>
+      <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>2</span></button>
+      <button type="button" data-tag="campus" aria-pressed="false">校園 <span>2</span></button>
+      <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>3</span></button>
+    </div>
+    <nav class="toc" aria-label="專案">
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
@@ -281,14 +341,18 @@
       <a href="#stancelab">stancelab</a>
       <a href="#myzilla">myzilla</a>
       <a href="#plaud">plaud</a>
-      <a href="#more">更多專案</a>
+      <a href="#weave">weave</a>
+      <a href="#blog">blog</a>
+      <a href="#infovore">infovore</a>
+      <a href="#status">status</a>
+      <a href="#encore">encore</a>
     </nav>
   </div>
 </header>
 
 <div class="wrap">
 
-<section class="site" id="harmonica">
+<section class="site" id="harmonica" data-tags="social harmonica">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/harmonica-logo.svg" alt="口琴觀測站 logo">
@@ -298,6 +362,7 @@
       </div>
     </div>
     <p class="sub">Harmonica Observatory · 世界各地的口琴活動、演奏者與樂譜</p>
+    <div class="tags"><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="harmonica">口琴</button></div>
     <p class="desc">
       從臺灣出發、擴展到全世界的口琴資訊目錄：活動、學生社團、樂團、演奏者、教學工作室、
       比賽指定曲與樂譜來源。散落在各社群平台與各種語言的公開資訊集中在一起，
@@ -323,7 +388,7 @@
   </a>
 </section>
 
-<section class="site flip" id="chumei">
+<section class="site flip" id="chumei" data-tags="social campus">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/chumei-logo.png" alt="竹梅活動觀測站 logo">
@@ -333,6 +398,7 @@
       </div>
     </div>
     <p class="sub">清大 × 陽明交大校園活動貼文河道</p>
+    <div class="tags"><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="campus">校園</button></div>
     <p class="desc">
       自動彙整<b>清華大學與陽明交通大學</b>的社團與校方公開貼文 ——
       Instagram、Facebook、Threads、X 與校園公告，經 LLM 抽取活動名稱、時間與地點，
@@ -357,7 +423,7 @@
   </a>
 </section>
 
-<section class="site" id="mayor2026">
+<section class="site" id="mayor2026" data-tags="politics social civic">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/mayor2026-logo.svg" alt="2026 市長官方來源觀測站 logo">
@@ -367,6 +433,7 @@
       </div>
     </div>
     <p class="sub">六都市長候選人官方發文時間軸</p>
+    <div class="tags"><button type="button" data-tag="politics">選舉政治</button><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="civic">公民科技</button></div>
     <p class="desc">
       收錄臺北、新北、桃園、臺中、臺南、高雄<b>市長候選人的官方公開發文</b>，
       目前監看 13 位候選人、已收錄超過 3,500 則貼文，跨平台合併成單一時間軸，
@@ -391,7 +458,7 @@
   </a>
 </section>
 
-<section class="site flip" id="tag">
+<section class="site flip" id="tag" data-tags="news politics">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/tag-logo.svg" alt="新文易數 logo">
@@ -401,6 +468,7 @@
       </div>
     </div>
     <p class="sub">同一件事，各家怎麼說</p>
+    <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="politics">選舉政治</button></div>
     <p class="desc">
       每 9 到 60 分鐘爬取約<b>一百家臺灣新聞媒體</b>，把標籤、事件與議題整理成可以比較的資料：
       過去 24 小時的新聞量與藍綠媒體比例、正在升溫的議題，以及同一件事在各家的標題寫法。
@@ -424,7 +492,7 @@
   </a>
 </section>
 
-<section class="site" id="rep0rter">
+<section class="site" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/rep0rter-logo.png" alt="rep0rter logo">
@@ -434,6 +502,7 @@
       </div>
     </div>
     <p class="sub">公民科技社群的 AI 記者</p>
+    <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="civic">公民科技</button><button type="button" data-tag="ai">AI 應用</button></div>
     <p class="desc">
       每小時讀過 <b>g0v、Code for Korea、Code for Japan</b> 等公民科技社群的公開協作空間 ——
       Slack、GitHub、Mastodon、RSS 與公開 Notion，挑出值得關注的進展，寫成短篇報導。
@@ -457,7 +526,7 @@
   </a>
 </section>
 
-<section class="site flip" id="youtube">
+<section class="site flip" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -466,6 +535,7 @@
       </div>
     </div>
     <p class="sub">即時 YouTube 資料儀表板</p>
+    <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="politics">選舉政治</button></div>
     <p class="desc">
       把公開 YouTube 頻道、直播、影片、關鍵字與主題群組整理成<b>即時資料儀表板</b>：
       監看 1,100 多個頻道、8 個分類（新聞、電視台、政治光譜等），
@@ -491,7 +561,7 @@
   </a>
 </section>
 
-<section class="site" id="urtube">
+<section class="site" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
@@ -501,6 +571,7 @@
       </div>
     </div>
     <p class="sub">Your YouTube life, remembered</p>
+    <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
       私人的 YouTube <b>注意力封存庫</b>：每日同步 Google My Activity 的跨裝置觀看紀錄，
       搭配 Chrome 擴充功能量測實際觀看秒數，加上觀看進度、頻道與 AI 主題分類，
@@ -525,7 +596,7 @@
   </a>
 </section>
 
-<section class="site flip" id="omni">
+<section class="site flip" id="omni" data-tags="meeting research ai">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -534,6 +605,7 @@
       </div>
     </div>
     <p class="sub">揭露隱藏共識的線上會議引導</p>
+    <div class="tags"><button type="button" data-tag="meeting">會議工具</button><button type="button" data-tag="research">研究</button><button type="button" data-tag="ai">AI 應用</button></div>
     <p class="desc">
       陽明交大 HAIX 實驗室的研究平台。參與者透過私人語音輸入（back channel）留下 Idea Blocks，
       系統跨參與者偵測<b>相似但沒說出口的想法</b>，以匿名提示推播，讓潛在共識浮上公開討論。
@@ -557,7 +629,7 @@
   </a>
 </section>
 
-<section class="site" id="stancelab">
+<section class="site" id="stancelab" data-tags="ai research civic">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -566,6 +638,7 @@
       </div>
     </div>
     <p class="sub">把第一反應整理成可討論的立場</p>
+    <div class="tags"><button type="button" data-tag="ai">AI 應用</button><button type="button" data-tag="research">研究</button><button type="button" data-tag="civic">公民科技</button></div>
     <p class="desc">
       寫下粗略的意見與信心程度，再和 AI 一起把它拆開：<b>訪談者</b>釐清、<b>導師</b>整理、<b>反方</b>挑戰，
       旁邊的記事本隨時收集有用的片段，最後收斂成可以發出去的草稿。
@@ -589,7 +662,7 @@
   </a>
 </section>
 
-<section class="site flip" id="myzilla">
+<section class="site flip" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -599,6 +672,7 @@
       </div>
     </div>
     <p class="sub">我的個人入口 · 瀏覽回顧</p>
+    <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
       把 2000 年代的 MyZilla 個人入口重新做一次 —— 網址收藏、網摘、多站搜尋、電影與心情，
       再加上<b>完整的瀏覽歷史回顧</b>。原始歷史只保留在自己的伺服器，不會公開。
@@ -622,7 +696,7 @@
   </a>
 </section>
 
-<section class="site" id="plaud">
+<section class="site" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo">
@@ -632,6 +706,7 @@
       </div>
     </div>
     <p class="sub">自架的 Plaud 錄音處理流程</p>
+    <div class="tags"><button type="button" data-tag="ai">AI 應用</button><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
     <p class="desc">
       繼續用實體 Plaud 錄音筆與官方上傳，但<b>轉錄、講者分離、摘要、搜尋與問答</b>
       全部改在自己的機器上跑 —— 透過官方 Open API 拉回原始音檔，之後的衍生資料都由自己保管。
@@ -663,7 +738,7 @@
   <p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>
 </section>
 
-<section class="site flip" id="weave">
+<section class="site flip" id="weave" data-tags="meeting ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/weave-logo.svg" alt="Weave In logo">
@@ -673,6 +748,7 @@
       </div>
     </div>
     <p class="sub">Keep the thread. Weave everyone in.</p>
+    <div class="tags"><button type="button" data-tag="meeting">會議工具</button><button type="button" data-tag="ai">AI 應用</button></div>
     <p class="desc">
       對抗團體迷思的瀏覽器會議：最多八人共享視訊、螢幕、即時字幕與白板，不需要帳號。
       <b>2026 Sea × OpenAI Codex Hackathon Taiwan 決賽入圍（Top 5/30）</b>。
@@ -696,7 +772,7 @@
   </a>
 </section>
 
-<section class="site" id="blog">
+<section class="site" id="blog" data-tags="lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/blog-logo.png" alt="Skychopath. logo">
@@ -706,6 +782,7 @@
       </div>
     </div>
     <p class="sub">個人部落格</p>
+    <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
     <p class="desc">
       寫反思、專案與各種著迷的事。自架 <b>Ghost</b>，主題以官方 Source 為基底自行維護，個人修改集中在獨立的 partials 與樣式，官方更新可以直接合併。
     </p>
@@ -728,7 +805,7 @@
   </a>
 </section>
 
-<section class="site flip" id="infovore">
+<section class="site flip" id="infovore" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/infovore-logo.png" alt="infovore logo">
@@ -738,6 +815,7 @@
       </div>
     </div>
     <p class="sub">生活年輪</p>
+    <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
       彙整玩過、看過、讀過、聽過與參加過的東西 —— Backloggd、Kitsu、stats.fm、Simkl、Goodreads、YouTube 等來源統一正規化成同一份資料，存進 SQLite，上游掛掉也不會讓頁面空白。
     </p>
@@ -760,7 +838,7 @@
   </a>
 </section>
 
-<section class="site" id="status">
+<section class="site" id="status" data-tags="selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/status-logo.svg" alt="Sky Status logo">
@@ -770,6 +848,7 @@
       </div>
     </div>
     <p class="sub">自架服務的公開維運儀表板</p>
+    <div class="tags"><button type="button" data-tag="selfhost">自架維運</button></div>
     <p class="desc">
       監看所有自架服務的公開端點、Docker 狀態與遠端主機，保留 90 天的可用性歷史；金鑰只留在伺服器端，從不送到瀏覽器。
     </p>
@@ -792,7 +871,7 @@
   </a>
 </section>
 
-<section class="site flip" id="encore">
+<section class="site flip" id="encore" data-tags="harmonica campus">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/encore-logo.svg" alt="Encore logo">
@@ -802,6 +881,7 @@
       </div>
     </div>
     <p class="sub">竹韻口琴社攤位點歌系統</p>
+    <div class="tags"><button type="button" data-tag="harmonica">口琴</button><button type="button" data-tag="campus">校園</button></div>
     <p class="desc">
       社團博覽會攤位用：觀眾掃 QR 點歌投票，大螢幕放 MV、音響出伴奏、耳機出原唱導聽，<b>三路同步</b>。整套只吃手機熱點的區域網路，不需要網際網路。
     </p>
@@ -845,5 +925,49 @@
 
 </div>
 
+<script>
+(() => {
+  const sites = [...document.querySelectorAll('.site')];
+  const more = document.getElementById('more');
+  const topics = [...document.querySelectorAll('.topics button')];
+
+  function apply(tag) {
+    let shown = 0;
+    let moreShown = false;
+    for (const site of sites) {
+      const match = !tag || site.dataset.tags.split(' ').includes(tag);
+      const afterMore = more.compareDocumentPosition(site) & Node.DOCUMENT_POSITION_FOLLOWING;
+      site.hidden = !match;
+      site.classList.toggle('flip', match && shown % 2 === 1);
+      site.classList.toggle('first', match && (shown === 0 || (afterMore && !moreShown)));
+      if (match) {
+        shown++;
+        if (afterMore) moreShown = true;
+      }
+    }
+    more.hidden = !moreShown;
+    document.body.classList.toggle('filtering', !!tag);
+    for (const b of topics) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+    const url = new URL(location.href);
+    tag ? url.searchParams.set('tag', tag) : url.searchParams.delete('tag');
+    history.replaceState(null, '', url);
+  }
+
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.topics button, .tags button');
+    if (b) {
+      const tag = b.closest('.topics') && b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag;
+      apply(tag);
+      if (b.closest('.tags')) document.querySelector('.topics').scrollIntoView({ block: 'center' });
+      return;
+    }
+    const a = e.target.closest('nav.toc a');
+    if (a && document.querySelector(a.getAttribute('href')).hidden) apply('');
+  });
+
+  const initial = new URL(location.href).searchParams.get('tag');
+  if (initial && topics.some((b) => b.dataset.tag === initial)) apply(initial);
+})();
+</script>
 </body>
 </html>
