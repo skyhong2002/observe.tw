@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、YouTube 資料與個人數位足跡等主題的資料彙整與公開網站。">
+<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
@@ -227,6 +227,9 @@
     padding: 64px 0;
     border-top: 1px solid var(--border);
   }
+  .more#more { padding-bottom: 0; }
+  .more#more + .site { border-top: none; }
+  .more.more-cards { border-top: none; padding-top: 8px; }
   .more h2 { font-size: 22px; font-weight: 700; }
   .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
   .cards {
@@ -295,8 +298,11 @@
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#tag">tag</a>
+      <a href="#rep0rter">rep0rter</a>
       <a href="#youtube">youtube</a>
       <a href="#urtube">urtube</a>
+      <a href="#omni">omni</a>
+      <a href="#stancelab">stancelab</a>
       <a href="#myzilla">myzilla</a>
       <a href="#plaud">plaud</a>
       <a href="#more">更多專案</a>
@@ -442,7 +448,40 @@
   </a>
 </section>
 
-<section class="site" id="youtube">
+<section class="site" id="rep0rter">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/rep0rter-logo.png" alt="rep0rter logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>rep0rter.observe.tw</span>
+        <h2>rep0rter</h2>
+      </div>
+    </div>
+    <p class="sub">公民科技社群的 AI 記者</p>
+    <p class="desc">
+      每小時讀過 <b>g0v、Code for Korea、Code for Japan</b> 等公民科技社群的公開協作空間 ——
+      Slack、GitHub、Mastodon、RSS 與公開 Notion，挑出值得關注的進展，寫成短篇報導。
+    </p>
+    <ul class="feats">
+      <li><b>四種語言</b> — 繁體中文、English、日本語、한국어，每篇都附原始來源卡片</li>
+      <li><b>編輯規則</b> — 評分、去重，排除機器人、CI 雜訊與選擇退出的人</li>
+      <li><b>多管道發布</b> — 網站、RSS、Telegram 頻道與 Threads</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://rep0rter.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/rep0rter/rep0rter" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        rep0rter/rep0rter
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://rep0rter.observe.tw" target="_blank" rel="noopener" aria-label="rep0rter 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-rep0rter.webp" alt="rep0rter 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="youtube">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -476,7 +515,7 @@
   </a>
 </section>
 
-<section class="site flip" id="urtube">
+<section class="site" id="urtube">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
@@ -510,7 +549,70 @@
   </a>
 </section>
 
-<section class="site" id="myzilla">
+<section class="site flip" id="omni">
+  <div class="info">
+    <div class="site-head">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>omni.observe.tw</span>
+        <h2>OmniObserve</h2>
+      </div>
+    </div>
+    <p class="sub">揭露隱藏共識的線上會議引導</p>
+    <p class="desc">
+      陽明交大 HAIX 實驗室的研究平台。參與者透過私人語音輸入（back channel）留下 Idea Blocks，
+      系統跨參與者偵測<b>相似但沒說出口的想法</b>，以匿名提示推播，讓潛在共識浮上公開討論。
+    </p>
+    <ul class="feats">
+      <li><b>Front–back channel</b> — 視訊會議、即時語音辨識與私人想法並行</li>
+      <li><b>匿名相似提示</b> — 知道有人跟自己想得一樣，但不揭露身份與內容</li>
+      <li><b>研究工具</b> — 任務範本、會議連結產生器與研究者監看介面</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://omni.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/nycu-haix/omniobserve" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        nycu-haix/omniobserve
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://omni.observe.tw" target="_blank" rel="noopener" aria-label="OmniObserve 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-omni.webp" alt="OmniObserve 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site" id="stancelab">
+  <div class="info">
+    <div class="site-head">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot private"></span>stancelab.observe.tw · 即將上線</span>
+        <h2>StanceLab</h2>
+      </div>
+    </div>
+    <p class="sub">把第一反應整理成可討論的立場</p>
+    <p class="desc">
+      寫下粗略的意見與信心程度，再和 AI 一起把它拆開：<b>訪談者</b>釐清、<b>導師</b>整理、<b>反方</b>挑戰，
+      旁邊的記事本隨時收集有用的片段，最後收斂成可以發出去的草稿。
+    </p>
+    <ul class="feats">
+      <li><b>三種角色或單一夥伴</b> — 可比較多角色與一般聊天機器人的差異</li>
+      <li><b>自帶金鑰</b> — OpenRouter／OpenCode Go，無金鑰時有示範模式</li>
+      <li><b>匯出與續寫</b> — 草稿匯出文字，整段 session 可匯出 JSON 再匯入</li>
+    </ul>
+    <div class="links">
+      <a class="repo" href="https://github.com/skyhong2002/StanceLab" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/StanceLab
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://github.com/skyhong2002/StanceLab" target="_blank" rel="noopener" aria-label="StanceLab 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-stancelab.webp" alt="StanceLab 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="myzilla">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -543,7 +645,7 @@
   </a>
 </section>
 
-<section class="site flip" id="plaud">
+<section class="site" id="plaud">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo">
@@ -582,7 +684,48 @@
 <section class="more" id="more">
   <h2>更多專案</h2>
   <p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>
+</section>
+
+<section class="site flip" id="weave">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/weave-logo.svg" alt="Weave In logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>weave.nycu.ai</span>
+        <h2>Weave In</h2>
+      </div>
+    </div>
+    <p class="sub">Keep the thread. Weave everyone in.</p>
+    <p class="desc">
+      對抗團體迷思的瀏覽器會議：最多八人共享視訊、螢幕、即時字幕與白板，不需要帳號。
+      <b>2026 Sea × OpenAI Codex Hackathon Taiwan 決賽入圍（Top 5/30）</b>。
+    </p>
+    <ul class="feats">
+      <li><b>Muse</b> — 每個人的私人助理，可打字、口述或即時語音對話</li>
+      <li><b>Omni</b> — 共享引導者，察覺過早收斂、偏題或發言不均，經同意才開口</li>
+      <li><b>WebMCP</b> — Codex 等外部代理可讀取會議脈絡、操作白板</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://weave.nycu.ai" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        JacobLinCool/Weave-In
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-weave.webp" alt="Weave In 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="more more-cards">
   <div class="cards">
+    <a class="card" href="https://skyhong.tw" target="_blank" rel="noopener">
+      <h3>Skychopath.</h3>
+      <p>個人部落格：反思、專案與各種著迷的事，自架 Ghost 與自製主題。</p>
+      <span class="domain">skyhong.tw ↗</span>
+    </a>
     <a class="card" href="https://infovore.skyhong.tw" target="_blank" rel="noopener">
       <h3>infovore</h3>
       <p>生活年輪：彙整玩過、看過、讀過、聽過的東西，附公開時間軸、狀態卡片、年度 Wrapped 與 MCP 端點。</p>
@@ -597,11 +740,6 @@
       <h3>Encore</h3>
       <p>竹韻口琴社博覽會攤位的點歌系統：觀眾掃 QR 投票，MV、伴奏與導唱三路同步播放。</p>
       <span class="domain repo-only">skyhong2002/encore ↗</span>
-    </a>
-    <a class="card" href="https://github.com/skyhong2002/StanceLab" target="_blank" rel="noopener">
-      <h3>StanceLab</h3>
-      <p>把第一反應整理成可討論的立場：與訪談者、導師、反方三種 AI 角色對話，最後收斂成草稿。</p>
-      <span class="domain repo-only">skyhong2002/StanceLab ↗</span>
     </a>
   </div>
 </section>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Weave In</title>
+  <rect width="64" height="64" rx="14" fill="#141A33"/>
+  <!-- warp: four dyed threads -->
+  <rect x="12" y="10" width="8" height="44" rx="2" fill="#E0563F"/>
+  <rect x="22" y="10" width="8" height="44" rx="2" fill="#E9B44C"/>
+  <rect x="32" y="10" width="8" height="44" rx="2" fill="#5FC7A2"/>
+  <rect x="42" y="10" width="8" height="44" rx="2" fill="#F4A27E"/>
+  <!-- weft: undyed cotton passes -->
+  <rect x="10" y="12" width="44" height="8" rx="2" fill="#F3EEE3"/>
+  <rect x="10" y="22" width="44" height="8" rx="2" fill="#F3EEE3"/>
+  <rect x="10" y="32" width="44" height="8" rx="2" fill="#F3EEE3"/>
+  <rect x="10" y="42" width="44" height="8" rx="2" fill="#F3EEE3"/>
+  <!-- interlace: warp rises over weft on alternate crossings -->
+  <rect x="12" y="12" width="8" height="8" fill="#E0563F"/><rect x="32" y="12" width="8" height="8" fill="#5FC7A2"/>
+  <rect x="22" y="22" width="8" height="8" fill="#E9B44C"/><rect x="42" y="22" width="8" height="8" fill="#F4A27E"/>
+  <rect x="12" y="32" width="8" height="8" fill="#E0563F"/><rect x="32" y="32" width="8" height="8" fill="#5FC7A2"/>
+  <rect x="22" y="42" width="8" height="8" fill="#E9B44C"/><rect x="42" y="42" width="8" height="8" fill="#F4A27E"/>
+</svg>
