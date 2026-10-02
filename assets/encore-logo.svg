@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="竹韻口琴社">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#131b2e"/>
+      <stop offset="1" stop-color="#0a0e1a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd97a"/>
+      <stop offset=".5" stop-color="#ffc94d"/>
+      <stop offset="1" stop-color="#e8a52e"/>
+    </linearGradient>
+    <linearGradient id="gold2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8a52e"/>
+      <stop offset=".5" stop-color="#ffc94d"/>
+      <stop offset="1" stop-color="#ffd97a"/>
+    </linearGradient>
+    <linearGradient id="bamboo" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7fd4a0"/>
+      <stop offset="1" stop-color="#4faf78"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="124" height="124" rx="30" fill="url(#bg)"/>
+  <rect x="2" y="2" width="124" height="124" rx="30" fill="none" stroke="#ffc94d" stroke-opacity=".28" stroke-width="2.5"/>
+
+  <!-- 竹枝:斜倚在口琴後方 -->
+  <g stroke="url(#bamboo)" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M36 108 C 42 88 52 62 66 34"/>
+  </g>
+  <g stroke="#0a0e1a" stroke-width="2.4" stroke-linecap="round">
+    <path d="M45 84 l 9 3"/>
+    <path d="M54 60 l 9 3"/>
+  </g>
+  <!-- 竹葉 -->
+  <g fill="#5fc48a">
+    <path d="M64 36 C 74 26 86 22 96 23 C 90 33 79 39 68 40 Z"/>
+    <path d="M63 42 C 55 34 51 24 52 15 C 61 20 66 30 66 40 Z" fill="#4faf78"/>
+  </g>
+
+  <!-- 半音階口琴 -->
+  <g transform="translate(14,58) rotate(-4 50 21)">
+    <!-- 上下蓋板 -->
+    <path d="M4 6 Q4 0 12 0 L 88 0 Q96 0 96 6 L 96 11 L 4 11 Z" fill="url(#gold)"/>
+    <path d="M4 31 L 96 31 L 96 36 Q96 42 88 42 L 12 42 Q4 42 4 36 Z" fill="url(#gold2)"/>
+    <!-- 琴格 -->
+    <rect x="4" y="11" width="92" height="20" fill="#233049"/>
+    <!-- 吹孔 -->
+    <g fill="#0a0e1a">
+      <rect x="10" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="21" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="32" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="43" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="54" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="65" y="15" width="7.5" height="12" rx="2"/>
+      <rect x="76" y="15" width="7.5" height="12" rx="2"/>
+    </g>
+    <!-- 蓋板高光 -->
+    <rect x="9" y="2.5" width="82" height="2.6" rx="1.3" fill="#fff" opacity=".5"/>
+    <!-- 滑鍵(半音階的招牌) -->
+    <rect x="96" y="16" width="14" height="10" rx="5" fill="url(#gold)"/>
+    <circle cx="110" cy="21" r="6.5" fill="url(#gold)"/>
+    <circle cx="110" cy="21" r="6.5" fill="none" stroke="#a06e14" stroke-width="1.2" opacity=".6"/>
+  </g>
+
+  <!-- 音符 -->
+  <g fill="#ffc94d">
+    <path d="M92 44 q 10 -3 12 -12 l 2.6 .9 q -3 10 -12 14 Z" opacity=".95"/>
+    <circle cx="91" cy="46" r="4.6"/>
+  </g>
+</svg>

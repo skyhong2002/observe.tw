@@ -229,32 +229,8 @@
   }
   .more#more { padding-bottom: 0; }
   .more#more + .site { border-top: none; }
-  .more.more-cards { border-top: none; padding-top: 8px; }
   .more h2 { font-size: 22px; font-weight: 700; }
   .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 28px;
-  }
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--surface);
-    color: inherit;
-    text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .card:hover { border-color: #364461; transform: translateY(-2px); }
-  .card h3 { font-size: 16px; font-weight: 600; }
-  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; flex: 1; }
-  .card .domain { font-size: 12px; margin-top: 6px; }
-  .card .domain.repo-only { color: var(--text-faint); }
 
   .note {
     padding: 40px 0 8px;
@@ -720,29 +696,134 @@
   </a>
 </section>
 
-<section class="more more-cards">
-  <div class="cards">
-    <a class="card" href="https://skyhong.tw" target="_blank" rel="noopener">
-      <h3>Skychopath.</h3>
-      <p>個人部落格：反思、專案與各種著迷的事，自架 Ghost 與自製主題。</p>
-      <span class="domain">skyhong.tw ↗</span>
-    </a>
-    <a class="card" href="https://infovore.skyhong.tw" target="_blank" rel="noopener">
-      <h3>infovore</h3>
-      <p>生活年輪：彙整玩過、看過、讀過、聽過的東西，附公開時間軸、狀態卡片、年度 Wrapped 與 MCP 端點。</p>
-      <span class="domain">infovore.skyhong.tw ↗</span>
-    </a>
-    <a class="card" href="https://status.skyhong.tw" target="_blank" rel="noopener">
-      <h3>Sky Status</h3>
-      <p>自架服務的公開維運儀表板：可用性歷史、憑證與網域到期、OpenAI 用量與 Discord 告警。</p>
-      <span class="domain">status.skyhong.tw ↗</span>
-    </a>
-    <a class="card" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
-      <h3>Encore</h3>
-      <p>竹韻口琴社博覽會攤位的點歌系統：觀眾掃 QR 投票，MV、伴奏與導唱三路同步播放。</p>
-      <span class="domain repo-only">skyhong2002/encore ↗</span>
-    </a>
+<section class="site" id="blog">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/blog-logo.png" alt="Skychopath. logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>skyhong.tw</span>
+        <h2>Skychopath.</h2>
+      </div>
+    </div>
+    <p class="sub">個人部落格</p>
+    <p class="desc">
+      寫反思、專案與各種著迷的事。自架 <b>Ghost</b>，主題以官方 Source 為基底自行維護，個人修改集中在獨立的 partials 與樣式，官方更新可以直接合併。
+    </p>
+    <ul class="feats">
+      <li><b>Articles</b> — 長文：反思、專案紀錄與心得</li>
+      <li><b>Fragments</b> — 短篇與零碎的想法</li>
+      <li><b>Now</b> — 現在正在做、在想的事</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/skychopath-theme" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/skychopath-theme
+      </a>
+    </div>
   </div>
+  <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-blog.webp" alt="Skychopath. 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="infovore">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/infovore-logo.png" alt="infovore logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>infovore.skyhong.tw</span>
+        <h2>infovore</h2>
+      </div>
+    </div>
+    <p class="sub">生活年輪</p>
+    <p class="desc">
+      彙整玩過、看過、讀過、聽過與參加過的東西 —— Backloggd、Kitsu、stats.fm、Simkl、Goodreads、YouTube 等來源統一正規化成同一份資料，存進 SQLite，上游掛掉也不會讓頁面空白。
+    </p>
+    <ul class="feats">
+      <li><b>公開時間軸</b> — 去重後的活動紀錄，附 RSS 與 JSON API</li>
+      <li><b>狀態卡片</b> — Satori 即時產生的 SVG／PNG／WebP 卡片，可嵌入 GitHub README</li>
+      <li><b>Wrapped 與 MCP</b> — 年度回顧，以及給 AI 工具查詢的 MCP 端點</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://infovore.skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/infovore" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/infovore
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://infovore.skyhong.tw" target="_blank" rel="noopener" aria-label="infovore 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-infovore.webp" alt="infovore 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site" id="status">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/status-logo.svg" alt="Sky Status logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>status.skyhong.tw</span>
+        <h2>Sky Status</h2>
+      </div>
+    </div>
+    <p class="sub">自架服務的公開維運儀表板</p>
+    <p class="desc">
+      監看所有自架服務的公開端點、Docker 狀態與遠端主機，保留 90 天的可用性歷史；金鑰只留在伺服器端，從不送到瀏覽器。
+    </p>
+    <ul class="feats">
+      <li><b>可用性歷史</b> — 分段 uptime 長條、回應時間與 7／30／90 天統計</li>
+      <li><b>到期監看</b> — TLS 憑證與網域到期（RDAP，.tw 走 WHOIS）</li>
+      <li><b>告警與用量</b> — Discord 斷線／恢復通知、心跳檢查、OpenAI 用量與 Prometheus 指標</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://status.skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/status.skyhong.tw" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/status.skyhong.tw
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-status.webp" alt="Sky Status 截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="encore">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/encore-logo.svg" alt="Encore logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot private"></span>localhost:8080</span>
+        <h2>Encore</h2>
+      </div>
+    </div>
+    <p class="sub">竹韻口琴社攤位點歌系統</p>
+    <p class="desc">
+      社團博覽會攤位用：觀眾掃 QR 點歌投票，大螢幕放 MV、音響出伴奏、耳機出原唱導聽，<b>三路同步</b>。整套只吃手機熱點的區域網路，不需要網際網路。
+    </p>
+    <ul class="feats">
+      <li><b>三路同步</b> — 以伴奏為主時鐘，MV 每秒校正，導唱可調 ±500ms 偏移</li>
+      <li><b>現場點歌</b> — 觀眾手機投票，曲庫丟檔即可重新掃描</li>
+      <li><b>演奏控制台</b> — A-B 循環、不變調變速，全部有鍵盤快捷鍵</li>
+    </ul>
+    <div class="links">
+      <a class="repo" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/encore
+      </a>
+    </div>
+  </div>
+  <a class="shot placeholder" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener" aria-label="Encore 原始碼">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <div class="ph">
+      <img src="assets/encore-logo.svg" alt="" width="72" height="72">
+      <span>區網演出系統 · 無公開網址</span>
+    </div>
+  </a>
 </section>
 
 <p class="note">

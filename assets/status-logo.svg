@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-labelledby="title">
+  <title id="title">Sky Status</title>
+  <rect width="40" height="40" rx="8" fill="#f07f4f"/>
+  <path d="M10 13h20v4H10zm0 10h14v4H10z" fill="#101416"/>
+  <rect x="27" y="23" width="3" height="4" fill="#101416"/>
+</svg>
