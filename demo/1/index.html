@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo 1 · 章節與展品標籤 — observe.tw</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="stylesheet" href="/demo/shared.css">
+<style>
+  .chapters-toc {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .chapters-toc a {
+    display: block;
+    padding: 16px 18px 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .chapters-toc a:hover { border-color: #364461; transform: translateY(-2px); }
+  .chapters-toc .no {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .chapters-toc b { display: block; font-size: 18px; margin-top: 2px; }
+  .chapters-toc small { display: block; font-size: 12.5px; color: var(--text-faint); margin-top: 6px; line-height: 1.6; }
+  .topics { margin-top: 20px; }
+
+  .chapter { padding-top: 40px; }
+  .chapter[hidden] { display: none; }
+  .chapter-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 28px;
+    align-items: end;
+    padding: 56px 0 8px;
+    border-top: 1px solid var(--border);
+  }
+  .chapter-head .no {
+    grid-row: span 2;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: clamp(56px, 10vw, 96px);
+    font-weight: 600;
+    line-height: 0.9;
+    color: transparent;
+    -webkit-text-stroke: 1px #364461;
+  }
+  .chapter-head h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.01em; }
+  .chapter-head p { color: var(--text-dim); font-size: 15.5px; max-width: 38em; }
+  .chapter .site:first-of-type { border-top: none; }
+  .chapter .site { border-top: 1px dashed var(--border); }
+  .chapter .site[hidden] { display: none; }
+
+  @media (max-width: 800px) {
+    .chapters-toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .chapter-head { grid-template-columns: 1fr; }
+    .chapter-head .no { grid-row: auto; }
+  }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+<header>
+  <div class="wrap">
+    <div class="scope">🔭</div>
+    <h1>observe<span class="tld">.tw</span></h1>
+    <p class="tagline">
+      一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
+      持續收集、整理、公開某個值得被記錄的主題。
+    </p>
+    <div class="chapters-toc" id="toc"></div>
+    <div id="topics"></div>
+  </div>
+</header>
+<div class="wrap" id="main"></div>
+<div class="wrap">
+  <footer>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+      <span>🔭 observe.tw · Demo 1</span>
+      <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
+    </div>
+  </footer>
+</div>
+<script type="module">
+  import { CHAPTERS, byId, entryHTML, topicsHTML, wireFilter, loadPulse, fmt, DEMO_NAV } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+  document.getElementById('topics').innerHTML = topicsHTML();
+  document.getElementById('toc').innerHTML = CHAPTERS.map((c) =>
+    `<a href="#${c.id}"><span class="no">${c.no}</span><b>${c.title}</b><small>${c.ids.length} 個專案</small></a>`).join('');
+
+  function render(pulse) {
+    let i = 0;
+    document.getElementById('main').innerHTML = CHAPTERS.map((c) => `
+      <div class="chapter" id="${c.id}">
+        <div class="chapter-head">
+          <span class="no">${c.no}</span>
+          <h2>${c.title}</h2>
+          <p>${c.lede}</p>
+        </div>
+        ${c.ids.map((id) => entryHTML(byId[id], { flip: i++ % 2 === 1, pulse })).join('')}
+      </div>`).join('');
+  }
+
+  render(null);
+  wireFilter({
+    topics: document.querySelector('.topics'),
+    sites: [...document.querySelectorAll('.site')],
+    groups: [...document.querySelectorAll('.chapter')],
+  });
+  loadPulse().then((pulse) => {
+    if (!pulse) return;
+    for (const el of document.querySelectorAll('[data-pulse]')) {
+      const v = pulse.items?.[el.dataset.pulse]?.value;
+      if (v != null) el.querySelector('b').textContent = fmt(v);
+    }
+  });
+</script>
+</body>
+</html>

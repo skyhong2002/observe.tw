@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo 4 · 年表 — observe.tw</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="stylesheet" href="/demo/shared.css">
+<style>
+  header { padding-bottom: 24px; }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 40px;
+    margin-top: 32px;
+  }
+  .stats div b {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+  .stats div span { font-size: 13px; color: var(--text-faint); }
+
+  .growth { position: relative; margin-top: 36px; }
+  .growth h2 { font-size: 14px; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; }
+  .growth svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .growth .grid line { stroke: var(--border); stroke-width: 1; }
+  .growth .axis text { font-size: 11px; fill: var(--text-faint); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .growth .area { fill: rgba(122, 162, 247, 0.10); }
+  .growth .step { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+  .growth .mark { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+  .growth .hit { fill: transparent; cursor: pointer; }
+  .growth .hit:hover + .mark, .growth .mark.hover { fill: #fff; }
+  .growth .callout { font-size: 12px; fill: var(--text-dim); }
+  .gtip {
+    position: absolute;
+    pointer-events: none;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(18, 22, 31, 0.96);
+    font-size: 12.5px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    transform: translate(-50%, calc(-100% - 14px));
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+  .gtip.show { opacity: 1; }
+  .gtip b { color: var(--text); }
+
+  .timeline { position: relative; padding: 48px 0 24px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(var(--accent), var(--border) 12%, var(--border) 90%, transparent);
+  }
+  .year {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 28px 0;
+  }
+  .year span {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--bg);
+    border: 1px solid #2e364c;
+    border-radius: 999px;
+    padding: 2px 14px;
+  }
+  .year.now span { color: var(--bg); background: var(--live); border-color: var(--live); }
+  .ev {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    margin: 22px 0;
+  }
+  .ev::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    transform: translateX(-50%);
+  }
+  .ev .when {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 32px);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  .ev .when { transform: translateX(-50%); background: var(--bg); padding: 0 6px; z-index: 1; }
+  .ev-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 18px 20px 18px;
+  }
+  .ev { align-items: center; }
+  .ev.r .ev-card { grid-column: 2; grid-row: 1; }
+  .ev.r .ev-shot { grid-column: 1; grid-row: 1; }
+  .ev-shot .shot { opacity: 0.85; transition: opacity 0.2s, border-color 0.2s, transform 0.2s; }
+  .ev-shot .shot:hover { opacity: 1; }
+  .ev-card .site-head { margin-bottom: 8px; }
+  .ev-card .site-head .logo { width: 36px; height: 36px; }
+  .ev-card h3 { font-size: 19px; line-height: 1.3; }
+  .ev-card .sub { font-size: 14px; color: var(--text-dim); }
+  .ev-card .chapter-chip {
+    display: inline-block;
+    font-size: 11.5px;
+    color: var(--text-faint);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0 9px;
+    margin-left: 6px;
+    vertical-align: 2px;
+  }
+  .ev-card .plaque { margin: 12px 0 0; }
+  .ev-card .plaque > div { background: var(--surface); }
+  .ev-card details { margin-top: 12px; }
+  .ev-card summary { cursor: pointer; font-size: 13px; color: var(--accent); list-style: none; }
+  .ev-card summary::-webkit-details-marker { display: none; }
+  .ev-card details[open] summary { margin-bottom: 10px; }
+  .ev-card .desc { font-size: 14px; color: var(--text-dim); }
+  .ev-card .desc b { color: var(--text); font-weight: 600; }
+  .ev-card .links { margin-top: 14px; }
+  .ev-card .pulse { margin: 12px 0 0; }
+
+  @media (max-width: 800px) {
+    .timeline::before { left: 8px; }
+    .ev { grid-template-columns: 1fr; padding-left: 32px; gap: 0; }
+    .ev::before { left: 8px; }
+    .ev .when { position: static; transform: none !important; margin-bottom: 6px; display: block; }
+    .ev.r .ev-card, .ev.r .ev-shot { grid-column: 1; grid-row: auto; }
+    .ev-shot { margin-top: 12px; }
+    .year { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+<header>
+  <div class="wrap">
+    <div class="scope">🔭</div>
+    <h1>observe<span class="tld">.tw</span></h1>
+    <p class="tagline">
+      從 2024 年的一個公民科技記者，到現在 16 個持續運轉的小系統。
+      依開始的時間排列，最新的在最上面。
+    </p>
+    <div class="stats" id="stats"></div>
+    <div class="growth">
+      <h2>累積專案數</h2>
+      <svg id="growth" viewBox="0 0 960 180" role="img" aria-label="累積專案數隨時間成長"></svg>
+      <div class="gtip" id="gtip"></div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="timeline" id="timeline"></div>
+  <footer>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+      <span>🔭 observe.tw · Demo 4</span>
+      <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
+    </div>
+  </footer>
+</div>
+<script type="module">
+  import { PROJECTS, chapterOf, logoHTML, labelHTML, shotHTML, linksHTML, since, loadPulse, DEMO_NAV } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+  const pulse = await loadPulse();
+
+  const month = (p) => { const [y, m] = p.label.since.split('-').map(Number); return y * 12 + (m - 1); };
+  const asc = [...PROJECTS].sort((a, b) => month(a) - month(b) || a.commits - b.commits);
+  const desc = [...asc].reverse();
+
+  // Headline numbers
+  const commits = PROJECTS.reduce((n, p) => n + p.commits, 0);
+  const thisYear = PROJECTS.filter((p) => p.label.since.startsWith('2026')).length;
+  document.getElementById('stats').innerHTML = [
+    [PROJECTS.length, '個專案'],
+    [thisYear, '個在 2026 年開始'],
+    [commits.toLocaleString('en-US'), '次 commit'],
+  ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
+
+  // Cumulative step chart
+  const svg = document.getElementById('growth');
+  const W = 960, H = 180, L = 28, R = 12, T = 12, B = 28;
+  const now = new Date();
+  const m0 = month(asc[0]) - 1;
+  const m1 = now.getFullYear() * 12 + now.getMonth() + 1;
+  const x = (m) => L + ((m - m0) / (m1 - m0)) * (W - L - R);
+  const y = (n) => T + (1 - n / PROJECTS.length) * (H - T - B);
+  let d = `M${x(m0)},${y(0)}`;
+  const pts = asc.map((p, i) => {
+    const px = x(month(p) + 0.5);
+    d += ` H${px} V${y(i + 1)}`;
+    return { p, px, py: y(i + 1), n: i + 1 };
+  });
+  d += ` H${x(m1)}`;
+  const area = `${d} V${y(0)} Z`;
+  let grid = '', axis = '';
+  for (const n of [0, 8, 16]) {
+    grid += `<line x1="${L}" x2="${W - R}" y1="${y(n)}" y2="${y(n)}"/>`;
+    axis += `<text x="${L - 8}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
+  }
+  for (let yr = Math.ceil(m0 / 12); yr * 12 <= m1; yr++) {
+    axis += `<text x="${x(yr * 12)}" y="${H - 8}" text-anchor="middle">${yr}</text>`;
+    grid += `<line x1="${x(yr * 12)}" x2="${x(yr * 12)}" y1="${T}" y2="${H - B}" stroke-dasharray="2 4"/>`;
+  }
+  const last = pts.at(-1);
+  svg.innerHTML = `
+    <g class="grid">${grid}</g>
+    <g class="axis">${axis}</g>
+    <path class="area" d="${area}"/>
+    <path class="step" d="${d}"/>
+    ${pts.map((t, i) => `<circle class="hit" data-i="${i}" cx="${t.px}" cy="${t.py}" r="12"/><circle class="mark" cx="${t.px}" cy="${t.py}" r="4.5"/>`).join('')}
+    <text class="callout" x="${last.px - 10}" y="${last.py - 10}" text-anchor="end">現在 ${last.n} 個</text>`;
+
+  const tip = document.getElementById('gtip');
+  const wrap = svg.parentElement;
+  svg.addEventListener('pointerover', (e) => {
+    const h = e.target.closest('.hit');
+    if (!h) return;
+    const t = pts[h.dataset.i];
+    const b = h.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+    tip.innerHTML = `<b>${t.p.name}</b> · ${since(t.p)} · 第 ${t.n} 個`;
+    tip.style.left = `${b.left + b.width / 2 - w.left}px`;
+    tip.style.top = `${b.top + b.height / 2 - w.top}px`;
+    tip.classList.add('show');
+  });
+  svg.addEventListener('pointerout', (e) => { if (e.target.closest('.hit')) tip.classList.remove('show'); });
+  svg.addEventListener('click', (e) => {
+    const h = e.target.closest('.hit');
+    if (h) document.getElementById(pts[h.dataset.i].p.id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // Timeline, newest first
+  let html = '<div class="year now"><span>現在</span></div>';
+  let year = null;
+  desc.forEach((p, i) => {
+    const yr = p.label.since.slice(0, 4);
+    if (yr !== year) html += `<div class="year"><span>${yr}</span></div>`;
+    year = yr;
+    const side = i % 2 === 0 ? 'l' : 'r';
+    html += `<div class="ev ${side}" id="${p.id}">
+      <span class="when">${since(p)}</span>
+      <div class="ev-card">
+        <div class="site-head">
+          ${logoHTML(p)}
+          <div class="site-head-text">
+            <span class="domain"><span class="dot${p.private ? ' private' : ''}"></span>${p.domain}</span>
+            <h3>${p.name}<span class="chapter-chip">${chapterOf[p.id].title}</span></h3>
+          </div>
+        </div>
+        <p class="sub">${p.sub}</p>
+        ${labelHTML(p, pulse)}
+        <details>
+          <summary>展開介紹 ↓</summary>
+          <p class="desc">${p.desc}</p>
+        </details>
+        ${linksHTML(p)}
+      </div>
+      <div class="ev-shot">${shotHTML(p)}</div>
+    </div>`;
+  });
+  document.getElementById('timeline').innerHTML = html;
+</script>
+</body>
+</html>

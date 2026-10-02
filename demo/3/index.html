@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo 3 · 星圖 — observe.tw</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="stylesheet" href="/demo/shared.css">
+<style>
+  :root { --night: #070910; }
+  body { background: var(--night); }
+  header { padding: 72px 0 0; background: none; }
+  .wrap { max-width: 1120px; }
+
+  .sky {
+    position: relative;
+    margin-top: 28px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 60% at 65% 20%, rgba(122, 162, 247, 0.10), transparent),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(167, 139, 250, 0.07), transparent),
+      #05070d;
+  }
+  .sky svg { display: block; width: 100%; height: auto; }
+  .bg-star { fill: #c8d3f5; }
+  .twinkle { animation: twinkle 4s ease-in-out infinite; }
+  @keyframes twinkle { 50% { opacity: 0.15; } }
+
+  .region text {
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    fill: #4b5674;
+    font-weight: 600;
+  }
+  .region .no { font-family: ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; fill: #4b5878; }
+  .lines line {
+    stroke: #7aa2f7;
+    stroke-width: 1;
+    stroke-opacity: 0.18;
+    transition: stroke-opacity 0.3s;
+  }
+  .lines.tag line { stroke: #f5c97a; stroke-opacity: 0.75; stroke-dasharray: 4 5; }
+  .sky.filtering .lines.base line { stroke-opacity: 0.05; }
+
+  .star { cursor: pointer; outline: none; }
+  .star .halo { fill: url(#halo); opacity: 0.55; transition: opacity 0.25s; }
+  .star .core { fill: #eef2ff; }
+  .star text {
+    font-size: 13px;
+    fill: #aab4cc;
+    paint-order: stroke;
+    stroke: #05070d;
+    stroke-width: 4px;
+    transition: fill 0.2s;
+  }
+  .star:hover .halo, .star:focus-visible .halo, .star.on .halo { opacity: 1; }
+  .star:hover text, .star:focus-visible text, .star.on text { fill: #fff; }
+  .star.on .core { fill: #f5c97a; }
+  .sky.filtering .star:not(.on) { opacity: 0.28; }
+  .star { transition: opacity 0.3s; }
+
+  .tip {
+    position: absolute;
+    pointer-events: none;
+    max-width: 260px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(18, 22, 31, 0.94);
+    font-size: 13px;
+    color: var(--text-dim);
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 18px));
+    transition: opacity 0.15s;
+  }
+  .tip.show { opacity: 1; }
+  .tip b { display: block; color: var(--text); font-size: 14px; }
+  .tip small { display: block; margin-top: 4px; color: var(--text-faint); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 20px;
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--text-faint);
+  }
+  .topics { margin-top: 18px; }
+  .topics button[aria-pressed="true"] { background: #f5c97a; border-color: #f5c97a; }
+
+  .catalog { padding: 56px 0 24px; }
+  .cat-head { display: flex; align-items: baseline; gap: 14px; margin: 40px 0 14px; }
+  .cat-head:first-child { margin-top: 0; }
+  .cat-head span { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-size: 13px; }
+  .cat-head h2 { font-size: 22px; }
+  .cat-head p { color: var(--text-faint); font-size: 13.5px; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color 0.25s, opacity 0.3s, box-shadow 0.4s;
+    scroll-margin-top: 80px;
+  }
+  .card .thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--border); background: #0e1119; }
+  .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .card .thumb.ph { display: grid; place-items: center; }
+  .card .thumb.ph img { width: 56px; height: 56px; object-fit: contain; }
+  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .card-title { display: flex; align-items: center; gap: 10px; }
+  .card-title .logo { width: 26px; height: 26px; border-radius: 6px; font-size: 13px; }
+  .card-title .logo.boxed { padding: 3px; }
+  .card-title b { font-size: 16px; }
+  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+  .card .meta { margin-top: auto; padding-top: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--text-faint); }
+  .card .meta a { color: var(--accent); text-decoration: none; }
+  .catalog.filtering .card:not(.on) { opacity: 0.25; }
+  .card.flash { border-color: #f5c97a; box-shadow: 0 0 0 4px rgba(245, 201, 122, 0.15); }
+
+  @media (max-width: 860px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .star text { font-size: 18px; }
+  }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .twinkle { animation: none; } }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+<header>
+  <div class="wrap">
+    <h1>observe<span class="tld">.tw</span></h1>
+    <p class="tagline">
+      16 顆星，四個星區。星越亮代表投入越多（commit 數），
+      選一個主題，看哪些專案連成同一個星座。
+    </p>
+    <div class="sky" id="sky">
+      <svg viewBox="0 0 1000 560" role="img" aria-label="observe.tw 專案星圖" id="map"></svg>
+      <div class="tip" id="tip"></div>
+    </div>
+    <div class="legend">
+      <span>● 亮度 = commit 數 · 位置 = 所屬章節</span>
+      <span>點星星跳到介紹</span>
+    </div>
+    <div id="topics"></div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="catalog" id="catalog"></div>
+  <footer>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+      <span>🔭 observe.tw · Demo 3</span>
+      <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
+    </div>
+  </footer>
+</div>
+<script type="module">
+  import { CHAPTERS, PROJECTS, byId, TAG_LABEL, logoHTML, topicsHTML, since, DEMO_NAV } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+
+  const POS = {
+    harmonica: [110, 150], chumei: [215, 95], mayor2026: [300, 205], tag: [165, 285], rep0rter: [385, 110], youtube: [315, 345],
+    urtube: [640, 120], myzilla: [770, 180], infovore: [880, 95], plaud: [690, 290], blog: [865, 275],
+    stancelab: [500, 330], omni: [430, 440], weave: [570, 465],
+    status: [790, 445], encore: [905, 490],
+  };
+  const REGION_LABEL = {
+    world: [60, 410], self: [620, 365], together: [400, 535], backstage: [770, 540],
+  };
+
+  const svg = document.getElementById('map');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  // Seeded background stars so the sky is the same on every visit.
+  let seed = 20260830;
+  const rand = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
+  let bg = '';
+  for (let i = 0; i < 260; i++) {
+    const r = rand() < 0.92 ? 0.5 + rand() * 0.6 : 1.1 + rand() * 0.6;
+    const tw = rand() < 0.3 ? ` class="bg-star twinkle" style="animation-delay:${(rand() * 4).toFixed(2)}s"` : ' class="bg-star"';
+    bg += `<circle cx="${(rand() * 1000).toFixed(1)}" cy="${(rand() * 560).toFixed(1)}" r="${r.toFixed(2)}" opacity="${(0.15 + rand() * 0.5).toFixed(2)}"${tw}/>`;
+  }
+
+  // Chain stars by nearest neighbour so a constellation reads as one line.
+  function chain(ids) {
+    if (ids.length < 2) return [];
+    const left = [...ids].sort((a, b) => POS[a][0] - POS[b][0]);
+    const path = [left.shift()];
+    while (left.length) {
+      const [x, y] = POS[path.at(-1)];
+      left.sort((a, b) => Math.hypot(POS[a][0] - x, POS[a][1] - y) - Math.hypot(POS[b][0] - x, POS[b][1] - y));
+      path.push(left.shift());
+    }
+    return path.slice(1).map((id, i) => [path[i], id]);
+  }
+  const lineSVG = (pairs) => pairs.map(([a, b]) =>
+    `<line x1="${POS[a][0]}" y1="${POS[a][1]}" x2="${POS[b][0]}" y2="${POS[b][1]}"/>`).join('');
+
+  const maxC = Math.max(...PROJECTS.map((p) => p.commits));
+  const radius = (p) => 1.4 + 5.6 * (Math.log1p(p.commits) / Math.log1p(maxC)) ** 1.5;
+
+  svg.innerHTML = `
+    <defs>
+      <radialGradient id="halo"><stop offset="0" stop-color="#9db8ff" stop-opacity="0.55"/><stop offset="1" stop-color="#9db8ff" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g>${bg}</g>
+    <g class="region">${CHAPTERS.map((c) => {
+      const [x, y] = REGION_LABEL[c.id];
+      return `<text x="${x}" y="${y}"><tspan class="no">${c.no}</tspan>  ${c.title}</text>`;
+    }).join('')}</g>
+    <g class="lines base">${CHAPTERS.map((c) => lineSVG(chain(c.ids))).join('')}</g>
+    <g class="lines tag" id="tagLines"></g>
+    <g>${PROJECTS.map((p) => {
+      const [x, y] = POS[p.id];
+      const r = radius(p);
+      const right = x < 900;
+      return `<g class="star" data-id="${p.id}" tabindex="0" role="link" aria-label="${p.name}：${p.sub}">
+        <circle class="halo" cx="${x}" cy="${y}" r="${r * 5}"/>
+        <circle class="core" cx="${x}" cy="${y}" r="${r}"/>
+        <text x="${right ? x + r + 8 : x - r - 8}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}">${p.name}</text>
+      </g>`;
+    }).join('')}</g>`;
+
+  // Tooltip
+  const sky = document.getElementById('sky');
+  const tip = document.getElementById('tip');
+  function showTip(star) {
+    const p = byId[star.dataset.id];
+    const box = sky.getBoundingClientRect();
+    const c = star.querySelector('.core').getBoundingClientRect();
+    tip.innerHTML = `<b>${p.name}</b>${p.sub}<small>${since(p)} 起 · ${p.commits.toLocaleString('en-US')} commits</small>`;
+    tip.style.left = `${c.left + c.width / 2 - box.left}px`;
+    tip.style.top = `${c.top - box.top}px`;
+    tip.classList.add('show');
+  }
+  svg.addEventListener('pointerover', (e) => { const s = e.target.closest('.star'); if (s) showTip(s); });
+  svg.addEventListener('pointerout', (e) => { if (e.target.closest('.star')) tip.classList.remove('show'); });
+  svg.addEventListener('focusin', (e) => { const s = e.target.closest('.star'); if (s) showTip(s); });
+  svg.addEventListener('focusout', () => tip.classList.remove('show'));
+
+  function jump(id) {
+    const card = document.getElementById(id);
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add('flash');
+    setTimeout(() => card.classList.remove('flash'), 1600);
+  }
+  svg.addEventListener('click', (e) => { const s = e.target.closest('.star'); if (s) jump(s.dataset.id); });
+  svg.addEventListener('keydown', (e) => {
+    const s = e.target.closest('.star');
+    if (s && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); jump(s.dataset.id); }
+  });
+
+  // Catalog
+  document.getElementById('catalog').innerHTML = CHAPTERS.map((c) => `
+    <div class="cat-head"><span>${c.no}</span><h2>${c.title}</h2><p>${c.short}</p></div>
+    <div class="cards">${c.ids.map((id) => {
+      const p = byId[id];
+      const href = p.url || p.repoUrl;
+      const thumb = p.shot
+        ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${p.name} 截圖" loading="lazy"></a>`
+        : `<a class="thumb ph" href="${href}" target="_blank" rel="noopener"><img src="/${p.logo}" alt=""></a>`;
+      return `<article class="card" id="${id}" data-tags="${p.tags.join(' ')}">
+        ${thumb}
+        <div class="card-body">
+          <div class="card-title">${logoHTML(p)}<b>${p.name}</b></div>
+          <p>${p.sub}</p>
+          <p style="color: var(--text-faint)">${p.label.subject} · ${p.label.cadence}</p>
+          <div class="meta">${since(p)} 起 · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
+        </div>
+      </article>`;
+    }).join('')}</div>`).join('');
+
+  // Topic constellations
+  document.getElementById('topics').innerHTML = topicsHTML();
+  const topics = document.querySelector('.topics');
+  const tagLines = document.getElementById('tagLines');
+  const catalog = document.getElementById('catalog');
+  function apply(tag) {
+    const ids = tag ? PROJECTS.filter((p) => p.tags.includes(tag)).map((p) => p.id) : [];
+    tagLines.innerHTML = lineSVG(chain(ids));
+    sky.classList.toggle('filtering', !!tag);
+    catalog.classList.toggle('filtering', !!tag);
+    for (const s of svg.querySelectorAll('.star')) s.classList.toggle('on', ids.includes(s.dataset.id));
+    for (const c of catalog.querySelectorAll('.card')) c.classList.toggle('on', ids.includes(c.id));
+    for (const b of topics.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+    const url = new URL(location.href);
+    tag ? url.searchParams.set('tag', tag) : url.searchParams.delete('tag');
+    history.replaceState(null, '', url);
+  }
+  topics.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (b) apply(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag);
+  });
+  const initial = new URL(location.href).searchParams.get('tag');
+  if (initial && TAG_LABEL[initial]) apply(initial);
+</script>
+</body>
+</html>

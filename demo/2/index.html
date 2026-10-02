@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo 2 · 控制室 — observe.tw</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="stylesheet" href="/demo/shared.css">
+<style>
+  .wrap { max-width: 1240px; }
+  header { padding: 72px 0 28px; }
+  .head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .clock {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    text-align: right;
+  }
+  .clock b { color: var(--live); font-weight: 500; }
+
+  .room {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 32px;
+    align-items: start;
+    padding-bottom: 32px;
+  }
+  .board { display: flex; flex-direction: column; gap: 28px; }
+  .bank h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .bank h2 span {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .bank h2 small { font-weight: 400; letter-spacing: 0; color: var(--text-faint); font-size: 12.5px; }
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 128px;
+    padding: 14px 16px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .tile:hover { border-color: #364461; }
+  .tile[aria-current="true"] {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(122, 162, 247, 0.09), var(--surface) 70%);
+  }
+  .tile-top { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .tile-top .logo { width: 28px; height: 28px; border-radius: 7px; font-size: 14px; }
+  .tile-top .logo.boxed { padding: 3px; }
+  .tile-name { font-size: 14.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .dot { position: absolute; top: 16px; right: 16px; }
+  .reading { margin-top: auto; }
+  .reading b {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .reading.live b { color: var(--live); }
+  .reading.idle b { font-size: 15px; font-family: inherit; color: var(--text-dim); font-weight: 500; }
+  .reading span { font-size: 12px; color: var(--text-faint); }
+
+  .detail {
+    position: sticky;
+    top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+  }
+  .detail .shot { margin-bottom: 20px; }
+  .detail h2 { font-size: 24px; font-weight: 700; line-height: 1.3; }
+  .detail .sub { font-size: 14.5px; color: var(--text-dim); margin: 2px 0 12px; }
+  .detail .desc { font-size: 14px; color: var(--text-dim); }
+  .detail .desc b { color: var(--text); font-weight: 600; }
+  .detail .plaque > div { background: var(--surface); }
+  .detail .plaque { background: var(--border); }
+  .detail .site-head { margin-bottom: 8px; }
+  .detail ul.feats li { font-size: 13.5px; }
+  .detail .pulse { display: none; }
+
+  @media (max-width: 960px) {
+    .room { grid-template-columns: 1fr; }
+    .detail { position: static; max-height: none; }
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+<header>
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <h1>observe<span class="tld">.tw</span> <span style="color: var(--text-faint); font-weight: 500;">控制室</span></h1>
+        <p class="tagline">16 個持續運轉的小系統。點任何一格，看它在觀測什麼、此刻讀到多少。</p>
+      </div>
+      <div class="clock" id="clock"></div>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="room">
+    <div class="board" id="board"></div>
+    <aside class="detail" id="detail" aria-live="polite"></aside>
+  </div>
+  <footer>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+      <span>🔭 observe.tw · Demo 2</span>
+      <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
+    </div>
+  </footer>
+</div>
+<script type="module">
+  import { CHAPTERS, byId, logoHTML, shotHTML, linksHTML, labelHTML, fmt, loadPulse, agoText, DEMO_NAV } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+  const board = document.getElementById('board');
+  const detail = document.getElementById('detail');
+  let pulse = null;
+  let current = new URL(location.href).hash.slice(1);
+  if (!byId[current]) current = 'tag';
+
+  function reading(p) {
+    const v = pulse?.items?.[p.id]?.value;
+    if (p.pulse && v != null) return `<div class="reading live"><b>${fmt(v)}</b><span>${p.pulse.label}</span></div>`;
+    return `<div class="reading idle"><b>${p.label.cadence}</b><span>${p.label.outputs.slice(0, 3).join(' · ')}</span></div>`;
+  }
+
+  function renderBoard() {
+    board.innerHTML = CHAPTERS.map((c) => `
+      <section class="bank">
+        <h2><span>${c.no}</span>${c.title}<small>${c.short}</small></h2>
+        <div class="tiles">
+          ${c.ids.map((id) => {
+            const p = byId[id];
+            return `<button type="button" class="tile" data-id="${id}" aria-current="${id === current}">
+              <span class="dot${p.private ? ' private' : ''}"></span>
+              <div class="tile-top">${logoHTML(p)}<span class="tile-name">${p.name}</span></div>
+              ${reading(p)}
+            </button>`;
+          }).join('')}
+        </div>
+      </section>`).join('');
+  }
+
+  function renderDetail() {
+    const p = byId[current];
+    detail.innerHTML = `
+      ${shotHTML(p, false)}
+      <div class="site-head">
+        ${logoHTML(p)}
+        <div class="site-head-text">
+          <span class="domain"><span class="dot${p.private ? ' private' : ''}"></span>${p.domain}</span>
+          <h2>${p.name}</h2>
+        </div>
+      </div>
+      <p class="sub">${p.sub}</p>
+      ${labelHTML(p, pulse)}
+      <p class="desc">${p.desc}</p>
+      <ul class="feats">${p.feats.map(([b, t]) => `<li><b>${b}</b> — ${t}</li>`).join('')}</ul>
+      ${linksHTML(p)}`;
+  }
+
+  function renderClock() {
+    const live = Object.values(pulse?.items || {}).filter((r) => r.value != null).length;
+    document.getElementById('clock').innerHTML = pulse
+      ? `<b>● ${live} 個讀數</b><br>資料更新於 ${agoText(pulse.updated)}`
+      : '讀數載入中…';
+  }
+
+  board.addEventListener('click', (e) => {
+    const t = e.target.closest('.tile');
+    if (!t) return;
+    current = t.dataset.id;
+    history.replaceState(null, '', `#${current}`);
+    for (const el of board.querySelectorAll('.tile')) el.setAttribute('aria-current', String(el === t));
+    renderDetail();
+    if (matchMedia('(max-width: 960px)').matches) detail.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  renderBoard();
+  renderDetail();
+  renderClock();
+  pulse = await loadPulse();
+  renderBoard();
+  renderClock();
+</script>
+</body>
+</html>
