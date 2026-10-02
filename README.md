@@ -16,7 +16,7 @@ observe.tw 的入口頁 —— 介紹目前使用中的子網域與對應的 Git
 | [youtube.observe.tw](https://youtube.observe.tw) | YouTube Board — 即時 YouTube 資料儀表板 | youtube-board（私有） |
 | [urtube.observe.tw](https://urtube.observe.tw) | urtube — Your YouTube life, remembered | [urtube.observe.tw](https://github.com/skyhong2002/urtube.observe.tw) |
 | [omni.observe.tw](https://omni.observe.tw) | OmniObserve — 揭露隱藏共識的線上會議引導（研究） | [nycu-haix/omniobserve](https://github.com/nycu-haix/omniobserve) |
-| stancelab.observe.tw（即將上線） | StanceLab — AI 立場整理工作台 | [StanceLab](https://github.com/skyhong2002/StanceLab) |
+| [stancelab.observe.tw](https://stancelab.observe.tw) | StanceLab — AI 立場整理工作台 | [StanceLab](https://github.com/skyhong2002/StanceLab) |
 | [myzilla.observe.tw](https://myzilla.observe.tw) | MyZilla — 個人入口與瀏覽回顧 | [MyZilla](https://github.com/skyhong2002/MyZilla) |
 | [plaud.observe.tw](https://plaud.observe.tw) | localplaud — 自架 Plaud 錄音處理（私人） | [localplaud](https://github.com/skyhong2002/localplaud) |
 
