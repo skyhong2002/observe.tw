@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96" fill="none">
+  <defs>
+    <linearGradient id="blue" x1="64" y1="8" x2="64" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#b1b7f1"/>
+      <stop offset=".45" stop-color="#626bcd"/>
+      <stop offset="1" stop-color="#242578"/>
+    </linearGradient>
+    <mask id="bands">
+      <path fill="white" d="M0 0h128v96H0z"/>
+      <path stroke="black" stroke-width="4" d="M4 39h120M4 51h120M4 63h120"/>
+    </mask>
+  </defs>
+  <g fill="url(#blue)" mask="url(#bands)">
+    <path d="M12 88 39 8a2 2 0 0 1 4 0l21 56L85 8a2 2 0 0 1 4 0l27 80h-8L87 34 68 86a4 4 0 0 1-8 0L41 34 20 88Z"/>
+    <rect x="4" y="27" width="120" height="44" rx="3"/>
+  </g>
+</svg>

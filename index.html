@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、YouTube 資料與觀看紀錄等主題的資料彙整與公開網站。">
+<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、YouTube 資料與個人數位足跡等主題的資料彙整與公開網站。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
@@ -110,6 +110,7 @@
     background: var(--live);
     box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
   }
+  .dot.private { background: var(--text-faint); box-shadow: none; }
   .site h2 {
     font-size: 26px;
     font-weight: 700;
@@ -208,6 +209,50 @@
     height: auto;
   }
 
+  .shot .ph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    aspect-ratio: 16 / 10;
+    background: radial-gradient(ellipse 55% 50% at 50% 45%, rgba(122, 162, 247, 0.08), transparent);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+  .shot .ph img { width: 72px; height: 72px; }
+
+  .more {
+    padding: 64px 0;
+    border-top: 1px solid var(--border);
+  }
+  .more h2 { font-size: 22px; font-weight: 700; }
+  .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: #364461; transform: translateY(-2px); }
+  .card h3 { font-size: 16px; font-weight: 600; }
+  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; flex: 1; }
+  .card .domain { font-size: 12px; margin-top: 6px; }
+  .card .domain.repo-only { color: var(--text-faint); }
+
   .note {
     padding: 40px 0 8px;
     border-top: 1px solid var(--border);
@@ -249,8 +294,12 @@
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
+      <a href="#tag">tag</a>
       <a href="#youtube">youtube</a>
       <a href="#urtube">urtube</a>
+      <a href="#myzilla">myzilla</a>
+      <a href="#plaud">plaud</a>
+      <a href="#more">更多專案</a>
     </nav>
   </div>
 </header>
@@ -260,34 +309,35 @@
 <section class="site" id="harmonica">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/harmonica-logo.svg" alt="臺灣口琴觀測站 logo">
+      <img class="logo" src="assets/harmonica-logo.svg" alt="口琴觀測站 logo">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>harmonica.observe.tw</span>
-        <h2>臺灣口琴觀測站</h2>
+        <h2>口琴觀測站</h2>
       </div>
     </div>
-    <p class="sub">口琴活動、社團、演奏者與比賽指定曲索引</p>
+    <p class="sub">Harmonica Observatory · 世界各地的口琴活動、演奏者與樂譜</p>
     <p class="desc">
-      整理臺灣與世界各地的公開口琴資訊：活動、學生社團、樂團、演奏者、教學工作室、場館、
-      比賽指定曲與口琴譜源。監看<b>近 800 個公開來源</b>（RSSHub、Apify 與公開目錄），
-      涵蓋二十多個國家的社團與演奏者。
+      從臺灣出發、擴展到全世界的口琴資訊目錄：活動、學生社團、樂團、演奏者、教學工作室、
+      比賽指定曲與樂譜來源。散落在各社群平台與各種語言的公開資訊集中在一起，
+      並保留原文與原始連結。介面支援<b>繁體中文、English、日本語、한국어</b>。
     </p>
     <ul class="feats">
       <li><b>近 24 小時限動牆</b> — 追蹤口琴圈 Instagram Stories 動態</li>
-      <li><b>公開活動日曆</b> — 臺灣／國外／線上活動，Google Calendar 與 ICS 訂閱</li>
-      <li><b>完整貼文河道</b> — 依平台、國家、區域與 tag 篩選，附 RSS feed 與資料 API</li>
+      <li><b>公開活動日曆</b> — 各國與線上活動，保留原始時區，Google Calendar 與 ICS 訂閱</li>
+      <li><b>來源名錄與樂譜索引</b> — 依國家、區域篩選，比賽曲目可依學年與編制查詢</li>
+      <li><b>開放投稿與資料 API</b> — 補充或更正來源，附 RSS feed 與公開 API</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://harmonica.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/Harmonica-in-Taiwan" target="_blank" rel="noopener">
+      <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/Harmonica-in-Taiwan
+        skyhong2002/harmonica-observatory
       </a>
     </div>
   </div>
-  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="臺灣口琴觀測站網站截圖">
+  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="口琴觀測站網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-harmonica.webp" alt="臺灣口琴觀測站首頁截圖" width="1280" height="800">
+    <img src="assets/shot-harmonica.webp" alt="口琴觀測站首頁截圖" width="1280" height="800">
   </a>
 </section>
 
@@ -359,7 +409,40 @@
   </a>
 </section>
 
-<section class="site flip" id="youtube">
+<section class="site flip" id="tag">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/tag-logo.svg" alt="新文易數 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>tag.observe.tw</span>
+        <h2>新文易數</h2>
+      </div>
+    </div>
+    <p class="sub">同一件事，各家怎麼說</p>
+    <p class="desc">
+      每 9 到 60 分鐘爬取約<b>一百家臺灣新聞媒體</b>，把標籤、事件與議題整理成可以比較的資料：
+      過去 24 小時的新聞量與藍綠媒體比例、正在升溫的議題，以及同一件事在各家的標題寫法。
+    </p>
+    <ul class="feats">
+      <li><b>新聞總覽與同題不同標</b> — 政治事件的藍綠媒體標題並排對照</li>
+      <li><b>關鍵字排行與事件表</b> — 標籤分數與爆發力，同時爆發的標籤自動分群成事件、每小時封存</li>
+      <li><b>公開 API 與 RSS</b> — 免金鑰、CORS 開放，附 OpenAPI 規格與事件／標籤 feed</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://tag.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/tag.observe.tw" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/tag.observe.tw
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="新文易數 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-tag.webp" alt="新文易數 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site" id="youtube">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -393,7 +476,7 @@
   </a>
 </section>
 
-<section class="site" id="urtube">
+<section class="site flip" id="urtube">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
@@ -425,6 +508,102 @@
     <div class="shot-bar"><span></span><span></span><span></span></div>
     <img src="assets/shot-urtube.webp" alt="urtube 首頁截圖" width="1280" height="800" loading="lazy">
   </a>
+</section>
+
+<section class="site" id="myzilla">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>myzilla.observe.tw</span>
+        <h2>MyZilla</h2>
+      </div>
+    </div>
+    <p class="sub">我的個人入口 · 瀏覽回顧</p>
+    <p class="desc">
+      把 2000 年代的 MyZilla 個人入口重新做一次 —— 網址收藏、網摘、多站搜尋、電影與心情，
+      再加上<b>完整的瀏覽歷史回顧</b>。原始歷史只保留在自己的伺服器，不會公開。
+    </p>
+    <ul class="feats">
+      <li><b>瀏覽回顧</b> — 網站排行、可全文搜尋的造訪紀錄，以及擴充功能量測的前景時間</li>
+      <li><b>個人洞察與 AI 週回顧</b> — 興趣地圖、探索路徑，每天整理最近 7 天的重點與線索</li>
+      <li><b>帳號與朋友</b> — 邀請制私人帳號，雙方同意後才比較興趣分布</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://myzilla.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/MyZilla" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/MyZilla
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://myzilla.observe.tw" target="_blank" rel="noopener" aria-label="MyZilla 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-myzilla.webp" alt="MyZilla 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="plaud">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot private"></span>plaud.observe.tw</span>
+        <h2>localplaud</h2>
+      </div>
+    </div>
+    <p class="sub">自架的 Plaud 錄音處理流程</p>
+    <p class="desc">
+      繼續用實體 Plaud 錄音筆與官方上傳，但<b>轉錄、講者分離、摘要、搜尋與問答</b>
+      全部改在自己的機器上跑 —— 透過官方 Open API 拉回原始音檔，之後的衍生資料都由自己保管。
+    </p>
+    <ul class="feats">
+      <li><b>完整處理流程</b> — 轉檔、轉錄、對齊、講者分離、校正，產生筆記、章節與心智圖</li>
+      <li><b>跨錄音 Ask</b> — 對單一錄音或整個資料庫提問，回答附可播放的引用片段</li>
+      <li><b>自有硬體推論</b> — 部署在實驗室 GPU 主機，可插拔的本地 ASR 與模型</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://plaud.observe.tw" target="_blank" rel="noopener">登入使用 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/localplaud" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/localplaud
+      </a>
+    </div>
+  </div>
+  <a class="shot placeholder" href="https://plaud.observe.tw" target="_blank" rel="noopener" aria-label="localplaud 網站">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <div class="ph">
+      <img src="assets/localplaud-logo.svg" alt="" width="72" height="72">
+      <span>私人服務 · 需要登入</span>
+    </div>
+  </a>
+</section>
+
+<section class="more" id="more">
+  <h2>更多專案</h2>
+  <p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>
+  <div class="cards">
+    <a class="card" href="https://infovore.skyhong.tw" target="_blank" rel="noopener">
+      <h3>infovore</h3>
+      <p>生活年輪：彙整玩過、看過、讀過、聽過的東西，附公開時間軸、狀態卡片、年度 Wrapped 與 MCP 端點。</p>
+      <span class="domain">infovore.skyhong.tw ↗</span>
+    </a>
+    <a class="card" href="https://status.skyhong.tw" target="_blank" rel="noopener">
+      <h3>Sky Status</h3>
+      <p>自架服務的公開維運儀表板：可用性歷史、憑證與網域到期、OpenAI 用量與 Discord 告警。</p>
+      <span class="domain">status.skyhong.tw ↗</span>
+    </a>
+    <a class="card" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
+      <h3>Encore</h3>
+      <p>竹韻口琴社博覽會攤位的點歌系統：觀眾掃 QR 投票，MV、伴奏與導唱三路同步播放。</p>
+      <span class="domain repo-only">skyhong2002/encore ↗</span>
+    </a>
+    <a class="card" href="https://github.com/skyhong2002/StanceLab" target="_blank" rel="noopener">
+      <h3>StanceLab</h3>
+      <p>把第一反應整理成可討論的立場：與訪談者、導師、反方三種 AI 角色對話，最後收斂成草稿。</p>
+      <span class="domain repo-only">skyhong2002/StanceLab ↗</span>
+    </a>
+  </div>
 </section>
 
 <p class="note">
