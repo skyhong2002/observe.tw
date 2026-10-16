@@ -48,7 +48,7 @@ export const PROJECTS = [
         "ICS"
       ]
     },
-    "commits": 267
+    "commits": 285
     ,"pulse": { "url": "https://harmonica.observe.tw/api/v1/catalog", "label": "則口琴貼文", "pick": (b) => JSON.parse(b).stats.posts }
   },
   {
@@ -96,7 +96,7 @@ export const PROJECTS = [
         "MCP"
       ]
     },
-    "commits": 393
+    "commits": 411
     ,"pulse": { "url": "https://chumei.observe.tw/api/events.json", "label": "場校園活動", "pick": (b) => JSON.parse(b).events.length }
   },
   {
@@ -143,7 +143,7 @@ export const PROJECTS = [
         "RSS"
       ]
     },
-    "commits": 69
+    "commits": 77
     ,"pulse": { "url": "https://mayor2026.observe.tw/api/status.json", "label": "則候選人發文", "pick": (b) => JSON.parse(b).metrics.totalPosts }
   },
   {
@@ -189,8 +189,58 @@ export const PROJECTS = [
         "RSS"
       ]
     },
-    "commits": 5
+    "commits": 757
     ,"pulse": { "url": "https://tag.observe.tw/api/v1/media-stats", "label": "則新聞 · 過去 24 小時", "pick": (b) => JSON.parse(b).totals.last24h }
+  },
+  {
+    "id": "blogs",
+    "tags": [
+      "blog"
+    ],
+    "name": "部落格觀察",
+    "domain": "blog.observe.tw",
+    "private": false,
+    "logo": "assets/blogs-logo.svg",
+    "boxed": false,
+    "sub": "每一種生活，各自怎麼寫",
+    "desc": "新文易數的姊妹站，把同一套方法用在<b>臺灣的獨立部落格</b>：從公開的 RSS、Atom 與 sitemap 收錄 430 多個部落格、十二萬多篇文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。",
+    "feats": [
+      [
+        "正文引用與關係圖",
+        "近 90 天文章裡寫到其他部落格的句子，連成全站關係圖"
+      ],
+      [
+        "共同話題排行",
+        "近 30 天多個部落格同時在寫的詞，依熱度與參與站數排序"
+      ],
+      [
+        "追蹤與個人 RSS",
+        "登入追蹤喜歡的部落格，匯出個人 RSS 與 OPML"
+      ],
+      [
+        "自動探索新站",
+        "每週探索候選部落格，RSS 與首頁身分核對通過才收錄"
+      ]
+    ],
+    "url": "https://blog.observe.tw",
+    "visit": "前往網站",
+    "repo": "skyhong2002/blog-observe-tw",
+    "repoUrl": "https://github.com/skyhong2002/blog-observe-tw",
+    "shot": "shot-blogs.webp",
+    "ph": null,
+    "label": {
+      "since": "2026-10",
+      "subject": "430+ 個臺灣獨立部落格",
+      "cadence": "每小時",
+      "outputs": [
+        "網站",
+        "API",
+        "RSS",
+        "OPML"
+      ]
+    },
+    "commits": 262
+    ,"pulse": { "url": "https://blog.observe.tw/", "label": "篇部落格文章", "pick": (b) => Number(b.replace(/<[^>]*>/g, ' ').match(/已收錄\s*(\d+)\s*篇文章/)[1]) }
   },
   {
     "id": "rep0rter",
@@ -247,48 +297,49 @@ export const PROJECTS = [
       "news",
       "politics"
     ],
-    "name": "YouTube Board",
+    "name": "有影儀表板",
     "domain": "youtube.observe.tw",
     "private": false,
-    "logo": null,
+    "logo": "assets/youtube-logo.svg",
     "boxed": false,
-    "sub": "即時 YouTube 資料儀表板",
-    "desc": "把公開 YouTube 頻道、直播、影片、關鍵字與主題群組整理成<b>即時資料儀表板</b>：監看 1,100 多個頻道、8 個分類（新聞、電視台、政治光譜等），追蹤的週觀看總量超過 <b>14 億次</b>。",
+    "sub": "同一件事，各台怎麼說",
+    "desc": "延續 YouTube Board 的即時資料儀表板，觀測 <b>3,400 多個公開 YouTube 頻道</b>、近 70 萬支影片：新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。",
     "feats": [
       [
-        "直播熱度",
-        "目前直播排行、帶狀直播、單日與期間排行"
+        "直播熱度與電視牆",
+        "目前直播排行、同時在線人數與多台並排的直播電視牆"
       ],
       [
-        "關鍵字追蹤",
-        "人物、事件與詞彙的影片、文字雲和趨勢"
+        "熱門標籤與文字雲",
+        "以新文易數的新聞標籤比對影片標題與說明，依頻道加權熱度排序"
       ],
       [
-        "AI 摘要",
-        "每日、每小時與期間事件的頻道重點摘要"
+        "議題與事件時間軸",
+        "AI 整理每日議題與事件脈絡，附引用影片可回頭核對"
       ],
       [
-        "市長報表",
+        "選戰報表",
         "縣市候選人與地方政治關鍵字"
       ]
     ],
     "url": "https://youtube.observe.tw",
     "visit": "前往網站",
-    "repo": "skyhong2002/youtube-board（私有）",
-    "repoUrl": null,
+    "repo": "skyhong2002/youtube-board",
+    "repoUrl": "https://github.com/skyhong2002/youtube-board",
     "shot": "shot-youtube.webp",
     "ph": null,
     "label": {
       "since": "2026-05",
-      "subject": "1,100+ 個公開 YouTube 頻道",
+      "subject": "3,400+ 個公開 YouTube 頻道",
       "cadence": "每 1–9 分鐘",
       "outputs": [
         "網站",
-        "API"
+        "API",
+        "RSS"
       ]
     },
-    "commits": 237
-    ,"pulse": { "url": "https://youtube.observe.tw/", "label": "次觀看 · 本週", "pick": (b) => Number(b.replace(/<[^>]*>/g, ' ').match(/週觀看總量\s*([\d,]+)/)[1].replace(/,/g, '')) }
+    "commits": 361
+    ,"pulse": { "url": "https://youtube.observe.tw/api/v1/home", "label": "次觀看 · 本週", "pick": (b) => JSON.parse(b).data.exploration.categories.summary.weeklyViews }
   },
   {
     "id": "urtube",
@@ -333,7 +384,7 @@ export const PROJECTS = [
         "Chrome 擴充"
       ]
     },
-    "commits": 313
+    "commits": 320
     ,"pulse": { "url": "https://urtube.observe.tw/u/skyhong.tw/summary.json", "label": "次觀看 · 我的近一年", "pick": (b) => JSON.parse(b).stats.watchEvents }
   },
   {
@@ -469,7 +520,7 @@ export const PROJECTS = [
         "Chrome／Firefox 擴充"
       ]
     },
-    "commits": 24
+    "commits": 25
   },
   {
     "id": "plaud",
@@ -516,7 +567,7 @@ export const PROJECTS = [
         "Markdown"
       ]
     },
-    "commits": 430
+    "commits": 524
   },
   {
     "id": "weave",
@@ -565,6 +616,7 @@ export const PROJECTS = [
   {
     "id": "blog",
     "tags": [
+      "blog",
       "lifelog",
       "selfhost"
     ],
@@ -650,7 +702,7 @@ export const PROJECTS = [
         "卡片"
       ]
     },
-    "commits": 137
+    "commits": 160
     ,"pulse": { "url": "https://infovore.skyhong.tw/api/activities.json?limit=1", "label": "筆生活紀錄", "pick": (b) => JSON.parse(b).total }
   },
   {
@@ -696,7 +748,7 @@ export const PROJECTS = [
         "Prometheus"
       ]
     },
-    "commits": 52
+    "commits": 60
     ,"pulse": { "url": "https://status.skyhong.tw/metrics", "label": "個公開服務正常", "pick": (b) => (b.match(/^sky_up\{kind="target"[^}]*\} 1$/gm) || []).length }
   },
   {

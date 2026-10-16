@@ -38,7 +38,7 @@ export const CHAPTERS = [
     title: t('觀測世界', 'Observing the world'),
     short: t('把公開資訊收進同一個地方', 'Public information, gathered in one place'),
     lede: t('把散落在各平台、各種語言的公開資訊收進同一個地方，保留原文與出處，讓人能比較、能訂閱。', 'Public information scattered across platforms and languages, gathered in one place — original text and sources intact, ready to compare and subscribe to.'),
-    ids: ['harmonica', 'chumei', 'mayor2026', 'tag', 'rep0rter', 'youtube'],
+    ids: ['harmonica', 'chumei', 'mayor2026', 'tag', 'blogs', 'rep0rter', 'youtube'],
   },
   {
     id: 'self',
@@ -71,6 +71,7 @@ export const TAGS = [
   ['politics', t('選舉政治', 'Elections')], ['civic', t('公民科技', 'Civic tech')], ['social', t('社群貼文', 'Social posts')],
   ['youtube', 'YouTube'], ['lifelog', t('個人數位足跡', 'Life-logging')], ['research', t('研究', 'Research')],
   ['harmonica', t('口琴', 'Harmonica')], ['campus', t('校園', 'Campus')], ['selfhost', t('自架維運', 'Self-hosting')],
+  ['blog', t('部落格', 'Blogs')],
 ];
 export const TAG_LABEL = Object.fromEntries(TAGS);
 

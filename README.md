@@ -12,8 +12,9 @@ observe.tw 的入口頁 —— 介紹目前使用中的子網域與對應的 Git
 | [chumei.observe.tw](https://chumei.observe.tw) | 竹梅活動觀測站（清大 × 陽明交大） | [chumei](https://github.com/skyhong2002/chumei) |
 | [mayor2026.observe.tw](https://mayor2026.observe.tw) | 2026 市長官方來源觀測站 | [mayor2026](https://github.com/skyhong2002/mayor2026) |
 | [tag.observe.tw](https://tag.observe.tw) | 新文易數 — 臺灣新聞標籤、事件與各家標題對照 | [tag.observe.tw](https://github.com/skyhong2002/tag.observe.tw) |
+| [blog.observe.tw](https://blog.observe.tw) | 部落格觀察 — 臺灣獨立部落格的文章、互相引用與共同話題 | [blog-observe-tw](https://github.com/skyhong2002/blog-observe-tw) |
 | [rep0rter.observe.tw](https://rep0rter.observe.tw) | rep0rter — 公民科技社群的 AI 記者 | [rep0rter/rep0rter](https://github.com/rep0rter/rep0rter) |
-| [youtube.observe.tw](https://youtube.observe.tw) | YouTube Board — 即時 YouTube 資料儀表板 | youtube-board（私有） |
+| [youtube.observe.tw](https://youtube.observe.tw) | 有影儀表板 — YouTube 頻道、直播與議題觀測（原 YouTube Board） | [youtube-board](https://github.com/skyhong2002/youtube-board) |
 | [urtube.observe.tw](https://urtube.observe.tw) | urtube — Your YouTube life, remembered | [urtube.observe.tw](https://github.com/skyhong2002/urtube.observe.tw) |
 | [omni.observe.tw](https://omni.observe.tw) | OmniObserve — 揭露隱藏共識的線上會議引導（研究） | [nycu-haix/omniobserve](https://github.com/nycu-haix/omniobserve) |
 | [stancelab.observe.tw](https://stancelab.observe.tw) | StanceLab — AI 立場整理工作台 | [StanceLab](https://github.com/skyhong2002/StanceLab) |

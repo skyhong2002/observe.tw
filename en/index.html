@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>observe.tw — a cluster of observatories</title>
-<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
+<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
 <meta property="og:title" content="observe.tw — a cluster of observatories">
 <meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
@@ -331,7 +331,7 @@
       collecting, organizing and publishing something worth keeping a record of.
     </p>
     <div class="topics" role="group" aria-label="Filter by topic">
-      <button type="button" data-tag="" aria-pressed="true">All <span>16</span></button>
+      <button type="button" data-tag="" aria-pressed="true">All <span>17</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">Meetings <span>2</span></button>
       <button type="button" data-tag="ai" aria-pressed="false">AI <span>5</span></button>
       <button type="button" data-tag="news" aria-pressed="false">News <span>3</span></button>
@@ -344,12 +344,14 @@
       <button type="button" data-tag="harmonica" aria-pressed="false">Harmonica <span>2</span></button>
       <button type="button" data-tag="campus" aria-pressed="false">Campus <span>2</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">Self-hosting <span>3</span></button>
+      <button type="button" data-tag="blog" aria-pressed="false">Blogs <span>2</span></button>
     </div>
     <nav class="toc" aria-label="Projects">
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#tag">tag</a>
+      <a href="#blogs">blogs</a>
       <a href="#rep0rter">rep0rter</a>
       <a href="#youtube">youtube</a>
       <a href="#urtube">urtube</a>
@@ -501,7 +503,41 @@
   </a>
 </section>
 
-<section class="site" id="rep0rter" data-tags="news civic ai">
+<section class="site" id="blogs" data-tags="blog">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/blogs-logo.svg" alt="Blog Watch logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>blog.observe.tw</span>
+        <h2>Blog Watch</h2>
+      </div>
+    </div>
+    <p class="sub">Every kind of life, each written its own way</p>
+    <div class="tags"><button type="button" data-tag="blog">Blogs</button></div>
+    <p class="desc">
+      A sister site to tag.observe.tw that turns the same methods on <b>Taiwan’s independent blogs</b>: it collects more than 430 blogs and over 120,000 posts from their public RSS, Atom and sitemaps, then finds where blogs quote one another in their posts and which topics many of them are writing about right now.
+    </p>
+    <ul class="feats">
+      <li><b>Citations and a link map</b> — sentences from the last 90 days that mention another blog, drawn into one site-wide map</li>
+      <li><b>Shared topics</b> — words several blogs have taken up in the last 30 days, ranked by heat and how many blogs join in</li>
+      <li><b>Follow and personal RSS</b> — sign in to follow blogs, then export your own RSS feed and OPML</li>
+      <li><b>Finds new blogs</b> — weekly discovery; a candidate is added only once its feed and homepage check out</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://blog.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/blog-observe-tw" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/blog-observe-tw
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://blog.observe.tw" target="_blank" rel="noopener" aria-label="Blog Watch website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-blogs.webp" alt="Screenshot of Blog Watch" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/rep0rter-logo.png" alt="rep0rter logo">
@@ -534,31 +570,32 @@
   </a>
 </section>
 
-<section class="site flip" id="youtube" data-tags="youtube news politics">
+<section class="site" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
+      <img class="logo" src="/assets/youtube-logo.svg" alt="YouTube Board logo">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
         <h2>YouTube Board</h2>
       </div>
     </div>
-    <p class="sub">A live dashboard of Taiwanese YouTube</p>
+    <p class="sub">One story, every channel’s take</p>
     <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">News</button><button type="button" data-tag="politics">Elections</button></div>
     <p class="desc">
-      Turns public YouTube channels, livestreams, videos, keywords and topic groups into a <b>live data dashboard</b>: more than 1,100 channels in 8 categories (news, TV networks, the political spectrum and more), together drawing over <b>1.4 billion views a week</b>.
+      A live dashboard of <b>more than 3,400 public YouTube channels</b> and nearly 700,000 videos: what news, TV and political channels are streaming right now, which issues are heating up, and — by matching video titles against tag.observe.tw’s news tags — how each channel covers the same story.
     </p>
     <ul class="feats">
-      <li><b>Live now</b> — current livestream rankings, recurring streams, daily and period charts</li>
-      <li><b>Keyword tracking</b> — videos, word clouds and trends for people, events and phrases</li>
-      <li><b>AI summaries</b> — daily, hourly and per-event digests of what channels are saying</li>
-      <li><b>Mayoral reports</b> — candidates and local political keywords by city</li>
+      <li><b>Live now and a video wall</b> — current livestream rankings, concurrent viewers and many channels side by side</li>
+      <li><b>Trending tags and word cloud</b> — news tags from tag.observe.tw matched against video titles and descriptions, ranked by channel-weighted heat</li>
+      <li><b>Issues and event timelines</b> — AI-organized daily issues and how events unfold, with the cited videos to check against</li>
+      <li><b>Election reports</b> — candidates and local political keywords by city</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <span class="repo">
+      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/youtube-board (private)
-      </span>
+        skyhong2002/youtube-board
+      </a>
     </div>
   </div>
   <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board website">
@@ -567,7 +604,7 @@
   </a>
 </section>
 
-<section class="site" id="urtube" data-tags="youtube lifelog">
+<section class="site flip" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/urtube-logo.svg" alt="urtube logo">
@@ -600,7 +637,7 @@
   </a>
 </section>
 
-<section class="site flip" id="omni" data-tags="meeting research ai">
+<section class="site" id="omni" data-tags="meeting research ai">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -632,7 +669,7 @@
   </a>
 </section>
 
-<section class="site" id="stancelab" data-tags="ai research civic">
+<section class="site flip" id="stancelab" data-tags="ai research civic">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -664,7 +701,7 @@
   </a>
 </section>
 
-<section class="site flip" id="myzilla" data-tags="lifelog">
+<section class="site" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -697,7 +734,7 @@
   </a>
 </section>
 
-<section class="site" id="plaud" data-tags="ai lifelog selfhost">
+<section class="site flip" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/localplaud-logo.svg" alt="localplaud logo">
@@ -738,7 +775,7 @@
   <p>Not under observe.tw, but also things I’ve been building lately.</p>
 </section>
 
-<section class="site flip" id="weave" data-tags="meeting ai">
+<section class="site" id="weave" data-tags="meeting ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/weave-logo.svg" alt="Weave In logo">
@@ -771,7 +808,7 @@
   </a>
 </section>
 
-<section class="site" id="blog" data-tags="lifelog selfhost">
+<section class="site flip" id="blog" data-tags="blog lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/blog-logo.png" alt="Skychopath. logo">
@@ -781,7 +818,7 @@
       </div>
     </div>
     <p class="sub">Personal blog</p>
-    <div class="tags"><button type="button" data-tag="lifelog">Life-logging</button><button type="button" data-tag="selfhost">Self-hosting</button></div>
+    <div class="tags"><button type="button" data-tag="blog">Blogs</button><button type="button" data-tag="lifelog">Life-logging</button><button type="button" data-tag="selfhost">Self-hosting</button></div>
     <p class="desc">
       Reflections, projects and whatever I’m obsessed with lately. Self-hosted <b>Ghost</b> with a theme maintained on top of the official Source theme; my changes live in separate partials and styles, so upstream updates merge cleanly.
     </p>
@@ -804,7 +841,7 @@
   </a>
 </section>
 
-<section class="site flip" id="infovore" data-tags="lifelog">
+<section class="site" id="infovore" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/infovore-logo.png" alt="infovore logo">
@@ -837,7 +874,7 @@
   </a>
 </section>
 
-<section class="site" id="status" data-tags="selfhost">
+<section class="site flip" id="status" data-tags="selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/status-logo.svg" alt="Sky Status logo">
@@ -870,7 +907,7 @@
   </a>
 </section>
 
-<section class="site flip" id="encore" data-tags="harmonica campus">
+<section class="site" id="encore" data-tags="harmonica campus">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/encore-logo.svg" alt="Encore logo">

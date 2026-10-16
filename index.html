@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
+<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、獨立部落格、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
@@ -331,7 +331,7 @@
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
     <div class="topics" role="group" aria-label="依主題篩選">
-      <button type="button" data-tag="" aria-pressed="true">全部 <span>16</span></button>
+      <button type="button" data-tag="" aria-pressed="true">全部 <span>17</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">會議工具 <span>2</span></button>
       <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>5</span></button>
       <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>3</span></button>
@@ -344,12 +344,14 @@
       <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>2</span></button>
       <button type="button" data-tag="campus" aria-pressed="false">校園 <span>2</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>3</span></button>
+      <button type="button" data-tag="blog" aria-pressed="false">部落格 <span>2</span></button>
     </div>
     <nav class="toc" aria-label="專案">
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#tag">tag</a>
+      <a href="#blogs">blogs</a>
       <a href="#rep0rter">rep0rter</a>
       <a href="#youtube">youtube</a>
       <a href="#urtube">urtube</a>
@@ -508,7 +510,42 @@
   </a>
 </section>
 
-<section class="site" id="rep0rter" data-tags="news civic ai">
+<section class="site" id="blogs" data-tags="blog">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/blogs-logo.svg" alt="部落格觀察 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>blog.observe.tw</span>
+        <h2>部落格觀察</h2>
+      </div>
+    </div>
+    <p class="sub">每一種生活，各自怎麼寫</p>
+    <div class="tags"><button type="button" data-tag="blog">部落格</button></div>
+    <p class="desc">
+      新文易數的姊妹站，把同一套方法用在<b>臺灣的獨立部落格</b>：從公開的 RSS、Atom 與 sitemap
+      收錄 430 多個部落格、十二萬多篇文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。
+    </p>
+    <ul class="feats">
+      <li><b>正文引用與關係圖</b> — 近 90 天文章裡寫到其他部落格的句子，連成全站關係圖</li>
+      <li><b>共同話題排行</b> — 近 30 天多個部落格同時在寫的詞，依熱度與參與站數排序</li>
+      <li><b>追蹤與個人 RSS</b> — 登入追蹤喜歡的部落格，匯出個人 RSS 與 OPML</li>
+      <li><b>自動探索新站</b> — 每週探索候選部落格，RSS 與首頁身分核對通過才收錄</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://blog.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/blog-observe-tw" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/blog-observe-tw
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://blog.observe.tw" target="_blank" rel="noopener" aria-label="部落格觀察 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="assets/shot-blogs.webp" alt="部落格觀察 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/rep0rter-logo.png" alt="rep0rter logo">
@@ -542,42 +579,42 @@
   </a>
 </section>
 
-<section class="site flip" id="youtube" data-tags="youtube news politics">
+<section class="site" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
+      <img class="logo" src="assets/youtube-logo.svg" alt="有影儀表板 logo">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
-        <h2>YouTube Board</h2>
+        <h2>有影儀表板</h2>
       </div>
     </div>
-    <p class="sub">即時 YouTube 資料儀表板</p>
+    <p class="sub">同一件事，各台怎麼說</p>
     <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="politics">選舉政治</button></div>
     <p class="desc">
-      把公開 YouTube 頻道、直播、影片、關鍵字與主題群組整理成<b>即時資料儀表板</b>：
-      監看 1,100 多個頻道、8 個分類（新聞、電視台、政治光譜等），
-      追蹤的週觀看總量超過 <b>14 億次</b>。
+      延續 YouTube Board 的即時資料儀表板，觀測 <b>3,400 多個公開 YouTube 頻道</b>、近 70 萬支影片：
+      新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。
     </p>
     <ul class="feats">
-      <li><b>直播熱度</b> — 目前直播排行、帶狀直播、單日與期間排行</li>
-      <li><b>關鍵字追蹤</b> — 人物、事件與詞彙的影片、文字雲和趨勢</li>
-      <li><b>AI 摘要</b> — 每日、每小時與期間事件的頻道重點摘要</li>
-      <li><b>市長報表</b> — 縣市候選人與地方政治關鍵字</li>
+      <li><b>直播熱度與電視牆</b> — 目前直播排行、同時在線人數與多台並排的直播電視牆</li>
+      <li><b>熱門標籤與文字雲</b> — 以新文易數的新聞標籤比對影片標題與說明，依頻道加權熱度排序</li>
+      <li><b>議題與事件時間軸</b> — AI 整理每日議題與事件脈絡，附引用影片可回頭核對</li>
+      <li><b>選戰報表</b> — 縣市候選人與地方政治關鍵字</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <span class="repo">
+      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/youtube-board（私有）
-      </span>
+        skyhong2002/youtube-board
+      </a>
     </div>
   </div>
-  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board 網站截圖">
+  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="有影儀表板 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-youtube.webp" alt="YouTube Board 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-youtube.webp" alt="有影儀表板 首頁截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
-<section class="site" id="urtube" data-tags="youtube lifelog">
+<section class="site flip" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
@@ -612,7 +649,7 @@
   </a>
 </section>
 
-<section class="site flip" id="omni" data-tags="meeting research ai">
+<section class="site" id="omni" data-tags="meeting research ai">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -645,7 +682,7 @@
   </a>
 </section>
 
-<section class="site" id="stancelab" data-tags="ai research civic">
+<section class="site flip" id="stancelab" data-tags="ai research civic">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -678,7 +715,7 @@
   </a>
 </section>
 
-<section class="site flip" id="myzilla" data-tags="lifelog">
+<section class="site" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -712,7 +749,7 @@
   </a>
 </section>
 
-<section class="site" id="plaud" data-tags="ai lifelog selfhost">
+<section class="site flip" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo">
@@ -754,7 +791,7 @@
   <p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>
 </section>
 
-<section class="site flip" id="weave" data-tags="meeting ai">
+<section class="site" id="weave" data-tags="meeting ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/weave-logo.svg" alt="Weave In logo">
@@ -788,7 +825,7 @@
   </a>
 </section>
 
-<section class="site" id="blog" data-tags="lifelog selfhost">
+<section class="site flip" id="blog" data-tags="blog lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/blog-logo.png" alt="Skychopath. logo">
@@ -798,7 +835,7 @@
       </div>
     </div>
     <p class="sub">個人部落格</p>
-    <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
+    <div class="tags"><button type="button" data-tag="blog">部落格</button><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
     <p class="desc">
       寫反思、專案與各種著迷的事。自架 <b>Ghost</b>，主題以官方 Source 為基底自行維護，個人修改集中在獨立的 partials 與樣式，官方更新可以直接合併。
     </p>
@@ -821,7 +858,7 @@
   </a>
 </section>
 
-<section class="site flip" id="infovore" data-tags="lifelog">
+<section class="site" id="infovore" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/infovore-logo.png" alt="infovore logo">
@@ -854,7 +891,7 @@
   </a>
 </section>
 
-<section class="site" id="status" data-tags="selfhost">
+<section class="site flip" id="status" data-tags="selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/status-logo.svg" alt="Sky Status logo">
@@ -887,7 +924,7 @@
   </a>
 </section>
 
-<section class="site flip" id="encore" data-tags="harmonica campus">
+<section class="site" id="encore" data-tags="harmonica campus">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="assets/encore-logo.svg" alt="Encore logo">
