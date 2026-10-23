@@ -11,7 +11,9 @@
 - `sitemap.xml`：2 個 URL — `https://observe.tw/`、`https://observe.tw/en/`
 - Google 於 2026-10-23 讀取 Sitemap 成功（GSC 由 Codex 負責）
 
-### 未完成：`http://observe.tw/` 直接回 200，沒有轉到 HTTPS
+### 已完成：`http://observe.tw/` 301 → HTTPS（Codex 於 Cloudflare 部署，2026-10-23）
+
+原本 `http://observe.tw/` 直接回 200，沒有轉 HTTPS。
 
 **根因**：observe.tw apex 在 Cloudflare 上是 proxied（橘雲），A 記錄解析到 Cloudflare（`104.21.43.121`、`172.67.179.16`），不是 GitHub Pages 的 `185.199.108–111.153`。GitHub 只在網域直接指向它時才會簽 Let's Encrypt 憑證，所以：
 
@@ -21,24 +23,22 @@
 - 所以 Cloudflare SSL 模式只可能是 Flexible 或 Full（非 strict）；Full (strict) 會 526
 - 其他子網域的 HTTP→HTTPS 是各自 origin 做的（Vercel 308 等），zone 層級沒有開 Always Use HTTPS
 
-在 GitHub 端無解，除非把 apex 改成 DNS only——那會改動整個站的 edge 行為，不值得。正確做法是在 Cloudflare 加一條**只比對 apex** 的轉址規則。
+在 GitHub 端無解，除非把 apex 改成 DNS only——那會改動整個站的 edge 行為，不值得。所以在 Cloudflare 加一條**只比對 apex** 的轉址規則。這是預期狀態：GitHub 那邊會一直顯示沒有憑證，不用處理。
 
-### 要在 Cloudflare 做的設定（需登入，Codex 協調 UI）
+### 實際的 Cloudflare 規則
 
-Cloudflare dashboard → observe.tw zone → **Rules → Redirect Rules → Create rule**（Single Redirect）
+observe.tw zone → **Rules → Redirect Rules（Single Redirects）**，第二條：
 
 | 欄位 | 值 |
 |---|---|
-| Rule name | `observe.tw apex HTTP → HTTPS` |
-| If incoming requests match | Custom filter expression |
-| Expression | `(http.host eq "observe.tw" and not ssl)` |
-| Then — Type | Dynamic |
-| Expression | `concat("https://observe.tw", http.request.uri.path)` |
+| Rule name | `observe.tw root - HTTP to HTTPS - GSC 20261023` |
+| 模式 | Wildcard pattern |
+| Request URL | `http://observe.tw/*` |
+| Target URL | `https://observe.tw/${1}` |
 | Status code | 301 |
 | Preserve query string | ✅ 勾選 |
-| 位置 | 放第一條 |
 
-用 Wildcard pattern 模式也可以，等效：Request URL `http://observe.tw/*` → Target URL `https://observe.tw/${1}`，301，勾 Preserve query string。
+第一條是既有規則，只比對 tag / blog，兩條不衝突。SSL 模式、DNS、zone 層級 HTTPS、HSTS 都沒動。
 
 **不要做的事**
 
@@ -47,9 +47,23 @@ Cloudflare dashboard → observe.tw zone → **Rules → Redirect Rules → Crea
 - 不要動 SSL/TLS 模式、不要把 apex 改成 DNS only
 - apex 維持 proxied 的期間，**不要在 GitHub 開 Enforce HTTPS**：若 SSL 模式是 Flexible，Cloudflare 以 HTTP 回源，GitHub 再轉 HTTPS 就會無限迴圈（目前因為沒有憑證也開不了）
 
-**為什麼不會迴圈**：規則只比對 `not ssl`；HTTPS 請求不進規則，回源到 GitHub 時 GitHub 也不轉址（`https_enforced=false`）。
+**為什麼不會迴圈**：Request URL 帶 `http://` scheme，HTTPS 請求不進規則；回源到 GitHub 時 GitHub 也不轉址（`https_enforced=false`）。
 
-### 驗證（規則存好後，通常幾秒內生效）
+### 驗證（Claude 獨立複查，2026-10-23 約 17:20 +0800）
+
+| 請求 | 結果 |
+|---|---|
+| `http://observe.tw/` | 301 → `https://observe.tw/` |
+| `http://observe.tw/en/?a=1&b=2` | 301 → `https://observe.tw/en/?a=1&b=2` |
+| `http://observe.tw/en/?gsc_check=20261023&source=root` | 301 → 同 path + query 的 https |
+| `http://observe.tw/sitemap.xml`、`/robots.txt`、`/demo/` | 301 → 對應的 https |
+| `http://observe.tw/%E4%B8%AD?x=%20y` | 301 → `https://observe.tw/%E4%B8%AD?x=%20y`（編碼原樣保留） |
+| `http://observe.tw/`（Googlebot UA、GET） | 301 → `https://observe.tw/` |
+| `https://observe.tw/`、`/en/`、`/en/?gsc_check=20261023`、`/sitemap.xml`、`/robots.txt` | 200，沒有 Location |
+| `curl -IL http://observe.tw/en/?a=1` | 301 → 200，一次轉址就到 |
+| `http://tag` / `blog` / `harmonica` / `chumei.observe.tw/` | 原本的 308，沒變 |
+
+重跑：
 
 ```sh
 curl -sI http://observe.tw/                  # 301, location: https://observe.tw/
@@ -60,6 +74,10 @@ curl -sI https://observe.tw/en/              # 200
 curl -sIL http://observe.tw/ | grep -c '^HTTP'   # 2（一次轉址就到）
 curl -sI http://harmonica.observe.tw/        # 子網域行為不變（308 from origin）
 ```
+
+### Google 端（Codex 負責）
+
+轉址生效不代表 Google 已經更新。`http://observe.tw/` 要等 Google 重新抓取後，才會併到 HTTPS 版；Sitemap 已讀取不代表已收錄。
 
 ### 站群連結可抓取性（2026-10-23 17:00 左右，Googlebot UA）
 
