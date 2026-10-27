@@ -198,7 +198,7 @@ export const PROJECTS = [
       "blog"
     ],
     "name": "部落格觀察",
-    "domain": "blog.observe.tw",
+    "domain": "weblog.tw",
     "private": false,
     "logo": "assets/blogs-logo.svg",
     "boxed": false,
@@ -222,7 +222,7 @@ export const PROJECTS = [
         "每週探索候選部落格，RSS 與首頁身分核對通過才收錄"
       ]
     ],
-    "url": "https://blog.observe.tw",
+    "url": "https://weblog.tw",
     "visit": "前往網站",
     "repo": "skyhong2002/blog-observe-tw",
     "repoUrl": "https://github.com/skyhong2002/blog-observe-tw",
@@ -240,7 +240,7 @@ export const PROJECTS = [
       ]
     },
     "commits": 262
-    ,"pulse": { "url": "https://blog.observe.tw/", "label": "篇部落格文章", "pick": (b) => Number(b.replace(/<[^>]*>/g, ' ').match(/已收錄\s*(\d+)\s*篇文章/)[1]) }
+    ,"pulse": { "url": "https://weblog.tw/", "label": "篇部落格文章", "pick": (b) => Number(b.replace(/<[^>]*>/g, ' ').match(/已收錄\s*(\d+)\s*篇文章/)[1]) }
   },
   {
     "id": "rep0rter",
