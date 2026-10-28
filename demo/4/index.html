@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Demo 4 · A deck of starbirds — observe.tw">Demo 4 · 星鳥圖鑑 — observe.tw</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --night: #050817;
+    --navy: #0a1230;
+    --ink: #e9e4d6;
+    --dim: #a3a7b8;
+    --faint: #646a82;
+    --gold: #d8b46a;
+    --gold-hi: #f4dfa4;
+    --gold-line: rgba(216, 180, 106, 0.38);
+    --bird: #9fdcff;
+    --cinzel: "Cinzel", "Cormorant Garamond", serif;
+    --serif: "Cormorant Garamond", "Noto Serif TC", serif;
+    --tc: "Noto Serif TC", "Cormorant Garamond", serif;
+    --cw: 194px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { color-scheme: dark; }
+  body {
+    font-variant-numeric: lining-nums;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(40, 70, 140, 0.28), transparent 70%),
+      radial-gradient(ellipse 90% 60% at 50% 100%, rgba(20, 40, 90, 0.25), transparent 70%),
+      var(--night);
+    color: var(--ink);
+    font-family: var(--tc);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url("/demo/assets/sky.webp") center / cover;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  :focus-visible { outline: 1px solid var(--gold-hi); outline-offset: 4px; }
+
+  /* ---- demo nav ---- */
+  .demo-nav { position: absolute; top: 14px; right: 16px; z-index: 50; display: flex; gap: 6px; }
+  .demo-nav a {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+    font-size: 12.5px;
+    color: var(--dim);
+    text-decoration: none;
+    background: rgba(8, 12, 30, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(216, 180, 106, 0.2);
+    border-radius: 999px;
+    padding: 4px 12px;
+  }
+  .demo-nav a:hover { color: var(--gold-hi); }
+
+  /* ---- hero ---- */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 104px 24px 40px;
+    text-align: center;
+  }
+  .hero .bird {
+    width: 132px;
+    height: 132px;
+    margin: 0 auto 6px;
+    display: block;
+    filter: drop-shadow(0 0 22px rgba(120, 200, 255, 0.45));
+    animation: drift 9s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+  .eyebrow {
+    font-family: var(--cinzel);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    color: var(--gold);
+    margin-right: -0.42em;
+  }
+  .hero h1 {
+    margin-top: 10px;
+    font-family: var(--serif);
+    font-size: clamp(48px, 8vw, 76px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+  .hero h1 .tld { color: var(--gold); }
+  .hero .lede {
+    margin: 16px auto 0;
+    max-width: 30em;
+    font-size: 16px;
+    color: var(--dim);
+  }
+  html[lang="en"] .hero .lede { font-family: var(--serif); font-size: 19px; line-height: 1.55; }
+  .quote {
+    margin: 40px auto 0;
+    max-width: 34em;
+    padding: 22px 8px 0;
+    position: relative;
+  }
+  .quote::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 120px; height: 9px;
+    transform: translateX(-50%);
+    background:
+      linear-gradient(90deg, transparent, var(--gold-line) 30%, var(--gold-line) 70%, transparent) center / 100% 1px no-repeat,
+      radial-gradient(circle, var(--gold) 0 2px, transparent 2.5px) center / 9px 9px no-repeat;
+  }
+  .quote p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(18px, 2.4vw, 21px);
+    line-height: 1.55;
+    color: #d9d6cc;
+  }
+  .quote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    color: var(--faint);
+  }
+
+  /* ---- topic filter ---- */
+  .filter {
+    max-width: 880px;
+    margin: 36px auto 0;
+    padding: 0 24px;
+  }
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 4px;
+  }
+  .topics button {
+    font-size: 13px;
+    color: var(--faint);
+    padding: 3px 9px;
+    border-radius: 2px;
+    transition: color 0.2s;
+  }
+  .topics button span { font-family: var(--cinzel); font-size: 10.5px; opacity: 0.7; margin-left: 2px; }
+  .topics button:hover { color: var(--ink); }
+  .topics button[aria-pressed="true"] { color: var(--gold-hi); }
+  .topics button[aria-pressed="true"]::after {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-top: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ---- chapters ---- */
+  main { padding: 24px 24px 40px; }
+  .chapter { max-width: 1120px; margin: 72px auto 0; }
+  .chapter-head { text-align: center; margin-bottom: 30px; }
+  .chapter-head .no {
+    font-family: var(--cinzel);
+    font-size: 11.5px;
+    letter-spacing: 0.4em;
+    margin-right: -0.4em;
+    color: var(--gold);
+  }
+  .chapter-head h2 {
+    margin-top: 4px;
+    font-family: var(--tc);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: 0.12em;
+    margin-right: -0.12em;
+  }
+  html[lang="en"] .chapter-head h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; letter-spacing: 0.02em; margin-right: 0; }
+  .chapter-head p { margin-top: 2px; font-size: 14px; color: var(--faint); }
+  html[lang="en"] .chapter-head p { font-family: var(--serif); font-size: 17px; }
+
+  .deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px 22px;
+    perspective: 1100px;
+    max-width: calc(var(--per) * var(--cw) + (var(--per) - 1) * 22px + 1px);
+    margin: 0 auto;
+  }
+
+  /* ---- the card ---- */
+  .card {
+    --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%;
+    position: relative;
+    width: var(--cw);
+    aspect-ratio: 5 / 8;
+    container-type: inline-size;
+    border-radius: 9px;
+    text-align: center;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform 0.5s cubic-bezier(.2,.7,.2,1), opacity 0.35s, filter 0.35s, box-shadow 0.4s;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 14px 30px -14px rgba(0, 0, 0, 0.9);
+  }
+  .card:hover, .card:focus-visible {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 24px 44px -16px rgba(0, 0, 0, 0.95), 0 0 34px -8px rgba(120, 190, 255, 0.22);
+  }
+  .card:focus-visible { outline-offset: 6px; }
+  .card.tilting { transition: transform 0.08s linear, opacity 0.35s, filter 0.35s, box-shadow 0.4s; }
+  .card.dim { opacity: 0.16; filter: saturate(0.3); }
+  .card.dim:hover, .card.dim:focus-visible { opacity: 0.6; }
+  .card.away { visibility: hidden; }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 55% at 50% 40%, #182a5e 0%, #0c1638 48%, #070c24 100%);
+  }
+  .face svg.art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .face .num {
+    position: absolute;
+    top: 9.2cqw; left: 0; right: 0;
+    font-family: var(--cinzel);
+    font-weight: 600;
+    font-size: 6.4cqw;
+    letter-spacing: 0.18em;
+    margin-right: -0.18em;
+    color: var(--gold-hi);
+    line-height: 1;
+  }
+  .face .title {
+    position: absolute;
+    left: 9cqw; right: 9cqw; bottom: 8.5cqw;
+    height: 33cqw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.6cqw;
+  }
+  .face .name {
+    font-family: var(--tc);
+    font-weight: 600;
+    font-size: 8.4cqw;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: #f3ecd9;
+    text-wrap: balance;
+  }
+  .face .name.latin { font-family: var(--serif); font-size: 9.8cqw; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; }
+  .face .subj {
+    font-size: 5cqw;
+    line-height: 1.5;
+    color: var(--dim);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-wrap: balance;
+  }
+  html[lang="en"] .face .subj { font-family: var(--serif); font-size: 6cqw; line-height: 1.3; }
+  /* foil sheen that follows the pointer */
+  .face::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s;
+    background:
+      radial-gradient(circle at var(--mx) var(--my), rgba(255, 236, 190, 0.22), transparent 45%),
+      linear-gradient(115deg, transparent 30%, rgba(255, 225, 160, 0.10) 45%, rgba(170, 220, 255, 0.10) 55%, transparent 70%)
+        calc(var(--mx) * -1) 0 / 250% 100%;
+    mix-blend-mode: screen;
+  }
+  .card:hover .face::after, .card:focus-visible .face::after { opacity: 1; }
+  .face .core { animation: twinkle 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.72; } }
+
+  /* ---- opened card ---- */
+  dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    background: transparent;
+    border: 0;
+    overflow: hidden;
+    color: inherit;
+  }
+  dialog::backdrop { background: transparent; }
+  .veil {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 5, 14, 0.82);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.45s;
+  }
+  dialog.open .veil { opacity: 1; }
+  .stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    perspective: 1800px;
+  }
+  .big {
+    --bw: min(468px, 92vw, calc(88vh * 0.625));
+    width: var(--bw);
+    aspect-ratio: 5 / 8;
+    pointer-events: auto;
+    transform-origin: 0 0;
+  }
+  .big .flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(.3,.1,.15,1);
+  }
+  .big.flipped .flip { transform: rotateY(180deg); }
+  .big .front, .big .back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 40px 80px -30px #000, 0 0 60px -20px rgba(120, 190, 255, 0.25);
+  }
+  .big .front { container-type: inline-size; }
+  .big .back {
+    transform: rotateY(180deg);
+    overflow: hidden;
+    background: radial-gradient(ellipse 100% 60% at 50% 0%, #142554, #0a1231 55%, #070c24);
+  }
+  .back::before, .back::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 7px;
+    z-index: 2;
+  }
+  .back::before { inset: 7px; border: 1px solid rgba(216, 180, 106, 0.55); }
+  .back::after { inset: 11px; border: 1px solid rgba(216, 180, 106, 0.2); }
+  .back .scroll {
+    position: absolute;
+    inset: 12px;
+    overflow-y: auto;
+    padding: 18px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(216,180,106,0.3) transparent;
+  }
+  .back .top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--cinzel);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--gold-hi);
+  }
+  .back .top::before, .back .top::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-line)); }
+  .back .top::after { transform: scaleX(-1); }
+  .priv { margin-left: 8px; font-family: var(--tc); font-size: 10.5px; letter-spacing: 0.08em; color: var(--faint); border: 1px solid rgba(160,167,184,0.3); border-radius: 2px; padding: 0 5px; }
+  .back .scroll > * { flex-shrink: 0; }
+  .back .emblem { display: block; width: 96px; height: 96px; margin: auto auto 0; padding-top: 22px; box-sizing: content-box; opacity: 0.55; }
+  .back .shot {
+    display: block;
+    margin-top: 12px;
+    border: 1px solid rgba(216, 180, 106, 0.35);
+    padding: 3px;
+    border-radius: 3px;
+    background: #050817;
+  }
+  .back .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 1px; }
+  .back .shot.ph {
+    aspect-ratio: auto;
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    padding: 34px 10px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--faint);
+  }
+  .back .shot.ph img { width: 56px; height: 56px; aspect-ratio: 1; object-fit: contain; opacity: 0.85; }
+  .back .domain {
+    margin-top: 16px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--bird);
+  }
+  .back h3 {
+    font-family: var(--tc);
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.3;
+    color: #f5eedb;
+  }
+  .back h3.latin { font-family: var(--serif); font-weight: 600; font-size: 29px; }
+  .back .sub { margin-top: 4px; font-size: 13.5px; color: var(--dim); }
+  .back .meta {
+    margin-top: 14px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(216, 180, 106, 0.22);
+    border-bottom: 1px solid rgba(216, 180, 106, 0.22);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    font-size: 12.5px;
+    color: var(--dim);
+  }
+  .back .meta b { font-weight: 400; color: var(--gold); margin-right: 5px; font-size: 11.5px; }
+  .back .reading {
+    margin-top: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--dim);
+  }
+  .back .reading i {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--bird);
+    box-shadow: 0 0 10px var(--bird);
+    align-self: center;
+    animation: twinkle 2.4s ease-in-out infinite;
+  }
+  .back .reading strong { font-family: var(--serif); font-weight: 600; font-size: 24px; color: #f5eedb; line-height: 1; }
+  .back .desc { margin-top: 12px; font-size: 14px; line-height: 1.8; color: #c9c8c4; }
+  .back .desc b { color: #f0e6cc; font-weight: 600; }
+  html[lang="en"] .back .desc { font-family: var(--serif); font-size: 16.5px; line-height: 1.55; }
+  .back .links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: 13px; }
+  .back .links a, .back .links span { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--dim); }
+  .back .links a:hover { color: var(--gold-hi); }
+  .back .links .visit {
+    color: #0b1230;
+    background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+    padding: 5px 14px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+  .back .links .visit:hover { color: #0b1230; filter: brightness(1.08); }
+  .close {
+    position: absolute;
+    top: 16px; right: 18px;
+    z-index: 3;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(216, 180, 106, 0.35);
+    color: var(--gold-hi);
+    font-size: 20px;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  dialog.open .close { opacity: 1; }
+  .close:hover { background: rgba(216, 180, 106, 0.1); }
+
+  /* ---- footer ---- */
+  footer {
+    margin-top: 96px;
+    padding: 28px 24px 48px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--faint);
+  }
+  footer .orn { color: var(--gold); letter-spacing: 0.6em; margin-right: -0.6em; font-size: 10px; }
+  footer p { margin-top: 10px; }
+
+  @media (max-width: 520px) {
+    :root { --cw: calc((100vw - 48px - 14px) / 2); }
+    .hero { padding-top: 84px; }
+    .hero .bird { width: 104px; height: 104px; }
+    .deck { gap: 16px 14px; }
+    .chapter { margin-top: 56px; }
+    .back .scroll { padding: 14px 14px 18px; }
+    .back h3 { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .bird, .face .core, .back .reading i { animation: none; }
+    .card, .card.tilting { transform: none; transition: opacity 0.2s; }
+    .big .flip { transition: none; }
+    .veil, .close { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="foil" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="250" y2="400">
+      <stop offset="0" stop-color="#f6e2a8"/>
+      <stop offset="0.32" stop-color="#b98a3e"/>
+      <stop offset="0.55" stop-color="#f1d690"/>
+      <stop offset="0.8" stop-color="#a87a35"/>
+      <stop offset="1" stop-color="#ecd08a"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#d9f2ff" stop-opacity="0.9"/>
+      <stop offset="0.35" stop-color="#8fd3ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8fd3ff" stop-opacity="0"/>
+    </radialGradient>
+    <g id="frame" fill="none" stroke="url(#foil)">
+      <rect x="7" y="7" width="236" height="386" rx="5" stroke-width="1.1"/>
+      <rect x="12" y="12" width="226" height="376" rx="3" stroke-width="0.5" opacity="0.6"/>
+      <path d="M12 30 Q 30 30 30 12 M238 30 Q 220 30 220 12 M12 370 Q 30 370 30 388 M238 370 Q 220 370 220 388" stroke-width="0.6"/>
+      <g fill="url(#foil)" stroke="none">
+        <path d="M125 3.5 l3.5 3.5 -3.5 3.5 -3.5 -3.5z M125 389.5 l3.5 3.5 -3.5 3.5 -3.5 -3.5z"/>
+        <circle cx="17.5" cy="17.5" r="1.3"/><circle cx="232.5" cy="17.5" r="1.3"/>
+        <circle cx="17.5" cy="382.5" r="1.3"/><circle cx="232.5" cy="382.5" r="1.3"/>
+      </g>
+      <path d="M44 31 H84 M166 31 H206" stroke-width="0.5" opacity="0.7"/>
+      <circle cx="125" cy="168" r="90" stroke-width="0.6" opacity="0.55"/>
+      <circle cx="125" cy="168" r="95" stroke-width="0.35" opacity="0.4" stroke-dasharray="0.6 4.37"/>
+      <circle cx="125" cy="168" r="66" stroke-width="0.3" opacity="0.18"/>
+      <ellipse cx="125" cy="168" rx="90" ry="30" transform="rotate(-18 125 168)" stroke-width="0.3" opacity="0.2"/>
+      <path d="M40 286 H112 M138 286 H210" stroke-width="0.5" opacity="0.7"/>
+      <path d="M125 281 l5 5 -5 5 -5 -5z" stroke-width="0.6"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="hero">
+  <img class="bird" src="/demo/assets/starbird.webp" alt="" width="132" height="132">
+  <div class="eyebrow" data-en="THE OBSERVER’S DECK">星 鳥 圖 鑑</div>
+  <h1>observe<span class="tld">.tw</span></h1>
+  <p class="lede" data-en="Seventeen starbirds, each sent out to watch one subject and bring back what it sees. Draw a card to read its report.">十七隻星鳥，各自飛向一個觀測對象，帶回牠們所看見的。抽一張牌，讀牠的報告。</p>
+  <blockquote class="quote" lang="en">
+    <p>“Though I gave you wings to soar the heavens, I did not teach you how to walk the earth. So loath was I to bind another living being.”</p>
+    <cite lang="zh-Hant" data-en="— Hermes, to Meteion · Final Fantasy XIV: Endwalker">— 赫密士，對梅蒂恩 · Final Fantasy XIV：曉月之終途</cite>
+  </blockquote>
+</header>
+
+<div class="filter" id="filter"></div>
+<main id="chapters"></main>
+
+<footer>
+  <div class="orn">✦ ✦ ✦</div>
+  <p data-en="An homage to Hermes and Meteion from &lt;i&gt;Final Fantasy XIV&lt;/i&gt;. All imagery on this page is original.">致敬《Final Fantasy XIV》的赫密士與梅蒂恩。頁面上的圖像皆為原創。</p>
+</footer>
+
+<dialog id="view" aria-labelledby="view-title">
+  <div class="veil"></div>
+  <button class="close" type="button" aria-label="關閉" data-aria-en="Close">×</button>
+  <div class="stage"><div class="big"><div class="flip"><div class="front"></div><div class="back"></div></div></div></div>
+</dialog>
+
+<script type="module">
+  import { PROJECTS, CHAPTERS, byId, TAG_LABEL, topicsHTML, t, LANG, DEMO_NAV, loadPulse, fmt, since, linksHTML } from '/demo/common.js';
+
+  document.getElementById('nav').innerHTML = DEMO_NAV;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---------- deterministic constellations ---------- */
+  function seed(str) {
+    let h = 2166136261;
+    for (const c of str) h = Math.imul(h ^ c.codePointAt(0), 16777619);
+    return () => {
+      h = (h + 0x6d2b79f5) | 0;
+      let x = Math.imul(h ^ (h >>> 15), 1 | h);
+      x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+      return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const R = (n) => Math.round(n * 10) / 10;
+
+  function constellation(id) {
+    const rnd = seed(id);
+    const cx = 125, cy = 168;
+    const n = 5 + Math.floor(rnd() * 4);
+    const pts = [];
+    for (let tries = 0; pts.length < n && tries < 600; tries++) {
+      const a = rnd() * Math.PI * 2, r = 70 * Math.sqrt(rnd());
+      const p = { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r * 0.92 };
+      if (pts.every((q) => Math.hypot(p.x - q.x, p.y - q.y) > 26)) pts.push(p);
+    }
+    // Prim's minimum spanning tree reads like a real constellation figure.
+    const inTree = [0], edges = [];
+    while (inTree.length < pts.length) {
+      let best = null;
+      for (const i of inTree) pts.forEach((q, j) => {
+        if (inTree.includes(j)) return;
+        const d = Math.hypot(pts[i].x - q.x, pts[i].y - q.y);
+        if (!best || d < best.d) best = { i, j, d };
+      });
+      inTree.push(best.j);
+      edges.push([best.i, best.j]);
+    }
+    if (rnd() < 0.45 && pts.length > 4) {
+      const deg = pts.map((_, i) => edges.filter((e) => e.includes(i)).length);
+      const leaves = pts.map((_, i) => i).filter((i) => deg[i] === 1);
+      if (leaves.length >= 2) edges.push([leaves[0], leaves[1]]);
+    }
+    const core = Math.floor(rnd() * pts.length);
+    let dust = '';
+    for (let i = 0; i < 34; i++) {
+      const x = 18 + rnd() * 214, y = 40 + rnd() * 236;
+      dust += `<circle cx="${R(x)}" cy="${R(y)}" r="${R(0.35 + rnd() * 0.6)}" opacity="${R(0.15 + rnd() * 0.45)}"/>`;
+    }
+    const lines = edges.map(([a, b]) => `<line x1="${R(pts[a].x)}" y1="${R(pts[a].y)}" x2="${R(pts[b].x)}" y2="${R(pts[b].y)}"/>`).join('');
+    const stars = pts.map((p, i) => i === core ? '' : `<circle cx="${R(p.x)}" cy="${R(p.y)}" r="${R(1.3 + rnd() * 1.1)}"/>`).join('');
+    const c = pts[core];
+    const k = 9;
+    const sparkle = `<g class="core">
+      <circle cx="${R(c.x)}" cy="${R(c.y)}" r="16" fill="url(#glow)"/>
+      <path d="M${R(c.x)} ${R(c.y - k)} Q${R(c.x)} ${R(c.y)} ${R(c.x + k * 0.6)} ${R(c.y)} Q${R(c.x)} ${R(c.y)} ${R(c.x)} ${R(c.y + k)} Q${R(c.x)} ${R(c.y)} ${R(c.x - k * 0.6)} ${R(c.y)} Q${R(c.x)} ${R(c.y)} ${R(c.x)} ${R(c.y - k)}Z" fill="#e6f6ff"/>
+      <circle cx="${R(c.x)}" cy="${R(c.y)}" r="2.1" fill="#fff"/>
+    </g>`;
+    return `<g fill="#e9e2cf">${dust}</g>
+      <g stroke="url(#foil)" stroke-width="0.7" opacity="0.75" stroke-linecap="round">${lines}</g>
+      <g fill="url(#foil)">${stars}</g>${sparkle}`;
+  }
+
+  const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX'];
+  const isLatin = (s) => !/[㐀-鿿]/.test(s);
+  const order = CHAPTERS.flatMap((c) => c.ids);
+  const numeral = (id) => ROMAN[order.indexOf(id) + 1];
+
+  function faceHTML(p) {
+    return `<div class="face">
+      <svg class="art" viewBox="0 0 250 400" aria-hidden="true"><use href="#frame"/>${constellation(p.id)}</svg>
+      <div class="num">${numeral(p.id)}</div>
+      <div class="title">
+        <div class="name${isLatin(p.name) ? ' latin' : ''}">${p.name}</div>
+        <div class="subj">${p.label.subject}</div>
+      </div>
+    </div>`;
+  }
+
+  /* ---------- render the deck ---------- */
+  document.getElementById('filter').innerHTML = topicsHTML();
+  document.getElementById('chapters').innerHTML = CHAPTERS.map((c, i) => `
+    <section class="chapter" aria-labelledby="ch-${c.id}">
+      <div class="chapter-head">
+        <div class="no">${t('第 ' + '一二三四'[i] + ' 章', 'CHAPTER ' + ROMAN[i + 1])}</div>
+        <h2 id="ch-${c.id}">${c.title}</h2>
+        <p>${c.short}</p>
+      </div>
+      <div class="deck" style="--per:${Math.ceil(c.ids.length / Math.ceil(c.ids.length / 5))}">
+        ${c.ids.map((id) => {
+          const p = byId[id];
+          return `<button class="card" type="button" data-id="${id}" data-tags="${p.tags.join(' ')}" aria-haspopup="dialog"
+            aria-label="${numeral(id)} · ${p.name} — ${p.label.subject}">${faceHTML(p)}</button>`;
+        }).join('')}
+      </div>
+    </section>`).join('');
+  const cards = [...document.querySelectorAll('.card')];
+
+  /* ---------- topic filter: dim, don't hide ---------- */
+  const topicButtons = [...document.querySelectorAll('.topics button')];
+  function applyTag(tag) {
+    for (const c of cards) c.classList.toggle('dim', !!tag && !c.dataset.tags.split(' ').includes(tag));
+    for (const b of topicButtons) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+    const url = new URL(location.href);
+    tag ? url.searchParams.set('tag', tag) : url.searchParams.delete('tag');
+    history.replaceState(null, '', url);
+  }
+  for (const b of topicButtons) b.addEventListener('click', () => applyTag(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag));
+  const initialTag = new URL(location.href).searchParams.get('tag');
+  if (initialTag && TAG_LABEL[initialTag]) applyTag(initialTag);
+
+  /* ---------- hover tilt + sheen ---------- */
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  for (const card of cards) {
+    card.addEventListener('pointermove', (e) => {
+      if (!fine.matches) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', `${x * 100}%`);
+      card.style.setProperty('--my', `${y * 100}%`);
+      if (reduce.matches) return;
+      card.classList.add('tilting');
+      card.style.setProperty('--rx', `${(0.5 - y) * 10}deg`);
+      card.style.setProperty('--ry', `${(x - 0.5) * 12}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.classList.remove('tilting');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+    card.addEventListener('click', () => open(card.dataset.id));
+  }
+
+  /* ---------- the opened card ---------- */
+  let pulse = null;
+  const dlg = document.getElementById('view');
+  const big = dlg.querySelector('.big');
+  const front = dlg.querySelector('.front');
+  const back = dlg.querySelector('.back');
+  let current = null;
+  let closing = false;
+
+  function readingHTML(p) {
+    if (!p.pulse) return '';
+    const r = pulse?.items?.[p.id];
+    const v = r && r.value != null ? fmt(r.value) : '—';
+    return `<div class="reading"><i></i><strong>${v}</strong><span>${p.pulse.label}</span></div>`;
+  }
+
+  function backHTML(p) {
+    const href = p.url || p.repoUrl;
+    const shot = p.shot
+      ? `<a class="shot" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" width="1280" height="800"></a>`
+      : `<div class="shot ph"><img src="/${p.logo}" alt=""><span>${p.ph ?? ''}</span></div>`;
+    return `<div class="scroll">
+      <div class="top">${numeral(p.id)}</div>
+      ${shot}
+      <div class="domain">${p.domain}${p.private ? `<span class="priv">${t('非公開', 'Private')}</span>` : ''}</div>
+      <h3 id="view-title" class="${isLatin(p.name) ? 'latin' : ''}">${p.name}</h3>
+      <p class="sub">${p.sub}</p>
+      <div class="meta">
+        <span><b>${t('觀測', 'Watches')}</b>${p.label.subject}</span>
+        <span><b>${t('頻率', 'Cadence')}</b>${p.label.cadence}</span>
+        <span><b>${t('始於', 'Since')}</b>${since(p)}</span>
+      </div>
+      ${readingHTML(p)}
+      <p class="desc">${p.desc}</p>
+      ${linksHTML(p)}
+      <svg class="emblem" viewBox="45 88 160 160" aria-hidden="true">
+        <circle cx="125" cy="168" r="78" fill="none" stroke="url(#foil)" stroke-width="0.6" opacity="0.5"/>${constellation(p.id).replace(/<g fill="#e9e2cf">.*?<\/g>/s, '')}
+      </svg>
+    </div>`;
+  }
+
+  // Move .big so it sits exactly over `card` (or return the transform to identity).
+  function placeOver(card) {
+    big.style.transition = 'none';
+    big.style.transform = '';
+    const f = big.getBoundingClientRect();
+    const r = card.getBoundingClientRect();
+    big.style.transform = `translate(${r.left - f.left}px, ${r.top - f.top}px) scale(${r.width / f.width})`;
+  }
+  const flyEase = 'transform 0.85s cubic-bezier(.3,.1,.15,1)';
+
+  function open(id, { instant = false } = {}) {
+    const p = byId[id];
+    if (!p) return;
+    const card = cards.find((c) => c.dataset.id === id);
+    current = card;
+    front.innerHTML = faceHTML(p);
+    back.innerHTML = backHTML(p);
+    big.classList.remove('flipped');
+    dlg.showModal();
+    history.replaceState(null, '', `${location.pathname}${location.search}#${id}`);
+    const animate = !instant && !reduce.matches;
+    if (animate) {
+      placeOver(card);
+      card.classList.add('away');
+      big.getBoundingClientRect();
+      requestAnimationFrame(() => {
+        big.style.transition = flyEase;
+        big.style.transform = '';
+        dlg.classList.add('open');
+        big.classList.add('flipped');
+      });
+    } else {
+      big.style.transition = 'none';
+      big.style.transform = '';
+      big.querySelector('.flip').style.transition = 'none';
+      big.classList.add('flipped');
+      dlg.classList.add('open');
+      big.getBoundingClientRect();
+      big.querySelector('.flip').style.transition = '';
+    }
+    back.querySelector('.scroll').scrollTop = 0;
+    dlg.querySelector('.close').focus({ preventScroll: true });
+  }
+
+  function close() {
+    if (!dlg.open || closing) return;
+    const card = current;
+    history.replaceState(null, '', location.pathname + location.search);
+    const done = () => {
+      closing = false;
+      dlg.classList.remove('open');
+      dlg.close();
+      card?.classList.remove('away');
+      big.style.transform = '';
+      card?.focus({ preventScroll: true });
+    };
+    if (reduce.matches || !card) return done();
+    closing = true;
+    const r = card.getBoundingClientRect();
+    const onScreen = r.bottom > 0 && r.top < innerHeight;
+    dlg.classList.remove('open');
+    big.classList.remove('flipped');
+    if (onScreen) {
+      const f = big.getBoundingClientRect();
+      big.style.transition = flyEase;
+      big.style.transform = `translate(${r.left - f.left}px, ${r.top - f.top}px) scale(${r.width / f.width})`;
+    }
+    setTimeout(done, 820);
+  }
+
+  dlg.addEventListener('cancel', (e) => { e.preventDefault(); close(); });
+  dlg.querySelector('.close').addEventListener('click', close);
+  dlg.querySelector('.veil').addEventListener('click', close);
+  big.querySelector('.front').addEventListener('click', () => big.classList.add('flipped'));
+
+  const fromHash = location.hash.slice(1);
+  if (byId[fromHash]) {
+    cards.find((c) => c.dataset.id === fromHash)?.scrollIntoView({ block: 'center' });
+    open(fromHash, { instant: true });
+  }
+
+  pulse = await loadPulse();
+  if (dlg.open && current) {
+    const p = byId[current.dataset.id];
+    const old = back.querySelector('.reading');
+    if (old) old.outerHTML = readingHTML(p);
+  }
+</script>
+</body>
+</html>

@@ -3,251 +3,595 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-en="Demo 1 · Starbirds — observe.tw">Demo 1 · 星鳥 — observe.tw</title>
+<title data-en="Demo 1 · Index — observe.tw">Demo 1 · 目錄 — observe.tw</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'&gt;&lt;path fill='%23c9a962' d='M12 0C12.8 8 16 11.2 24 12C16 12.8 12.8 16 12 24C11.2 16 8 12.8 0 12C8 11.2 11.2 8 12 0Z'/&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+TC:wght@500;700&display=swap">
-<link rel="stylesheet" href="/demo/shared.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600&display=swap">
 <style>
   :root {
-    --bg: #060914;
-    --surface: #0d1328;
-    --border: #1e2846;
-    --text: #e6e9f2;
-    --text-dim: #9aa3bd;
-    --text-faint: #5f6884;
-    --accent: #8fd3ff;
-    --gold: #d9b46a;
-    --gold-dim: rgba(217, 180, 106, 0.22);
-    --serif: "Cormorant Garamond", "Noto Serif TC", serif;
+    --ink: #0a0f1d;
+    --ink-2: #0e1526;
+    --ivory: #ebe5d6;
+    --ivory-dim: #a9a597;
+    --faint: #6d6f7a;
+    --gold: #c9a962;
+    --gold-soft: rgba(201, 169, 98, 0.55);
+    --hair: rgba(201, 169, 98, 0.16);
+    --sky: #9fd0f2;
+    --latin: "Cormorant Garamond", "Noto Serif TC", Georgia, serif;
+    --han: "Noto Serif TC", "Cormorant Garamond", "Songti TC", serif;
   }
-  body { background: var(--bg); }
-  .wrap { max-width: 1080px; }
-
-  /* ---- hero ---- */
-  .hero {
-    position: relative;
-    min-height: min(92vh, 780px);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { color-scheme: dark; background: var(--ink); }
+  body {
+    min-height: 100vh;
+    color: var(--ivory);
+    font-family: var(--han);
+    font-weight: 400;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: oldstyle-nums;
     background:
-      linear-gradient(180deg, rgba(6, 9, 20, 0) 55%, var(--bg) 100%),
-      url("/demo/assets/sky.webp") center / cover,
-      radial-gradient(ellipse 80% 60% at 70% 110%, #0f3a4a, transparent),
-      #070b18;
+      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(40, 62, 110, 0.32), transparent 70%),
+      var(--ink);
   }
-  .hero .wrap { position: relative; z-index: 1; width: 100%; }
-  .eyebrow {
-    font-family: var(--serif);
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    color: var(--gold);
-  }
-  html[lang="en"] .eyebrow { letter-spacing: 0.24em; }
-  .hero h1 {
-    margin-top: 14px;
-    font-family: var(--serif);
-    font-size: clamp(52px, 9vw, 96px);
-    font-weight: 600;
-    letter-spacing: 0;
-    line-height: 1;
-  }
-  .hero h1 .tld { color: var(--gold); }
-  .hero .tagline {
-    margin-top: 22px;
-    max-width: 25em;
-    font-family: "Noto Serif TC", var(--serif);
-    font-size: 18px;
-    line-height: 1.9;
-    color: #c5cbe0;
-  }
-  html[lang="en"] .hero .tagline { font-family: var(--serif); font-size: 21px; line-height: 1.6; }
-  .bird {
-    position: absolute;
-    right: max(-60px, calc(50% - 640px));
-    top: 50%;
-    width: min(54vw, 620px);
-    translate: 0 -55%;
-    pointer-events: none;
-    filter: drop-shadow(0 0 40px rgba(143, 211, 255, 0.35));
-    animation: glide 9s ease-in-out infinite;
-  }
-  @keyframes glide {
-    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
-    50% { transform: translate(-14px, -18px) rotate(1deg); }
-  }
+  a { color: inherit; }
+  ::selection { background: rgba(201, 169, 98, 0.3); }
+  :focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
 
-  /* ---- epigraph ---- */
-  .epigraph {
-    max-width: 680px;
-    margin: 8px auto 72px;
-    text-align: center;
+  /* ---- demo nav ---- */
+  .demo-nav { position: absolute; top: 16px; right: 18px; z-index: 50; display: flex; gap: 18px; }
+  .demo-nav a {
+    font-family: var(--latin);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--faint);
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  .epigraph svg { display: block; width: 120px; margin: 0 auto 26px; color: var(--gold); }
-  .epigraph blockquote {
-    font-family: var(--serif);
-    font-size: clamp(21px, 2.6vw, 26px);
-    font-style: italic;
-    font-weight: 500;
-    line-height: 1.55;
-    color: #dfe4f2;
-  }
-  .epigraph .zh {
-    margin-top: 16px;
-    font-family: "Noto Serif TC", var(--serif);
-    font-size: 15.5px;
-    line-height: 1.9;
-    color: var(--text-dim);
-  }
-  html[lang="en"] .epigraph .zh { display: none; }
-  .epigraph figcaption {
-    margin-top: 18px;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    color: var(--gold);
-  }
-  .epigraph figcaption cite { font-style: italic; }
+  .demo-nav a:hover, .demo-nav a:focus-visible { color: var(--gold); }
 
-  /* ---- catalog ---- */
-  .sec { padding-top: 32px; }
-  .topics { margin-top: 0; }
-  .topics button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); }
-  .chapter { margin-top: 44px; }
-  .chapter-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
-  .chapter-head span { font-family: var(--serif); font-size: 20px; color: var(--gold); }
-  .chapter-head h3 { font-size: 19px; }
-  .chapter-head p { font-size: 13.5px; color: var(--text-faint); }
-  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .card {
-    position: relative;
+  .sparkle { display: inline-block; width: 11px; height: 11px; fill: var(--gold); vertical-align: middle; }
+
+  /* ---- frontispiece ---- */
+  .title {
+    min-height: min(100vh, 900px);
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--gold-dim);
-    border-radius: 4px;
-    background: linear-gradient(180deg, rgba(19, 27, 54, 0.85), rgba(9, 13, 28, 0.85));
-    overflow: hidden;
-    transition: border-color 0.25s, opacity 0.3s, box-shadow 0.4s;
-    scroll-margin-top: 80px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
   }
-  .card::before, .card::after {
+  .bird {
+    width: 54px; height: 54px;
+    margin-bottom: 34px;
+    filter: drop-shadow(0 0 14px rgba(120, 190, 255, 0.45));
+    animation: drift 9s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(3px, -6px) rotate(-2deg); }
+  }
+  .kicker {
+    font-family: var(--latin);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-right: -0.42em;
+  }
+  .kicker .zh { font-family: var(--han); letter-spacing: 0.5em; font-size: 13px; }
+  h1 {
+    font-family: var(--latin);
+    font-weight: 300;
+    font-size: clamp(64px, 13vw, 148px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin: 22px 0 0;
+  }
+  h1 i { font-style: italic; font-weight: 400; color: var(--gold); }
+  .rule { width: 44px; height: 1px; background: var(--gold-soft); margin: 38px auto; border: 0; }
+  .lede {
+    max-width: 30em;
+    font-size: 17px;
+    line-height: 2;
+    color: var(--ivory-dim);
+    text-wrap: balance;
+  }
+  :lang(en) .lede { font-family: var(--latin); font-size: 22px; line-height: 1.55; max-width: 26em; }
+
+  .epigraph {
+    max-width: 30em;
+    margin: 72px auto 0;
+    text-align: center;
+  }
+  .epigraph p {
+    text-wrap: balance;
+    font-family: var(--latin);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ivory);
+  }
+  .epigraph cite {
+    display: block;
+    margin-top: 16px;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--faint);
+  }
+  :lang(en) .epigraph cite { font-family: var(--latin); font-size: 15px; }
+  .down {
+    margin-top: 72px;
+    font-family: var(--latin);
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .down:hover, .down:focus-visible { color: var(--gold); }
+  .down span { display: block; margin-top: 6px; letter-spacing: 0; font-size: 16px; }
+
+  /* ---- contents ---- */
+  .contents {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 40px 32px 120px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    column-gap: 88px;
+  }
+  .contents-head {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .contents-head h2 {
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: 0.6em;
+    margin-right: -0.6em;
+  }
+  :lang(en) .contents-head h2 { font-family: var(--latin); font-size: 30px; letter-spacing: 0.3em; margin-right: -0.3em; text-transform: uppercase; font-weight: 400; }
+  .contents-head p { margin-top: 8px; font-family: var(--latin); font-style: italic; font-size: 17px; color: var(--faint); }
+
+  .chapter + .chapter { margin-top: 64px; }
+  .chapter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .chapter-head .roman {
+    font-family: var(--latin);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    min-width: 2.4em;
+  }
+  .chapter-head h3 { font-weight: 500; font-size: 20px; letter-spacing: 0.12em; }
+  :lang(en) .chapter-head h3 { font-family: var(--latin); font-size: 24px; letter-spacing: 0.02em; font-weight: 500; }
+  .chapter-head em {
+    margin-left: auto;
+    font-family: var(--latin);
+    font-size: 16px;
+    color: var(--faint);
+    text-align: right;
+  }
+  :lang(zh-Hant-TW) .chapter-head em { font-family: var(--han); font-style: normal; font-size: 13px; letter-spacing: 0.06em; }
+
+  .entries { list-style: none; }
+  .entry { border-bottom: 1px solid rgba(201, 169, 98, 0.07); }
+  .row {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 2.4em auto minmax(24px, 1fr) auto;
+    column-gap: 18px;
+    align-items: baseline;
+    padding: 16px 0 14px;
+  }
+  .row:focus-visible { outline: 1px solid var(--gold-soft); outline-offset: 2px; }
+  .num {
+    font-family: var(--latin);
+    font-size: 16px;
+    color: var(--faint);
+    transition: color 0.3s;
+  }
+  .name {
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.3s;
+  }
+  :lang(en) .name { font-family: var(--latin); font-size: 23px; font-weight: 500; letter-spacing: 0; }
+  .leader {
+    align-self: end;
+    margin-bottom: 0.45em;
+    border-bottom: 1px dotted rgba(201, 169, 98, 0.28);
+    transition: border-color 0.3s;
+  }
+  .domain {
+    font-family: var(--latin);
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    color: var(--ivory-dim);
+    transition: color 0.3s;
+  }
+  .domain small {
+    margin-left: 8px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .subject {
+    grid-column: 2 / -1;
+    margin-top: 2px;
+    font-size: 14px;
+    color: var(--faint);
+    transition: color 0.3s;
+  }
+  :lang(en) .subject { font-family: var(--latin); font-style: italic; font-size: 17px; }
+  .entry.is-active .num, .row:hover .num, .row:focus-visible .num { color: var(--gold); }
+  .entry.is-active .name, .row:hover .name, .row:focus-visible .name { color: #fff8e6; }
+  .entry.is-active .leader, .row:hover .leader { border-color: rgba(201, 169, 98, 0.55); }
+  .entry.is-active .subject, .row:hover .subject { color: var(--ivory-dim); }
+
+  /* expanded entry */
+  .more {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .more > div { overflow: hidden; }
+  .entry.open .more { grid-template-rows: 1fr; }
+  .more-inner {
+    padding: 4px 0 30px calc(2.4em + 18px);
+    opacity: 0;
+    transition: opacity 0.35s 0.05s;
+  }
+  .entry.open .more-inner { opacity: 1; }
+  .entry.open .domain { color: var(--gold); }
+  .more .shot { display: none; }
+  .desc { font-size: 15px; line-height: 1.95; color: var(--ivory-dim); max-width: 36em; }
+  :lang(en) .desc { font-family: var(--latin); font-size: 18.5px; line-height: 1.55; }
+  .desc b { color: var(--ivory); font-weight: 500; }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 6px 36px;
+    margin-top: 22px;
+  }
+  .facts dt {
+    font-family: var(--latin);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  :lang(zh-Hant-TW) .facts dt { font-family: var(--han); letter-spacing: 0.2em; }
+  .facts dd { font-size: 14px; color: var(--ivory); }
+  :lang(en) .facts dd { font-family: var(--latin); font-size: 17px; }
+  .pulse { margin-top: 18px; font-size: 14px; color: var(--ivory-dim); }
+  .pulse b { font-family: var(--latin); font-size: 20px; font-weight: 500; color: var(--sky); margin-right: 6px; font-variant-numeric: lining-nums; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 22px; font-family: var(--latin); font-size: 16px; }
+  .links a, .links span { color: var(--ivory-dim); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; }
+  .links a { border-bottom: 1px solid var(--hair); transition: color 0.2s, border-color 0.2s; }
+  .links a:hover, .links a:focus-visible { color: var(--gold); border-color: var(--gold-soft); }
+  .links .visit { color: var(--ivory); }
+
+  /* ---- plate (preview) ---- */
+  .plate-col { position: relative; }
+  .plate { position: sticky; top: 14vh; margin-top: 4px; }
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    padding: 7px;
+    border: 1px solid var(--hair);
+  }
+  .frame::before {
     content: "";
     position: absolute;
-    width: 12px; height: 12px;
-    border: 1px solid var(--gold);
-    z-index: 1;
+    inset: 3px;
+    border: 1px solid rgba(201, 169, 98, 0.07);
     pointer-events: none;
   }
-  .card::before { top: 5px; left: 5px; border-right: 0; border-bottom: 0; }
-  .card::after { bottom: 5px; right: 5px; border-left: 0; border-top: 0; }
-  .card:hover { border-color: rgba(217, 180, 106, 0.5); }
-  .card .thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0a0f20; border-bottom: 1px solid var(--gold-dim); }
-  .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; opacity: 0.92; }
-  .card .thumb.ph { display: grid; place-items: center; }
-  .card .thumb.ph img { width: 56px; height: 56px; object-fit: contain; }
-  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .card-title { display: flex; align-items: center; gap: 10px; }
-  .card-title .logo { width: 26px; height: 26px; border-radius: 6px; font-size: 13px; }
-  .card-title .logo.boxed { padding: 3px; }
-  .card-title b { font-size: 16px; }
-  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
-  .card .meta { margin-top: auto; padding-top: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--text-faint); }
-  .card .meta a { color: var(--accent); text-decoration: none; }
-  .catalog.filtering .card:not(.on) { opacity: 0.22; }
-  .catalog.filtering .chapter:not(:has(.card.on)) { display: none; }
-  .card.flash { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(217, 180, 106, 0.18); }
-
-  footer { border-top-color: var(--border); }
-  footer .credit { margin-top: 6px; font-size: 12.5px; }
-
-  @media (max-width: 860px) {
-    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .bird { opacity: 0.45; width: 90vw; right: -30vw; }
+  .frame > * {
+    position: absolute;
+    inset: 7px;
+    width: calc(100% - 14px);
+    height: calc(100% - 14px);
+    transition: opacity 0.6s ease;
   }
-  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
-  @media (prefers-reduced-motion: reduce) { .bird { animation: none; } }
+  .frame img.view { object-fit: cover; object-position: top center; filter: saturate(0.75) brightness(0.86); }
+  .frame .empty {
+    display: grid;
+    place-items: center;
+    background: radial-gradient(ellipse at center, rgba(60, 110, 170, 0.18), transparent 70%), var(--ink-2);
+  }
+  .frame .empty img { width: 96px; height: 96px; opacity: 0.9; filter: drop-shadow(0 0 18px rgba(120, 190, 255, 0.4)); }
+  .frame .ph { display: grid; place-content: center; justify-items: center; gap: 14px; background: var(--ink-2); font-size: 13px; color: var(--faint); }
+  .frame .ph img { width: 56px; height: 56px; object-fit: contain; opacity: 0.85; }
+  .frame .hide { opacity: 0; }
+  .plate figcaption { margin-top: 16px; font-family: var(--latin); }
+  .plate .fig { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
+  .plate .fig i { margin-left: 10px; font-size: 16px; letter-spacing: 0.03em; text-transform: none; color: var(--ivory); }
+  .plate .cap { margin-top: 4px; font-style: italic; font-size: 17px; line-height: 1.45; color: var(--ivory-dim); }
+  :lang(zh-Hant-TW) .plate .cap { font-family: var(--han); font-style: normal; font-size: 14px; line-height: 1.8; }
+  .plate .meta { margin-top: 6px; font-size: 14px; color: var(--faint); letter-spacing: 0.02em; }
+  :lang(zh-Hant-TW) .plate .meta { font-family: var(--han); font-size: 12.5px; }
+
+  /* ---- colophon ---- */
+  footer {
+    text-align: center;
+    padding: 40px 24px 96px;
+    color: var(--faint);
+    font-size: 13px;
+    line-height: 2;
+  }
+  footer .sparkle { margin-bottom: 26px; width: 9px; height: 9px; }
+  footer p + p { margin-top: 2px; }
+  :lang(en) footer { font-family: var(--latin); font-size: 15px; }
+
+  /* ---- smaller screens ---- */
+  @media (max-width: 1040px) {
+    .contents { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+    .plate-col { display: none; }
+    .more .shot {
+      display: block;
+      margin-top: 24px;
+      max-width: 520px;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--hair);
+      padding: 5px;
+    }
+    .more .shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .more .shot.ph { display: grid; place-content: center; justify-items: center; gap: 10px; background: var(--ink-2); font-size: 13px; color: var(--faint); }
+    .more .shot.ph img { width: 48px; height: 48px; object-fit: contain; }
+  }
+  @media (max-width: 620px) {
+    .demo-nav { gap: 14px; right: 16px; left: 16px; justify-content: flex-end; }
+    .title { padding: 104px 22px 56px; min-height: auto; }
+    .epigraph { margin-top: 56px; }
+    .epigraph p { font-size: 19px; }
+    .down { margin-top: 56px; }
+    .contents { padding: 32px 20px 88px; }
+    .contents-head { margin-bottom: 48px; }
+    .chapter-head { flex-wrap: wrap; gap: 4px 14px; }
+    .chapter-head .roman { min-width: 0; }
+    .chapter-head em { margin-left: 0; flex-basis: 100%; text-align: left; }
+    .row { grid-template-columns: 2em minmax(0, 1fr); column-gap: 12px; padding: 16px 0 14px; }
+    .leader { display: none; }
+    .domain { grid-column: 2; grid-row: 3; margin-top: 4px; font-size: 15px; }
+    .subject { grid-column: 2; }
+    .more-inner { padding-left: calc(2em + 12px); }
+    .facts { grid-template-columns: auto auto; gap: 10px 28px; }
+    .facts div:last-child { grid-column: 1 / -1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 <div id="nav"></div>
 
-<section class="hero">
-  <img class="bird" src="/demo/assets/starbird.webp" alt="">
-  <div class="wrap">
-    <p class="eyebrow" data-en="THE OBSERVER">觀測者 · THE OBSERVER</p>
-    <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline" id="tagline"></p>
+<header class="title">
+  <img class="bird" src="/demo/assets/starbird-sm.webp" alt="" width="96" height="96">
+  <p class="kicker" data-en="The Observer’s Index"><span class="zh">赫密士的目錄</span></p>
+  <h1>observe<i>.tw</i></h1>
+  <hr class="rule">
+  <p class="lede" id="lede" data-en="Seventeen starbirds, each sent out to watch a single subject — and to bring back what it sees.">
+    十七隻星鳥，各自飛往一個主題，持續觀測，再把看見的帶回來。
+  </p>
+  <blockquote class="epigraph">
+    <p lang="en">“Though I gave you wings to soar the heavens, I did not teach you how to walk the earth. So loath was I to bind another living being.”</p>
+    <cite data-en="— Hermes, to Meteion · <i>Final Fantasy XIV: Endwalker</i>">— 赫密士，對梅蒂恩 · Final Fantasy XIV：曉月之終途</cite>
+  </blockquote>
+  <a class="down" href="#contents" data-en="Contents<span>↓</span>">目錄<span>↓</span></a>
+</header>
+
+<main class="contents" id="contents">
+  <div class="contents-head">
+    <h2 data-en="Contents">目錄</h2>
+    <p data-en="seventeen observatories, in four chapters">十七座觀測站 · 分為四章</p>
   </div>
-</section>
+  <div class="toc" id="toc"></div>
+  <aside class="plate-col" aria-hidden="true">
+    <figure class="plate" id="plate">
+      <div class="frame" id="frame">
+        <div class="empty"><img src="/demo/assets/starbird-sm.webp" alt="" width="96" height="96"></div>
+      </div>
+      <figcaption>
+        <div class="fig" id="fig">Fig. —</div>
+        <div class="cap" id="cap" data-en="Rest on any entry to see what that starbird brought back.">將游標停在任一條目上，看那隻星鳥帶回的景象。</div>
+        <div class="meta" id="meta"></div>
+      </figcaption>
+    </figure>
+  </aside>
+</main>
 
-<div class="wrap">
-  <figure class="epigraph">
-    <svg viewBox="0 0 120 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 6h48M72 6h48"/><path d="M60 1l5 5-5 5-5-5z" fill="currentColor"/><circle cx="52" cy="6" r="1.5" fill="currentColor"/><circle cx="68" cy="6" r="1.5" fill="currentColor"/></svg>
-    <blockquote lang="en">“Though I gave you wings to soar the heavens, I did not teach you how to walk the earth. So loath was I to bind another living being.”</blockquote>
-    <p class="zh">「我給了你翱翔天際的翅膀，卻沒有教你如何在大地上行走——<br>我實在不忍束縛另一個生命。」</p>
-    <figcaption data-en="— Hermes, to Meteion · &lt;cite&gt;Final Fantasy XIV: Endwalker&lt;/cite&gt;">— 赫密士，對梅蒂恩 · <cite>Final Fantasy XIV：曉月之終途</cite></figcaption>
-  </figure>
-
-  <section class="sec">
-    <div id="topics"></div>
-    <div class="catalog" id="catalog"></div>
-  </section>
-
-  <footer>
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-      <span>🔭 observe.tw · Demo 1</span>
-      <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
-    </div>
-    <p class="credit" data-en="A nod to Hermes and Meteion from Final Fantasy XIV. All artwork here is original.">致敬《Final Fantasy XIV》的赫密士與梅蒂恩。頁面上的圖像皆為原創。</p>
-  </footer>
-</div>
+<footer>
+  <svg class="sparkle" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.8 8 16 11.2 24 12C16 12.8 12.8 16 12 24C11.2 16 8 12.8 0 12C8 11.2 11.2 8 12 0Z"/></svg>
+  <p data-en="An homage to Hermes and Meteion from <i>Final Fantasy XIV</i>. All imagery on this page is original.">致敬《Final Fantasy XIV》的赫密士與梅蒂恩。頁面上的圖像皆為原創。</p>
+  <p data-en="Set in Cormorant Garamond and Noto Serif TC · observe.tw, by Sky Hong">以 Cormorant Garamond 與 Noto Serif TC 排印 · observe.tw，Sky Hong 製作</p>
+</footer>
 
 <script type="module">
-  import { CHAPTERS, PROJECTS, byId, logoHTML, topicsHTML, since, t, DEMO_NAV } from '/demo/common.js';
+  import { PROJECTS, CHAPTERS, byId, t, LANG, DEMO_NAV, loadPulse, fmt, since, linksHTML } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
-  document.getElementById('tagline').textContent = t(
-    `一位觀測者，放飛了 ${PROJECTS.length} 隻星鳥。每一隻飛向一個值得記錄的主題，持續觀測，再把看見的帶回來。`,
-    `One observer, ${PROJECTS.length} starbirds. Each flies off to a subject worth recording, keeps watching, and brings back what it sees.`,
-  );
 
-  // Catalog
-  const catalog = document.getElementById('catalog');
-  catalog.innerHTML = CHAPTERS.map((c, i) => `
-    <div class="chapter">
-      <div class="chapter-head"><span>${['I', 'II', 'III', 'IV'][i]}</span><h3>${c.title}</h3><p>${c.short}</p></div>
-      <div class="cards">${c.ids.map((id) => {
-        const p = byId[id];
-        const href = p.url || p.repoUrl;
-        const thumb = p.shot
-          ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" loading="lazy"></a>`
-          : `<a class="thumb ph" href="${href}" target="_blank" rel="noopener"><img src="/${p.logo}" alt=""></a>`;
-        return `<article class="card" id="${id}" data-tags="${p.tags.join(' ')}">
-          ${thumb}
-          <div class="card-body">
-            <div class="card-title">${logoHTML(p)}<b>${p.name}</b></div>
-            <p>${p.sub}</p>
-            <p style="color: var(--text-faint)">${p.label.subject} · ${p.label.cadence}</p>
-            <div class="meta">${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
-          </div>
-        </article>`;
-      }).join('')}</div>
-    </div>`).join('');
+  const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+  const pad = (n) => String(n).padStart(2, '0');
+  const order = CHAPTERS.flatMap((c) => c.ids);
+  const numOf = Object.fromEntries(order.map((id, i) => [id, i + 1]));
 
-  // Topic filter
-  document.getElementById('topics').innerHTML = topicsHTML();
-  const topics = document.querySelector('.topics');
-  function apply(tag) {
-    catalog.classList.toggle('filtering', !!tag);
-    for (const c of catalog.querySelectorAll('.card')) c.classList.toggle('on', !!tag && c.dataset.tags.split(' ').includes(tag));
-    for (const b of topics.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+  function shotMarkup(p, cls) {
+    if (p.shot) return `<img class="${cls}" src="/assets/${p.shot}" alt="" width="1280" height="800" loading="lazy" decoding="async">`;
+    const logo = p.logo ? `<img src="/${p.logo}" alt="" width="56" height="56">` : '';
+    return `<div class="${cls} ph">${logo}<span>${p.ph ?? p.domain}</span></div>`;
   }
-  topics.addEventListener('click', (e) => {
-    const b = e.target.closest('button');
-    if (b) apply(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag);
+
+  function entryHTML(p) {
+    const l = p.label;
+    const priv = p.private ? `<small>${t('私人', 'private')}</small>` : '';
+    const mobileShot = p.shot
+      ? `<div class="shot"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" width="1280" height="800" loading="lazy"></div>`
+      : `<div class="shot ph">${p.logo ? `<img src="/${p.logo}" alt="" width="48" height="48">` : ''}<span>${p.ph ?? ''}</span></div>`;
+    return `<li class="entry" id="${p.id}" data-id="${p.id}">
+      <button class="row" type="button" aria-expanded="false" aria-controls="more-${p.id}">
+        <span class="num">${pad(numOf[p.id])}</span>
+        <span class="name">${p.name}</span>
+        <span class="leader" aria-hidden="true"></span>
+        <span class="domain">${p.domain}${priv}</span>
+        <span class="subject">${l.subject}</span>
+      </button>
+      <div class="more" id="more-${p.id}" role="region" aria-label="${p.name}"><div><div class="more-inner">
+        <p class="desc">${p.desc}</p>
+        <dl class="facts">
+          <div><dt>${t('頻率', 'Cadence')}</dt><dd>${l.cadence}</dd></div>
+          <div><dt>${t('始於', 'Since')}</dt><dd>${since(p)}</dd></div>
+          <div><dt>${t('產出', 'Outputs')}</dt><dd>${l.outputs.join(' · ')}</dd></div>
+        </dl>
+        <p class="pulse" data-pulse="${p.id}" hidden></p>
+        ${linksHTML(p)}
+        ${mobileShot}
+      </div></div></div>
+    </li>`;
+  }
+
+  document.getElementById('toc').innerHTML = CHAPTERS.map((c, i) => `
+    <section class="chapter" aria-labelledby="ch-${c.id}">
+      <div class="chapter-head">
+        <span class="roman">${ROMAN[i]}</span>
+        <h3 id="ch-${c.id}">${c.title}</h3>
+        <em>${c.short}</em>
+      </div>
+      <ol class="entries">${c.ids.map((id) => entryHTML(byId[id])).join('')}</ol>
+    </section>`).join('');
+
+  // Non-interactive links inside the expanded panel should stay out of tab order when closed.
+  const entries = [...document.querySelectorAll('.entry')];
+  const setInert = (el, closed) => { el.querySelector('.more').inert = closed; };
+  entries.forEach((el) => setInert(el, true));
+
+  /* ---- the plate: one quiet preview ---- */
+  const frame = document.getElementById('frame');
+  const fig = document.getElementById('fig');
+  const cap = document.getElementById('cap');
+  const meta = document.getElementById('meta');
+  const defaultCap = cap.innerHTML;
+  let current = null;
+  let timer = 0;
+
+  function show(id) {
+    if (id === current) return;
+    current = id;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const p = id && byId[id];
+      const old = [...frame.children];
+      let next;
+      if (p) {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = shotMarkup(p, 'view');
+        next = tmp.firstElementChild;
+        next.classList.add('hide');
+        fig.innerHTML = `Fig. ${pad(numOf[id])}<i>${p.domain}</i>`;
+        cap.innerHTML = p.sub;
+        meta.textContent = `${p.label.cadence} · ${t('始於', 'since')} ${since(p)}`;
+      } else {
+        next = document.createElement('div');
+        next.className = 'empty hide';
+        next.innerHTML = '<img src="/demo/assets/starbird-sm.webp" alt="" width="96" height="96">';
+        fig.textContent = 'Fig. —';
+        cap.innerHTML = defaultCap;
+        meta.textContent = '';
+      }
+      frame.append(next);
+      const reveal = () => requestAnimationFrame(() => {
+        next.classList.remove('hide');
+        old.forEach((o) => { o.classList.add('hide'); setTimeout(() => o.remove(), 650); });
+      });
+      const img = next.tagName === 'IMG' ? next : null;
+      if (img && !img.complete) { img.addEventListener('load', reveal, { once: true }); img.addEventListener('error', reveal, { once: true }); }
+      else reveal();
+    }, 90);
+  }
+
+  function activate(el) {
+    entries.forEach((e) => e.classList.toggle('is-active', e === el));
+    show(el ? el.dataset.id : (document.querySelector('.entry.open')?.dataset.id ?? null));
+  }
+
+  const toc = document.getElementById('toc');
+  toc.addEventListener('pointerover', (e) => {
+    const el = e.target.closest('.entry');
+    if (el) activate(el);
+  });
+  toc.addEventListener('pointerleave', () => activate(document.querySelector('.entry.open')));
+  toc.addEventListener('focusin', (e) => {
+    const el = e.target.closest('.entry');
+    if (el) activate(el);
+  });
+
+  function toggle(el, open = !el.classList.contains('open')) {
+    for (const other of entries) {
+      if (other !== el && other.classList.contains('open')) {
+        other.classList.remove('open');
+        other.querySelector('.row').setAttribute('aria-expanded', 'false');
+        setInert(other, true);
+      }
+    }
+    el.classList.toggle('open', open);
+    el.querySelector('.row').setAttribute('aria-expanded', String(open));
+    setInert(el, !open);
+    history.replaceState(null, '', open ? `#${el.id}` : location.pathname + location.search);
+  }
+
+  toc.addEventListener('click', (e) => {
+    const row = e.target.closest('.row');
+    if (row) toggle(row.closest('.entry'));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = document.querySelector('.entry.open');
+    if (open) { toggle(open, false); open.querySelector('.row').focus(); }
+  });
+
+  const initial = location.hash.slice(1);
+  if (byId[initial]) {
+    const el = document.getElementById(initial);
+    toggle(el, true);
+    activate(el);
+    requestAnimationFrame(() => el.scrollIntoView({ block: 'center' }));
+  }
+
+  /* ---- live counts, quietly ---- */
+  loadPulse().then((pulse) => {
+    if (!pulse?.items) return;
+    for (const node of document.querySelectorAll('.pulse[data-pulse]')) {
+      const p = byId[node.dataset.pulse];
+      const r = pulse.items[p.id];
+      if (!p.pulse || !r || r.value == null) continue;
+      node.innerHTML = `<b>${fmt(r.value)}</b>${p.pulse.label}`;
+      node.hidden = false;
+    }
   });
 </script>
 </body>
