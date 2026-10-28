@@ -3,125 +3,251 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-en="Demo 1 · Chapters and object labels — observe.tw">Demo 1 · 章節與展品標籤 — observe.tw</title>
+<title data-en="Demo 1 · Starbirds — observe.tw">Demo 1 · 星鳥 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+TC:wght@500;700&display=swap">
 <link rel="stylesheet" href="/demo/shared.css">
 <style>
-  .chapters-toc {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 36px;
+  :root {
+    --bg: #060914;
+    --surface: #0d1328;
+    --border: #1e2846;
+    --text: #e6e9f2;
+    --text-dim: #9aa3bd;
+    --text-faint: #5f6884;
+    --accent: #8fd3ff;
+    --gold: #d9b46a;
+    --gold-dim: rgba(217, 180, 106, 0.22);
+    --serif: "Cormorant Garamond", "Noto Serif TC", serif;
   }
-  .chapters-toc a {
-    display: block;
-    padding: 16px 18px 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--surface);
-    color: inherit;
-    text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .chapters-toc a:hover { border-color: #364461; transform: translateY(-2px); }
-  .chapters-toc .no {
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 12px;
-    color: var(--accent);
-  }
-  .chapters-toc b { display: block; font-size: 18px; margin-top: 2px; }
-  .chapters-toc small { display: block; font-size: 12.5px; color: var(--text-faint); margin-top: 6px; line-height: 1.6; }
-  .topics { margin-top: 20px; }
+  body { background: var(--bg); }
+  .wrap { max-width: 1080px; }
 
-  .chapter { padding-top: 40px; }
-  .chapter[hidden] { display: none; }
-  .chapter-head {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 4px 28px;
-    align-items: end;
-    padding: 56px 0 8px;
-    border-top: 1px solid var(--border);
+  /* ---- hero ---- */
+  .hero {
+    position: relative;
+    min-height: min(92vh, 780px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(6, 9, 20, 0) 55%, var(--bg) 100%),
+      url("/demo/assets/sky.webp") center / cover,
+      radial-gradient(ellipse 80% 60% at 70% 110%, #0f3a4a, transparent),
+      #070b18;
   }
-  .chapter-head .no {
-    grid-row: span 2;
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: clamp(56px, 10vw, 96px);
+  .hero .wrap { position: relative; z-index: 1; width: 100%; }
+  .eyebrow {
+    font-family: var(--serif);
+    font-size: 15px;
     font-weight: 600;
-    line-height: 0.9;
-    color: transparent;
-    -webkit-text-stroke: 1px #364461;
+    letter-spacing: 0.32em;
+    color: var(--gold);
   }
-  .chapter-head h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.01em; }
-  .chapter-head p { color: var(--text-dim); font-size: 15.5px; max-width: 38em; }
-  .chapter .site:first-of-type { border-top: none; }
-  .chapter .site { border-top: 1px dashed var(--border); }
-  .chapter .site[hidden] { display: none; }
+  html[lang="en"] .eyebrow { letter-spacing: 0.24em; }
+  .hero h1 {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-size: clamp(52px, 9vw, 96px);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  .hero h1 .tld { color: var(--gold); }
+  .hero .tagline {
+    margin-top: 22px;
+    max-width: 25em;
+    font-family: "Noto Serif TC", var(--serif);
+    font-size: 18px;
+    line-height: 1.9;
+    color: #c5cbe0;
+  }
+  html[lang="en"] .hero .tagline { font-family: var(--serif); font-size: 21px; line-height: 1.6; }
+  .bird {
+    position: absolute;
+    right: max(-60px, calc(50% - 640px));
+    top: 50%;
+    width: min(54vw, 620px);
+    translate: 0 -55%;
+    pointer-events: none;
+    filter: drop-shadow(0 0 40px rgba(143, 211, 255, 0.35));
+    animation: glide 9s ease-in-out infinite;
+  }
+  @keyframes glide {
+    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+    50% { transform: translate(-14px, -18px) rotate(1deg); }
+  }
 
-  @media (max-width: 800px) {
-    .chapters-toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .chapter-head { grid-template-columns: 1fr; }
-    .chapter-head .no { grid-row: auto; }
+  /* ---- epigraph ---- */
+  .epigraph {
+    max-width: 680px;
+    margin: 8px auto 72px;
+    text-align: center;
   }
+  .epigraph svg { display: block; width: 120px; margin: 0 auto 26px; color: var(--gold); }
+  .epigraph blockquote {
+    font-family: var(--serif);
+    font-size: clamp(21px, 2.6vw, 26px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #dfe4f2;
+  }
+  .epigraph .zh {
+    margin-top: 16px;
+    font-family: "Noto Serif TC", var(--serif);
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: var(--text-dim);
+  }
+  html[lang="en"] .epigraph .zh { display: none; }
+  .epigraph figcaption {
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+  }
+  .epigraph figcaption cite { font-style: italic; }
+
+  /* ---- catalog ---- */
+  .sec { padding-top: 32px; }
+  .topics { margin-top: 0; }
+  .topics button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); }
+  .chapter { margin-top: 44px; }
+  .chapter-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+  .chapter-head span { font-family: var(--serif); font-size: 20px; color: var(--gold); }
+  .chapter-head h3 { font-size: 19px; }
+  .chapter-head p { font-size: 13.5px; color: var(--text-faint); }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(19, 27, 54, 0.85), rgba(9, 13, 28, 0.85));
+    overflow: hidden;
+    transition: border-color 0.25s, opacity 0.3s, box-shadow 0.4s;
+    scroll-margin-top: 80px;
+  }
+  .card::before, .card::after {
+    content: "";
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 1px solid var(--gold);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .card::before { top: 5px; left: 5px; border-right: 0; border-bottom: 0; }
+  .card::after { bottom: 5px; right: 5px; border-left: 0; border-top: 0; }
+  .card:hover { border-color: rgba(217, 180, 106, 0.5); }
+  .card .thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #0a0f20; border-bottom: 1px solid var(--gold-dim); }
+  .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; opacity: 0.92; }
+  .card .thumb.ph { display: grid; place-items: center; }
+  .card .thumb.ph img { width: 56px; height: 56px; object-fit: contain; }
+  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .card-title { display: flex; align-items: center; gap: 10px; }
+  .card-title .logo { width: 26px; height: 26px; border-radius: 6px; font-size: 13px; }
+  .card-title .logo.boxed { padding: 3px; }
+  .card-title b { font-size: 16px; }
+  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+  .card .meta { margin-top: auto; padding-top: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--text-faint); }
+  .card .meta a { color: var(--accent); text-decoration: none; }
+  .catalog.filtering .card:not(.on) { opacity: 0.22; }
+  .catalog.filtering .chapter:not(:has(.card.on)) { display: none; }
+  .card.flash { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(217, 180, 106, 0.18); }
+
+  footer { border-top-color: var(--border); }
+  footer .credit { margin-top: 6px; font-size: 12.5px; }
+
+  @media (max-width: 860px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bird { opacity: 0.45; width: 90vw; right: -30vw; }
+  }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .bird { animation: none; } }
 </style>
 </head>
 <body>
 <div id="nav"></div>
-<header>
+
+<section class="hero">
+  <img class="bird" src="/demo/assets/starbird.webp" alt="">
   <div class="wrap">
-    <div class="scope">🔭</div>
+    <p class="eyebrow" data-en="THE OBSERVER">觀測者 · THE OBSERVER</p>
     <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline" data-en="A collection of <b>observatories</b> — each subdomain is a small automated system that keeps collecting, organizing and publishing something worth keeping a record of.">
-      一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
-      持續收集、整理、公開某個值得被記錄的主題。
-    </p>
-    <div class="chapters-toc" id="toc"></div>
-    <div id="topics"></div>
+    <p class="tagline" id="tagline"></p>
   </div>
-</header>
-<div class="wrap" id="main"></div>
+</section>
+
 <div class="wrap">
+  <figure class="epigraph">
+    <svg viewBox="0 0 120 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 6h48M72 6h48"/><path d="M60 1l5 5-5 5-5-5z" fill="currentColor"/><circle cx="52" cy="6" r="1.5" fill="currentColor"/><circle cx="68" cy="6" r="1.5" fill="currentColor"/></svg>
+    <blockquote lang="en">“Though I gave you wings to soar the heavens, I did not teach you how to walk the earth. So loath was I to bind another living being.”</blockquote>
+    <p class="zh">「我給了你翱翔天際的翅膀，卻沒有教你如何在大地上行走——<br>我實在不忍束縛另一個生命。」</p>
+    <figcaption data-en="— Hermes, to Meteion · &lt;cite&gt;Final Fantasy XIV: Endwalker&lt;/cite&gt;">— 赫密士，對梅蒂恩 · <cite>Final Fantasy XIV：曉月之終途</cite></figcaption>
+  </figure>
+
+  <section class="sec">
+    <div id="topics"></div>
+    <div class="catalog" id="catalog"></div>
+  </section>
+
   <footer>
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
       <span>🔭 observe.tw · Demo 1</span>
       <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
     </div>
+    <p class="credit" data-en="A nod to Hermes and Meteion from Final Fantasy XIV. All artwork here is original.">致敬《Final Fantasy XIV》的赫密士與梅蒂恩。頁面上的圖像皆為原創。</p>
   </footer>
 </div>
+
 <script type="module">
-  import { CHAPTERS, byId, entryHTML, topicsHTML, wireFilter, loadPulse, fmt, t, DEMO_NAV } from '/demo/common.js';
+  import { CHAPTERS, PROJECTS, byId, logoHTML, topicsHTML, since, t, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
+  document.getElementById('tagline').textContent = t(
+    `一位觀測者，放飛了 ${PROJECTS.length} 隻星鳥。每一隻飛向一個值得記錄的主題，持續觀測，再把看見的帶回來。`,
+    `One observer, ${PROJECTS.length} starbirds. Each flies off to a subject worth recording, keeps watching, and brings back what it sees.`,
+  );
+
+  // Catalog
+  const catalog = document.getElementById('catalog');
+  catalog.innerHTML = CHAPTERS.map((c, i) => `
+    <div class="chapter">
+      <div class="chapter-head"><span>${['I', 'II', 'III', 'IV'][i]}</span><h3>${c.title}</h3><p>${c.short}</p></div>
+      <div class="cards">${c.ids.map((id) => {
+        const p = byId[id];
+        const href = p.url || p.repoUrl;
+        const thumb = p.shot
+          ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" loading="lazy"></a>`
+          : `<a class="thumb ph" href="${href}" target="_blank" rel="noopener"><img src="/${p.logo}" alt=""></a>`;
+        return `<article class="card" id="${id}" data-tags="${p.tags.join(' ')}">
+          ${thumb}
+          <div class="card-body">
+            <div class="card-title">${logoHTML(p)}<b>${p.name}</b></div>
+            <p>${p.sub}</p>
+            <p style="color: var(--text-faint)">${p.label.subject} · ${p.label.cadence}</p>
+            <div class="meta">${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
+          </div>
+        </article>`;
+      }).join('')}</div>
+    </div>`).join('');
+
+  // Topic filter
   document.getElementById('topics').innerHTML = topicsHTML();
-  document.getElementById('toc').innerHTML = CHAPTERS.map((c) =>
-    `<a href="#${c.id}"><span class="no">${c.no}</span><b>${c.title}</b><small>${t(`${c.ids.length} 個專案`, `${c.ids.length} projects`)}</small></a>`).join('');
-
-  function render(pulse) {
-    let i = 0;
-    document.getElementById('main').innerHTML = CHAPTERS.map((c) => `
-      <div class="chapter" id="${c.id}">
-        <div class="chapter-head">
-          <span class="no">${c.no}</span>
-          <h2>${c.title}</h2>
-          <p>${c.lede}</p>
-        </div>
-        ${c.ids.map((id) => entryHTML(byId[id], { flip: i++ % 2 === 1, pulse })).join('')}
-      </div>`).join('');
+  const topics = document.querySelector('.topics');
+  function apply(tag) {
+    catalog.classList.toggle('filtering', !!tag);
+    for (const c of catalog.querySelectorAll('.card')) c.classList.toggle('on', !!tag && c.dataset.tags.split(' ').includes(tag));
+    for (const b of topics.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
   }
-
-  render(null);
-  wireFilter({
-    topics: document.querySelector('.topics'),
-    sites: [...document.querySelectorAll('.site')],
-    groups: [...document.querySelectorAll('.chapter')],
-  });
-  loadPulse().then((pulse) => {
-    if (!pulse) return;
-    for (const el of document.querySelectorAll('[data-pulse]')) {
-      const v = pulse.items?.[el.dataset.pulse]?.value;
-      if (v != null) el.querySelector('b').textContent = fmt(v);
-    }
+  topics.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (b) apply(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag);
   });
 </script>
 </body>

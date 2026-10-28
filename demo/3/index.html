@@ -3,309 +3,433 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-en="Demo 3 · Star map — observe.tw">Demo 3 · 星圖 — observe.tw</title>
+<title data-en="Demo 3 · The lens — observe.tw">Demo 3 · 觀測鏡 — observe.tw</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+TC:wght@500;700&display=swap">
 <link rel="stylesheet" href="/demo/shared.css">
 <style>
-  :root { --night: #070910; }
-  body { background: var(--night); }
-  header { padding: 72px 0 0; background: none; }
-  .wrap { max-width: 1120px; }
-
-  .sky {
-    position: relative;
-    margin-top: 28px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
+  :root {
+    --bg: #05070f;
+    --surface: #0c1122;
+    --border: #1d2540;
+    --text: #e6e9f2;
+    --text-dim: #9aa3bd;
+    --text-faint: #5f6884;
+    --accent: #8fd3ff;
+    --gold: #d9b46a;
+    --gold-dim: rgba(217, 180, 106, 0.25);
+    --serif: "Cormorant Garamond", "Noto Serif TC", serif;
+  }
+  body {
     background:
-      radial-gradient(ellipse 70% 60% at 65% 20%, rgba(122, 162, 247, 0.10), transparent),
-      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(167, 139, 250, 0.07), transparent),
-      #05070d;
+      radial-gradient(ellipse 60% 50% at 30% 30%, rgba(40, 70, 140, 0.16), transparent),
+      url("/demo/assets/sky.webp") center top / cover fixed,
+      var(--bg);
   }
-  .sky svg { display: block; width: 100%; height: auto; }
-  .bg-star { fill: #c8d3f5; }
-  .twinkle { animation: twinkle 4s ease-in-out infinite; }
-  @keyframes twinkle { 50% { opacity: 0.15; } }
+  .wrap { max-width: 1140px; }
 
-  .region text {
-    font-size: 13px;
-    letter-spacing: 0.24em;
-    fill: #4b5674;
-    font-weight: 600;
+  /* ---- header ---- */
+  header { padding: 64px 0 0; background: none; }
+  .head-row { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .eyebrow { font-family: var(--serif); font-size: 14px; font-weight: 600; letter-spacing: 0.32em; color: var(--gold); }
+  header h1 { font-family: var(--serif); font-size: clamp(40px, 6vw, 60px); font-weight: 600; letter-spacing: 0; margin-top: 6px; }
+  h1 .tld { color: var(--gold); }
+  .views {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 999px;
+    margin-bottom: 12px;
   }
-  html[lang="en"] .region text { letter-spacing: 0.06em; }
-  .region .no { font-family: ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; fill: #4b5878; }
-  .lines line {
-    stroke: #7aa2f7;
-    stroke-width: 1;
-    stroke-opacity: 0.18;
-    transition: stroke-opacity 0.3s;
+  .views button {
+    font: inherit; font-size: 14px; cursor: pointer;
+    color: var(--text-dim); background: none; border: 0;
+    border-radius: 999px; padding: 6px 18px;
+    transition: color 0.2s, background 0.2s;
   }
-  .lines.tag line { stroke: #f5c97a; stroke-opacity: 0.75; stroke-dasharray: 4 5; }
-  .sky.filtering .lines.base line { stroke-opacity: 0.05; }
+  .views button:hover { color: var(--text); }
+  .views button[aria-pressed="true"] { color: var(--bg); background: var(--gold); }
+  [hidden] { display: none !important; }
 
-  .star { cursor: pointer; outline: none; }
-  .star .halo { fill: url(#halo); opacity: 0.55; transition: opacity 0.25s; }
-  .star .core { fill: #eef2ff; }
-  .star text {
-    font-size: 13px;
-    fill: #aab4cc;
-    paint-order: stroke;
-    stroke: #05070d;
-    stroke-width: 4px;
-    transition: fill 0.2s;
-  }
-  .star:hover .halo, .star:focus-visible .halo, .star.on .halo { opacity: 1; }
-  .star:hover text, .star:focus-visible text, .star.on text { fill: #fff; }
-  .star.on .core { fill: #f5c97a; }
-  .sky.filtering .star:not(.on) { opacity: 0.28; }
-  .star { transition: opacity 0.3s; }
-
-  .tip {
-    position: absolute;
-    pointer-events: none;
-    max-width: 260px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: rgba(18, 22, 31, 0.94);
-    font-size: 13px;
-    color: var(--text-dim);
-    opacity: 0;
-    transform: translate(-50%, calc(-100% - 18px));
-    transition: opacity 0.15s;
-  }
-  .tip.show { opacity: 1; }
-  .tip b { display: block; color: var(--text); font-size: 14px; }
-  .tip small { display: block; margin-top: 4px; color: var(--text-faint); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; }
-
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px 20px;
-    margin-top: 12px;
-    font-size: 12.5px;
-    color: var(--text-faint);
-  }
-  .topics { margin-top: 18px; }
-  .topics button[aria-pressed="true"] { background: #f5c97a; border-color: #f5c97a; }
-
-  .catalog { padding: 56px 0 24px; }
-  .cat-head { display: flex; align-items: baseline; gap: 14px; margin: 40px 0 14px; }
-  .cat-head:first-child { margin-top: 0; }
-  .cat-head span { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--accent); font-size: 13px; }
-  .cat-head h2 { font-size: 22px; }
-  .cat-head p { color: var(--text-faint); font-size: 13.5px; }
-  .cards {
+  /* ---- lens view ---- */
+  .observatory {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+    padding: 28px 0 24px;
   }
+  .scope-box { position: relative; aspect-ratio: 1; width: 100%; max-width: 600px; margin: 0 auto; }
+  .scope-box svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ring { fill: none; stroke: var(--gold); }
+  .ring.thin { stroke-opacity: 0.3; stroke-width: 1; }
+  .ring.bold { stroke-opacity: 0.65; stroke-width: 1.5; }
+  .graduation line { stroke: var(--gold); stroke-opacity: 0.32; }
+  .graduation line.major { stroke-opacity: 0.7; }
+  .spin { transform-origin: 400px 400px; transform-box: view-box; animation: spin 240s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .mark { cursor: pointer; }
+  .mark .hit { fill: transparent; }
+  .mark .gem { fill: var(--bg); stroke: var(--text-faint); stroke-width: 1.5; transition: fill 0.2s, stroke 0.2s; }
+  .mark text { font-size: 14px; fill: var(--text-faint); transition: fill 0.2s; }
+  .mark:hover .gem { stroke: var(--text-dim); }
+  .mark:hover text { fill: var(--text-dim); }
+  .mark.on .gem { fill: var(--accent); stroke: var(--accent); }
+  .mark.on text { fill: var(--text); font-weight: 600; }
+
+  .needle { transform-origin: 400px 400px; transform-box: view-box; transition: transform 0.9s cubic-bezier(0.3, 0.8, 0.25, 1); }
+  .needle line { stroke: var(--accent); stroke-width: 1.5; stroke-opacity: 0.8; }
+
+  .lens {
+    position: absolute;
+    left: 25%; top: 25%;
+    width: 50%; height: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, #13204a, #060a18);
+    box-shadow: 0 0 0 1px rgba(217, 180, 106, 0.55), 0 0 60px rgba(143, 211, 255, 0.16), inset 0 0 50px rgba(0, 0, 0, 0.9);
+  }
+  .lens img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: opacity 0.5s, transform 0.9s;
+  }
+  .lens img.logo-only { object-fit: contain; padding: 30%; }
+  .lens img.out { opacity: 0; transform: scale(1.08); }
+  .lens::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 60%, rgba(5, 7, 15, 0.7) 100%);
+    pointer-events: none;
+  }
+
+  .panel .domain { color: var(--accent); }
+  .panel h2 { font-family: "Noto Serif TC", var(--serif); font-size: 32px; line-height: 1.3; margin-top: 4px; }
+  html[lang="en"] .panel h2 { font-family: var(--serif); font-size: 38px; font-weight: 600; }
+  .panel .sub { color: var(--text-dim); margin-top: 6px; }
+  .meta-line {
+    margin: 16px 0 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    font-size: 13.5px;
+    color: var(--text-dim);
+  }
+  .meta-line span + span::before { content: "·"; margin: 0 10px; color: var(--gold); }
+  .pulse { margin: 0 0 14px; }
+  .pulse b { color: var(--accent); }
+  .pulse-dot { background: var(--accent); }
+  .panel .desc { font-size: 14.5px; color: var(--text-dim); }
+  .panel .desc b { color: var(--text); }
+  .visit { color: var(--bg); border-radius: 3px; }
+  .step { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+  .step button {
+    width: 36px; height: 36px;
+    display: grid; place-items: center;
+    font: inherit; font-size: 15px; cursor: pointer;
+    color: var(--text-dim); background: none;
+    border: 1px solid var(--border); border-radius: 50%;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .step button:hover { color: var(--text); border-color: var(--gold); }
+  .step .count { font-family: var(--serif); font-size: 17px; color: var(--text-faint); letter-spacing: 0.08em; }
+  .step .count b { color: var(--gold); font-weight: 600; }
+
+  .chips { display: none; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .chips button {
+    font: inherit; font-size: 13px; cursor: pointer;
+    color: var(--text-dim); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 999px; padding: 3px 12px;
+  }
+  .chips button[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+
+  /* ---- catalog view ---- */
+  .catalog-view { padding-top: 32px; }
+  .topics { margin-top: 0; }
+  .topics button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); }
+  .chapter { margin-top: 48px; }
+  .chapter-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+  .chapter-head span { font-family: var(--serif); font-size: 20px; color: var(--gold); }
+  .chapter-head h3 { font-size: 19px; }
+  .chapter-head p { font-size: 13.5px; color: var(--text-faint); }
+  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
   .card {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 18px 18px;
     border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--surface);
+    border-radius: 6px;
+    background: rgba(12, 17, 34, 0.72);
+    transition: border-color 0.25s, opacity 0.3s;
+  }
+  .card:hover { border-color: var(--gold-dim); }
+  .card .look {
+    display: block;
+    width: 132px; height: 132px;
+    padding: 0; border: 0; cursor: pointer;
+    border-radius: 50%;
     overflow: hidden;
-    transition: border-color 0.25s, opacity 0.3s, box-shadow 0.4s;
-    scroll-margin-top: 80px;
+    background: radial-gradient(circle at 50% 40%, #13204a, #060a18);
+    box-shadow: 0 0 0 1px rgba(217, 180, 106, 0.55), 0 0 0 7px rgba(5, 7, 15, 0.9), 0 0 0 8px var(--gold-dim);
+    transition: box-shadow 0.3s, transform 0.3s;
   }
-  .card .thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--border); background: #0e1119; }
-  .card .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .card .thumb.ph { display: grid; place-items: center; }
-  .card .thumb.ph img { width: 56px; height: 56px; object-fit: contain; }
-  .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .card-title { display: flex; align-items: center; gap: 10px; }
-  .card-title .logo { width: 26px; height: 26px; border-radius: 6px; font-size: 13px; }
-  .card-title .logo.boxed { padding: 3px; }
-  .card-title b { font-size: 16px; }
-  .card p { font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
-  .card .meta { margin-top: auto; padding-top: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--text-faint); }
-  .card .meta a { color: var(--accent); text-decoration: none; }
-  .catalog.filtering .card:not(.on) { opacity: 0.25; }
-  .card.flash { border-color: #f5c97a; box-shadow: 0 0 0 4px rgba(245, 201, 122, 0.15); }
+  .card .look:hover { transform: scale(1.03); box-shadow: 0 0 0 1px var(--gold), 0 0 0 7px rgba(5, 7, 15, 0.9), 0 0 0 8px var(--gold), 0 0 30px rgba(143, 211, 255, 0.2); }
+  .card .look img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .card .look img.logo-only { object-fit: contain; padding: 30%; }
+  .card b { margin-top: 18px; font-size: 16px; }
+  .card p { margin-top: 4px; font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .card a { margin-top: auto; padding-top: 10px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--text-faint); text-decoration: none; }
+  .card a:hover { color: var(--accent); }
+  .catalog.filtering .card:not(.on) { opacity: 0.2; }
+  .catalog.filtering .chapter:not(:has(.card.on)) { display: none; }
 
-  @media (max-width: 860px) {
-    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .star text { font-size: 18px; }
+  footer .credit { margin-top: 6px; font-size: 12.5px; }
+
+  @media (max-width: 960px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 900px) {
+    .observatory { grid-template-columns: 1fr; }
+    .mark text { display: none; }
+    .chips { display: flex; }
   }
-  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
-  @media (prefers-reduced-motion: reduce) { .twinkle { animation: none; } }
+  @media (max-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card .look { width: 108px; height: 108px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .spin { animation: none; }
+    .needle, .lens img { transition: none; }
+  }
 </style>
 </head>
 <body>
 <div id="nav"></div>
 <header>
-  <div class="wrap">
-    <h1>observe<span class="tld">.tw</span></h1>
-    <p class="tagline" data-en="17 stars in four regions. The brighter the star, the more work went into it (commits). Pick a topic to see which projects form a constellation.">
-      17 顆星，四個星區。星越亮代表投入越多（commit 數），
-      選一個主題，看哪些專案連成同一個星座。
-    </p>
-    <div class="sky" id="sky">
-      <svg viewBox="0 0 1000 560" role="img" aria-label="observe.tw 專案星圖" data-aria-en="Star map of observe.tw projects" id="map"></svg>
-      <div class="tip" id="tip"></div>
+  <div class="wrap head-row">
+    <div>
+      <p class="eyebrow" data-en="THE LENS">觀測鏡 · THE LENS</p>
+      <h1>observe<span class="tld">.tw</span></h1>
     </div>
-    <div class="legend">
-      <span data-en="● Brightness = commits · position = chapter">● 亮度 = commit 數 · 位置 = 所屬章節</span>
-      <span data-en="Click a star to jump to it">點星星跳到介紹</span>
+    <div class="views" role="group" aria-label="檢視方式" data-aria-en="View">
+      <button type="button" data-view="lens" aria-pressed="true" data-en="Astrolabe">星盤</button>
+      <button type="button" data-view="list" aria-pressed="false" data-en="Catalog">名錄</button>
     </div>
-    <div id="topics"></div>
   </div>
 </header>
+
 <div class="wrap">
-  <div class="catalog" id="catalog"></div>
+  <section id="lens-view">
+    <div class="observatory">
+      <div>
+        <div class="scope-box">
+          <svg viewBox="0 0 800 800" id="dial" aria-hidden="true"></svg>
+          <div class="lens" id="lens"></div>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="選擇觀測站" data-aria-en="Choose an observatory"></div>
+      </div>
+      <article class="panel" id="panel" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="catalog-view" id="list-view" hidden>
+    <div id="topics"></div>
+    <div class="catalog" id="catalog"></div>
+  </section>
+
   <footer>
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
       <span>🔭 observe.tw · Demo 3</span>
       <span><a href="https://skyhong.tw">Sky Hong</a> · <a href="https://github.com/skyhong2002">GitHub</a></span>
     </div>
+    <p class="credit" data-en="A nod to Hermes, the astronomer of Final Fantasy XIV. All artwork here is original.">致敬《Final Fantasy XIV》的天文學家赫密士。頁面上的圖像皆為原創。</p>
   </footer>
 </div>
+
 <script type="module">
-  import { CHAPTERS, PROJECTS, byId, TAG_LABEL, logoHTML, topicsHTML, since, t, LANG, DEMO_NAV } from '/demo/common.js';
+  import { CHAPTERS, byId, linksHTML, pulseHTML, topicsHTML, since, loadPulse, t, DEMO_NAV } from '/demo/common.js';
 
   document.getElementById('nav').innerHTML = DEMO_NAV;
 
-  const POS = {
-    harmonica: [110, 150], chumei: [215, 95], mayor2026: [300, 205], tag: [165, 285], rep0rter: [385, 110], youtube: [315, 345],
-    urtube: [640, 120], myzilla: [770, 180], infovore: [880, 95], plaud: [690, 290], blog: [865, 275],
-    stancelab: [500, 330], omni: [430, 440], weave: [570, 465],
-    status: [790, 445], encore: [905, 490],
-  };
-  const REGION_LABEL = {
-    world: [60, 410], self: [620, 365], together: [400, 535], backstage: [770, 540],
-  };
+  const C = 400;
+  const NUMERAL = ['I', 'II', 'III', 'IV'];
+  const order = CHAPTERS.flatMap((c) => c.ids);
 
-  const svg = document.getElementById('map');
-  const NS = 'http://www.w3.org/2000/svg';
+  // Lay the projects around the ring in chapter order, with a small gap between chapters.
+  const GAP = 1;
+  const step = 360 / (order.length + GAP * CHAPTERS.length);
+  const ANGLE = {};
+  let a = step * GAP / 2;
+  for (const c of CHAPTERS) {
+    for (const id of c.ids) { ANGLE[id] = a; a += step; }
+    a += step * GAP;
+  }
+  const pt = (deg, r) => {
+    const rad = (deg - 90) * Math.PI / 180;
+    return [C + r * Math.cos(rad), C + r * Math.sin(rad)];
+  };
+  const f = (n) => n.toFixed(1);
 
-  // Seeded background stars so the sky is the same on every visit.
-  let seed = 20260830;
-  const rand = () => ((seed = (seed * 1664525 + 1013904223) % 4294967296) / 4294967296);
-  let bg = '';
-  for (let i = 0; i < 260; i++) {
-    const r = rand() < 0.92 ? 0.5 + rand() * 0.6 : 1.1 + rand() * 0.6;
-    const tw = rand() < 0.3 ? ` class="bg-star twinkle" style="animation-delay:${(rand() * 4).toFixed(2)}s"` : ' class="bg-star"';
-    bg += `<circle cx="${(rand() * 1000).toFixed(1)}" cy="${(rand() * 560).toFixed(1)}" r="${r.toFixed(2)}" opacity="${(0.15 + rand() * 0.5).toFixed(2)}"${tw}/>`;
+  let grad = '';
+  for (let d = 0; d < 360; d += 3) {
+    const major = d % 30 === 0;
+    const [x1, y1] = pt(d, 214);
+    const [x2, y2] = pt(d, major ? 230 : 221);
+    grad += `<line${major ? ' class="major"' : ''} x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
   }
 
-  // Chain stars by nearest neighbour so a constellation reads as one line.
-  function chain(ids) {
-    if (ids.length < 2) return [];
-    const left = [...ids].sort((a, b) => POS[a][0] - POS[b][0]);
-    const path = [left.shift()];
-    while (left.length) {
-      const [x, y] = POS[path.at(-1)];
-      left.sort((a, b) => Math.hypot(POS[a][0] - x, POS[a][1] - y) - Math.hypot(POS[b][0] - x, POS[b][1] - y));
-      path.push(left.shift());
+  const marks = order.map((id) => {
+    const deg = ANGLE[id];
+    const [gx, gy] = pt(deg, 283);
+    const [tx, ty] = pt(deg, 304);
+    const s = Math.sin(deg * Math.PI / 180);
+    const c = Math.cos(deg * Math.PI / 180);
+    const anchor = s > 0.15 ? 'start' : s < -0.15 ? 'end' : 'middle';
+    const dy = c > 0.6 ? -2 : c < -0.6 ? 12 : 5;
+    return `<g class="mark" data-id="${id}">
+      <circle class="hit" cx="${f(gx)}" cy="${f(gy)}" r="16"/>
+      <rect class="gem" x="${f(gx - 4)}" y="${f(gy - 4)}" width="8" height="8" transform="rotate(45 ${f(gx)} ${f(gy)})"/>
+      <text x="${f(tx)}" y="${f(ty + dy)}" text-anchor="${anchor}">${byId[id].name}</text>
+    </g>`;
+  }).join('');
+
+  document.getElementById('dial').innerHTML = `
+    <circle class="ring bold" cx="${C}" cy="${C}" r="283"/>
+    <g class="spin">
+      <circle class="ring thin" cx="${C}" cy="${C}" r="214"/>
+      <circle class="ring thin" cx="${C}" cy="${C}" r="236"/>
+      <g class="graduation">${grad}</g>
+    </g>
+    <g class="needle" id="needle"><line x1="${C}" y1="${C - 238}" x2="${C}" y2="${C - 275}"/></g>
+    <g>${marks}</g>`;
+
+  const chips = document.getElementById('chips');
+  chips.innerHTML = order.map((id) => `<button type="button" data-id="${id}" aria-pressed="false">${byId[id].name}</button>`).join('');
+
+  const pulse = await loadPulse();
+  const lookImg = (p, lazy = true) => {
+    const attr = `alt=""${lazy ? ' loading="lazy"' : ''}`;
+    return p.shot ? `<img src="/assets/${p.shot}" ${attr}>` : `<img class="logo-only" src="/${p.logo}" ${attr}>`;
+  };
+
+  // ---- lens view ----
+  const lens = document.getElementById('lens');
+  const panel = document.getElementById('panel');
+  const needle = document.getElementById('needle');
+  let current = null;
+  let turn = 0;
+
+  function select(id) {
+    if (id === current) return;
+    const p = byId[id];
+    // Swing the needle the short way round.
+    turn += ((ANGLE[id] - (turn % 360)) % 360 + 540) % 360 - 180;
+    needle.style.transform = `rotate(${turn}deg)`;
+
+    lens.insertAdjacentHTML('beforeend', lookImg(p, false));
+    const img = lens.lastElementChild;
+    img.classList.add('out');
+    requestAnimationFrame(() => requestAnimationFrame(() => img.classList.remove('out')));
+    for (const old of [...lens.querySelectorAll('img')].slice(0, -1)) {
+      old.classList.add('out');
+      setTimeout(() => old.remove(), 600);
     }
-    return path.slice(1).map((id, i) => [path[i], id]);
-  }
-  const lineSVG = (pairs) => pairs.map(([a, b]) =>
-    `<line x1="${POS[a][0]}" y1="${POS[a][1]}" x2="${POS[b][0]}" y2="${POS[b][1]}"/>`).join('');
 
-  const maxC = Math.max(...PROJECTS.map((p) => p.commits));
-  const radius = (p) => 1.4 + 5.6 * (Math.log1p(p.commits) / Math.log1p(maxC)) ** 1.5;
+    const l = p.label;
+    panel.innerHTML = `
+      <span class="domain"><span class="dot${p.private ? ' private' : ''}"></span>${p.domain}</span>
+      <h2>${p.name}</h2>
+      <p class="sub">${p.sub}</p>
+      <div class="meta-line"><span>${l.cadence}</span><span>${t(`${since(p)} 起`, `since ${since(p)}`)}</span><span>${l.outputs.join(' / ')}</span></div>
+      ${pulseHTML(p, pulse)}
+      <p class="desc">${p.desc}</p>
+      ${linksHTML(p)}
+      <div class="step">
+        <button type="button" data-step="-1" aria-label="${t('上一座', 'Previous')}">←</button>
+        <button type="button" data-step="1" aria-label="${t('下一座', 'Next')}">→</button>
+        <span class="count"><b>${String(order.indexOf(id) + 1).padStart(2, '0')}</b> / ${order.length}</span>
+      </div>`;
 
-  svg.innerHTML = `
-    <defs>
-      <radialGradient id="halo"><stop offset="0" stop-color="#9db8ff" stop-opacity="0.55"/><stop offset="1" stop-color="#9db8ff" stop-opacity="0"/></radialGradient>
-    </defs>
-    <g>${bg}</g>
-    <g class="region">${CHAPTERS.map((c) => {
-      const [x, y] = REGION_LABEL[c.id];
-      return `<text x="${x}" y="${y}"><tspan class="no">${c.no}</tspan>  ${c.title}</text>`;
-    }).join('')}</g>
-    <g class="lines base">${CHAPTERS.map((c) => lineSVG(chain(c.ids))).join('')}</g>
-    <g class="lines tag" id="tagLines"></g>
-    <g>${PROJECTS.map((p) => {
-      const [x, y] = POS[p.id];
-      const r = radius(p);
-      const right = x < 900;
-      return `<g class="star" data-id="${p.id}" tabindex="0" role="link" aria-label="${p.name}：${p.sub}">
-        <circle class="halo" cx="${x}" cy="${y}" r="${r * 5}"/>
-        <circle class="core" cx="${x}" cy="${y}" r="${r}"/>
-        <text x="${right ? x + r + 8 : x - r - 8}" y="${y + 4}" text-anchor="${right ? 'start' : 'end'}">${p.name}</text>
-      </g>`;
-    }).join('')}</g>`;
-
-  // Tooltip
-  const sky = document.getElementById('sky');
-  const tip = document.getElementById('tip');
-  function showTip(star) {
-    const p = byId[star.dataset.id];
-    const box = sky.getBoundingClientRect();
-    const c = star.querySelector('.core').getBoundingClientRect();
-    tip.innerHTML = `<b>${p.name}</b>${p.sub}<small>${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.commits.toLocaleString('en-US')} commits</small>`;
-    tip.style.left = `${c.left + c.width / 2 - box.left}px`;
-    tip.style.top = `${c.top - box.top}px`;
-    tip.classList.add('show');
-  }
-  svg.addEventListener('pointerover', (e) => { const s = e.target.closest('.star'); if (s) showTip(s); });
-  svg.addEventListener('pointerout', (e) => { if (e.target.closest('.star')) tip.classList.remove('show'); });
-  svg.addEventListener('focusin', (e) => { const s = e.target.closest('.star'); if (s) showTip(s); });
-  svg.addEventListener('focusout', () => tip.classList.remove('show'));
-
-  function jump(id) {
-    const card = document.getElementById(id);
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    card.classList.add('flash');
-    setTimeout(() => card.classList.remove('flash'), 1600);
-  }
-  svg.addEventListener('click', (e) => { const s = e.target.closest('.star'); if (s) jump(s.dataset.id); });
-  svg.addEventListener('keydown', (e) => {
-    const s = e.target.closest('.star');
-    if (s && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); jump(s.dataset.id); }
-  });
-
-  // Catalog
-  document.getElementById('catalog').innerHTML = CHAPTERS.map((c) => `
-    <div class="cat-head"><span>${c.no}</span><h2>${c.title}</h2><p>${c.short}</p></div>
-    <div class="cards">${c.ids.map((id) => {
-      const p = byId[id];
-      const href = p.url || p.repoUrl;
-      const thumb = p.shot
-        ? `<a class="thumb" href="${href}" target="_blank" rel="noopener"><img src="/assets/${p.shot}" alt="${t(`${p.name} 截圖`, `Screenshot of ${p.name}`)}" loading="lazy"></a>`
-        : `<a class="thumb ph" href="${href}" target="_blank" rel="noopener"><img src="/${p.logo}" alt=""></a>`;
-      return `<article class="card" id="${id}" data-tags="${p.tags.join(' ')}">
-        ${thumb}
-        <div class="card-body">
-          <div class="card-title">${logoHTML(p)}<b>${p.name}</b></div>
-          <p>${p.sub}</p>
-          <p style="color: var(--text-faint)">${p.label.subject} · ${p.label.cadence}</p>
-          <div class="meta">${t(`${since(p)} 起`, `since ${since(p)}`)} · ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${p.domain} ↗</a>` : p.repo}</div>
-        </div>
-      </article>`;
-    }).join('')}</div>`).join('');
-
-  // Topic constellations
-  document.getElementById('topics').innerHTML = topicsHTML();
-  const topics = document.querySelector('.topics');
-  const tagLines = document.getElementById('tagLines');
-  const catalog = document.getElementById('catalog');
-  function apply(tag) {
-    const ids = tag ? PROJECTS.filter((p) => p.tags.includes(tag)).map((p) => p.id) : [];
-    tagLines.innerHTML = lineSVG(chain(ids));
-    sky.classList.toggle('filtering', !!tag);
-    catalog.classList.toggle('filtering', !!tag);
-    for (const s of svg.querySelectorAll('.star')) s.classList.toggle('on', ids.includes(s.dataset.id));
-    for (const c of catalog.querySelectorAll('.card')) c.classList.toggle('on', ids.includes(c.id));
-    for (const b of topics.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.tag === tag));
+    for (const m of document.querySelectorAll('.mark')) m.classList.toggle('on', m.dataset.id === id);
+    for (const b of chips.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.id === id));
+    current = id;
     const url = new URL(location.href);
-    tag ? url.searchParams.set('tag', tag) : url.searchParams.delete('tag');
+    url.hash = id;
     history.replaceState(null, '', url);
   }
+  const move = (dir) => select(order[(order.indexOf(current) + dir + order.length) % order.length]);
+
+  document.getElementById('dial').addEventListener('click', (e) => {
+    const m = e.target.closest('.mark');
+    if (m) select(m.dataset.id);
+  });
+  chips.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) select(b.dataset.id); });
+  panel.addEventListener('click', (e) => { const b = e.target.closest('[data-step]'); if (b) move(Number(b.dataset.step)); });
+  document.addEventListener('keydown', (e) => {
+    if (view !== 'lens' || e.target.closest('input, textarea')) return;
+    if (e.key === 'ArrowRight') move(1);
+    if (e.key === 'ArrowLeft') move(-1);
+  });
+
+  // ---- catalog view ----
+  const catalog = document.getElementById('catalog');
+  catalog.innerHTML = CHAPTERS.map((c, i) => `
+    <div class="chapter">
+      <div class="chapter-head"><span>${NUMERAL[i]}</span><h3>${c.title}</h3><p>${c.short}</p></div>
+      <div class="cards">${c.ids.map((id) => {
+        const p = byId[id];
+        const href = p.url || p.repoUrl;
+        return `<article class="card" data-id="${id}" data-tags="${p.tags.join(' ')}">
+          <button type="button" class="look" data-id="${id}" aria-label="${t(`用觀測鏡看 ${p.name}`, `View ${p.name} in the lens`)}">${lookImg(p)}</button>
+          <b>${p.name}</b>
+          <p>${p.label.subject}</p>
+          <a href="${href}" target="_blank" rel="noopener">${p.url ? p.domain : p.repo} ↗</a>
+        </article>`;
+      }).join('')}</div>
+    </div>`).join('');
+
+  catalog.addEventListener('click', (e) => {
+    const b = e.target.closest('.look');
+    if (!b) return;
+    setView('lens');
+    select(b.dataset.id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('topics').innerHTML = topicsHTML();
+  const topics = document.querySelector('.topics');
   topics.addEventListener('click', (e) => {
     const b = e.target.closest('button');
-    if (b) apply(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag);
+    if (!b) return;
+    const tag = b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.tag;
+    catalog.classList.toggle('filtering', !!tag);
+    for (const c of catalog.querySelectorAll('.card')) c.classList.toggle('on', !!tag && c.dataset.tags.split(' ').includes(tag));
+    for (const x of topics.querySelectorAll('button')) x.setAttribute('aria-pressed', String(x.dataset.tag === tag));
   });
-  const initial = new URL(location.href).searchParams.get('tag');
-  if (initial && TAG_LABEL[initial]) apply(initial);
+
+  // ---- view switch ----
+  let view = 'lens';
+  const views = document.querySelector('.views');
+  function setView(v) {
+    view = v;
+    document.getElementById('lens-view').hidden = v !== 'lens';
+    document.getElementById('list-view').hidden = v !== 'list';
+    for (const b of views.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.view === v));
+    const url = new URL(location.href);
+    v === 'list' ? url.searchParams.set('view', 'list') : url.searchParams.delete('view');
+    if (v === 'list') url.hash = '';
+    else if (current) url.hash = current;
+    history.replaceState(null, '', url);
+  }
+  views.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) setView(b.dataset.view); });
+
+  const start = location.hash.slice(1);
+  select(byId[start] ? start : order[0]);
+  if (new URL(location.href).searchParams.get('view') === 'list') setView('list');
 </script>
 </body>
 </html>
