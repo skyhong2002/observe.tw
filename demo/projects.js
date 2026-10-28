@@ -193,6 +193,51 @@ export const PROJECTS = [
     ,"pulse": { "url": "https://tag.observe.tw/api/v1/media-stats", "label": "則新聞 · 過去 24 小時", "pick": (b) => JSON.parse(b).totals.last24h }
   },
   {
+    "id": "site",
+    "tags": [
+      "news",
+      "blog"
+    ],
+    "name": "網站雷達",
+    "domain": "site.observe.tw",
+    "private": false,
+    "logo": "assets/site-logo.svg",
+    "boxed": false,
+    "sub": "臺灣網站每月流量排行與網站技術",
+    "desc": "把 GeneHong 的「Similar Web 新聞」試算表做成每小時自動更新的資料庫，追蹤<b>兩千多個臺灣網站</b>的每月 Similarweb 造訪估算、自然搜尋與 AI 導流占比，並附上 Cloudflare Radar 全球排名。新文易數、部落格觀察的流量數字也都從這裡讀取。",
+    "feats": [
+      [
+        "網站流量排行",
+        "依標籤與來源篩選，任選兩個月份比較，可下載 CSV"
+      ],
+      [
+        "標籤概況",
+        "跨月份的標籤彙整與排名軌跡，網站標籤開放投票"
+      ],
+      [
+        "網站技術",
+        "以 Wappalyzer 規則偵測各網站首頁用了哪些技術"
+      ]
+    ],
+    "url": "https://site.observe.tw",
+    "visit": "前往網站",
+    "repo": "skyhong2002/traffic.observe.tw",
+    "repoUrl": null,
+    "shot": "shot-site.webp",
+    "ph": null,
+    "label": {
+      "since": "2026-10",
+      "subject": "兩千多個臺灣網站",
+      "cadence": "每小時",
+      "outputs": [
+        "網站",
+        "API",
+        "CSV"
+      ]
+    },
+    "commits": 55
+  },
+  {
     "id": "blogs",
     "tags": [
       "blog"
@@ -750,50 +795,5 @@ export const PROJECTS = [
     },
     "commits": 60
     ,"pulse": { "url": "https://status.skyhong.tw/metrics", "label": "個公開服務正常", "pick": (b) => (b.match(/^sky_up\{kind="target"[^}]*\} 1$/gm) || []).length }
-  },
-  {
-    "id": "encore",
-    "tags": [
-      "harmonica",
-      "campus"
-    ],
-    "name": "Encore",
-    "domain": "localhost:8080",
-    "private": true,
-    "logo": "assets/encore-logo.svg",
-    "boxed": false,
-    "sub": "竹韻口琴社攤位點歌系統",
-    "desc": "社團博覽會攤位用：觀眾掃 QR 點歌投票，大螢幕放 MV、音響出伴奏、耳機出原唱導聽，<b>三路同步</b>。整套只吃手機熱點的區域網路，不需要網際網路。",
-    "feats": [
-      [
-        "三路同步",
-        "以伴奏為主時鐘，MV 每秒校正，導唱可調 ±500ms 偏移"
-      ],
-      [
-        "現場點歌",
-        "觀眾手機投票，曲庫丟檔即可重新掃描"
-      ],
-      [
-        "演奏控制台",
-        "A-B 循環、不變調變速，全部有鍵盤快捷鍵"
-      ]
-    ],
-    "url": null,
-    "visit": null,
-    "repo": "skyhong2002/encore",
-    "repoUrl": "https://github.com/skyhong2002/encore",
-    "shot": null,
-    "ph": "區網演出系統 · 無公開網址",
-    "label": {
-      "since": "2026-08",
-      "subject": "社團攤位的點歌與演出",
-      "cadence": "現場即時",
-      "outputs": [
-        "區網網站",
-        "控制台",
-        "大螢幕"
-      ]
-    },
-    "commits": 3
   },
 ];

@@ -3,23 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://observe.tw/en/">
+<link rel="canonical" href="https://observe.tw/">
 <title>observe.tw — a cluster of observatories</title>
-<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
+<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, website traffic, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
 <meta property="og:title" content="observe.tw — a cluster of observatories">
 <meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
 <link rel="alternate" hreflang="en" href="https://observe.tw/en/">
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;✦&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Noto+Serif+TC:wght@700&display=swap">
 <style>
   :root {
-    --bg: #0b0e14;
-    --surface: #12161f;
-    --border: #232a38;
+    --bg: #070a14;
+    --surface: #0f1424;
+    --border: #1f2740;
     --text: #d8dee9;
     --text-dim: #8b94a7;
     --text-faint: #5c6577;
-    --accent: #7aa2f7;
+    --accent: #8fd3ff;
+    --gold: #d9b46a;
     --live: #4ade80;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,12 +41,14 @@
     padding: 0 24px;
   }
   header {
-    padding: 96px 0 40px;
+    padding: 120px 0 56px;
+    overflow: hidden;
     background:
-      radial-gradient(ellipse 60% 45% at 70% 0%, rgba(122, 162, 247, 0.10), transparent),
-      radial-gradient(ellipse 40% 35% at 20% 10%, rgba(74, 222, 128, 0.05), transparent);
+      linear-gradient(180deg, rgba(7, 10, 20, 0) 50%, var(--bg)),
+      url("/assets/sky.webp") center 30% / cover;
   }
   header .wrap { position: relative; }
+  header .wrap > :not(.starbird):not(.lang-switch) { position: relative; z-index: 1; }
   .lang-switch {
     position: absolute;
     top: -64px; right: 24px;
@@ -52,17 +58,30 @@
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 4px 12px;
+    z-index: 2;
     transition: color 0.15s, border-color 0.15s;
   }
   .lang-switch:hover { color: var(--accent); border-color: #2e364c; }
-  .scope { font-size: 44px; margin-bottom: 20px; }
-  h1 {
-    font-size: clamp(32px, 6vw, 44px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+  .starbird {
+    position: absolute;
+    right: 10px; top: -30px;
+    width: 290px;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: drop-shadow(0 0 36px rgba(143, 211, 255, 0.35));
+    animation: glide 9s ease-in-out infinite;
   }
-  h1 .tld { color: var(--accent); }
+  @keyframes glide {
+    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+    50% { transform: translate(-12px, -14px) rotate(1deg); }
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(44px, 8vw, 64px);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+  h1 .tld { color: var(--gold); }
   .tagline {
     margin-top: 14px;
     font-size: 17px;
@@ -112,10 +131,10 @@
   .topics button:hover { border-color: #364461; }
   .topics button[aria-pressed="true"] {
     color: var(--bg);
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--gold);
+    border-color: var(--gold);
   }
-  .topics button[aria-pressed="true"] span { color: rgba(11, 14, 20, 0.6); }
+  .topics button[aria-pressed="true"] span { color: rgba(7, 10, 20, 0.6); }
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -173,6 +192,7 @@
   }
   .dot.private { background: var(--text-faint); box-shadow: none; }
   .site h2 {
+    font-family: "Noto Serif TC", serif;
     font-size: 26px;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -223,8 +243,8 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: #0b0e14;
-    background: var(--accent);
+    color: var(--bg);
+    background: var(--gold);
     border-radius: 8px;
     padding: 8px 18px;
     text-decoration: none;
@@ -290,7 +310,7 @@
   }
   .more#more { padding-bottom: 0; }
   .more#more + .site { border-top: none; }
-  .more h2 { font-size: 22px; font-weight: 700; }
+  .more h2 { font-family: "Noto Serif TC", serif; font-size: 22px; font-weight: 700; }
   .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
 
   .note {
@@ -318,6 +338,8 @@
     }
     .site.flip .shot { order: 0; }
   }
+  @media (max-width: 800px) { .starbird { width: 240px; right: -80px; top: -20px; opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) { .starbird { animation: none; } }
 </style>
 </head>
 <body>
@@ -325,7 +347,7 @@
 <header>
   <div class="wrap">
     <a class="lang-switch" href="/" hreflang="zh-Hant" lang="zh-Hant">中文</a>
-    <div class="scope">🔭</div>
+    <img class="starbird" src="/assets/starbird.webp" alt="">
     <h1>observe<span class="tld">.tw</span></h1>
     <p class="tagline">
       A collection of <b>observatories</b> — each subdomain is a small automated system that keeps
@@ -335,23 +357,24 @@
       <button type="button" data-tag="" aria-pressed="true">All <span>17</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">Meetings <span>2</span></button>
       <button type="button" data-tag="ai" aria-pressed="false">AI <span>5</span></button>
-      <button type="button" data-tag="news" aria-pressed="false">News <span>3</span></button>
+      <button type="button" data-tag="news" aria-pressed="false">News <span>4</span></button>
       <button type="button" data-tag="politics" aria-pressed="false">Elections <span>3</span></button>
       <button type="button" data-tag="civic" aria-pressed="false">Civic tech <span>3</span></button>
       <button type="button" data-tag="social" aria-pressed="false">Social posts <span>3</span></button>
       <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
       <button type="button" data-tag="lifelog" aria-pressed="false">Life-logging <span>5</span></button>
       <button type="button" data-tag="research" aria-pressed="false">Research <span>2</span></button>
-      <button type="button" data-tag="harmonica" aria-pressed="false">Harmonica <span>2</span></button>
-      <button type="button" data-tag="campus" aria-pressed="false">Campus <span>2</span></button>
+      <button type="button" data-tag="harmonica" aria-pressed="false">Harmonica <span>1</span></button>
+      <button type="button" data-tag="campus" aria-pressed="false">Campus <span>1</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">Self-hosting <span>3</span></button>
-      <button type="button" data-tag="blog" aria-pressed="false">Blogs <span>2</span></button>
+      <button type="button" data-tag="blog" aria-pressed="false">Blogs <span>3</span></button>
     </div>
     <nav class="toc" aria-label="Projects">
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#tag">tag</a>
+      <a href="#site">site</a>
       <a href="#blogs">blogs</a>
       <a href="#rep0rter">rep0rter</a>
       <a href="#youtube">youtube</a>
@@ -364,7 +387,6 @@
       <a href="#blog">blog</a>
       <a href="#infovore">infovore</a>
       <a href="#status">status</a>
-      <a href="#encore">encore</a>
     </nav>
   </div>
 </header>
@@ -504,7 +526,40 @@
   </a>
 </section>
 
-<section class="site" id="blogs" data-tags="blog">
+<section class="site" id="site" data-tags="news blog">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/site-logo.svg" alt="Site Radar logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>site.observe.tw</span>
+        <h2>Site Radar</h2>
+      </div>
+    </div>
+    <p class="sub">Monthly traffic rankings and site tech for Taiwanese websites</p>
+    <div class="tags"><button type="button" data-tag="news">News</button><button type="button" data-tag="blog">Blogs</button></div>
+    <p class="desc">
+      Turns GeneHong’s “Similar Web news” spreadsheet into a database that updates every hour: monthly Similarweb visit estimates and organic-search and AI referral shares for <b>over two thousand Taiwanese websites</b>, plus their Cloudflare Radar global rank. Tag and the blog observatory read their traffic numbers from here too.
+    </p>
+    <ul class="feats">
+      <li><b>Traffic rankings</b> — filter by tag and source, compare any two months, download CSV</li>
+      <li><b>Tag overview</b> — tag totals and rank trajectories across months, with open voting on site tags</li>
+      <li><b>Site tech</b> — detects what each homepage is built with, using Wappalyzer rules</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://site.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <span class="repo">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/traffic.observe.tw (private)
+      </span>
+    </div>
+  </div>
+  <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="Site Radar website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-site.webp" alt="Screenshot of Site Radar" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="blogs" data-tags="blog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/blogs-logo.svg" alt="Blog Watch logo">
@@ -538,7 +593,7 @@
   </a>
 </section>
 
-<section class="site flip" id="rep0rter" data-tags="news civic ai">
+<section class="site" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/rep0rter-logo.png" alt="rep0rter logo">
@@ -571,7 +626,7 @@
   </a>
 </section>
 
-<section class="site" id="youtube" data-tags="youtube news politics">
+<section class="site flip" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/youtube-logo.svg" alt="YouTube Board logo">
@@ -605,7 +660,7 @@
   </a>
 </section>
 
-<section class="site flip" id="urtube" data-tags="youtube lifelog">
+<section class="site" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/urtube-logo.svg" alt="urtube logo">
@@ -638,7 +693,7 @@
   </a>
 </section>
 
-<section class="site" id="omni" data-tags="meeting research ai">
+<section class="site flip" id="omni" data-tags="meeting research ai">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -670,7 +725,7 @@
   </a>
 </section>
 
-<section class="site flip" id="stancelab" data-tags="ai research civic">
+<section class="site" id="stancelab" data-tags="ai research civic">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -702,7 +757,7 @@
   </a>
 </section>
 
-<section class="site" id="myzilla" data-tags="lifelog">
+<section class="site flip" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -735,7 +790,7 @@
   </a>
 </section>
 
-<section class="site flip" id="plaud" data-tags="ai lifelog selfhost">
+<section class="site" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/localplaud-logo.svg" alt="localplaud logo">
@@ -908,48 +963,14 @@
   </a>
 </section>
 
-<section class="site" id="encore" data-tags="harmonica campus">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/encore-logo.svg" alt="Encore logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot private"></span>localhost:8080</span>
-        <h2>Encore</h2>
-      </div>
-    </div>
-    <p class="sub">A song-request system for the harmonica club’s booth</p>
-    <div class="tags"><button type="button" data-tag="harmonica">Harmonica</button><button type="button" data-tag="campus">Campus</button></div>
-    <p class="desc">
-      Built for the club fair booth: visitors scan a QR code to vote for songs, the big screen plays the music video, the speaker plays the backing track and an earpiece carries the original vocal as a guide — <b>three streams in sync</b>. It all runs on a phone hotspot’s local network, no internet needed.
-    </p>
-    <ul class="feats">
-      <li><b>Three streams in sync</b> — the backing track is the master clock, the video re-syncs every second, and the vocal guide has a ±500 ms offset</li>
-      <li><b>Live requests</b> — the audience votes from their phones; drop new files in and rescan</li>
-      <li><b>Performer console</b> — A–B loops and pitch-preserving slow-down, all on keyboard shortcuts</li>
-    </ul>
-    <div class="links">
-      <a class="repo" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/encore
-      </a>
-    </div>
-  </div>
-  <a class="shot placeholder" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener" aria-label="Encore website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <div class="ph">
-      <img src="/assets/encore-logo.svg" alt="" width="72" height="72">
-      <span>Runs on a local network · no public URL</span>
-    </div>
-  </a>
-</section>
-
 <p class="note">
+  “Though I gave you wings to soar the heavens, I did not teach you how to walk the earth.” — Hermes, to Meteion · <cite>Final Fantasy XIV: Endwalker</cite><br>
   This page is open source too: <a href="https://github.com/skyhong2002/observe.tw" target="_blank" rel="noopener">skyhong2002/observe.tw</a>
 </p>
 
 <footer>
   <div class="wrap" style="padding: 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-    <span>🔭 observe.tw</span>
+    <span>✦ observe.tw</span>
     <span>
       <a href="https://skyhong.tw" target="_blank" rel="noopener">Sky Hong</a>
       ·

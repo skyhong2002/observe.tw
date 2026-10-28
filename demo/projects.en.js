@@ -50,6 +50,17 @@ export const EN = {
     label: { subject: 'About 100 Taiwanese news outlets', cadence: 'Every 9–60 min', outputs: ['Web', 'API', 'RSS'] },
     pulseLabel: 'stories · last 24 h',
   },
+  site: {
+    name: 'Site Radar',
+    sub: 'Monthly traffic rankings and site tech for Taiwanese websites',
+    desc: 'Turns GeneHong’s “Similar Web news” spreadsheet into a database that updates every hour: monthly Similarweb visit estimates and organic-search and AI referral shares for <b>over two thousand Taiwanese websites</b>, plus their Cloudflare Radar global rank. Tag and the blog observatory read their traffic numbers from here too.',
+    feats: [
+      ['Traffic rankings', 'filter by tag and source, compare any two months, download CSV'],
+      ['Tag overview', 'tag totals and rank trajectories across months, with open voting on site tags'],
+      ['Site tech', 'detects what each homepage is built with, using Wappalyzer rules'],
+    ],
+    label: { subject: 'Over two thousand Taiwanese websites', cadence: 'Hourly', outputs: ['Web', 'API', 'CSV'] },
+  },
   blogs: {
     name: 'Blog Watch',
     sub: 'Every kind of life, each written its own way',
@@ -179,16 +190,5 @@ export const EN = {
     ],
     label: { subject: 'Self-hosted services, Docker and hosts', cadence: 'Every minute', outputs: ['Web', 'API', 'RSS', 'Prometheus'] },
     pulseLabel: 'public services up',
-  },
-  encore: {
-    sub: 'A song-request system for the harmonica club’s booth',
-    desc: 'Built for the club fair booth: visitors scan a QR code to vote for songs, the big screen plays the music video, the speaker plays the backing track and an earpiece carries the original vocal as a guide — <b>three streams in sync</b>. It all runs on a phone hotspot’s local network, no internet needed.',
-    feats: [
-      ['Three streams in sync', 'the backing track is the master clock, the video re-syncs every second, and the vocal guide has a ±500 ms offset'],
-      ['Live requests', 'the audience votes from their phones; drop new files in and rescan'],
-      ['Performer console', 'A–B loops and pitch-preserving slow-down, all on keyboard shortcuts'],
-    ],
-    label: { subject: 'Song requests and performance at a club booth', cadence: 'Live, on site', outputs: ['LAN site', 'Console', 'Big screen'] },
-    ph: 'Runs on a local network · no public URL',
   },
 };

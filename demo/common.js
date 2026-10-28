@@ -38,7 +38,7 @@ export const CHAPTERS = [
     title: t('觀測世界', 'Observing the world'),
     short: t('把公開資訊收進同一個地方', 'Public information, gathered in one place'),
     lede: t('把散落在各平台、各種語言的公開資訊收進同一個地方，保留原文與出處，讓人能比較、能訂閱。', 'Public information scattered across platforms and languages, gathered in one place — original text and sources intact, ready to compare and subscribe to.'),
-    ids: ['harmonica', 'chumei', 'mayor2026', 'tag', 'blogs', 'rep0rter', 'youtube'],
+    ids: ['harmonica', 'chumei', 'mayor2026', 'tag', 'site', 'blogs', 'rep0rter', 'youtube'],
   },
   {
     id: 'self',
@@ -62,7 +62,7 @@ export const CHAPTERS = [
     title: t('幕後與其他', 'Backstage and more'),
     short: t('維運面板與社團小工具', 'Ops dashboards and club tools'),
     lede: t('讓上面這些持續運轉的維運面板，以及為社團攤位做的小工具。', 'The dashboard that keeps everything above running, and a small tool built for a club booth.'),
-    ids: ['status', 'encore'],
+    ids: ['status'],
   },
 ];
 

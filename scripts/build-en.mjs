@@ -45,7 +45,7 @@ for (const p of PROJECTS) {
 swap('<html lang="zh-Hant-TW">', '<html lang="en">');
 swap('<title>observe.tw — 觀測站群</title>', '<title>observe.tw — a cluster of observatories</title>');
 html = html.replace(/<meta name="description" content="[^"]*">/,
-  '<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">');
+  '<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, website traffic, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">');
 html = html.replace(/<meta property="og:title" content="[^"]*">/, '<meta property="og:title" content="observe.tw — a cluster of observatories">');
 html = html.replace(/<meta property="og:description" content="[^"]*">/,
   '<meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">');
@@ -61,6 +61,8 @@ html = html.replace(/(<div class="topics"[\s\S]*?<\/div>)/, (block) =>
 swap('<h2>更多專案</h2>', '<h2>More projects</h2>');
 swap('<p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>', '<p>Not under observe.tw, but also things I’ve been building lately.</p>');
 swap('這一頁本身也是開源的：', 'This page is open source too: ');
+swap('— 赫密士，對梅蒂恩 · <cite>Final Fantasy XIV：曉月之終途</cite>', '— Hermes, to Meteion · <cite>Final Fantasy XIV: Endwalker</cite>');
+swap('（私人）', ' (private)', { all: true });
 html = html.replace(/src="assets\//g, 'src="/assets/');
 
 // Anything still in Chinese that isn't a deliberate language name is a miss.

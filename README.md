@@ -12,6 +12,7 @@ observe.tw 的入口頁 —— 介紹目前使用中的子網域與對應的 Git
 | [chumei.observe.tw](https://chumei.observe.tw) | 竹梅活動觀測站（清大 × 陽明交大） | [chumei](https://github.com/skyhong2002/chumei) |
 | [mayor2026.observe.tw](https://mayor2026.observe.tw) | 2026 市長官方來源觀測站 | [mayor2026](https://github.com/skyhong2002/mayor2026) |
 | [tag.observe.tw](https://tag.observe.tw) | 新文易數 — 臺灣新聞標籤、事件與各家標題對照 | [tag.observe.tw](https://github.com/skyhong2002/tag.observe.tw) |
+| [site.observe.tw](https://site.observe.tw) | 網站雷達 — 臺灣網站每月流量排行與網站技術 | traffic.observe.tw（私人） |
 | [weblog.tw](https://weblog.tw) | 部落格觀察 — 臺灣獨立部落格的文章、互相引用與共同話題 | [blog-observe-tw](https://github.com/skyhong2002/blog-observe-tw) |
 | [rep0rter.observe.tw](https://rep0rter.observe.tw) | rep0rter — 公民科技社群的 AI 記者 | [rep0rter/rep0rter](https://github.com/rep0rter/rep0rter) |
 | [youtube.observe.tw](https://youtube.observe.tw) | 有影儀表板 — YouTube 頻道、直播與議題觀測（原 YouTube Board） | [youtube-board](https://github.com/skyhong2002/youtube-board) |
@@ -29,7 +30,6 @@ observe.tw 的入口頁 —— 介紹目前使用中的子網域與對應的 Git
 | [skyhong.tw](https://skyhong.tw) | Skychopath. — 個人部落格 | [skychopath-theme](https://github.com/skyhong2002/skychopath-theme) |
 | [infovore.skyhong.tw](https://infovore.skyhong.tw) | infovore — 生活年輪 | [infovore](https://github.com/skyhong2002/infovore) |
 | [status.skyhong.tw](https://status.skyhong.tw) | Sky Status — 服務維運儀表板 | [status.skyhong.tw](https://github.com/skyhong2002/status.skyhong.tw) |
-| — | Encore — 竹韻口琴社攤位點歌系統 | [encore](https://github.com/skyhong2002/encore) |
 
 ## 授權
 
