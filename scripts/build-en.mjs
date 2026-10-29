@@ -20,7 +20,7 @@ function swap(from, to, { all = false } = {}) {
 }
 
 // Each project section.
-for (const p of PROJECTS) {
+for (const p of PROJECTS.filter((p) => !p.hidden)) {
   const e = EN[p.id] ?? {};
   const name = e.name ?? p.name;
   const re = new RegExp(`<section class="site[^"]*" id="${p.id}"[\\s\\S]*?</section>`);

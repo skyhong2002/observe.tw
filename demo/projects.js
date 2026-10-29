@@ -434,6 +434,7 @@ export const PROJECTS = [
   },
   {
     "id": "omni",
+    "hidden": true,
     "tags": [
       "meeting",
       "research",
@@ -480,6 +481,7 @@ export const PROJECTS = [
   },
   {
     "id": "stancelab",
+    "hidden": true,
     "tags": [
       "ai",
       "research",
