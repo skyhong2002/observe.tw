@@ -5,22 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demo 7 · 星鳥頁首 — observe.tw</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、獨立部落格、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
+<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、網站流量、獨立部落格、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;✦&lt;/text&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Noto+Serif+TC:wght@700&display=swap">
 <style>
   :root {
-    --bg: #0b0e14;
-    --surface: #12161f;
-    --border: #232a38;
+    --bg: #070a14;
+    --surface: #0f1424;
+    --border: #1f2740;
     --text: #d8dee9;
     --text-dim: #8b94a7;
     --text-faint: #5c6577;
-    --accent: #7aa2f7;
+    --accent: #8fd3ff;
+    --gold: #d9b46a;
     --live: #4ade80;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,12 +39,14 @@
     padding: 0 24px;
   }
   header {
-    padding: 96px 0 40px;
+    padding: 120px 0 56px;
+    overflow: hidden;
     background:
-      radial-gradient(ellipse 60% 45% at 70% 0%, rgba(122, 162, 247, 0.10), transparent),
-      radial-gradient(ellipse 40% 35% at 20% 10%, rgba(74, 222, 128, 0.05), transparent);
+      linear-gradient(180deg, rgba(7, 10, 20, 0) 50%, var(--bg)),
+      url("/assets/sky.webp") center 30% / cover;
   }
   header .wrap { position: relative; }
+  header .wrap > :not(.starbird):not(.lang-switch) { position: relative; z-index: 1; }
   .lang-switch {
     position: absolute;
     top: -64px; right: 24px;
@@ -53,17 +56,30 @@
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 4px 12px;
+    z-index: 2;
     transition: color 0.15s, border-color 0.15s;
   }
   .lang-switch:hover { color: var(--accent); border-color: #2e364c; }
-  .scope { font-size: 44px; margin-bottom: 20px; }
-  h1 {
-    font-size: clamp(32px, 6vw, 44px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+  .starbird {
+    position: absolute;
+    right: 10px; top: -30px;
+    width: 290px;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: drop-shadow(0 0 36px rgba(143, 211, 255, 0.35));
+    animation: glide 9s ease-in-out infinite;
   }
-  h1 .tld { color: var(--accent); }
+  @keyframes glide {
+    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+    50% { transform: translate(-12px, -14px) rotate(1deg); }
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(44px, 8vw, 64px);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+  h1 .tld { color: var(--gold); }
   .tagline {
     margin-top: 14px;
     font-size: 17px;
@@ -113,10 +129,10 @@
   .topics button:hover { border-color: #364461; }
   .topics button[aria-pressed="true"] {
     color: var(--bg);
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--gold);
+    border-color: var(--gold);
   }
-  .topics button[aria-pressed="true"] span { color: rgba(11, 14, 20, 0.6); }
+  .topics button[aria-pressed="true"] span { color: rgba(7, 10, 20, 0.6); }
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -174,6 +190,7 @@
   }
   .dot.private { background: var(--text-faint); box-shadow: none; }
   .site h2 {
+    font-family: "Noto Serif TC", serif;
     font-size: 26px;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -224,8 +241,8 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: #0b0e14;
-    background: var(--accent);
+    color: var(--bg);
+    background: var(--gold);
     border-radius: 8px;
     padding: 8px 18px;
     text-decoration: none;
@@ -291,7 +308,7 @@
   }
   .more#more { padding-bottom: 0; }
   .more#more + .site { border-top: none; }
-  .more h2 { font-size: 22px; font-weight: 700; }
+  .more h2 { font-family: "Noto Serif TC", serif; font-size: 22px; font-weight: 700; }
   .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
 
   .note {
@@ -319,55 +336,8 @@
     }
     .site.flip .shot { order: 0; }
   }
-
-  /* ---- Demo 5: the original page, lightly re-tuned for the observer theme ---- */
-  :root {
-    --bg: #070a14;
-    --surface: #0f1424;
-    --border: #1f2740;
-    --accent: #8fd3ff;
-    --gold: #d9b46a;
-  }
-  header {
-    background:
-      linear-gradient(180deg, rgba(7, 10, 20, 0) 50%, var(--bg)),
-      url("/demo/assets/sky.webp") center 30% / cover;
-  }
-  .scope { margin-bottom: 8px; }
-  .scope img { width: 72px; height: 72px; display: block; margin-left: -10px; filter: drop-shadow(0 0 18px rgba(143, 211, 255, 0.35)); }
-  h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(44px, 8vw, 64px);
-    font-weight: 600;
-    letter-spacing: 0;
-    line-height: 1.05;
-  }
-  h1 .tld { color: var(--gold); }
-  .site h2, .more h2 { font-family: "Noto Serif TC", serif; }
-  .topics button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); }
-  .topics button[aria-pressed="true"] span { color: rgba(7, 10, 20, 0.6); }
-  .visit { background: var(--gold); }
-
-  header { padding: 120px 0 56px; overflow: hidden; }
-  header .wrap > :not(.hero-bird):not(.lang-switch) { position: relative; z-index: 1; }
-  .lang-switch { z-index: 2; }
-  .scope { display: none; }
-  .hero-bird {
-    position: absolute;
-    right: 10px; top: -30px;
-    width: 290px;
-    z-index: 0;
-    opacity: 0.9;
-    pointer-events: none;
-    filter: drop-shadow(0 0 36px rgba(143, 211, 255, 0.35));
-    animation: glide 9s ease-in-out infinite;
-  }
-  @keyframes glide {
-    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
-    50% { transform: translate(-12px, -14px) rotate(1deg); }
-  }
-  @media (max-width: 800px) { .hero-bird { width: 240px; right: -80px; top: -20px; opacity: 0.3; } }
-  @media (prefers-reduced-motion: reduce) { .hero-bird { animation: none; } }
+  @media (max-width: 800px) { .starbird { width: 240px; right: -80px; top: -20px; opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) { .starbird { animation: none; } }
 </style>
 </head>
 <body>
@@ -375,7 +345,7 @@
 <header>
   <div class="wrap">
     <a class="lang-switch" href="/demo/">← 所有 demo</a>
-    <img class="hero-bird" src="/demo/assets/starbird.webp" alt="">
+    <img class="starbird" src="/assets/starbird.webp" alt="">
     <h1>observe<span class="tld">.tw</span></h1>
     <p class="tagline">
       一群<b>觀測站</b>的集合 —— 每個子網域都是一個自動化的小系統，
@@ -385,23 +355,24 @@
       <button type="button" data-tag="" aria-pressed="true">全部 <span>17</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">會議工具 <span>2</span></button>
       <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>5</span></button>
-      <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>3</span></button>
+      <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>4</span></button>
       <button type="button" data-tag="politics" aria-pressed="false">選舉政治 <span>3</span></button>
       <button type="button" data-tag="civic" aria-pressed="false">公民科技 <span>3</span></button>
       <button type="button" data-tag="social" aria-pressed="false">社群貼文 <span>3</span></button>
       <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
       <button type="button" data-tag="lifelog" aria-pressed="false">個人數位足跡 <span>5</span></button>
       <button type="button" data-tag="research" aria-pressed="false">研究 <span>2</span></button>
-      <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>2</span></button>
-      <button type="button" data-tag="campus" aria-pressed="false">校園 <span>2</span></button>
+      <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>1</span></button>
+      <button type="button" data-tag="campus" aria-pressed="false">校園 <span>1</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>3</span></button>
-      <button type="button" data-tag="blog" aria-pressed="false">部落格 <span>2</span></button>
+      <button type="button" data-tag="blog" aria-pressed="false">部落格 <span>3</span></button>
     </div>
     <nav class="toc" aria-label="專案">
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#tag">tag</a>
+      <a href="#site">site</a>
       <a href="#blogs">blogs</a>
       <a href="#rep0rter">rep0rter</a>
       <a href="#youtube">youtube</a>
@@ -414,7 +385,6 @@
       <a href="#blog">blog</a>
       <a href="#infovore">infovore</a>
       <a href="#status">status</a>
-      <a href="#encore">encore</a>
     </nav>
   </div>
 </header>
@@ -561,7 +531,41 @@
   </a>
 </section>
 
-<section class="site" id="blogs" data-tags="blog">
+<section class="site" id="site" data-tags="news blog">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/site-logo.svg" alt="網站雷達 logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>site.observe.tw</span>
+        <h2>網站雷達</h2>
+      </div>
+    </div>
+    <p class="sub">臺灣網站每月流量排行與網站技術</p>
+    <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="blog">部落格</button></div>
+    <p class="desc">
+      把 GeneHong 的「Similar Web 新聞」試算表做成每小時自動更新的資料庫，追蹤<b>兩千多個臺灣網站</b>的每月 Similarweb 造訪估算、
+      自然搜尋與 AI 導流占比，並附上 Cloudflare Radar 全球排名。新文易數、部落格觀察的流量數字也都從這裡讀取。
+    </p>
+    <ul class="feats">
+      <li><b>網站流量排行</b> — 依標籤與來源篩選，任選兩個月份比較，可下載 CSV</li>
+      <li><b>標籤概況</b> — 跨月份的標籤彙整與排名軌跡，網站標籤開放投票</li>
+      <li><b>網站技術</b> — 以 Wappalyzer 規則偵測各網站首頁用了哪些技術</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://site.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <span class="repo">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/traffic.observe.tw（私人）
+      </span>
+    </div>
+  </div>
+  <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="網站雷達 網站截圖">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-site.webp" alt="網站雷達 首頁截圖" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="blogs" data-tags="blog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/blogs-logo.svg" alt="部落格觀察 logo">
@@ -596,7 +600,7 @@
   </a>
 </section>
 
-<section class="site flip" id="rep0rter" data-tags="news civic ai">
+<section class="site" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/rep0rter-logo.png" alt="rep0rter logo">
@@ -630,7 +634,7 @@
   </a>
 </section>
 
-<section class="site" id="youtube" data-tags="youtube news politics">
+<section class="site flip" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/youtube-logo.svg" alt="有影儀表板 logo">
@@ -665,7 +669,7 @@
   </a>
 </section>
 
-<section class="site flip" id="urtube" data-tags="youtube lifelog">
+<section class="site" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/urtube-logo.svg" alt="urtube logo">
@@ -700,7 +704,7 @@
   </a>
 </section>
 
-<section class="site" id="omni" data-tags="meeting research ai">
+<section class="site flip" id="omni" data-tags="meeting research ai">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -733,7 +737,7 @@
   </a>
 </section>
 
-<section class="site flip" id="stancelab" data-tags="ai research civic">
+<section class="site" id="stancelab" data-tags="ai research civic">
   <div class="info">
     <div class="site-head">
       <div class="site-head-text">
@@ -766,7 +770,7 @@
   </a>
 </section>
 
-<section class="site" id="myzilla" data-tags="lifelog">
+<section class="site flip" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/myzilla-logo.svg" alt="MyZilla logo">
@@ -800,7 +804,7 @@
   </a>
 </section>
 
-<section class="site flip" id="plaud" data-tags="ai lifelog selfhost">
+<section class="site" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/localplaud-logo.svg" alt="localplaud logo">
@@ -972,41 +976,6 @@
   <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
     <img src="/assets/shot-status.webp" alt="Sky Status 截圖" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
-<section class="site" id="encore" data-tags="harmonica campus">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/encore-logo.svg" alt="Encore logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot private"></span>localhost:8080</span>
-        <h2>Encore</h2>
-      </div>
-    </div>
-    <p class="sub">竹韻口琴社攤位點歌系統</p>
-    <div class="tags"><button type="button" data-tag="harmonica">口琴</button><button type="button" data-tag="campus">校園</button></div>
-    <p class="desc">
-      社團博覽會攤位用：觀眾掃 QR 點歌投票，大螢幕放 MV、音響出伴奏、耳機出原唱導聽，<b>三路同步</b>。整套只吃手機熱點的區域網路，不需要網際網路。
-    </p>
-    <ul class="feats">
-      <li><b>三路同步</b> — 以伴奏為主時鐘，MV 每秒校正，導唱可調 ±500ms 偏移</li>
-      <li><b>現場點歌</b> — 觀眾手機投票，曲庫丟檔即可重新掃描</li>
-      <li><b>演奏控制台</b> — A-B 循環、不變調變速，全部有鍵盤快捷鍵</li>
-    </ul>
-    <div class="links">
-      <a class="repo" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/encore
-      </a>
-    </div>
-  </div>
-  <a class="shot placeholder" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener" aria-label="Encore 原始碼">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <div class="ph">
-      <img src="/assets/encore-logo.svg" alt="" width="72" height="72">
-      <span>區網演出系統 · 無公開網址</span>
-    </div>
   </a>
 </section>
 
