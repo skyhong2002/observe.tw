@@ -3,23 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://observe.tw/en/">
+<link rel="canonical" href="https://observe.tw/">
 <title>observe.tw — a cluster of observatories</title>
-<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
+<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, website traffic, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">
 <meta property="og:title" content="observe.tw — a cluster of observatories">
 <meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
 <link rel="alternate" hreflang="en" href="https://observe.tw/en/">
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🔭&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;✦&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Noto+Serif+TC:wght@700&display=swap">
 <style>
   :root {
-    --bg: #0b0e14;
-    --surface: #12161f;
-    --border: #232a38;
+    --bg: #070a14;
+    --surface: #0f1424;
+    --border: #1f2740;
     --text: #d8dee9;
     --text-dim: #8b94a7;
     --text-faint: #5c6577;
-    --accent: #7aa2f7;
+    --accent: #8fd3ff;
+    --gold: #d9b46a;
     --live: #4ade80;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,12 +41,14 @@
     padding: 0 24px;
   }
   header {
-    padding: 96px 0 40px;
+    padding: 120px 0 56px;
+    overflow: hidden;
     background:
-      radial-gradient(ellipse 60% 45% at 70% 0%, rgba(122, 162, 247, 0.10), transparent),
-      radial-gradient(ellipse 40% 35% at 20% 10%, rgba(74, 222, 128, 0.05), transparent);
+      linear-gradient(180deg, rgba(7, 10, 20, 0) 50%, var(--bg)),
+      url("/assets/sky.webp") center 30% / cover;
   }
   header .wrap { position: relative; }
+  header .wrap > :not(.starbird):not(.lang-switch) { position: relative; z-index: 1; }
   .lang-switch {
     position: absolute;
     top: -64px; right: 24px;
@@ -52,17 +58,30 @@
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 4px 12px;
+    z-index: 2;
     transition: color 0.15s, border-color 0.15s;
   }
   .lang-switch:hover { color: var(--accent); border-color: #2e364c; }
-  .scope { font-size: 44px; margin-bottom: 20px; }
-  h1 {
-    font-size: clamp(32px, 6vw, 44px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+  .starbird {
+    position: absolute;
+    right: 10px; top: -30px;
+    width: 290px;
+    opacity: 0.9;
+    pointer-events: none;
+    filter: drop-shadow(0 0 36px rgba(143, 211, 255, 0.35));
+    animation: glide 9s ease-in-out infinite;
   }
-  h1 .tld { color: var(--accent); }
+  @keyframes glide {
+    0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+    50% { transform: translate(-12px, -14px) rotate(1deg); }
+  }
+  h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(44px, 8vw, 64px);
+    font-weight: 600;
+    line-height: 1.05;
+  }
+  h1 .tld { color: var(--gold); }
   .tagline {
     margin-top: 14px;
     font-size: 17px;
@@ -112,10 +131,10 @@
   .topics button:hover { border-color: #364461; }
   .topics button[aria-pressed="true"] {
     color: var(--bg);
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--gold);
+    border-color: var(--gold);
   }
-  .topics button[aria-pressed="true"] span { color: rgba(11, 14, 20, 0.6); }
+  .topics button[aria-pressed="true"] span { color: rgba(7, 10, 20, 0.6); }
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -173,6 +192,7 @@
   }
   .dot.private { background: var(--text-faint); box-shadow: none; }
   .site h2 {
+    font-family: "Noto Serif TC", serif;
     font-size: 26px;
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -223,8 +243,8 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: #0b0e14;
-    background: var(--accent);
+    color: var(--bg);
+    background: var(--gold);
     border-radius: 8px;
     padding: 8px 18px;
     text-decoration: none;
@@ -290,7 +310,7 @@
   }
   .more#more { padding-bottom: 0; }
   .more#more + .site { border-top: none; }
-  .more h2 { font-size: 22px; font-weight: 700; }
+  .more h2 { font-family: "Noto Serif TC", serif; font-size: 22px; font-weight: 700; }
   .more > p { font-size: 15px; color: var(--text-dim); margin-top: 4px; }
 
   .note {
@@ -318,6 +338,8 @@
     }
     .site.flip .shot { order: 0; }
   }
+  @media (max-width: 800px) { .starbird { width: 240px; right: -80px; top: -20px; opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) { .starbird { animation: none; } }
 </style>
 </head>
 <body>
@@ -325,153 +347,50 @@
 <header>
   <div class="wrap">
     <a class="lang-switch" href="/" hreflang="zh-Hant" lang="zh-Hant">中文</a>
-    <div class="scope">🔭</div>
+    <img class="starbird" src="/assets/starbird.webp" alt="">
     <h1>observe<span class="tld">.tw</span></h1>
     <p class="tagline">
       A collection of <b>observatories</b> — each subdomain is a small automated system that keeps
       collecting, organizing and publishing something worth keeping a record of.
     </p>
     <div class="topics" role="group" aria-label="Filter by topic">
-      <button type="button" data-tag="" aria-pressed="true">All <span>17</span></button>
-      <button type="button" data-tag="meeting" aria-pressed="false">Meetings <span>2</span></button>
-      <button type="button" data-tag="ai" aria-pressed="false">AI <span>5</span></button>
-      <button type="button" data-tag="news" aria-pressed="false">News <span>3</span></button>
+      <button type="button" data-tag="" aria-pressed="true">All <span>15</span></button>
+      <button type="button" data-tag="meeting" aria-pressed="false">Meetings <span>1</span></button>
+      <button type="button" data-tag="ai" aria-pressed="false">AI <span>3</span></button>
+      <button type="button" data-tag="news" aria-pressed="false">News <span>4</span></button>
       <button type="button" data-tag="politics" aria-pressed="false">Elections <span>3</span></button>
-      <button type="button" data-tag="civic" aria-pressed="false">Civic tech <span>3</span></button>
+      <button type="button" data-tag="civic" aria-pressed="false">Civic tech <span>2</span></button>
       <button type="button" data-tag="social" aria-pressed="false">Social posts <span>3</span></button>
       <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
       <button type="button" data-tag="lifelog" aria-pressed="false">Life-logging <span>5</span></button>
-      <button type="button" data-tag="research" aria-pressed="false">Research <span>2</span></button>
-      <button type="button" data-tag="harmonica" aria-pressed="false">Harmonica <span>2</span></button>
-      <button type="button" data-tag="campus" aria-pressed="false">Campus <span>2</span></button>
+      <button type="button" data-tag="harmonica" aria-pressed="false">Harmonica <span>1</span></button>
+      <button type="button" data-tag="campus" aria-pressed="false">Campus <span>1</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">Self-hosting <span>3</span></button>
-      <button type="button" data-tag="blog" aria-pressed="false">Blogs <span>2</span></button>
+      <button type="button" data-tag="blog" aria-pressed="false">Blogs <span>3</span></button>
     </div>
     <nav class="toc" aria-label="Projects">
+      <a href="#tag">tag</a>
+      <a href="#youtube">youtube</a>
+      <a href="#blogs">blogs</a>
+      <a href="#rep0rter">rep0rter</a>
+      <a href="#site">site</a>
+      <a href="#urtube">urtube</a>
+      <a href="#myzilla">myzilla</a>
       <a href="#harmonica">harmonica</a>
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
-      <a href="#tag">tag</a>
-      <a href="#blogs">blogs</a>
-      <a href="#rep0rter">rep0rter</a>
-      <a href="#youtube">youtube</a>
-      <a href="#urtube">urtube</a>
-      <a href="#omni">omni</a>
-      <a href="#stancelab">stancelab</a>
-      <a href="#myzilla">myzilla</a>
       <a href="#plaud">plaud</a>
-      <a href="#weave">weave</a>
       <a href="#blog">blog</a>
+      <a href="#weave">weave</a>
       <a href="#infovore">infovore</a>
       <a href="#status">status</a>
-      <a href="#encore">encore</a>
     </nav>
   </div>
 </header>
 
 <div class="wrap">
 
-<section class="site" id="harmonica" data-tags="social harmonica">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/harmonica-logo.svg" alt="Harmonica Observatory logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>harmonica.observe.tw</span>
-        <h2>Harmonica Observatory</h2>
-      </div>
-    </div>
-    <p class="sub">Harmonica events, players and sheet music from around the world</p>
-    <div class="tags"><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="harmonica">Harmonica</button></div>
-    <p class="desc">
-      A directory of the harmonica world that started in Taiwan and grew global: events, student clubs, ensembles, players, teaching studios, contest pieces and sheet-music sources. Public posts scattered across platforms and languages are gathered in one place, with the original text and links kept intact. The interface speaks <b>繁體中文, English, 日本語 and 한국어</b>.
-    </p>
-    <ul class="feats">
-      <li><b>24-hour Stories wall</b> — Instagram Stories from the harmonica scene</li>
-      <li><b>Public event calendar</b> — events worldwide and online in their original time zones, with Google Calendar and ICS feeds</li>
-      <li><b>Source directory and score index</b> — filter by country and region; contest pieces by school year and ensemble type</li>
-      <li><b>Open submissions and data API</b> — add or correct sources, plus an RSS feed and public API</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://harmonica.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/harmonica-observatory
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="Harmonica Observatory website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-harmonica.webp" alt="Screenshot of Harmonica Observatory" width="1280" height="800">
-  </a>
-</section>
-
-<section class="site flip" id="chumei" data-tags="social campus">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/chumei-logo.png" alt="Chumei Campus Events logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>chumei.observe.tw</span>
-        <h2>Chumei Campus Events</h2>
-      </div>
-    </div>
-    <p class="sub">One feed for campus events at NTHU and NYCU</p>
-    <div class="tags"><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="campus">Campus</button></div>
-    <p class="desc">
-      Collects public posts from clubs and offices at <b>National Tsing Hua University and National Yang Ming Chiao Tung University</b> — Instagram, Facebook, Threads, X and campus notices. An LLM pulls out each event’s name, time and place, and the result is a feed you can filter by <b>campus, platform, event type and organizer</b>.
-    </p>
-    <ul class="feats">
-      <li><b>Event list and calendar</b> — orientation, recruiting, performances and talks at a glance</li>
-      <li><b>Stories wall</b> — the last 24 hours of Instagram Stories from both schools’ clubs</li>
-      <li><b>Subscribe anywhere</b> — Telegram alerts, RSS and ICS calendars</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://chumei.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/chumei
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="Chumei Campus Events website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-chumei.webp" alt="Screenshot of Chumei Campus Events" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
-<section class="site" id="mayor2026" data-tags="politics social civic">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/mayor2026-logo.svg" alt="Mayor 2026 Observatory logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>mayor2026.observe.tw</span>
-        <h2>Mayor 2026 Observatory</h2>
-      </div>
-    </div>
-    <p class="sub">A timeline of what the mayoral candidates post</p>
-    <div class="tags"><button type="button" data-tag="politics">Elections</button><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="civic">Civic tech</button></div>
-    <p class="desc">
-      Collects the <b>official public posts of mayoral candidates</b> in Taiwan’s six special municipalities — Taipei, New Taipei, Taoyuan, Taichung, Tainan and Kaohsiung. It follows 13 candidates and more than 5,700 posts, merges every platform into one timeline, and classifies each post by issue.
-    </p>
-    <ul class="feats">
-      <li><b>Six-city overview</b> — candidates and posting volume, city by city</li>
-      <li><b>Issue picker and spectrum</b> — what each candidate talks about, and how much</li>
-      <li><b>Original vs. reply</b> — separates a candidate’s own posts from responses to others</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://mayor2026.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/mayor2026
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="Mayor 2026 Observatory website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-mayor2026.webp" alt="Screenshot of Mayor 2026 Observatory" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
-<section class="site flip" id="tag" data-tags="news politics">
+<section class="site" id="tag" data-tags="news politics">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/tag-logo.svg" alt="News Tags logo">
@@ -501,6 +420,40 @@
   <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="News Tags website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
     <img src="/assets/shot-tag.webp" alt="Screenshot of News Tags" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="youtube" data-tags="youtube news politics">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/youtube-logo.svg" alt="YouTube Board logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
+        <h2>YouTube Board</h2>
+      </div>
+    </div>
+    <p class="sub">One story, every channel’s take</p>
+    <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">News</button><button type="button" data-tag="politics">Elections</button></div>
+    <p class="desc">
+      A live dashboard of <b>more than 3,400 public YouTube channels</b> and nearly 700,000 videos: what news, TV and political channels are streaming right now, which issues are heating up, and — by matching video titles against tag.observe.tw’s news tags — how each channel covers the same story.
+    </p>
+    <ul class="feats">
+      <li><b>Live now and a video wall</b> — current livestream rankings, concurrent viewers and many channels side by side</li>
+      <li><b>Trending tags and word cloud</b> — news tags from tag.observe.tw matched against video titles and descriptions, ranked by channel-weighted heat</li>
+      <li><b>Issues and event timelines</b> — AI-organized daily issues and how events unfold, with the cited videos to check against</li>
+      <li><b>Election reports</b> — candidates and local political keywords by city</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/youtube-board
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-youtube.webp" alt="Screenshot of YouTube Board" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
@@ -571,37 +524,36 @@
   </a>
 </section>
 
-<section class="site" id="youtube" data-tags="youtube news politics">
+<section class="site" id="site" data-tags="news blog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="/assets/youtube-logo.svg" alt="YouTube Board logo">
+      <img class="logo" src="/assets/site-logo.svg" alt="Site Radar logo">
       <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
-        <h2>YouTube Board</h2>
+        <span class="domain"><span class="dot"></span>site.observe.tw</span>
+        <h2>Site Radar</h2>
       </div>
     </div>
-    <p class="sub">One story, every channel’s take</p>
-    <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">News</button><button type="button" data-tag="politics">Elections</button></div>
+    <p class="sub">Monthly traffic rankings and site tech for Taiwanese websites</p>
+    <div class="tags"><button type="button" data-tag="news">News</button><button type="button" data-tag="blog">Blogs</button></div>
     <p class="desc">
-      A live dashboard of <b>more than 3,400 public YouTube channels</b> and nearly 700,000 videos: what news, TV and political channels are streaming right now, which issues are heating up, and — by matching video titles against tag.observe.tw’s news tags — how each channel covers the same story.
+      Turns GeneHong’s “Similar Web news” spreadsheet into a database that updates every hour: monthly Similarweb visit estimates and organic-search and AI referral shares for <b>over two thousand Taiwanese websites</b>, plus their Cloudflare Radar global rank. Tag and the blog observatory read their traffic numbers from here too.
     </p>
     <ul class="feats">
-      <li><b>Live now and a video wall</b> — current livestream rankings, concurrent viewers and many channels side by side</li>
-      <li><b>Trending tags and word cloud</b> — news tags from tag.observe.tw matched against video titles and descriptions, ranked by channel-weighted heat</li>
-      <li><b>Issues and event timelines</b> — AI-organized daily issues and how events unfold, with the cited videos to check against</li>
-      <li><b>Election reports</b> — candidates and local political keywords by city</li>
+      <li><b>Traffic rankings</b> — filter by tag and source, compare any two months, download CSV</li>
+      <li><b>Tag overview</b> — tag totals and rank trajectories across months, with open voting on site tags</li>
+      <li><b>Site tech</b> — detects what each homepage is built with, using Wappalyzer rules</li>
     </ul>
     <div class="links">
-      <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener">
+      <a class="visit" href="https://site.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <span class="repo">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/youtube-board
-      </a>
+        skyhong2002/traffic.observe.tw (private)
+      </span>
     </div>
   </div>
-  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board website">
+  <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="Site Radar website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-youtube.webp" alt="Screenshot of YouTube Board" width="1280" height="800" loading="lazy">
+    <img src="/assets/shot-site.webp" alt="Screenshot of Site Radar" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
@@ -638,70 +590,6 @@
   </a>
 </section>
 
-<section class="site" id="omni" data-tags="meeting research ai">
-  <div class="info">
-    <div class="site-head">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>omni.observe.tw</span>
-        <h2>OmniObserve</h2>
-      </div>
-    </div>
-    <p class="sub">Meeting facilitation that surfaces hidden agreement</p>
-    <div class="tags"><button type="button" data-tag="meeting">Meetings</button><button type="button" data-tag="research">Research</button><button type="button" data-tag="ai">AI</button></div>
-    <p class="desc">
-      A research platform from the HAIX lab at NYCU. Participants leave Idea Blocks through a private voice back channel; the system finds <b>similar ideas nobody has said out loud yet</b> across participants and nudges them anonymously, so latent agreement can surface in the open discussion.
-    </p>
-    <ul class="feats">
-      <li><b>Front and back channel</b> — video call, live transcription and private thoughts side by side</li>
-      <li><b>Anonymous similarity nudges</b> — learn that someone thinks like you, without revealing who or what</li>
-      <li><b>Research tooling</b> — task templates, a meeting-link generator and a researcher monitor</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://omni.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/nycu-haix/omniobserve" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        nycu-haix/omniobserve
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://omni.observe.tw" target="_blank" rel="noopener" aria-label="OmniObserve website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-omni.webp" alt="Screenshot of OmniObserve" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
-<section class="site flip" id="stancelab" data-tags="ai research civic">
-  <div class="info">
-    <div class="site-head">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>stancelab.observe.tw</span>
-        <h2>StanceLab</h2>
-      </div>
-    </div>
-    <p class="sub">Turn a first reaction into a stance worth discussing</p>
-    <div class="tags"><button type="button" data-tag="ai">AI</button><button type="button" data-tag="research">Research</button><button type="button" data-tag="civic">Civic tech</button></div>
-    <p class="desc">
-      Write down a rough opinion and how sure you are, then take it apart with AI: an <b>interviewer</b> clarifies, a <b>mentor</b> organizes, a <b>devil’s advocate</b> pushes back. A notebook on the side collects useful fragments until it all comes together as a draft you can post.
-    </p>
-    <ul class="feats">
-      <li><b>Three roles or one partner</b> — compare a multi-role setup with a plain chatbot</li>
-      <li><b>Bring your own key</b> — OpenRouter or OpenCode Go, with a demo mode when you have none</li>
-      <li><b>Export and resume</b> — export the draft as text, or the whole session as JSON to import later</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://stancelab.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/StanceLab" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/StanceLab
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://stancelab.observe.tw" target="_blank" rel="noopener" aria-label="StanceLab website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-stancelab.webp" alt="Screenshot of StanceLab" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
 <section class="site" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
@@ -735,7 +623,107 @@
   </a>
 </section>
 
-<section class="site flip" id="plaud" data-tags="ai lifelog selfhost">
+<section class="site flip" id="harmonica" data-tags="social harmonica">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/harmonica-logo.svg" alt="Harmonica Observatory logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>harmonica.observe.tw</span>
+        <h2>Harmonica Observatory</h2>
+      </div>
+    </div>
+    <p class="sub">Harmonica events, players and sheet music from around the world</p>
+    <div class="tags"><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="harmonica">Harmonica</button></div>
+    <p class="desc">
+      A directory of the harmonica world that started in Taiwan and grew global: events, student clubs, ensembles, players, teaching studios, contest pieces and sheet-music sources. Public posts scattered across platforms and languages are gathered in one place, with the original text and links kept intact. The interface speaks <b>繁體中文, English, 日本語 and 한국어</b>.
+    </p>
+    <ul class="feats">
+      <li><b>24-hour Stories wall</b> — Instagram Stories from the harmonica scene</li>
+      <li><b>Public event calendar</b> — events worldwide and online in their original time zones, with Google Calendar and ICS feeds</li>
+      <li><b>Source directory and score index</b> — filter by country and region; contest pieces by school year and ensemble type</li>
+      <li><b>Open submissions and data API</b> — add or correct sources, plus an RSS feed and public API</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://harmonica.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/harmonica-observatory
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="Harmonica Observatory website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-harmonica.webp" alt="Screenshot of Harmonica Observatory" width="1280" height="800">
+  </a>
+</section>
+
+<section class="site" id="chumei" data-tags="social campus">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/chumei-logo.png" alt="Chumei Campus Events logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>chumei.observe.tw</span>
+        <h2>Chumei Campus Events</h2>
+      </div>
+    </div>
+    <p class="sub">One feed for campus events at NTHU and NYCU</p>
+    <div class="tags"><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="campus">Campus</button></div>
+    <p class="desc">
+      Collects public posts from clubs and offices at <b>National Tsing Hua University and National Yang Ming Chiao Tung University</b> — Instagram, Facebook, Threads, X and campus notices. An LLM pulls out each event’s name, time and place, and the result is a feed you can filter by <b>campus, platform, event type and organizer</b>.
+    </p>
+    <ul class="feats">
+      <li><b>Event list and calendar</b> — orientation, recruiting, performances and talks at a glance</li>
+      <li><b>Stories wall</b> — the last 24 hours of Instagram Stories from both schools’ clubs</li>
+      <li><b>Subscribe anywhere</b> — Telegram alerts, RSS and ICS calendars</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://chumei.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/chumei
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="Chumei Campus Events website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-chumei.webp" alt="Screenshot of Chumei Campus Events" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="mayor2026" data-tags="politics social civic">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/mayor2026-logo.svg" alt="Mayor 2026 Observatory logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>mayor2026.observe.tw</span>
+        <h2>Mayor 2026 Observatory</h2>
+      </div>
+    </div>
+    <p class="sub">A timeline of what the mayoral candidates post</p>
+    <div class="tags"><button type="button" data-tag="politics">Elections</button><button type="button" data-tag="social">Social posts</button><button type="button" data-tag="civic">Civic tech</button></div>
+    <p class="desc">
+      Collects the <b>official public posts of mayoral candidates</b> in Taiwan’s six special municipalities — Taipei, New Taipei, Taoyuan, Taichung, Tainan and Kaohsiung. It follows 13 candidates and more than 5,700 posts, merges every platform into one timeline, and classifies each post by issue.
+    </p>
+    <ul class="feats">
+      <li><b>Six-city overview</b> — candidates and posting volume, city by city</li>
+      <li><b>Issue picker and spectrum</b> — what each candidate talks about, and how much</li>
+      <li><b>Original vs. reply</b> — separates a candidate’s own posts from responses to others</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://mayor2026.observe.tw" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        skyhong2002/mayor2026
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="Mayor 2026 Observatory website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-mayor2026.webp" alt="Screenshot of Mayor 2026 Observatory" width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/localplaud-logo.svg" alt="localplaud logo">
@@ -776,40 +764,7 @@
   <p>Not under observe.tw, but also things I’ve been building lately.</p>
 </section>
 
-<section class="site" id="weave" data-tags="meeting ai">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/weave-logo.svg" alt="Weave In logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot"></span>weave.nycu.ai</span>
-        <h2>Weave In</h2>
-      </div>
-    </div>
-    <p class="sub">Keep the thread. Weave everyone in.</p>
-    <div class="tags"><button type="button" data-tag="meeting">Meetings</button><button type="button" data-tag="ai">AI</button></div>
-    <p class="desc">
-      Browser meetings that push back on groupthink: up to eight people share video, screens, live captions and a whiteboard, no account needed. <b>Finalist at the 2026 Sea × OpenAI Codex Hackathon Taiwan (top 5 of 30)</b>.
-    </p>
-    <ul class="feats">
-      <li><b>Muse</b> — a private assistant for each person — type, dictate or talk in real time</li>
-      <li><b>Omni</b> — a shared facilitator that notices early convergence, drift or uneven airtime, and speaks only with consent</li>
-      <li><b>WebMCP</b> — outside agents such as Codex can read the meeting context and work the whiteboard</li>
-    </ul>
-    <div class="links">
-      <a class="visit" href="https://weave.nycu.ai" target="_blank" rel="noopener">Visit site ↗</a>
-      <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        JacobLinCool/Weave-In
-      </a>
-    </div>
-  </div>
-  <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-weave.webp" alt="Screenshot of Weave In" width="1280" height="800" loading="lazy">
-  </a>
-</section>
-
-<section class="site flip" id="blog" data-tags="blog lifelog selfhost">
+<section class="site" id="blog" data-tags="blog lifelog selfhost">
   <div class="info">
     <div class="site-head">
       <img class="logo" src="/assets/blog-logo.png" alt="Skychopath. logo">
@@ -839,6 +794,39 @@
   <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
     <img src="/assets/shot-blog.webp" alt="Screenshot of Skychopath." width="1280" height="800" loading="lazy">
+  </a>
+</section>
+
+<section class="site flip" id="weave" data-tags="meeting ai">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="/assets/weave-logo.svg" alt="Weave In logo">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>weave.nycu.ai</span>
+        <h2>Weave In</h2>
+      </div>
+    </div>
+    <p class="sub">Keep the thread. Weave everyone in.</p>
+    <div class="tags"><button type="button" data-tag="meeting">Meetings</button><button type="button" data-tag="ai">AI</button></div>
+    <p class="desc">
+      Browser meetings that push back on groupthink: up to eight people share video, screens, live captions and a whiteboard, no account needed. <b>Finalist at the 2026 Sea × OpenAI Codex Hackathon Taiwan (top 5 of 30)</b>.
+    </p>
+    <ul class="feats">
+      <li><b>Muse</b> — a private assistant for each person — type, dictate or talk in real time</li>
+      <li><b>Omni</b> — a shared facilitator that notices early convergence, drift or uneven airtime, and speaks only with consent</li>
+      <li><b>WebMCP</b> — outside agents such as Codex can read the meeting context and work the whiteboard</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://weave.nycu.ai" target="_blank" rel="noopener">Visit site ↗</a>
+      <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        JacobLinCool/Weave-In
+      </a>
+    </div>
+  </div>
+  <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In website">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <img src="/assets/shot-weave.webp" alt="Screenshot of Weave In" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
@@ -908,48 +896,14 @@
   </a>
 </section>
 
-<section class="site" id="encore" data-tags="harmonica campus">
-  <div class="info">
-    <div class="site-head">
-      <img class="logo" src="/assets/encore-logo.svg" alt="Encore logo">
-      <div class="site-head-text">
-        <span class="domain"><span class="dot private"></span>localhost:8080</span>
-        <h2>Encore</h2>
-      </div>
-    </div>
-    <p class="sub">A song-request system for the harmonica club’s booth</p>
-    <div class="tags"><button type="button" data-tag="harmonica">Harmonica</button><button type="button" data-tag="campus">Campus</button></div>
-    <p class="desc">
-      Built for the club fair booth: visitors scan a QR code to vote for songs, the big screen plays the music video, the speaker plays the backing track and an earpiece carries the original vocal as a guide — <b>three streams in sync</b>. It all runs on a phone hotspot’s local network, no internet needed.
-    </p>
-    <ul class="feats">
-      <li><b>Three streams in sync</b> — the backing track is the master clock, the video re-syncs every second, and the vocal guide has a ±500 ms offset</li>
-      <li><b>Live requests</b> — the audience votes from their phones; drop new files in and rescan</li>
-      <li><b>Performer console</b> — A–B loops and pitch-preserving slow-down, all on keyboard shortcuts</li>
-    </ul>
-    <div class="links">
-      <a class="repo" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/encore
-      </a>
-    </div>
-  </div>
-  <a class="shot placeholder" href="https://github.com/skyhong2002/encore" target="_blank" rel="noopener" aria-label="Encore website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <div class="ph">
-      <img src="/assets/encore-logo.svg" alt="" width="72" height="72">
-      <span>Runs on a local network · no public URL</span>
-    </div>
-  </a>
-</section>
-
 <p class="note">
+  “Though I gave you wings to soar the heavens, I did not teach you how to walk the earth.” — Hermes, to Meteion · <cite>Final Fantasy XIV: Endwalker</cite><br>
   This page is open source too: <a href="https://github.com/skyhong2002/observe.tw" target="_blank" rel="noopener">skyhong2002/observe.tw</a>
 </p>
 
 <footer>
   <div class="wrap" style="padding: 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-    <span>🔭 observe.tw</span>
+    <span>✦ observe.tw</span>
     <span>
       <a href="https://skyhong.tw" target="_blank" rel="noopener">Sky Hong</a>
       ·
