@@ -835,7 +835,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/PocketLog",
     "repoUrl": "https://github.com/skyhong2002/PocketLog",
     "shot": "shot-pocketlog.webp",
-    "shotCaption": "實際 web 介面 · 合成示範資料 · 2026/11/14",
+    "shotCaption": "實際 web 介面 · 合成示範資料",
     "ph": "Android · Web 私人日誌 · 開發中",
     "label": {
       "since": "2026-11",

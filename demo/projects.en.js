@@ -184,7 +184,7 @@ export const EN = {
     pulseLabel: 'life-log entries',
   },
   pocketlog: {
-    shotCaption: 'Actual web interface · Synthetic demo data · Nov 14, 2026',
+    shotCaption: 'Actual web interface · Synthetic demo data',
     sub: 'Your day, in context',
     desc: 'A self-hosted <b>private activity journal for Android and the web</b>. With explicit consent, it records app usage and optional screen context into a timeline you can review, categorize and correct. Your own server keeps the data; AI analysis requires provider setup and a separate opt-in.',
     feats: [
