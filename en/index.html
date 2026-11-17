@@ -305,12 +305,13 @@
   }
   .gallery-count { margin-left: auto; flex-shrink: 0; color: var(--text-faint); font-size: 10px; }
   .gallery-stage { position: relative; aspect-ratio: 8 / 5; touch-action: pan-y pinch-zoom; }
-  .gallery-slide { display: block; width: 100%; height: 100%; }
+  .gallery-slide { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
   .gallery-slide[hidden], .gallery-controls[hidden] { display: none; }
   .gallery-slide img { height: 100%; object-fit: contain; }
   .gallery-slide:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
   .gallery-arrow {
     position: absolute;
+    z-index: 2;
     top: calc(50% - 22px);
     display: grid;
     place-items: center;
@@ -330,6 +331,7 @@
   .gallery-next { right: 10px; }
   .gallery-dots {
     position: absolute;
+    z-index: 2;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
@@ -507,13 +509,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">News highlights and trending keywords</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="tag-shot-1" href="https://tag.observe.tw/" target="_blank" rel="noopener" data-label="News highlights and trending keywords" aria-label="News Tags · News highlights and trending keywords">
-        <img src="/assets/shot-tag.webp?v=2761f2ccc212" alt="News Tags: News highlights and trending keywords" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-tag.avif?v=c3494d37640b" alt="News Tags: News highlights and trending keywords" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="tag-shot-2" href="https://tag.observe.tw/eve/914/" target="_blank" rel="noopener" data-label="Headlines and event context" aria-label="News Tags · Headlines and event context" hidden>
-        <img data-src="/assets/shot-tag-event.webp?v=ab4077eae79c" alt="News Tags: Headlines and event context" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-tag-event.avif?v=a2af04fd9aa8" alt="News Tags: Headlines and event context" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="tag-shot-3" href="https://tag.observe.tw/similarity/" target="_blank" rel="noopener" data-label="Connections between news outlets" aria-label="News Tags · Connections between news outlets" hidden>
-        <img data-src="/assets/shot-tag-relations.webp?v=ceb6f0335966" alt="News Tags: Connections between news outlets" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-tag-relations.avif?v=2727d9d05f55" alt="News Tags: Connections between news outlets" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -560,13 +562,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Trending keywords and channel activity</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="youtube-shot-1" href="https://youtube.observe.tw/" target="_blank" rel="noopener" data-label="Trending keywords and channel activity" aria-label="YouTube Board · Trending keywords and channel activity">
-        <img src="/assets/shot-youtube.webp?v=10ea3807602f" alt="YouTube Board: Trending keywords and channel activity" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-youtube.avif?v=96f9955921e5" alt="YouTube Board: Trending keywords and channel activity" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="youtube-shot-2" href="https://youtube.observe.tw/live/current?or=1,2,12,13,14,81" target="_blank" rel="noopener" data-label="Live streams and audience rankings" aria-label="YouTube Board · Live streams and audience rankings" hidden>
-        <img data-src="/assets/shot-youtube-live.webp?v=4f4467a8a6e2" alt="YouTube Board: Live streams and audience rankings" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-youtube-live.avif?v=0057e24ba633" alt="YouTube Board: Live streams and audience rankings" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="youtube-shot-3" href="https://youtube.observe.tw/ai/days" target="_blank" rel="noopener" data-label="Daily topics across channels" aria-label="YouTube Board · Daily topics across channels" hidden>
-        <img data-src="/assets/shot-youtube-topics.webp?v=55dcb9011711" alt="YouTube Board: Daily topics across channels" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-youtube-topics.avif?v=6125713045c5" alt="YouTube Board: Daily topics across channels" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -613,13 +615,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Shared topics and blog references</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="blogs-shot-1" href="https://weblog.tw/" target="_blank" rel="noopener" data-label="Shared topics and blog references" aria-label="Blog Watch · Shared topics and blog references">
-        <img src="/assets/shot-blogs.webp?v=513540518934" alt="Blog Watch: Shared topics and blog references" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-blogs.avif?v=7ee2464cdb71" alt="Blog Watch: Shared topics and blog references" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="blogs-shot-2" href="https://weblog.tw/mentions/" target="_blank" rel="noopener" data-label="References in the original text" aria-label="Blog Watch · References in the original text" hidden>
-        <img data-src="/assets/shot-blogs-mentions.webp?v=0709f1775476" alt="Blog Watch: References in the original text" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-blogs-mentions.avif?v=6f1ab4656074" alt="Blog Watch: References in the original text" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="blogs-shot-3" href="https://weblog.tw/relations/" target="_blank" rel="noopener" data-label="Blog reference network" aria-label="Blog Watch · Blog reference network" hidden>
-        <img data-src="/assets/shot-blogs-relations.webp?v=07a955951656" alt="Blog Watch: Blog reference network" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-blogs-relations.avif?v=566e1ac8912c" alt="Blog Watch: Blog reference network" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -666,13 +668,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Multilingual community reporting</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="rep0rter-shot-1" href="https://rep0rter.observe.tw/index.html?lang=ZH" target="_blank" rel="noopener" data-label="Multilingual community reporting" aria-label="rep0rter · Multilingual community reporting">
-        <img src="/assets/shot-rep0rter-zh.webp?v=e9b0d27acff0" alt="rep0rter: Multilingual community reporting" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-rep0rter-zh.avif?v=e79527a5b681" alt="rep0rter: Multilingual community reporting" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="rep0rter-shot-2" href="https://rep0rter.observe.tw/posts/337/index.html?lang=EN" target="_blank" rel="noopener" data-label="Stories with original sources" aria-label="rep0rter · Stories with original sources" hidden>
-        <img data-src="/assets/shot-rep0rter-story.webp?v=22c9eedb443f" alt="rep0rter: Stories with original sources" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-rep0rter-story.avif?v=b681d7f446c8" alt="rep0rter: Stories with original sources" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="rep0rter-shot-3" href="https://rep0rter.observe.tw/index.html?lang=EN" target="_blank" rel="noopener" data-label="Community news in English" aria-label="rep0rter · Community news in English" hidden>
-        <img data-src="/assets/shot-rep0rter.webp?v=ae7fbcbfbb36" alt="rep0rter: Community news in English" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-rep0rter.avif?v=e8eb96321f9c" alt="rep0rter: Community news in English" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -718,13 +720,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Website traffic and monthly comparisons</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="site-shot-1" href="https://site.observe.tw/#to=202610&amp;from=202609" target="_blank" rel="noopener" data-label="Website traffic and monthly comparisons" aria-label="Site Radar · Website traffic and monthly comparisons">
-        <img src="/assets/shot-site.webp?v=c989f819519b" alt="Site Radar: Website traffic and monthly comparisons" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-site.avif?v=7f229426c2fc" alt="Site Radar: Website traffic and monthly comparisons" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="site-shot-2" href="https://site.observe.tw/tag/" target="_blank" rel="noopener" data-label="Traffic by topic" aria-label="Site Radar · Traffic by topic" hidden>
-        <img data-src="/assets/shot-site-tags.webp?v=5ba886f3e656" alt="Site Radar: Traffic by topic" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-site-tags.avif?v=034b91f64260" alt="Site Radar: Traffic by topic" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="site-shot-3" href="https://site.observe.tw/tech/" target="_blank" rel="noopener" data-label="Website technology landscape" aria-label="Site Radar · Website technology landscape" hidden>
-        <img data-src="/assets/shot-site-tech.webp?v=02e7c1de34e9" alt="Site Radar: Website technology landscape" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-site-tech.avif?v=773f5dbb49f4" alt="Site Radar: Website technology landscape" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -770,13 +772,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">A public member’s viewing recap</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="urtube-shot-1" href="https://urtube.observe.tw/skyhong.tw?lang=zh" target="_blank" rel="noopener" data-label="A public member’s viewing recap" aria-label="urtube · A public member’s viewing recap">
-        <img src="/assets/shot-urtube-overview.webp?v=8995a2dd9bd0" alt="urtube: A public member’s viewing recap" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-urtube-overview.avif?v=3b3798f18cc1" alt="urtube: A public member’s viewing recap" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="urtube-shot-2" href="https://urtube.observe.tw/skyhong.tw/insights?range=365d&amp;sort=duration" target="_blank" rel="noopener" data-label="Viewing patterns and attention trends" aria-label="urtube · Viewing patterns and attention trends" hidden>
-        <img data-src="/assets/shot-urtube-insights.webp?v=1884890c68b0" alt="urtube: Viewing patterns and attention trends" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-urtube-insights.avif?v=8633d144e641" alt="urtube: Viewing patterns and attention trends" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="urtube-shot-3" href="https://urtube.observe.tw/" target="_blank" rel="noopener" data-label="Introducing a private viewing archive" aria-label="urtube · Introducing a private viewing archive" hidden>
-        <img data-src="/assets/shot-urtube.webp?v=f8c3605786e4" alt="urtube: Introducing a private viewing archive" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-urtube.avif?v=ca893a035fc1" alt="urtube: Introducing a private viewing archive" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -822,13 +824,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Bookmarks, clippings and a personal portal</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="myzilla-shot-1" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Bookmarks, clippings and a personal portal" aria-label="MyZilla · Bookmarks, clippings and a personal portal">
-        <img src="/assets/shot-myzilla.webp?v=956ff79ee21f" alt="MyZilla: Bookmarks, clippings and a personal portal" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-myzilla.avif?v=c75d17e1a442" alt="MyZilla: Bookmarks, clippings and a personal portal" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="myzilla-shot-2" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Browsing history and time spent" aria-label="MyZilla · Browsing history and time spent" hidden>
-        <img data-src="/assets/shot-myzilla-overview.webp?v=a9c2f5ac1697" alt="MyZilla: Browsing history and time spent" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-myzilla-overview.avif?v=d5e0072fcabb" alt="MyZilla: Browsing history and time spent" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="myzilla-shot-3" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Curated collections with personal notes" aria-label="MyZilla · Curated collections with personal notes" hidden>
-        <img data-src="/assets/shot-myzilla-collections.webp?v=697282dc893c" alt="MyZilla: Curated collections with personal notes" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-myzilla-collections.avif?v=352e79c8c912" alt="MyZilla: Curated collections with personal notes" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -876,13 +878,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Harmonica community updates and events</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="harmonica-shot-1" href="https://harmonica.observe.tw/" target="_blank" rel="noopener" data-label="Harmonica community updates and events" aria-label="Harmonica Observatory · Harmonica community updates and events">
-        <img src="/assets/shot-harmonica.webp?v=00d7de5a2156" alt="Harmonica Observatory: Harmonica community updates and events" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-harmonica.avif?v=96b1a15890f5" alt="Harmonica Observatory: Harmonica community updates and events" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="harmonica-shot-2" href="https://harmonica.observe.tw/events/?lang=zh-Hant" target="_blank" rel="noopener" data-label="Harmonica events worldwide" aria-label="Harmonica Observatory · Harmonica events worldwide" hidden>
-        <img data-src="/assets/shot-harmonica-events.webp?v=38c762e07f78" alt="Harmonica Observatory: Harmonica events worldwide" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-harmonica-events.avif?v=3e14bef67e05" alt="Harmonica Observatory: Harmonica events worldwide" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="harmonica-shot-3" href="https://harmonica.observe.tw/scores/?lang=zh-Hant" target="_blank" rel="noopener" data-label="Competition repertoire and sheet music" aria-label="Harmonica Observatory · Competition repertoire and sheet music" hidden>
-        <img data-src="/assets/shot-harmonica-scores.webp?v=2ce638acf2c3" alt="Harmonica Observatory: Competition repertoire and sheet music" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-harmonica-scores.avif?v=0af15b7d6a55" alt="Harmonica Observatory: Competition repertoire and sheet music" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -928,13 +930,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Public campus updates</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="chumei-shot-1" href="https://chumei.observe.tw/" target="_blank" rel="noopener" data-label="Public campus updates" aria-label="Chumei Campus Events · Public campus updates">
-        <img src="/assets/shot-chumei.webp?v=e59e0b9eeab1" alt="Chumei Campus Events: Public campus updates" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-chumei.avif?v=909ce3f8bda0" alt="Chumei Campus Events: Public campus updates" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="chumei-shot-2" href="https://chumei.observe.tw/calendar/" target="_blank" rel="noopener" data-label="A shared campus event calendar" aria-label="Chumei Campus Events · A shared campus event calendar" hidden>
-        <img data-src="/assets/shot-chumei-calendar.webp?v=b1b1a9b16fc3" alt="Chumei Campus Events: A shared campus event calendar" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-chumei-calendar.avif?v=94bd9817c40e" alt="Chumei Campus Events: A shared campus event calendar" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="chumei-shot-3" href="https://chumei.observe.tw/events/" target="_blank" rel="noopener" data-label="Campus events, times and venues" aria-label="Chumei Campus Events · Campus events, times and venues" hidden>
-        <img data-src="/assets/shot-chumei-events.webp?v=e16cf27a27c8" alt="Chumei Campus Events: Campus events, times and venues" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-chumei-events.avif?v=9f9b37b4533d" alt="Chumei Campus Events: Campus events, times and venues" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -980,13 +982,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Official candidate posts in one timeline</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="mayor2026-shot-1" href="https://mayor2026.observe.tw/" target="_blank" rel="noopener" data-label="Official candidate posts in one timeline" aria-label="Mayor 2026 Observatory · Official candidate posts in one timeline">
-        <img src="/assets/shot-mayor2026.webp?v=bd073771a35e" alt="Mayor 2026 Observatory: Official candidate posts in one timeline" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-mayor2026.avif?v=f566e535419c" alt="Mayor 2026 Observatory: Official candidate posts in one timeline" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="mayor2026-shot-2" href="https://mayor2026.observe.tw/spectrum/" target="_blank" rel="noopener" data-label="Candidates’ issue spectrum" aria-label="Mayor 2026 Observatory · Candidates’ issue spectrum" hidden>
-        <img data-src="/assets/shot-mayor2026-spectrum.webp?v=c2b4fe973ca9" alt="Mayor 2026 Observatory: Candidates’ issue spectrum" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-mayor2026-spectrum.avif?v=3ef6969888e0" alt="Mayor 2026 Observatory: Candidates’ issue spectrum" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="mayor2026-shot-3" href="https://mayor2026.observe.tw/compare/taipei/" target="_blank" rel="noopener" data-label="Compare policies within a city" aria-label="Mayor 2026 Observatory · Compare policies within a city" hidden>
-        <img data-src="/assets/shot-mayor2026-compare.webp?v=651b200c5b3e" alt="Mayor 2026 Observatory: Compare policies within a city" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-mayor2026-compare.avif?v=d6836a685f44" alt="Mayor 2026 Observatory: Compare policies within a city" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1032,13 +1034,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Recording library</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="plaud-shot-1" href="https://skyhong2002.github.io/localplaud/demo/" target="_blank" rel="noopener" data-label="Recording library" aria-label="localplaud · Recording library">
-        <img src="/assets/shot-plaud.webp?v=d3170af72f3e" alt="localplaud: Recording library" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-plaud.avif?v=8c0a8285fb0d" alt="localplaud: Recording library" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="plaud-shot-2" href="https://skyhong2002.github.io/localplaud/demo/file/904813b8118c1515cb314263?return_to=%2F" target="_blank" rel="noopener" data-label="Recording summaries and action items" aria-label="localplaud · Recording summaries and action items" hidden>
-        <img data-src="/assets/shot-plaud-recording.webp?v=118e317efc01" alt="localplaud: Recording summaries and action items" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-plaud-recording.avif?v=b18042aab766" alt="localplaud: Recording summaries and action items" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="plaud-shot-3" href="https://skyhong2002.github.io/localplaud/demo/file/904813b8118c1515cb314263?view=corrected&amp;revision=2&amp;tab=transcript&amp;return_to=%2F" target="_blank" rel="noopener" data-label="Speaker labels and transcripts" aria-label="localplaud · Speaker labels and transcripts" hidden>
-        <img data-src="/assets/shot-plaud-transcript.webp?v=8a086d772495" alt="localplaud: Speaker labels and transcripts" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-plaud-transcript.avif?v=14d40ca6e8a0" alt="localplaud: Speaker labels and transcripts" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1090,13 +1092,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Daily activity cards</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="pocketlog-shot-1" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Daily activity cards" aria-label="PocketLog · Daily activity cards">
-        <img src="/assets/shot-pocketlog.webp?v=5a203878874e" alt="PocketLog: Daily activity cards" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-pocketlog.avif?v=dd63a3999fb9" alt="PocketLog: Daily activity cards" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="pocketlog-shot-2" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Activity sources and context" aria-label="PocketLog · Activity sources and context" hidden>
-        <img data-src="/assets/shot-pocketlog-sources.webp?v=619535106738" alt="PocketLog: Activity sources and context" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-pocketlog-sources.avif?v=a9b5919f9848" alt="PocketLog: Activity sources and context" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="pocketlog-shot-3" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Activity details and categories" aria-label="PocketLog · Activity details and categories" hidden>
-        <img data-src="/assets/shot-pocketlog-inspector.webp?v=d67d7bcbb1e2" alt="PocketLog: Activity details and categories" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-pocketlog-inspector.avif?v=92cec220611b" alt="PocketLog: Activity details and categories" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1143,13 +1145,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">A visual wallpaper gallery</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="afterimage-shot-1" href="https://afterimage.skyhong.tw/" target="_blank" rel="noopener" data-label="A visual wallpaper gallery" aria-label="AfterImage · A visual wallpaper gallery">
-        <img src="/assets/shot-afterimage.webp?v=9c4e95e8f183" alt="AfterImage: A visual wallpaper gallery" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-afterimage.avif?v=045679314599" alt="AfterImage: A visual wallpaper gallery" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="afterimage-shot-2" href="https://afterimage.skyhong.tw/" target="_blank" rel="noopener" data-label="Explore wallpapers by work" aria-label="AfterImage · Explore wallpapers by work" hidden>
-        <img data-src="/assets/shot-afterimage-work.webp?v=b4c6374e3bdb" alt="AfterImage: Explore wallpapers by work" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-afterimage-work.avif?v=3a48f59ae078" alt="AfterImage: Explore wallpapers by work" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="afterimage-shot-3" href="https://afterimage.skyhong.tw/#99f52f81bb15" target="_blank" rel="noopener" data-label="Image details and visual associations" aria-label="AfterImage · Image details and visual associations" hidden>
-        <img data-src="/assets/shot-afterimage-detail.webp?v=467cdad79abc" alt="AfterImage: Image details and visual associations" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-afterimage-detail.avif?v=dc0df001da50" alt="AfterImage: Image details and visual associations" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1195,13 +1197,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Personal blog homepage</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="blog-shot-1" href="https://skyhong.tw/" target="_blank" rel="noopener" data-label="Personal blog homepage" aria-label="Skychopath. · Personal blog homepage">
-        <img src="/assets/shot-blog.webp?v=ff67734c7195" alt="Skychopath.: Personal blog homepage" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-blog.avif?v=b8024752719c" alt="Skychopath.: Personal blog homepage" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="blog-shot-2" href="https://skyhong.tw/tag/articles/" target="_blank" rel="noopener" data-label="Essays and project notes" aria-label="Skychopath. · Essays and project notes" hidden>
-        <img data-src="/assets/shot-blog-articles.webp?v=bf16d2ad3b56" alt="Skychopath.: Essays and project notes" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-blog-articles.avif?v=196eed85e926" alt="Skychopath.: Essays and project notes" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="blog-shot-3" href="https://skyhong.tw/now" target="_blank" rel="noopener" data-label="What I’m working on now" aria-label="Skychopath. · What I’m working on now" hidden>
-        <img data-src="/assets/shot-blog-now.webp?v=5e756a444141" alt="Skychopath.: What I’m working on now" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-blog-now.avif?v=fa53cd032032" alt="Skychopath.: What I’m working on now" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1247,13 +1249,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Meeting entry and product overview</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="weave-shot-1" href="https://weave.nycu.ai/" target="_blank" rel="noopener" data-label="Meeting entry and product overview" aria-label="Weave In · Meeting entry and product overview">
-        <img src="/assets/shot-weave.webp?v=32075f00f9dc" alt="Weave In: Meeting entry and product overview" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-weave.avif?v=a086bc0b873a" alt="Weave In: Meeting entry and product overview" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="weave-shot-2" href="https://weave.nycu.ai/#agents" target="_blank" rel="noopener" data-label="Meet Omni, Muse and Codex" aria-label="Weave In · Meet Omni, Muse and Codex" hidden>
-        <img data-src="/assets/shot-weave-agents.webp?v=33bba389adc1" alt="Weave In: Meet Omni, Muse and Codex" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-weave-agents.avif?v=864afa6cce82" alt="Weave In: Meet Omni, Muse and Codex" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="weave-shot-3" href="https://weave.nycu.ai/#whiteboard" target="_blank" rel="noopener" data-label="Shared whiteboard demonstration" aria-label="Weave In · Shared whiteboard demonstration" hidden>
-        <img data-src="/assets/shot-weave-whiteboard.webp?v=4fb9f1ce07e4" alt="Weave In: Shared whiteboard demonstration" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-weave-whiteboard.avif?v=ce35eaef13cb" alt="Weave In: Shared whiteboard demonstration" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1299,13 +1301,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Life across platforms</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="infovore-shot-1" href="https://infovore.skyhong.tw/" target="_blank" rel="noopener" data-label="Life across platforms" aria-label="infovore · Life across platforms">
-        <img src="/assets/shot-infovore.webp?v=3114ccaf530c" alt="infovore: Life across platforms" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-infovore.avif?v=c7931598bbd0" alt="infovore: Life across platforms" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="infovore-shot-2" href="https://infovore.skyhong.tw/stats" target="_blank" rel="noopener" data-label="Time distribution and yearly reviews" aria-label="infovore · Time distribution and yearly reviews" hidden>
-        <img data-src="/assets/shot-infovore-time.webp?v=af45680c59aa" alt="infovore: Time distribution and yearly reviews" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-infovore-time.avif?v=0d44742adca0" alt="infovore: Time distribution and yearly reviews" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="infovore-shot-3" href="https://infovore.skyhong.tw/now" target="_blank" rel="noopener" data-label="Works in progress" aria-label="infovore · Works in progress" hidden>
-        <img data-src="/assets/shot-infovore-now.webp?v=f6d3475f4824" alt="infovore: Works in progress" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-infovore-now.avif?v=14089313b3a4" alt="infovore: Works in progress" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1351,13 +1353,13 @@
     <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Live status of self-hosted services</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
     <div class="gallery-stage">
       <a class="gallery-slide" id="status-shot-1" href="https://status.skyhong.tw/" target="_blank" rel="noopener" data-label="Live status of self-hosted services" aria-label="Sky Status · Live status of self-hosted services">
-        <img src="/assets/shot-status.webp?v=cf3b3f90f6f6" alt="Sky Status: Live status of self-hosted services" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img src="/assets/shot-status.avif?v=a2620024fbf6" alt="Sky Status: Live status of self-hosted services" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="status-shot-2" href="https://status.skyhong.tw/#products" target="_blank" rel="noopener" data-label="Availability history by service" aria-label="Sky Status · Availability history by service" hidden>
-        <img data-src="/assets/shot-status-products.webp?v=856026d7f5f1" alt="Sky Status: Availability history by service" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-status-products.avif?v=8cb5c36b0140" alt="Sky Status: Availability history by service" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <a class="gallery-slide" id="status-shot-3" href="https://status.skyhong.tw/#certificates" target="_blank" rel="noopener" data-label="Certificate and domain expiration" aria-label="Sky Status · Certificate and domain expiration" hidden>
-        <img data-src="/assets/shot-status-certificates.webp?v=816be8e6f340" alt="Sky Status: Certificate and domain expiration" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+        <img data-src="/assets/shot-status-certificates.avif?v=c8a979ec0d66" alt="Sky Status: Certificate and domain expiration" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
       </a>
       <div class="gallery-controls" hidden>
         <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
@@ -1438,6 +1440,6 @@
   if (initial && topics.some((b) => b.dataset.tag === initial)) apply(initial);
 })();
 </script>
-<script defer src="/scripts/gallery.js?v=da42d92e4a7f"></script>
+<script defer src="/scripts/gallery.js?v=ecf80267724c"></script>
 </body>
 </html>

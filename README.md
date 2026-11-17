@@ -36,7 +36,7 @@ PocketLog 目前沒有公開服務網址；按鈕連到開源 repo。OmniObserve
 ## 更新內容
 
 - 繁中專案介紹：`demo/projects.js`；英文：`demo/projects.en.js`。
-- 每個專案三張功能截圖：`demo/screenshots.js`；拍攝來源與示範資料說明：`.github/SCREENSHOTS.md`。預設手動切換，支援箭頭、圓點、左右鍵與手機滑動。
+- 每個專案三張功能截圖：`demo/screenshots.js`；拍攝來源與示範資料說明：`.github/SCREENSHOTS.md`。全部以 1600 × 1000（16:10）瀏覽器畫面重拍並輸出 AVIF。預設手動切換，支援箭頭、圓點、左右鍵與手機滑動；附近圖片預載，解碼後才切換並保留舊圖淡入，避免載入空白。
 - 執行 `node scripts/build-home.mjs && node scripts/build-en.mjs`，同步首頁、主題數量、導覽及本 README。
 - 執行 `node scripts/pulse.mjs` 更新 demo 使用的公開讀數。部署 workflow 每小時取得新讀數，失敗的項目保留上次數值並標為過期。
 - `demo/5`、`demo/6`、`demo/7` 是歷史版型快照，不隨本次內容更新重建。
