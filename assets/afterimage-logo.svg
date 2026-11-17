@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <title>afterimage</title>
+  <defs>
+    <radialGradient id="joy" cx="36%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#FFF6C4"/>
+      <stop offset=".55" stop-color="#F9D649"/>
+      <stop offset="1" stop-color="#D99A00"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="29" fill="#3B7DD8" opacity=".6" filter="url(#glow)"/>
+  <circle cx="60" cy="60" r="29" fill="none" stroke="#6FA5FF" stroke-width="1.6" opacity=".9"/>
+  <circle cx="41" cy="41" r="29" fill="url(#joy)"/>
+  <ellipse cx="32" cy="30" rx="9" ry="5" fill="#fff" opacity=".6" transform="rotate(-35 32 30)"/>
+</svg>

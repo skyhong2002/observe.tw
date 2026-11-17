@@ -874,7 +874,7 @@ export const PROJECTS = [
     "name": "AfterImage",
     "domain": "afterimage.skyhong.tw",
     "private": false,
-    "logo": null,
+    "logo": "assets/afterimage-logo.svg",
     "boxed": false,
     "sub": "殘影 · 移開視線後，仍留下的畫面",
     "desc": "把多年收藏的桌面與手機桌布整理成<b>可搜尋的視覺記憶庫</b>，保留檔名裡的個人註解，依作品、情緒與裝置瀏覽，再沿著相似畫面、同作品或相近色調繼續聯想。公開畫廊不顯示個人照片。",
