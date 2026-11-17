@@ -34,6 +34,7 @@ for (const p of PROJECTS.filter((p) => !p.hidden)) {
       .map(([b, t]) => `      <li><b>${b}</b> — ${t}</li>`).join('\n')}\n    </ul>`)
     .replace('前往網站 ↗', 'Visit site ↗')
     .replace('登入使用 ↗', `${e.visit ?? 'Sign in'} ↗`)
+    .replace('查看專案 ↗', 'View project ↗')
     .replace(/(<button type="button" data-tag="\w+">)([^<]+)(<\/button>)/g, (_, a, label, b) => a + TAGS[label] + b)
     .replace(/(<a class="shot[^"]*"[^>]*aria-label=")[^"]*"/, `$1${name} website"`)
     .replace(/alt="[^"]*截圖"/, `alt="Screenshot of ${name}"`);
@@ -43,9 +44,10 @@ for (const p of PROJECTS.filter((p) => !p.hidden)) {
 
 // Page chrome.
 swap('<html lang="zh-Hant-TW">', '<html lang="en">');
+swap('<link rel="canonical" href="https://observe.tw/">', '<link rel="canonical" href="https://observe.tw/en/">');
 swap('<title>observe.tw — 觀測站群</title>', '<title>observe.tw — a cluster of observatories</title>');
 html = html.replace(/<meta name="description" content="[^"]*">/,
-  '<meta name="description" content="observe.tw is a collection of automated observatories: public sites that gather and organize harmonica events, campus activities, election candidates’ official posts, news tags, website traffic, independent blogs, civic-tech communities, YouTube data, meeting research and personal digital footprints.">');
+  '<meta name="description" content="Automated observatories and personal tools: news, blogs, website traffic, campus and harmonica events, local elections, YouTube interests, PocketLog activity journals and AfterImage visual memories.">');
 html = html.replace(/<meta property="og:title" content="[^"]*">/, '<meta property="og:title" content="observe.tw — a cluster of observatories">');
 html = html.replace(/<meta property="og:description" content="[^"]*">/,
   '<meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">');

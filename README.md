@@ -1,35 +1,44 @@
 # observe.tw 🔭
 
-observe.tw 的入口頁 —— 介紹目前使用中的子網域與對應的 GitHub 專案。
+observe.tw 的入口頁，介紹觀測站群與最近在做的個人工具。
 
-純靜態 HTML，透過 GitHub Pages 部署。
+純靜態 HTML，透過既有的 GitHub Pages workflow 部署。中英文首頁使用同一份專案資料，保留既有星鳥版型。
 
 ## 觀測站一覽
 
-| 子網域 | 說明 | 專案 |
+| 網址 | 說明 | 專案 |
 |---|---|---|
-| [harmonica.observe.tw](https://harmonica.observe.tw) | 口琴觀測站（Harmonica Observatory） | [harmonica-observatory](https://github.com/skyhong2002/harmonica-observatory) |
-| [chumei.observe.tw](https://chumei.observe.tw) | 竹梅活動觀測站（清大 × 陽明交大） | [chumei](https://github.com/skyhong2002/chumei) |
-| [mayor2026.observe.tw](https://mayor2026.observe.tw) | 2026 市長官方來源觀測站 | [mayor2026](https://github.com/skyhong2002/mayor2026) |
-| [tag.observe.tw](https://tag.observe.tw) | 新文易數 — 臺灣新聞標籤、事件與各家標題對照 | [tag.observe.tw](https://github.com/skyhong2002/tag.observe.tw) |
-| [site.observe.tw](https://site.observe.tw) | 網站雷達 — 臺灣網站每月流量排行與網站技術 | traffic.observe.tw（私人） |
-| [weblog.tw](https://weblog.tw) | 部落格觀察 — 臺灣獨立部落格的文章、互相引用與共同話題 | [blog-observe-tw](https://github.com/skyhong2002/blog-observe-tw) |
+| [tag.observe.tw](https://tag.observe.tw) | 新文易數 — 同一件事，各家怎麼說 | [skyhong2002/tag.observe.tw](https://github.com/skyhong2002/tag.observe.tw) |
+| [youtube.observe.tw](https://youtube.observe.tw) | 有影儀表板 — 同一件事，各台怎麼說 | [skyhong2002/youtube-board](https://github.com/skyhong2002/youtube-board) |
+| [weblog.tw](https://weblog.tw) | 部落格觀察 — 每一種生活，各自怎麼寫 | [skyhong2002/blog-observe-tw](https://github.com/skyhong2002/blog-observe-tw) |
 | [rep0rter.observe.tw](https://rep0rter.observe.tw) | rep0rter — 公民科技社群的 AI 記者 | [rep0rter/rep0rter](https://github.com/rep0rter/rep0rter) |
-| [youtube.observe.tw](https://youtube.observe.tw) | 有影儀表板 — YouTube 頻道、直播與議題觀測（原 YouTube Board） | [youtube-board](https://github.com/skyhong2002/youtube-board) |
-| [urtube.observe.tw](https://urtube.observe.tw) | urtube — Your YouTube life, remembered | [urtube.observe.tw](https://github.com/skyhong2002/urtube.observe.tw) |
-| [omni.observe.tw](https://omni.observe.tw) | OmniObserve — 揭露隱藏共識的線上會議引導（研究） | [nycu-haix/omniobserve](https://github.com/nycu-haix/omniobserve) |
-| [stancelab.observe.tw](https://stancelab.observe.tw) | StanceLab — AI 立場整理工作台 | [StanceLab](https://github.com/skyhong2002/StanceLab) |
-| [myzilla.observe.tw](https://myzilla.observe.tw) | MyZilla — 個人入口與瀏覽回顧 | [MyZilla](https://github.com/skyhong2002/MyZilla) |
-| [plaud.observe.tw](https://plaud.observe.tw) | localplaud — 自架 Plaud 錄音處理（私人） | [localplaud](https://github.com/skyhong2002/localplaud) |
+| [site.observe.tw](https://site.observe.tw) | 網站雷達 — 臺灣網站每月流量排行與網站技術 | skyhong2002/traffic.observe.tw（私人） |
+| [urtube.observe.tw](https://urtube.observe.tw) | urtube — 從真實的觀看紀錄，理解自己、找到同好 | [skyhong2002/urtube.observe.tw](https://github.com/skyhong2002/urtube.observe.tw) |
+| [myzilla.observe.tw](https://myzilla.observe.tw) | MyZilla — 我的個人入口 · 瀏覽回顧 | [skyhong2002/MyZilla](https://github.com/skyhong2002/MyZilla) |
+| [harmonica.observe.tw](https://harmonica.observe.tw) | 口琴觀測站 — Harmonica Observatory · 世界各地的口琴活動、演奏者與樂譜 | [skyhong2002/harmonica-observatory](https://github.com/skyhong2002/harmonica-observatory) |
+| [chumei.observe.tw](https://chumei.observe.tw) | 竹梅活動觀測站 — 清大 × 陽明交大校園活動貼文河道 | [skyhong2002/chumei](https://github.com/skyhong2002/chumei) |
+| [mayor2026.observe.tw](https://mayor2026.observe.tw) | 2026 市長官方來源觀測站 — 全臺縣市首長候選人的官方發文時間軸 | [skyhong2002/mayor2026](https://github.com/skyhong2002/mayor2026) |
+| [plaud.observe.tw](https://plaud.observe.tw) | localplaud — 自架的 Plaud 錄音處理流程 | [skyhong2002/localplaud](https://github.com/skyhong2002/localplaud) |
 
 ## 更多專案
 
-| 網址 | 說明 | 專案 |
+| 網址／平台 | 說明 | 專案 |
 |---|---|---|
-| [weave.nycu.ai](https://weave.nycu.ai) | Weave In — 對抗團體迷思的 AI 會議（Sea × OpenAI Codex Hackathon 決賽入圍） | [JacobLinCool/Weave-In](https://github.com/JacobLinCool/Weave-In) |
-| [skyhong.tw](https://skyhong.tw) | Skychopath. — 個人部落格 | [skychopath-theme](https://github.com/skyhong2002/skychopath-theme) |
-| [infovore.skyhong.tw](https://infovore.skyhong.tw) | infovore — 生活年輪 | [infovore](https://github.com/skyhong2002/infovore) |
-| [status.skyhong.tw](https://status.skyhong.tw) | Sky Status — 服務維運儀表板 | [status.skyhong.tw](https://github.com/skyhong2002/status.skyhong.tw) |
+| Android · Web | PocketLog — 你的日常，有跡可循 | [skyhong2002/PocketLog](https://github.com/skyhong2002/PocketLog) |
+| [afterimage.skyhong.tw](https://afterimage.skyhong.tw) | AfterImage — 殘影 · 移開視線後，仍留下的畫面 | [skyhong2002/afterimage](https://github.com/skyhong2002/afterimage) |
+| [skyhong.tw](https://skyhong.tw) | Skychopath. — 個人部落格 | [skyhong2002/skychopath-theme](https://github.com/skyhong2002/skychopath-theme) |
+| [weave.nycu.ai](https://weave.nycu.ai) | Weave In — Keep the thread. Weave everyone in. | [JacobLinCool/Weave-In](https://github.com/JacobLinCool/Weave-In) |
+| [infovore.skyhong.tw](https://infovore.skyhong.tw) | infovore — 生活年輪 | [skyhong2002/infovore](https://github.com/skyhong2002/infovore) |
+| [status.skyhong.tw](https://status.skyhong.tw) | Sky Status — 自架服務的公開維運儀表板 | [skyhong2002/status.skyhong.tw](https://github.com/skyhong2002/status.skyhong.tw) |
+
+PocketLog 目前沒有公開服務網址；按鈕連到開源 repo。OmniObserve 與 StanceLab 保留在專案資料中，維持首頁隱藏。
+
+## 更新內容
+
+- 繁中專案介紹：`demo/projects.js`；英文：`demo/projects.en.js`。
+- 執行 `node scripts/build-home.mjs && node scripts/build-en.mjs`，同步首頁、主題數量、導覽及本 README。
+- 執行 `node scripts/pulse.mjs` 更新 demo 使用的公開讀數。部署 workflow 每小時取得新讀數，失敗的項目保留上次數值並標為過期。
+- `demo/5`、`demo/6`、`demo/7` 是歷史版型快照，不隨本次內容更新重建。
 
 ## 授權
 

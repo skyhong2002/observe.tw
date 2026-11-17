@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://observe.tw/">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="observe.tw 是一群自動化觀測站的集合：口琴、校園活動、選舉官方來源、新聞標籤、網站流量、獨立部落格、公民科技社群、YouTube 資料、會議研究與個人數位足跡等主題的資料彙整與公開網站。">
+<meta name="description" content="自動化觀測站與個人工具：新聞、部落格、網站流量、校園與口琴活動、地方選舉、YouTube 興趣，以及 PocketLog 活動日誌與 AfterImage 視覺記憶庫。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
@@ -176,6 +176,7 @@
     object-fit: contain;
   }
   .logo.boxed { background: #fff; padding: 6px; }
+  .logo.mono { display: grid; place-items: center; background: var(--surface); border: 1px solid var(--border); color: var(--accent); font-family: ui-monospace, monospace; font-size: 24px; }
   .site-head-text { min-width: 0; }
   .domain {
     display: inline-flex;
@@ -354,18 +355,18 @@
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
     <div class="topics" role="group" aria-label="依主題篩選">
-      <button type="button" data-tag="" aria-pressed="true">全部 <span>15</span></button>
+      <button type="button" data-tag="" aria-pressed="true">全部 <span>17</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">會議工具 <span>1</span></button>
-      <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>3</span></button>
+      <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>4</span></button>
       <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>4</span></button>
       <button type="button" data-tag="politics" aria-pressed="false">選舉政治 <span>3</span></button>
       <button type="button" data-tag="civic" aria-pressed="false">公民科技 <span>2</span></button>
       <button type="button" data-tag="social" aria-pressed="false">社群貼文 <span>3</span></button>
       <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
-      <button type="button" data-tag="lifelog" aria-pressed="false">個人數位足跡 <span>5</span></button>
+      <button type="button" data-tag="lifelog" aria-pressed="false">個人數位足跡 <span>7</span></button>
       <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>1</span></button>
       <button type="button" data-tag="campus" aria-pressed="false">校園 <span>1</span></button>
-      <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>3</span></button>
+      <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>4</span></button>
       <button type="button" data-tag="blog" aria-pressed="false">部落格 <span>3</span></button>
     </div>
     <nav class="toc" aria-label="專案">
@@ -380,6 +381,8 @@
       <a href="#chumei">chumei</a>
       <a href="#mayor2026">mayor2026</a>
       <a href="#plaud">plaud</a>
+      <a href="#pocketlog">pocketlog</a>
+      <a href="#afterimage">afterimage</a>
       <a href="#blog">blog</a>
       <a href="#weave">weave</a>
       <a href="#infovore">infovore</a>
@@ -393,7 +396,7 @@
 <section class="site" id="tag" data-tags="news politics">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/tag-logo.svg" alt="新文易數 logo">
+      <img class="logo" src="assets/tag-logo.svg" alt="新文易數 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>tag.observe.tw</span>
         <h2>新文易數</h2>
@@ -402,32 +405,28 @@
     <p class="sub">同一件事，各家怎麼說</p>
     <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="politics">選舉政治</button></div>
     <p class="desc">
-      每 9 到 60 分鐘爬取約<b>一百家臺灣新聞媒體</b>，把標籤、事件與議題整理成可以比較的資料：
-      過去 24 小時的新聞量與藍綠媒體比例、正在升溫的議題，以及同一件事在各家的標題寫法。
+      收集<b>臺灣與部分國際新聞來源</b>的公開文章，把標籤、事件、議題、媒體與署名整理成可以比較的資料：正在升溫的關鍵字、同一件事在各家的標題寫法，以及報導之間的內文相似與明示引用關係。
     </p>
     <ul class="feats">
-      <li><b>新聞總覽與同題不同標</b> — 政治事件的藍綠媒體標題並排對照</li>
-      <li><b>關鍵字排行與事件表</b> — 標籤分數與爆發力，同時爆發的標籤自動分群成事件、每小時封存</li>
-      <li><b>公開 API 與 RSS</b> — 免金鑰、CORS 開放，附 OpenAPI 規格與事件／標籤 feed</li>
+      <li><b>同題不同標與事件時間線</b> — 各家標題並排，追蹤事件前後的延續關係</li>
+      <li><b>媒體關係與記者動態</b> — 比較內文相似、共同署名與明示引用，附原始文章證據</li>
+      <li><b>追蹤、公開 API 與即時看板</b> — 追蹤標籤、媒體、記者與事件，提供私人 RSS、開放 API 與輪播看板</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://tag.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/tag.observe.tw" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/tag.observe.tw
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/tag.observe.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/tag.observe.tw</a>
     </div>
   </div>
   <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="新文易數 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-tag.webp" alt="新文易數 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-tag.webp" alt="新文易數 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site flip" id="youtube" data-tags="youtube news politics">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/youtube-logo.svg" alt="有影儀表板 logo">
+      <img class="logo" src="assets/youtube-logo.svg" alt="有影儀表板 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>youtube.observe.tw</span>
         <h2>有影儀表板</h2>
@@ -436,8 +435,7 @@
     <p class="sub">同一件事，各台怎麼說</p>
     <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="politics">選舉政治</button></div>
     <p class="desc">
-      延續 YouTube Board 的即時資料儀表板，觀測 <b>3,400 多個公開 YouTube 頻道</b>、近 70 萬支影片：
-      新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。
+      觀測<b>三千多個公開 YouTube 頻道、百萬支以上影片</b>：新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。
     </p>
     <ul class="feats">
       <li><b>直播熱度與電視牆</b> — 目前直播排行、同時在線人數與多台並排的直播電視牆</li>
@@ -447,22 +445,19 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://youtube.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/youtube-board
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/youtube-board</a>
     </div>
   </div>
   <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="有影儀表板 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-youtube.webp" alt="有影儀表板 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-youtube.webp" alt="有影儀表板 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site" id="blogs" data-tags="blog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/blogs-logo.svg" alt="部落格觀察 logo">
+      <img class="logo" src="assets/blogs-logo.svg" alt="部落格觀察 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>weblog.tw</span>
         <h2>部落格觀察</h2>
@@ -471,8 +466,7 @@
     <p class="sub">每一種生活，各自怎麼寫</p>
     <div class="tags"><button type="button" data-tag="blog">部落格</button></div>
     <p class="desc">
-      新文易數的姊妹站，把同一套方法用在<b>臺灣的獨立部落格</b>：從公開的 RSS、Atom 與 sitemap
-      收錄 430 多個部落格、十二萬多篇文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。
+      新文易數的姊妹站，把同一套方法用在<b>獨立部落格</b>：從公開的 RSS、Atom 與 sitemap 收錄文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。
     </p>
     <ul class="feats">
       <li><b>正文引用與關係圖</b> — 近 90 天文章裡寫到其他部落格的句子，連成全站關係圖</li>
@@ -482,22 +476,19 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://weblog.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/blog-observe-tw" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/blog-observe-tw
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/blog-observe-tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/blog-observe-tw</a>
     </div>
   </div>
   <a class="shot" href="https://weblog.tw" target="_blank" rel="noopener" aria-label="部落格觀察 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-blogs.webp" alt="部落格觀察 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-blogs.webp" alt="部落格觀察 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site flip" id="rep0rter" data-tags="news civic ai">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/rep0rter-logo.png" alt="rep0rter logo">
+      <img class="logo" src="assets/rep0rter-logo.png" alt="rep0rter logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>rep0rter.observe.tw</span>
         <h2>rep0rter</h2>
@@ -506,8 +497,7 @@
     <p class="sub">公民科技社群的 AI 記者</p>
     <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="civic">公民科技</button><button type="button" data-tag="ai">AI 應用</button></div>
     <p class="desc">
-      每小時讀過 <b>g0v、Code for Korea、Code for Japan</b> 等公民科技社群的公開協作空間 ——
-      Slack、GitHub、Mastodon、RSS 與公開 Notion，挑出值得關注的進展，寫成短篇報導。
+      每小時讀過 <b>g0v、Code for Korea、Code for Japan</b> 等公民科技社群的公開協作空間 ——Slack、GitHub、Mastodon、RSS 與公開 Notion，挑出值得關注的進展，寫成短篇報導。
     </p>
     <ul class="feats">
       <li><b>四種語言</b> — 繁體中文、English、日本語、한국어，每篇都附原始來源卡片</li>
@@ -516,10 +506,7 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://rep0rter.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/rep0rter/rep0rter" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        rep0rter/rep0rter
-      </a>
+      <a class="repo" href="https://github.com/rep0rter/rep0rter" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>rep0rter/rep0rter</a>
     </div>
   </div>
   <a class="shot" href="https://rep0rter.observe.tw" target="_blank" rel="noopener" aria-label="rep0rter 網站截圖">
@@ -531,7 +518,7 @@
 <section class="site" id="site" data-tags="news blog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/site-logo.svg" alt="網站雷達 logo">
+      <img class="logo" src="assets/site-logo.svg" alt="網站雷達 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>site.observe.tw</span>
         <h2>網站雷達</h2>
@@ -540,8 +527,7 @@
     <p class="sub">臺灣網站每月流量排行與網站技術</p>
     <div class="tags"><button type="button" data-tag="news">新聞媒體</button><button type="button" data-tag="blog">部落格</button></div>
     <p class="desc">
-      把 GeneHong 的「Similar Web 新聞」試算表做成每小時自動更新的資料庫，追蹤<b>兩千多個臺灣網站</b>的每月 Similarweb 造訪估算、
-      自然搜尋與 AI 導流占比，並附上 Cloudflare Radar 全球排名。新文易數、部落格觀察的流量數字也都從這裡讀取。
+      彙整 GeneHong 的「Similar Web」試算表與網站流量資料，追蹤<b>臺灣網站的每月 Similarweb 造訪估算</b>、自然搜尋與 AI 導流占比，並提供 Cloudflare Radar 與 Chrome UX Report 熱門度級距。新文易數、部落格觀察的流量數字也從這裡讀取。
     </p>
     <ul class="feats">
       <li><b>網站流量排行</b> — 依標籤與來源篩選，任選兩個月份比較，可下載 CSV</li>
@@ -550,57 +536,49 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://site.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <span class="repo">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/traffic.observe.tw（私人）
-      </span>
+      <span class="repo"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/traffic.observe.tw（私人）</span>
     </div>
   </div>
   <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="網站雷達 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-site.webp" alt="網站雷達 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-site.webp" alt="網站雷達 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site flip" id="urtube" data-tags="youtube lifelog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo">
+      <img class="logo" src="assets/urtube-logo.svg" alt="urtube logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>urtube.observe.tw</span>
         <h2>urtube</h2>
       </div>
     </div>
-    <p class="sub">Your YouTube life, remembered</p>
+    <p class="sub">從真實的觀看紀錄，理解自己、找到同好</p>
     <div class="tags"><button type="button" data-tag="youtube">YouTube</button><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
-      私人的 YouTube <b>注意力封存庫</b>：每日同步 Google My Activity 的跨裝置觀看紀錄，
-      搭配 Chrome 擴充功能量測實際觀看秒數，加上觀看進度、頻道與 AI 主題分類，
-      看見自己的注意力隨時間怎麼移動。
+      將 YouTube 觀看紀錄整理成私人的<b>興趣與注意力檔案</b>：透過 Chrome 擴充功能或 Google Takeout ZIP 匯入，回顧觀看時間、頻道與 AI 興趣主題，再依自己的選擇開啟同好探索與分享。
     </p>
     <ul class="feats">
-      <li><b>每個來源、同一條時間軸</b> — 不抽樣、不會過期</li>
-      <li><b>隱私即架構</b> — 每個帳號獨立資料庫，搜尋詞加密儲存，儀表板預設私人</li>
-      <li><b>看見自己的變化</b> — 注意力轉移、頻道動能與跨人比較</li>
+      <li><b>匯入與長期回顧</b> — 擴充功能同步或 Takeout 匯入，回看不同時期的喜好與關注</li>
+      <li><b>同好探索與 Blend</b> — 以共同主題與頻道找到同好，接受好友邀請後比較彼此興趣</li>
+      <li><b>自己控制分享</b> — 新帳號預設私人、同好探索預設關閉，可匯出或刪除資料</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://urtube.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/urtube.observe.tw" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/urtube.observe.tw
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/urtube.observe.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/urtube.observe.tw</a>
     </div>
   </div>
   <a class="shot" href="https://urtube.observe.tw" target="_blank" rel="noopener" aria-label="urtube 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-urtube.webp" alt="urtube 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-urtube.webp" alt="urtube 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site" id="myzilla" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo">
+      <img class="logo" src="assets/myzilla-logo.svg" alt="MyZilla logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>myzilla.observe.tw</span>
         <h2>MyZilla</h2>
@@ -609,32 +587,28 @@
     <p class="sub">我的個人入口 · 瀏覽回顧</p>
     <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
-      把 2000 年代的 MyZilla 個人入口重新做一次 —— 網址收藏、網摘、多站搜尋、電影與心情，
-      再加上<b>完整的瀏覽歷史回顧</b>。原始歷史只保留在自己的伺服器，不會公開。
+      把 2000 年代的 MyZilla 個人入口重新做一次 —— 網址收藏、網摘、多站搜尋、電影與心情，再加上<b>完整的瀏覽歷史回顧</b>。原始歷史只保留在自己的伺服器，不會公開。
     </p>
     <ul class="feats">
-      <li><b>瀏覽回顧</b> — 網站排行、可全文搜尋的造訪紀錄，以及擴充功能量測的前景時間</li>
-      <li><b>個人洞察與 AI 週回顧</b> — 興趣地圖、探索路徑，每天整理最近 7 天的重點與線索</li>
-      <li><b>帳號與朋友</b> — 邀請制私人帳號，雙方同意後才比較興趣分布</li>
+      <li><b>瀏覽回顧</b> — 常訪網站、瀏覽歷史全文搜尋，以及擴充功能量測的前景停留時間</li>
+      <li><b>主題選集與洞察</b> — 整理個人興趣，挑選連結、加上推薦理由，發布可撤銷的分享快照</li>
+      <li><b>帳號與朋友</b> — 邀請制私人帳號，雙方同意後才比較興趣分類</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://myzilla.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/MyZilla" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/MyZilla
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/MyZilla" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/MyZilla</a>
     </div>
   </div>
   <a class="shot" href="https://myzilla.observe.tw" target="_blank" rel="noopener" aria-label="MyZilla 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-myzilla.webp" alt="MyZilla 首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-myzilla.webp" alt="MyZilla 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site flip" id="harmonica" data-tags="social harmonica">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/harmonica-logo.svg" alt="口琴觀測站 logo">
+      <img class="logo" src="assets/harmonica-logo.svg" alt="口琴觀測站 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>harmonica.observe.tw</span>
         <h2>口琴觀測站</h2>
@@ -643,9 +617,7 @@
     <p class="sub">Harmonica Observatory · 世界各地的口琴活動、演奏者與樂譜</p>
     <div class="tags"><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="harmonica">口琴</button></div>
     <p class="desc">
-      從臺灣出發、擴展到全世界的口琴資訊目錄：活動、學生社團、樂團、演奏者、教學工作室、
-      比賽指定曲與樂譜來源。散落在各社群平台與各種語言的公開資訊集中在一起，
-      並保留原文與原始連結。介面支援<b>繁體中文、English、日本語、한국어</b>。
+      從臺灣出發、擴展到全世界的口琴資訊目錄：活動、學生社團、樂團、演奏者、教學工作室、比賽指定曲與樂譜來源。散落在各社群平台與各種語言的公開資訊集中在一起，並保留原文與原始連結。介面支援<b>繁體中文、English、日本語、한국어</b>。
     </p>
     <ul class="feats">
       <li><b>近 24 小時限動牆</b> — 追蹤口琴圈 Instagram Stories 動態</li>
@@ -655,22 +627,19 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://harmonica.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/harmonica-observatory
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/harmonica-observatory</a>
     </div>
   </div>
-  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="口琴觀測站網站截圖">
+  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="口琴觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-harmonica.webp" alt="口琴觀測站首頁截圖" width="1280" height="800">
+    <img src="assets/shot-harmonica.webp" alt="口琴觀測站 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site" id="chumei" data-tags="social campus">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/chumei-logo.png" alt="竹梅活動觀測站 logo">
+      <img class="logo" src="assets/chumei-logo.png" alt="竹梅活動觀測站 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>chumei.observe.tw</span>
         <h2>竹梅活動觀測站</h2>
@@ -679,9 +648,7 @@
     <p class="sub">清大 × 陽明交大校園活動貼文河道</p>
     <div class="tags"><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="campus">校園</button></div>
     <p class="desc">
-      自動彙整<b>清華大學與陽明交通大學</b>的社團與校方公開貼文 ——
-      Instagram、Facebook、Threads、X 與校園公告，經 LLM 抽取活動名稱、時間與地點，
-      整理成可依<b>校區、平台、活動類型與主辦單位</b>篩選的河道。
+      自動彙整<b>清華大學與陽明交通大學</b>的社團與校方公開貼文 ——Instagram、Facebook、Threads、X 與校園公告，經 LLM 抽取活動名稱、時間與地點，整理成可依<b>校區、平台、活動類型與主辦單位</b>篩選的河道。
     </p>
     <ul class="feats">
       <li><b>活動列表與日曆</b> — 迎新、招生、演出、講座一目瞭然</li>
@@ -690,57 +657,49 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://chumei.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/chumei
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/chumei</a>
     </div>
   </div>
-  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="竹梅活動觀測站網站截圖">
+  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="竹梅活動觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-chumei.webp" alt="竹梅活動觀測站首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-chumei.webp" alt="竹梅活動觀測站 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site flip" id="mayor2026" data-tags="politics social civic">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/mayor2026-logo.svg" alt="2026 市長官方來源觀測站 logo">
+      <img class="logo" src="assets/mayor2026-logo.svg" alt="2026 市長官方來源觀測站 logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>mayor2026.observe.tw</span>
         <h2>2026 市長官方來源觀測站</h2>
       </div>
     </div>
-    <p class="sub">六都市長候選人官方發文時間軸</p>
+    <p class="sub">全臺縣市首長候選人的官方發文時間軸</p>
     <div class="tags"><button type="button" data-tag="politics">選舉政治</button><button type="button" data-tag="social">社群貼文</button><button type="button" data-tag="civic">公民科技</button></div>
     <p class="desc">
-      收錄臺北、新北、桃園、臺中、臺南、高雄<b>市長候選人的官方公開發文</b>，
-      目前監看 13 位候選人、已收錄超過 5,700 則貼文，跨平台合併成單一時間軸，
-      並以議題自動分類統計比例。
+      收錄全臺<b>縣市首長候選人的官方公開發文</b>，跨 Facebook、Instagram、Threads、X、YouTube、Podcast 與官網整理成單一時間軸，並以議題分類比較候選人關注的主題。
     </p>
     <ul class="feats">
-      <li><b>六都總覽</b> — 各市候選人陣營與發文量對照</li>
+      <li><b>全臺縣市總覽</b> — 依縣市查看候選人、陣營與官方來源</li>
       <li><b>議題選擇器與議題光譜</b> — 看每位候選人談什麼、談多少</li>
-      <li><b>主動發文判別</b> — 區分主動發文與回應他方觀點</li>
+      <li><b>原始來源與抓取狀態</b> — 保留原始貼文連結，公開收錄與更新狀態</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://mayor2026.observe.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/mayor2026
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/mayor2026</a>
     </div>
   </div>
-  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="2026 市長官方來源觀測站網站截圖">
+  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="2026 市長官方來源觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-mayor2026.webp" alt="2026 市長官方來源觀測站首頁截圖" width="1280" height="800" loading="lazy">
+    <img src="assets/shot-mayor2026.webp" alt="2026 市長官方來源觀測站 截圖" width="1280" height="800" loading="lazy">
   </a>
 </section>
 
 <section class="site" id="plaud" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo">
+      <img class="logo" src="assets/localplaud-logo.svg" alt="localplaud logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot private"></span>plaud.observe.tw</span>
         <h2>localplaud</h2>
@@ -749,8 +708,7 @@
     <p class="sub">自架的 Plaud 錄音處理流程</p>
     <div class="tags"><button type="button" data-tag="ai">AI 應用</button><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
     <p class="desc">
-      繼續用實體 Plaud 錄音筆與官方上傳，但<b>轉錄、講者分離、摘要、搜尋與問答</b>
-      全部改在自己的機器上跑 —— 透過官方 Open API 拉回原始音檔，之後的衍生資料都由自己保管。
+      繼續用實體 Plaud 錄音筆與官方上傳，但<b>轉錄、講者分離、摘要、搜尋與問答</b>全部改在自己的機器上跑 —— 透過官方 Open API 拉回原始音檔，之後的衍生資料都由自己保管。
     </p>
     <ul class="feats">
       <li><b>完整處理流程</b> — 轉檔、轉錄、對齊、講者分離、校正，產生筆記、章節與心智圖</li>
@@ -759,18 +717,12 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://plaud.observe.tw" target="_blank" rel="noopener">登入使用 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/localplaud" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/localplaud
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/localplaud" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/localplaud</a>
     </div>
   </div>
-  <a class="shot placeholder" href="https://plaud.observe.tw" target="_blank" rel="noopener" aria-label="localplaud 網站">
+  <a class="shot placeholder" href="https://plaud.observe.tw" target="_blank" rel="noopener" aria-label="localplaud 專案">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <div class="ph">
-      <img src="assets/localplaud-logo.svg" alt="" width="72" height="72">
-      <span>私人服務 · 需要登入</span>
-    </div>
+    <div class="ph"><img src="assets/localplaud-logo.svg" alt="" width="72" height="72"><span>私人服務 · 需要登入</span></div>
   </a>
 </section>
 
@@ -779,10 +731,70 @@
   <p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>
 </section>
 
-<section class="site" id="blog" data-tags="blog lifelog selfhost">
+<section class="site flip" id="pocketlog" data-tags="ai lifelog selfhost">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/blog-logo.png" alt="Skychopath. logo">
+      <img class="logo" src="assets/pocketlog-logo.svg" alt="PocketLog logo" width="44" height="44">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot private"></span>Android · Web</span>
+        <h2>PocketLog</h2>
+      </div>
+    </div>
+    <p class="sub">你的日常，有跡可循</p>
+    <div class="tags"><button type="button" data-tag="ai">AI 應用</button><button type="button" data-tag="lifelog">個人數位足跡</button><button type="button" data-tag="selfhost">自架維運</button></div>
+    <p class="desc">
+      自架的<b>Android 與 web 私人活動日誌</b>：在明確同意後記錄使用中的 App 與選擇開啟的畫面脈絡，整理成可以回顧、分類與修正的時間軸。資料由自己的伺服器保管，AI 分析需要自行設定供應商並開啟。
+    </p>
+    <ul class="feats">
+      <li><b>手機與網頁回顧</b> — 日／週活動卡片、分類修正、每日反思與專注計時</li>
+      <li><b>選擇要記錄的脈絡</b> — App 活動、文字與選用截圖，各自有同意流程、排除與暫停設定</li>
+      <li><b>開發中的私人日誌</b> — Android 14 以上，支援加密離線佇列；尚無穩定版，實機耗電仍待完整驗證</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener">查看專案 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/PocketLog</a>
+    </div>
+  </div>
+  <a class="shot placeholder" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" aria-label="PocketLog 專案">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <div class="ph"><img src="assets/pocketlog-logo.svg" alt="" width="72" height="72"><span>Android · Web 私人日誌 · 開發中</span></div>
+  </a>
+</section>
+
+<section class="site" id="afterimage" data-tags="lifelog">
+  <div class="info">
+    <div class="site-head">
+      <span class="logo mono" aria-hidden="true">A</span>
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>afterimage.skyhong.tw</span>
+        <h2>AfterImage</h2>
+      </div>
+    </div>
+    <p class="sub">殘影 · 移開視線後，仍留下的畫面</p>
+    <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button></div>
+    <p class="desc">
+      把多年收藏的桌面與手機桌布整理成<b>可搜尋的視覺記憶庫</b>，保留檔名裡的個人註解，依作品、情緒與裝置瀏覽，再沿著相似畫面、同作品或相近色調繼續聯想。公開畫廊不顯示個人照片。
+    </p>
+    <ul class="feats">
+      <li><b>作品與情緒篩選</b> — 桌面、手機分開瀏覽，保留原始圖片與主要色彩</li>
+      <li><b>沿著畫面聯想</b> — 相似畫面、同作品、同情緒與相近色調，留下這次瀏覽的思緒軌跡</li>
+      <li><b>連回生活中的作品</b> — 結合 infovore 找到近期作品的桌布缺口，登入後可搜尋來源與收藏新圖</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://afterimage.skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/afterimage" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/afterimage</a>
+    </div>
+  </div>
+  <a class="shot placeholder" href="https://afterimage.skyhong.tw" target="_blank" rel="noopener" aria-label="AfterImage 專案">
+    <div class="shot-bar"><span></span><span></span><span></span></div>
+    <div class="ph"><span>殘影 · 公開桌布畫廊</span></div>
+  </a>
+</section>
+
+<section class="site flip" id="blog" data-tags="blog lifelog selfhost">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/blog-logo.png" alt="Skychopath. logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>skyhong.tw</span>
         <h2>Skychopath.</h2>
@@ -800,10 +812,7 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/skychopath-theme" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/skychopath-theme
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/skychopath-theme" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/skychopath-theme</a>
     </div>
   </div>
   <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. 網站截圖">
@@ -812,10 +821,10 @@
   </a>
 </section>
 
-<section class="site flip" id="weave" data-tags="meeting ai">
+<section class="site" id="weave" data-tags="meeting ai">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/weave-logo.svg" alt="Weave In logo">
+      <img class="logo" src="assets/weave-logo.svg" alt="Weave In logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>weave.nycu.ai</span>
         <h2>Weave In</h2>
@@ -824,8 +833,7 @@
     <p class="sub">Keep the thread. Weave everyone in.</p>
     <div class="tags"><button type="button" data-tag="meeting">會議工具</button><button type="button" data-tag="ai">AI 應用</button></div>
     <p class="desc">
-      對抗團體迷思的瀏覽器會議：最多八人共享視訊、螢幕、即時字幕與白板，不需要帳號。
-      <b>2026 Sea × OpenAI Codex Hackathon Taiwan 決賽入圍（Top 5/30）</b>。
+      對抗團體迷思的瀏覽器會議：最多八人共享視訊、螢幕、即時字幕與白板，不需要帳號。<b>2026 Sea × OpenAI Codex Hackathon Taiwan 決賽入圍（Top 5/30）</b>。
     </p>
     <ul class="feats">
       <li><b>Muse</b> — 每個人的私人助理，可打字、口述或即時語音對話</li>
@@ -834,10 +842,7 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://weave.nycu.ai" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        JacobLinCool/Weave-In
-      </a>
+      <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>JacobLinCool/Weave-In</a>
     </div>
   </div>
   <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In 網站截圖">
@@ -846,10 +851,10 @@
   </a>
 </section>
 
-<section class="site" id="infovore" data-tags="lifelog">
+<section class="site flip" id="infovore" data-tags="lifelog">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/infovore-logo.png" alt="infovore logo">
+      <img class="logo" src="assets/infovore-logo.png" alt="infovore logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>infovore.skyhong.tw</span>
         <h2>infovore</h2>
@@ -858,19 +863,16 @@
     <p class="sub">生活年輪</p>
     <div class="tags"><button type="button" data-tag="lifelog">個人數位足跡</button></div>
     <p class="desc">
-      彙整玩過、看過、讀過、聽過與參加過的東西 —— Backloggd、Kitsu、stats.fm、Simkl、Goodreads、YouTube 等來源統一正規化成同一份資料，存進 SQLite，上游掛掉也不會讓頁面空白。
+      彙整玩過、看過、讀過、聽過與參加過的東西，也串起<b>Dayflow 電腦活動、AI 代理工作、健康與地點紀錄</b>。從 Backloggd、Kitsu、stats.fm、Simkl、Hardcover、urtube 等來源整理到 SQLite，依平台呈現更新狀態與自己的生活節奏。
     </p>
     <ul class="feats">
-      <li><b>公開時間軸</b> — 去重後的活動紀錄，附 RSS 與 JSON API</li>
-      <li><b>狀態卡片</b> — Satori 即時產生的 SVG／PNG／WebP 卡片，可嵌入 GitHub README</li>
-      <li><b>Wrapped 與 MCP</b> — 年度回顧，以及給 AI 工具查詢的 MCP 端點</li>
+      <li><b>公開時間軸與 Now</b> — 跨平台的近期活動、正在進行的作品，附 RSS 與 JSON API</li>
+      <li><b>時間與年度回顧</b> — 依平台回顧投入的時間，標明估算與重疊的計算方式</li>
+      <li><b>分享卡片與 MCP</b> — 可嵌入的 SVG／PNG／WebP 卡片，以及給 AI 工具查詢的 MCP 端點</li>
     </ul>
     <div class="links">
       <a class="visit" href="https://infovore.skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/infovore" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/infovore
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/infovore" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/infovore</a>
     </div>
   </div>
   <a class="shot" href="https://infovore.skyhong.tw" target="_blank" rel="noopener" aria-label="infovore 網站截圖">
@@ -879,10 +881,10 @@
   </a>
 </section>
 
-<section class="site flip" id="status" data-tags="selfhost">
+<section class="site" id="status" data-tags="selfhost">
   <div class="info">
     <div class="site-head">
-      <img class="logo" src="assets/status-logo.svg" alt="Sky Status logo">
+      <img class="logo" src="assets/status-logo.svg" alt="Sky Status logo" width="44" height="44">
       <div class="site-head-text">
         <span class="domain"><span class="dot"></span>status.skyhong.tw</span>
         <h2>Sky Status</h2>
@@ -900,10 +902,7 @@
     </ul>
     <div class="links">
       <a class="visit" href="https://status.skyhong.tw" target="_blank" rel="noopener">前往網站 ↗</a>
-      <a class="repo" href="https://github.com/skyhong2002/status.skyhong.tw" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        skyhong2002/status.skyhong.tw
-      </a>
+      <a class="repo" href="https://github.com/skyhong2002/status.skyhong.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/status.skyhong.tw</a>
     </div>
   </div>
   <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status 網站截圖">

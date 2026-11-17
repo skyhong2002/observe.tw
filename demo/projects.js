@@ -39,7 +39,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-06",
-      "subject": "全球口琴活動、演奏者與 362 個來源",
+      "subject": "全球口琴活動、演奏者與樂譜來源",
       "cadence": "每 30 分鐘",
       "outputs": [
         "網站",
@@ -111,20 +111,20 @@ export const PROJECTS = [
     "private": false,
     "logo": "assets/mayor2026-logo.svg",
     "boxed": false,
-    "sub": "六都市長候選人官方發文時間軸",
-    "desc": "收錄臺北、新北、桃園、臺中、臺南、高雄<b>市長候選人的官方公開發文</b>，目前監看 13 位候選人、已收錄超過 5,700 則貼文，跨平台合併成單一時間軸，並以議題自動分類統計比例。",
+    "sub": "全臺縣市首長候選人的官方發文時間軸",
+    "desc": "收錄全臺<b>縣市首長候選人的官方公開發文</b>，跨 Facebook、Instagram、Threads、X、YouTube、Podcast 與官網整理成單一時間軸，並以議題分類比較候選人關注的主題。",
     "feats": [
       [
-        "六都總覽",
-        "各市候選人陣營與發文量對照"
+        "全臺縣市總覽",
+        "依縣市查看候選人、陣營與官方來源"
       ],
       [
         "議題選擇器與議題光譜",
         "看每位候選人談什麼、談多少"
       ],
       [
-        "主動發文判別",
-        "區分主動發文與回應他方觀點"
+        "原始來源與抓取狀態",
+        "保留原始貼文連結，公開收錄與更新狀態"
       ]
     ],
     "url": "https://mayor2026.observe.tw",
@@ -135,7 +135,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-07",
-      "subject": "六都 13 位市長候選人",
+      "subject": "全臺縣市首長候選人的官方公開發文",
       "cadence": "每 6 小時",
       "outputs": [
         "網站",
@@ -158,19 +158,19 @@ export const PROJECTS = [
     "logo": "assets/tag-logo.svg",
     "boxed": false,
     "sub": "同一件事，各家怎麼說",
-    "desc": "每 9 到 60 分鐘爬取約<b>一百家臺灣新聞媒體</b>，把標籤、事件與議題整理成可以比較的資料：過去 24 小時的新聞量與藍綠媒體比例、正在升溫的議題，以及同一件事在各家的標題寫法。",
+    "desc": "收集<b>臺灣與部分國際新聞來源</b>的公開文章，把標籤、事件、議題、媒體與署名整理成可以比較的資料：正在升溫的關鍵字、同一件事在各家的標題寫法，以及報導之間的內文相似與明示引用關係。",
     "feats": [
       [
-        "新聞總覽與同題不同標",
-        "政治事件的藍綠媒體標題並排對照"
+        "同題不同標與事件時間線",
+        "各家標題並排，追蹤事件前後的延續關係"
       ],
       [
-        "關鍵字排行與事件表",
-        "標籤分數與爆發力，同時爆發的標籤自動分群成事件、每小時封存"
+        "媒體關係與記者動態",
+        "比較內文相似、共同署名與明示引用，附原始文章證據"
       ],
       [
-        "公開 API 與 RSS",
-        "免金鑰、CORS 開放，附 OpenAPI 規格與事件／標籤 feed"
+        "追蹤、公開 API 與即時看板",
+        "追蹤標籤、媒體、記者與事件，提供私人 RSS、開放 API 與輪播看板"
       ]
     ],
     "url": "https://tag.observe.tw",
@@ -181,7 +181,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-10",
-      "subject": "約 100 家臺灣新聞媒體",
+      "subject": "臺灣與部分國際新聞來源",
       "cadence": "每 9–60 分鐘",
       "outputs": [
         "網站",
@@ -204,7 +204,7 @@ export const PROJECTS = [
     "logo": "assets/site-logo.svg",
     "boxed": false,
     "sub": "臺灣網站每月流量排行與網站技術",
-    "desc": "把 GeneHong 的「Similar Web 新聞」試算表做成每小時自動更新的資料庫，追蹤<b>兩千多個臺灣網站</b>的每月 Similarweb 造訪估算、自然搜尋與 AI 導流占比，並附上 Cloudflare Radar 全球排名。新文易數、部落格觀察的流量數字也都從這裡讀取。",
+    "desc": "彙整 GeneHong 的「Similar Web」試算表與網站流量資料，追蹤<b>臺灣網站的每月 Similarweb 造訪估算</b>、自然搜尋與 AI 導流占比，並提供 Cloudflare Radar 與 Chrome UX Report 熱門度級距。新文易數、部落格觀察的流量數字也從這裡讀取。",
     "feats": [
       [
         "網站流量排行",
@@ -227,7 +227,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-10",
-      "subject": "兩千多個臺灣網站",
+      "subject": "臺灣網站的流量、熱門度與網站技術",
       "cadence": "每小時",
       "outputs": [
         "網站",
@@ -248,7 +248,7 @@ export const PROJECTS = [
     "logo": "assets/blogs-logo.svg",
     "boxed": false,
     "sub": "每一種生活，各自怎麼寫",
-    "desc": "新文易數的姊妹站，把同一套方法用在<b>臺灣的獨立部落格</b>：從公開的 RSS、Atom 與 sitemap 收錄 430 多個部落格、十二萬多篇文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。",
+    "desc": "新文易數的姊妹站，把同一套方法用在<b>獨立部落格</b>：從公開的 RSS、Atom 與 sitemap 收錄文章，找出部落格之間在正文裡互相引用的段落，以及近期大家都在寫的共同話題。",
     "feats": [
       [
         "正文引用與關係圖",
@@ -275,7 +275,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-10",
-      "subject": "430+ 個臺灣獨立部落格",
+      "subject": "獨立部落格的文章、引用與共同話題",
       "cadence": "每小時",
       "outputs": [
         "網站",
@@ -333,7 +333,7 @@ export const PROJECTS = [
       ]
     },
     "commits": 238
-    ,"pulse": { "url": "https://rep0rter.observe.tw/", "label": "篇報導", "pick": (b) => Number(b.match(/\d+ events\s*·\s*(\d+) stories/)[1]) }
+    ,"pulse": { "url": "https://rep0rter.observe.tw/", "label": "篇報導 · 首頁", "pick": (b) => Number(b.match(/Show (\d+) stories/)[1]) }
   },
   {
     "id": "youtube",
@@ -348,7 +348,7 @@ export const PROJECTS = [
     "logo": "assets/youtube-logo.svg",
     "boxed": false,
     "sub": "同一件事，各台怎麼說",
-    "desc": "延續 YouTube Board 的即時資料儀表板，觀測 <b>3,400 多個公開 YouTube 頻道</b>、近 70 萬支影片：新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。",
+    "desc": "觀測<b>三千多個公開 YouTube 頻道、百萬支以上影片</b>：新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。",
     "feats": [
       [
         "直播熱度與電視牆",
@@ -375,7 +375,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-05",
-      "subject": "3,400+ 個公開 YouTube 頻道",
+      "subject": "三千多個公開 YouTube 頻道",
       "cadence": "每 1–9 分鐘",
       "outputs": [
         "網站",
@@ -384,7 +384,7 @@ export const PROJECTS = [
       ]
     },
     "commits": 361
-    ,"pulse": { "url": "https://youtube.observe.tw/api/v1/home", "label": "次觀看 · 本週", "pick": (b) => JSON.parse(b).data.exploration.categories.summary.weeklyViews }
+    ,"pulse": { "url": "https://youtube.observe.tw/api/v1/home", "label": "次觀看 · 本週", "pick": (b) => JSON.parse(b).data.summary.weeklyViews }
   },
   {
     "id": "urtube",
@@ -397,20 +397,20 @@ export const PROJECTS = [
     "private": false,
     "logo": "assets/urtube-logo.svg",
     "boxed": false,
-    "sub": "Your YouTube life, remembered",
-    "desc": "私人的 YouTube <b>注意力封存庫</b>：每日同步 Google My Activity 的跨裝置觀看紀錄，搭配 Chrome 擴充功能量測實際觀看秒數，加上觀看進度、頻道與 AI 主題分類，看見自己的注意力隨時間怎麼移動。",
+    "sub": "從真實的觀看紀錄，理解自己、找到同好",
+    "desc": "將 YouTube 觀看紀錄整理成私人的<b>興趣與注意力檔案</b>：透過 Chrome 擴充功能或 Google Takeout ZIP 匯入，回顧觀看時間、頻道與 AI 興趣主題，再依自己的選擇開啟同好探索與分享。",
     "feats": [
       [
-        "每個來源、同一條時間軸",
-        "不抽樣、不會過期"
+        "匯入與長期回顧",
+        "擴充功能同步或 Takeout 匯入，回看不同時期的喜好與關注"
       ],
       [
-        "隱私即架構",
-        "每個帳號獨立資料庫，搜尋詞加密儲存，儀表板預設私人"
+        "同好探索與 Blend",
+        "以共同主題與頻道找到同好，接受好友邀請後比較彼此興趣"
       ],
       [
-        "看見自己的變化",
-        "注意力轉移、頻道動能與跨人比較"
+        "自己控制分享",
+        "新帳號預設私人、同好探索預設關閉，可匯出或刪除資料"
       ]
     ],
     "url": "https://urtube.observe.tw",
@@ -421,8 +421,8 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-08",
-      "subject": "自己的 YouTube 觀看紀錄",
-      "cadence": "每日同步 · 擴充功能即時",
+      "subject": "自己授權匯入的 YouTube 觀看紀錄",
+      "cadence": "擴充功能同步 · Takeout 匯入",
       "outputs": [
         "網站",
         "API",
@@ -541,15 +541,15 @@ export const PROJECTS = [
     "feats": [
       [
         "瀏覽回顧",
-        "網站排行、可全文搜尋的造訪紀錄，以及擴充功能量測的前景時間"
+        "常訪網站、瀏覽歷史全文搜尋，以及擴充功能量測的前景停留時間"
       ],
       [
-        "個人洞察與 AI 週回顧",
-        "興趣地圖、探索路徑，每天整理最近 7 天的重點與線索"
+        "主題選集與洞察",
+        "整理個人興趣，挑選連結、加上推薦理由，發布可撤銷的分享快照"
       ],
       [
         "帳號與朋友",
-        "邀請制私人帳號，雙方同意後才比較興趣分布"
+        "邀請制私人帳號，雙方同意後才比較興趣分類"
       ]
     ],
     "url": "https://myzilla.observe.tw",
@@ -716,19 +716,19 @@ export const PROJECTS = [
     "logo": "assets/infovore-logo.png",
     "boxed": false,
     "sub": "生活年輪",
-    "desc": "彙整玩過、看過、讀過、聽過與參加過的東西 —— Backloggd、Kitsu、stats.fm、Simkl、Goodreads、YouTube 等來源統一正規化成同一份資料，存進 SQLite，上游掛掉也不會讓頁面空白。",
+    "desc": "彙整玩過、看過、讀過、聽過與參加過的東西，也串起<b>Dayflow 電腦活動、AI 代理工作、健康與地點紀錄</b>。從 Backloggd、Kitsu、stats.fm、Simkl、Hardcover、urtube 等來源整理到 SQLite，依平台呈現更新狀態與自己的生活節奏。",
     "feats": [
       [
-        "公開時間軸",
-        "去重後的活動紀錄，附 RSS 與 JSON API"
+        "公開時間軸與 Now",
+        "跨平台的近期活動、正在進行的作品，附 RSS 與 JSON API"
       ],
       [
-        "狀態卡片",
-        "Satori 即時產生的 SVG／PNG／WebP 卡片，可嵌入 GitHub README"
+        "時間與年度回顧",
+        "依平台回顧投入的時間，標明估算與重疊的計算方式"
       ],
       [
-        "Wrapped 與 MCP",
-        "年度回顧，以及給 AI 工具查詢的 MCP 端點"
+        "分享卡片與 MCP",
+        "可嵌入的 SVG／PNG／WebP 卡片，以及給 AI 工具查詢的 MCP 端點"
       ]
     ],
     "url": "https://infovore.skyhong.tw",
@@ -739,7 +739,7 @@ export const PROJECTS = [
     "ph": null,
     "label": {
       "since": "2026-07",
-      "subject": "遊戲、影音、閱讀、音樂與健康",
+      "subject": "媒體、電腦活動、AI 工作、健康與地點",
       "cadence": "每小時",
       "outputs": [
         "網站",
@@ -798,4 +798,92 @@ export const PROJECTS = [
     "commits": 60
     ,"pulse": { "url": "https://status.skyhong.tw/metrics", "label": "個公開服務正常", "pick": (b) => (b.match(/^sky_up\{kind="target"[^}]*\} 1$/gm) || []).length }
   },
+  {
+    "id": "pocketlog",
+    "tags": [
+      "ai",
+      "lifelog",
+      "selfhost"
+    ],
+    "name": "PocketLog",
+    "domain": "Android · Web",
+    "private": true,
+    "logo": "assets/pocketlog-logo.svg",
+    "boxed": false,
+    "sub": "你的日常，有跡可循",
+    "desc": "自架的<b>Android 與 web 私人活動日誌</b>：在明確同意後記錄使用中的 App 與選擇開啟的畫面脈絡，整理成可以回顧、分類與修正的時間軸。資料由自己的伺服器保管，AI 分析需要自行設定供應商並開啟。",
+    "feats": [
+      [
+        "手機與網頁回顧",
+        "日／週活動卡片、分類修正、每日反思與專注計時"
+      ],
+      [
+        "選擇要記錄的脈絡",
+        "App 活動、文字與選用截圖，各自有同意流程、排除與暫停設定"
+      ],
+      [
+        "開發中的私人日誌",
+        "Android 14 以上，支援加密離線佇列；尚無穩定版，實機耗電仍待完整驗證"
+      ]
+    ],
+    "url": null,
+    "visit": "查看專案",
+    "repo": "skyhong2002/PocketLog",
+    "repoUrl": "https://github.com/skyhong2002/PocketLog",
+    "shot": null,
+    "ph": "Android · Web 私人日誌 · 開發中",
+    "label": {
+      "since": "2026-11",
+      "subject": "手機活動與每日脈絡",
+      "cadence": "選擇開啟後持續記錄",
+      "outputs": [
+        "Android",
+        "Web",
+        "API",
+        "JSON"
+      ]
+    }
+  },
+  {
+    "id": "afterimage",
+    "tags": [
+      "lifelog"
+    ],
+    "name": "AfterImage",
+    "domain": "afterimage.skyhong.tw",
+    "private": false,
+    "logo": null,
+    "boxed": false,
+    "sub": "殘影 · 移開視線後，仍留下的畫面",
+    "desc": "把多年收藏的桌面與手機桌布整理成<b>可搜尋的視覺記憶庫</b>，保留檔名裡的個人註解，依作品、情緒與裝置瀏覽，再沿著相似畫面、同作品或相近色調繼續聯想。公開畫廊不顯示個人照片。",
+    "feats": [
+      [
+        "作品與情緒篩選",
+        "桌面、手機分開瀏覽，保留原始圖片與主要色彩"
+      ],
+      [
+        "沿著畫面聯想",
+        "相似畫面、同作品、同情緒與相近色調，留下這次瀏覽的思緒軌跡"
+      ],
+      [
+        "連回生活中的作品",
+        "結合 infovore 找到近期作品的桌布缺口，登入後可搜尋來源與收藏新圖"
+      ]
+    ],
+    "url": "https://afterimage.skyhong.tw",
+    "visit": "前往網站",
+    "repo": "skyhong2002/afterimage",
+    "repoUrl": "https://github.com/skyhong2002/afterimage",
+    "shot": null,
+    "ph": "殘影 · 公開桌布畫廊",
+    "label": {
+      "since": "2026-11",
+      "subject": "桌布收藏與視覺記憶",
+      "cadence": "隨收藏更新",
+      "outputs": [
+        "Web",
+        "API"
+      ]
+    }
+  }
 ];
