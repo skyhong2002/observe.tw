@@ -30,7 +30,7 @@ function logo(p, size = 44) {
 function section(p, index) {
   const href = p.shotUrl || p.url || p.repoUrl;
   const preview = p.shot
-    ? `<img src="assets/${esc(p.shot)}?v=${shotVersions[p.id]}" alt="${esc(p.name)} 截圖" width="1280" height="800" loading="lazy">`
+    ? `<img src="assets/${esc(p.shot)}?v=${shotVersions[p.id]}" alt="${esc(p.name)} 截圖" width="2560" height="1440" loading="lazy">`
     : `<div class="ph">${p.logo ? `<img src="${esc(p.logo)}" alt="" width="72" height="72">` : ''}<span>${esc(p.ph)}</span></div>`;
   return `<section class="site${index % 2 ? ' flip' : ''}" id="${p.id}" data-tags="${p.tags.join(' ')}">
   <div class="info">
