@@ -36,6 +36,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/harmonica-observatory",
     "repoUrl": "https://github.com/skyhong2002/harmonica-observatory",
     "shot": "shot-harmonica.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-06",
@@ -83,6 +84,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/chumei",
     "repoUrl": "https://github.com/skyhong2002/chumei",
     "shot": "shot-chumei.webp",
+    "shotWidth": 1440,
     "ph": null,
     "label": {
       "since": "2026-08",
@@ -132,6 +134,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/mayor2026",
     "repoUrl": "https://github.com/skyhong2002/mayor2026",
     "shot": "shot-mayor2026.webp",
+    "shotWidth": 1440,
     "ph": null,
     "label": {
       "since": "2026-07",
@@ -178,6 +181,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/tag.observe.tw",
     "repoUrl": "https://github.com/skyhong2002/tag.observe.tw",
     "shot": "shot-tag.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-10",
@@ -224,6 +228,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/traffic.observe.tw",
     "repoUrl": null,
     "shot": "shot-site.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-10",
@@ -272,6 +277,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/blog-observe-tw",
     "repoUrl": "https://github.com/skyhong2002/blog-observe-tw",
     "shot": "shot-blogs.webp",
+    "shotWidth": 1080,
     "shotUrl": "https://weblog.tw/blogs/",
     "shotCaption": "部落格目錄",
     "ph": null,
@@ -322,6 +328,7 @@ export const PROJECTS = [
     "repo": "rep0rter/rep0rter",
     "repoUrl": "https://github.com/rep0rter/rep0rter",
     "shot": "shot-rep0rter.webp",
+    "shotWidth": 1440,
     "ph": null,
     "label": {
       "since": "2024-02",
@@ -374,6 +381,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/youtube-board",
     "repoUrl": "https://github.com/skyhong2002/youtube-board",
     "shot": "shot-youtube.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-05",
@@ -420,6 +428,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/urtube.observe.tw",
     "repoUrl": "https://github.com/skyhong2002/urtube.observe.tw",
     "shot": "shot-urtube.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-08",
@@ -559,6 +568,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/MyZilla",
     "repoUrl": "https://github.com/skyhong2002/MyZilla",
     "shot": "shot-myzilla.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-09",
@@ -604,6 +614,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/localplaud",
     "repoUrl": "https://github.com/skyhong2002/localplaud",
     "shot": "shot-plaud.webp",
+    "shotWidth": 1080,
     "shotUrl": "https://skyhong2002.github.io/localplaud/demo/",
     "shotCaption": "實際介面 · 合成示範資料",
     "ph": "私人服務 · 需要登入",
@@ -652,6 +663,7 @@ export const PROJECTS = [
     "repo": "JacobLinCool/Weave-In",
     "repoUrl": "https://github.com/JacobLinCool/Weave-In",
     "shot": "shot-weave.webp",
+    "shotWidth": 1440,
     "ph": null,
     "label": {
       "since": "2026-09",
@@ -697,6 +709,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/skychopath-theme",
     "repoUrl": "https://github.com/skyhong2002/skychopath-theme",
     "shot": "shot-blog.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2025-03",
@@ -740,6 +753,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/infovore",
     "repoUrl": "https://github.com/skyhong2002/infovore",
     "shot": "shot-infovore.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-07",
@@ -787,6 +801,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/status.skyhong.tw",
     "repoUrl": "https://github.com/skyhong2002/status.skyhong.tw",
     "shot": "shot-status.webp",
+    "shotWidth": 1080,
     "ph": null,
     "label": {
       "since": "2026-07",
@@ -835,6 +850,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/PocketLog",
     "repoUrl": "https://github.com/skyhong2002/PocketLog",
     "shot": "shot-pocketlog.webp",
+    "shotWidth": 1440,
     "shotCaption": "實際 web 介面 · 合成示範資料",
     "ph": "Android · Web 私人日誌 · 開發中",
     "label": {
@@ -880,6 +896,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/afterimage",
     "repoUrl": "https://github.com/skyhong2002/afterimage",
     "shot": "shot-afterimage.webp",
+    "shotWidth": 1440,
     "ph": "殘影 · 公開桌布畫廊",
     "label": {
       "since": "2026-11",

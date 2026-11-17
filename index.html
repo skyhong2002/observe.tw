@@ -40,7 +40,6 @@
     margin: 0 auto;
     padding: 0 24px;
   }
-  .projects { max-width: 1248px; }
   header {
     padding: 120px 0 56px;
     overflow: hidden;
@@ -155,14 +154,14 @@
 
   .site {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
+    grid-template-columns: 5fr 6fr;
+    gap: 48px;
     align-items: center;
     padding: 64px 0;
     border-top: 1px solid var(--border);
   }
   .site:first-of-type { border-top: none; }
-  .site .info { max-width: 760px; }
+  .site.flip .shot { order: -1; }
   .site-head {
     display: flex;
     align-items: center;
@@ -400,7 +399,7 @@
   </div>
 </header>
 
-<div class="wrap projects">
+<div class="wrap">
 
 <section class="site" id="tag" data-tags="news politics">
   <div class="info">
@@ -428,7 +427,7 @@
   </div>
   <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="新文易數 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-tag.webp?v=03fcc5eb3651" alt="新文易數 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-tag.webp?v=2761f2ccc212" alt="新文易數 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -459,7 +458,7 @@
   </div>
   <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="有影儀表板 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-youtube.webp?v=3811e2ed3417" alt="有影儀表板 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-youtube.webp?v=10ea3807602f" alt="有影儀表板 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -490,7 +489,7 @@
   </div>
   <a class="shot" href="https://weblog.tw/blogs/" target="_blank" rel="noopener" aria-label="部落格觀察 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-blogs.webp?v=1ac36c8352b9" alt="部落格觀察 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-blogs.webp?v=f0dffbc9ba65" alt="部落格觀察 截圖" width="1080" height="675" loading="lazy">
     <span class="shot-caption">部落格目錄</span>
   </a>
 </section>
@@ -521,7 +520,7 @@
   </div>
   <a class="shot" href="https://rep0rter.observe.tw" target="_blank" rel="noopener" aria-label="rep0rter 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-rep0rter.webp?v=2b00a500eb6d" alt="rep0rter 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-rep0rter.webp?v=ae7fbcbfbb36" alt="rep0rter 截圖" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -551,7 +550,7 @@
   </div>
   <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="網站雷達 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-site.webp?v=0002e2e46db5" alt="網站雷達 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-site.webp?v=c989f819519b" alt="網站雷達 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -581,7 +580,7 @@
   </div>
   <a class="shot" href="https://urtube.observe.tw" target="_blank" rel="noopener" aria-label="urtube 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-urtube.webp?v=35073aa8bb30" alt="urtube 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-urtube.webp?v=f8c3605786e4" alt="urtube 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -611,7 +610,7 @@
   </div>
   <a class="shot" href="https://myzilla.observe.tw" target="_blank" rel="noopener" aria-label="MyZilla 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-myzilla.webp?v=f3bde1b8d356" alt="MyZilla 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-myzilla.webp?v=aa6349b88e6c" alt="MyZilla 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -642,7 +641,7 @@
   </div>
   <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="口琴觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-harmonica.webp?v=92952f72fa0b" alt="口琴觀測站 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-harmonica.webp?v=014dba72264b" alt="口琴觀測站 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -672,7 +671,7 @@
   </div>
   <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="竹梅活動觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-chumei.webp?v=71bc210e9ce2" alt="竹梅活動觀測站 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-chumei.webp?v=e59e0b9eeab1" alt="竹梅活動觀測站 截圖" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -702,7 +701,7 @@
   </div>
   <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="2026 市長官方來源觀測站 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-mayor2026.webp?v=26f7c2d77208" alt="2026 市長官方來源觀測站 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-mayor2026.webp?v=bd073771a35e" alt="2026 市長官方來源觀測站 截圖" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -732,7 +731,7 @@
   </div>
   <a class="shot" href="https://skyhong2002.github.io/localplaud/demo/" target="_blank" rel="noopener" aria-label="localplaud 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-plaud.webp?v=211c2b336b42" alt="localplaud 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-plaud.webp?v=d3170af72f3e" alt="localplaud 截圖" width="1080" height="675" loading="lazy">
     <span class="shot-caption">實際介面 · 合成示範資料</span>
   </a>
 </section>
@@ -768,7 +767,7 @@
   </div>
   <a class="shot" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" aria-label="PocketLog 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-pocketlog.webp?v=aac997399eb7" alt="PocketLog 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-pocketlog.webp?v=5a203878874e" alt="PocketLog 截圖" width="1440" height="900" loading="lazy">
     <span class="shot-caption">實際 web 介面 · 合成示範資料</span>
   </a>
 </section>
@@ -799,7 +798,7 @@
   </div>
   <a class="shot" href="https://afterimage.skyhong.tw" target="_blank" rel="noopener" aria-label="AfterImage 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-afterimage.webp?v=3a9b66a5251a" alt="AfterImage 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-afterimage.webp?v=9c4e95e8f183" alt="AfterImage 截圖" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -829,7 +828,7 @@
   </div>
   <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-blog.webp?v=a68d7981b959" alt="Skychopath. 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-blog.webp?v=ff67734c7195" alt="Skychopath. 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -859,7 +858,7 @@
   </div>
   <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-weave.webp?v=4340d8015646" alt="Weave In 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-weave.webp?v=32075f00f9dc" alt="Weave In 截圖" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -889,7 +888,7 @@
   </div>
   <a class="shot" href="https://infovore.skyhong.tw" target="_blank" rel="noopener" aria-label="infovore 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-infovore.webp?v=1e3aa8a4fe77" alt="infovore 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-infovore.webp?v=3114ccaf530c" alt="infovore 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -919,7 +918,7 @@
   </div>
   <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status 網站截圖">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="assets/shot-status.webp?v=5a74bc94883f" alt="Sky Status 截圖" width="2560" height="1440" loading="lazy">
+    <img src="assets/shot-status.webp?v=cf3b3f90f6f6" alt="Sky Status 截圖" width="1080" height="675" loading="lazy">
   </a>
 </section>
 

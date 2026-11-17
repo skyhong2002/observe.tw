@@ -40,7 +40,6 @@
     margin: 0 auto;
     padding: 0 24px;
   }
-  .projects { max-width: 1248px; }
   header {
     padding: 120px 0 56px;
     overflow: hidden;
@@ -155,14 +154,14 @@
 
   .site {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
+    grid-template-columns: 5fr 6fr;
+    gap: 48px;
     align-items: center;
     padding: 64px 0;
     border-top: 1px solid var(--border);
   }
   .site:first-of-type { border-top: none; }
-  .site .info { max-width: 760px; }
+  .site.flip .shot { order: -1; }
   .site-head {
     display: flex;
     align-items: center;
@@ -400,7 +399,7 @@
   </div>
 </header>
 
-<div class="wrap projects">
+<div class="wrap">
 
 <section class="site" id="tag" data-tags="news politics">
   <div class="info">
@@ -428,7 +427,7 @@
   </div>
   <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="News Tags website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-tag.webp?v=03fcc5eb3651" alt="Screenshot of News Tags" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-tag.webp?v=2761f2ccc212" alt="Screenshot of News Tags" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -459,7 +458,7 @@
   </div>
   <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-youtube.webp?v=3811e2ed3417" alt="Screenshot of YouTube Board" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-youtube.webp?v=10ea3807602f" alt="Screenshot of YouTube Board" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -490,7 +489,7 @@
   </div>
   <a class="shot" href="https://weblog.tw/blogs/" target="_blank" rel="noopener" aria-label="Blog Watch website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-blogs.webp?v=1ac36c8352b9" alt="Screenshot of Blog Watch" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-blogs.webp?v=f0dffbc9ba65" alt="Screenshot of Blog Watch" width="1080" height="675" loading="lazy">
     <span class="shot-caption">Blog directory</span>
   </a>
 </section>
@@ -521,7 +520,7 @@
   </div>
   <a class="shot" href="https://rep0rter.observe.tw" target="_blank" rel="noopener" aria-label="rep0rter website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-rep0rter.webp?v=2b00a500eb6d" alt="Screenshot of rep0rter" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-rep0rter.webp?v=ae7fbcbfbb36" alt="Screenshot of rep0rter" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -551,7 +550,7 @@
   </div>
   <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="Site Radar website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-site.webp?v=0002e2e46db5" alt="Screenshot of Site Radar" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-site.webp?v=c989f819519b" alt="Screenshot of Site Radar" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -581,7 +580,7 @@
   </div>
   <a class="shot" href="https://urtube.observe.tw" target="_blank" rel="noopener" aria-label="urtube website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-urtube.webp?v=35073aa8bb30" alt="Screenshot of urtube" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-urtube.webp?v=f8c3605786e4" alt="Screenshot of urtube" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -611,7 +610,7 @@
   </div>
   <a class="shot" href="https://myzilla.observe.tw" target="_blank" rel="noopener" aria-label="MyZilla website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-myzilla.webp?v=f3bde1b8d356" alt="Screenshot of MyZilla" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-myzilla.webp?v=aa6349b88e6c" alt="Screenshot of MyZilla" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -642,7 +641,7 @@
   </div>
   <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="Harmonica Observatory website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-harmonica.webp?v=92952f72fa0b" alt="Screenshot of Harmonica Observatory" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-harmonica.webp?v=014dba72264b" alt="Screenshot of Harmonica Observatory" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -672,7 +671,7 @@
   </div>
   <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="Chumei Campus Events website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-chumei.webp?v=71bc210e9ce2" alt="Screenshot of Chumei Campus Events" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-chumei.webp?v=e59e0b9eeab1" alt="Screenshot of Chumei Campus Events" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -702,7 +701,7 @@
   </div>
   <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="Mayor 2026 Observatory website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-mayor2026.webp?v=26f7c2d77208" alt="Screenshot of Mayor 2026 Observatory" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-mayor2026.webp?v=bd073771a35e" alt="Screenshot of Mayor 2026 Observatory" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -732,7 +731,7 @@
   </div>
   <a class="shot" href="https://skyhong2002.github.io/localplaud/demo/" target="_blank" rel="noopener" aria-label="localplaud website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-plaud.webp?v=211c2b336b42" alt="Screenshot of localplaud" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-plaud.webp?v=d3170af72f3e" alt="Screenshot of localplaud" width="1080" height="675" loading="lazy">
     <span class="shot-caption">Actual interface · Synthetic demo data</span>
   </a>
 </section>
@@ -768,7 +767,7 @@
   </div>
   <a class="shot" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" aria-label="PocketLog website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-pocketlog.webp?v=aac997399eb7" alt="Screenshot of PocketLog" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-pocketlog.webp?v=5a203878874e" alt="Screenshot of PocketLog" width="1440" height="900" loading="lazy">
     <span class="shot-caption">Actual web interface · Synthetic demo data</span>
   </a>
 </section>
@@ -799,7 +798,7 @@
   </div>
   <a class="shot" href="https://afterimage.skyhong.tw" target="_blank" rel="noopener" aria-label="AfterImage website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-afterimage.webp?v=3a9b66a5251a" alt="Screenshot of AfterImage" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-afterimage.webp?v=9c4e95e8f183" alt="Screenshot of AfterImage" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -829,7 +828,7 @@
   </div>
   <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-blog.webp?v=a68d7981b959" alt="Screenshot of Skychopath." width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-blog.webp?v=ff67734c7195" alt="Screenshot of Skychopath." width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -859,7 +858,7 @@
   </div>
   <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-weave.webp?v=4340d8015646" alt="Screenshot of Weave In" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-weave.webp?v=32075f00f9dc" alt="Screenshot of Weave In" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
@@ -889,7 +888,7 @@
   </div>
   <a class="shot" href="https://infovore.skyhong.tw" target="_blank" rel="noopener" aria-label="infovore website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-infovore.webp?v=1e3aa8a4fe77" alt="Screenshot of infovore" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-infovore.webp?v=3114ccaf530c" alt="Screenshot of infovore" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
@@ -919,7 +918,7 @@
   </div>
   <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-status.webp?v=5a74bc94883f" alt="Screenshot of Sky Status" width="2560" height="1440" loading="lazy">
+    <img src="/assets/shot-status.webp?v=cf3b3f90f6f6" alt="Screenshot of Sky Status" width="1080" height="675" loading="lazy">
   </a>
 </section>
 
