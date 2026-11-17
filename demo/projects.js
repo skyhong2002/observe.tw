@@ -36,7 +36,7 @@ export const PROJECTS = [
     "repo": "skyhong2002/harmonica-observatory",
     "repoUrl": "https://github.com/skyhong2002/harmonica-observatory",
     "shot": "shot-harmonica.webp",
-    "shotWidth": 1080,
+    "shotWidth": 1440,
     "ph": null,
     "label": {
       "since": "2026-06",

@@ -339,6 +339,19 @@
   footer a { color: var(--text-dim); text-decoration: none; }
   footer a:hover { color: var(--accent); }
 
+  @media (min-width: 1021px) {
+    .site {
+      --shot-bleed: min(180px, calc((100vw - 1020px) / 2));
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    }
+    .site .shot {
+      min-width: 0;
+      width: calc(100% + var(--shot-bleed));
+      /* Offset the extra 16:10 image height so the text and row spacing stay put. */
+      margin-block: calc(var(--shot-bleed) * -0.3125);
+    }
+    .site.flip .shot { margin-left: calc(-1 * var(--shot-bleed)); }
+  }
   @media (max-width: 800px) {
     .site {
       grid-template-columns: 1fr;
@@ -641,7 +654,7 @@
   </div>
   <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="Harmonica Observatory website">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-harmonica.webp?v=014dba72264b" alt="Screenshot of Harmonica Observatory" width="1080" height="675" loading="lazy">
+    <img src="/assets/shot-harmonica.webp?v=00d7de5a2156" alt="Screenshot of Harmonica Observatory" width="1440" height="900" loading="lazy">
   </a>
 </section>
 
