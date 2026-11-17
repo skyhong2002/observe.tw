@@ -66,7 +66,7 @@ swap('<h2>更多專案</h2>', '<h2>More projects</h2>');
 swap('<p>不在 observe.tw 底下，但同樣是最近在做的東西。</p>', '<p>Not under observe.tw, but also things I’ve been building lately.</p>');
 swap('這一頁本身也是開源的：', 'This page is open source too: ');
 swap('— 赫密士，對梅蒂恩 · <cite>Final Fantasy XIV：曉月之終途</cite>', '— Hermes, to Meteion · <cite>Final Fantasy XIV: Endwalker</cite>');
-swap('（私人）', ' (private)', { all: true });
+html = html.replaceAll('（私人）', ' (private)');
 html = html.replace(/src="assets\//g, 'src="/assets/');
 
 // Anything still in Chinese that isn't a deliberate language name is a miss.

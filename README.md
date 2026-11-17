@@ -12,7 +12,7 @@ observe.tw 的入口頁，介紹觀測站群與最近在做的個人工具。
 | [youtube.observe.tw](https://youtube.observe.tw) | 有影儀表板 — 同一件事，各台怎麼說 | [skyhong2002/youtube-board](https://github.com/skyhong2002/youtube-board) |
 | [weblog.tw](https://weblog.tw) | 部落格觀察 — 每一種生活，各自怎麼寫 | [skyhong2002/blog-observe-tw](https://github.com/skyhong2002/blog-observe-tw) |
 | [rep0rter.observe.tw](https://rep0rter.observe.tw) | rep0rter — 公民科技社群的 AI 記者 | [rep0rter/rep0rter](https://github.com/rep0rter/rep0rter) |
-| [site.observe.tw](https://site.observe.tw) | 網站雷達 — 臺灣網站每月流量排行與網站技術 | skyhong2002/traffic.observe.tw（私人） |
+| [site.observe.tw](https://site.observe.tw) | 網站雷達 — 臺灣網站每月流量排行與網站技術 | [skyhong2002/traffic.observe.tw](https://github.com/skyhong2002/traffic.observe.tw) |
 | [urtube.observe.tw](https://urtube.observe.tw) | urtube — 從真實的觀看紀錄，理解自己、找到同好 | [skyhong2002/urtube.observe.tw](https://github.com/skyhong2002/urtube.observe.tw) |
 | [myzilla.observe.tw](https://myzilla.observe.tw) | MyZilla — 我的個人入口 · 瀏覽回顧 | [skyhong2002/MyZilla](https://github.com/skyhong2002/MyZilla) |
 | [harmonica.observe.tw](https://harmonica.observe.tw) | 口琴觀測站 — Harmonica Observatory · 世界各地的口琴活動、演奏者與樂譜 | [skyhong2002/harmonica-observatory](https://github.com/skyhong2002/harmonica-observatory) |

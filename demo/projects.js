@@ -226,7 +226,7 @@ export const PROJECTS = [
     "url": "https://site.observe.tw",
     "visit": "前往網站",
     "repo": "skyhong2002/traffic.observe.tw",
-    "repoUrl": null,
+    "repoUrl": "https://github.com/skyhong2002/traffic.observe.tw",
     "shot": "shot-site.webp",
     "shotWidth": 1080,
     "ph": null,
