@@ -62,7 +62,7 @@ export const EN = {
     label: { subject: 'Traffic, popularity and technology of Taiwanese websites', cadence: 'Hourly', outputs: ['Web', 'API', 'CSV'] },
   },
   blogs: {
-    shotCaption: 'Blog directory',
+    shotCaption: 'Shared topics · Article references · Link network',
     name: 'Blog Watch',
     sub: 'Every kind of life, each written its own way',
     desc: 'A sister site to tag.observe.tw that turns the same methods on <b>independent blogs</b>: it collects articles from public RSS, Atom and sitemaps, then finds where blogs quote one another in their posts and which topics many of them are writing about right now.',
@@ -131,6 +131,7 @@ export const EN = {
     label: { subject: 'One person’s first reaction', cadence: 'On demand', outputs: ['Web', 'TXT', 'JSON'] },
   },
   myzilla: {
+    shotCaption: 'Actual interface · Synthetic demo data',
     sub: 'My personal portal · browsing in review',
     desc: 'A remake of MyZilla, the 2000s personal portal — bookmarks, clippings, multi-site search, movies and moods — plus a <b>full review of your browsing history</b>. The raw history stays on my own server and is never published.',
     feats: [

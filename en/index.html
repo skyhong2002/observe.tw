@@ -273,14 +273,17 @@
     text-decoration: none;
     transition: border-color 0.2s, transform 0.2s;
   }
-  a.shot:hover { border-color: #364461; transform: translateY(-2px); }
+  .shot:hover { border-color: #364461; }
   .shot-bar {
     display: flex;
+    align-items: center;
     gap: 6px;
-    padding: 10px 14px;
+    height: 30px;
+    padding: 0 14px;
     border-bottom: 1px solid var(--border);
   }
-  .shot-bar span {
+  .shot-bar i {
+    flex-shrink: 0;
     width: 9px; height: 9px;
     border-radius: 50%;
     background: var(--border);
@@ -290,6 +293,67 @@
     width: 100%;
     height: auto;
   }
+  .gallery-label {
+    min-width: 0;
+    margin-left: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-dim);
+    font-size: 11px;
+    line-height: 18px;
+  }
+  .gallery-count { margin-left: auto; flex-shrink: 0; color: var(--text-faint); font-size: 10px; }
+  .gallery-stage { position: relative; aspect-ratio: 8 / 5; touch-action: pan-y pinch-zoom; }
+  .gallery-slide { display: block; width: 100%; height: 100%; }
+  .gallery-slide[hidden], .gallery-controls[hidden] { display: none; }
+  .gallery-slide img { height: 100%; object-fit: contain; }
+  .gallery-slide:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+  .gallery-arrow {
+    position: absolute;
+    top: calc(50% - 22px);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: rgba(15,20,32,.78);
+    color: #fff;
+    font-family: inherit;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .gallery-prev { left: 10px; }
+  .gallery-next { right: 10px; }
+  .gallery-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    padding: 0 5px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 24px;
+    background: rgba(15,20,32,.82);
+  }
+  .gallery-dots button {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .gallery-dots button span { width: 6px; height: 6px; border-radius: 50%; background: #8792aa; }
+  .gallery-dots button[aria-pressed="true"] span { width: 16px; border-radius: 4px; background: #fff; }
+  .gallery-arrow:hover { background: #26334e; }
+  .gallery button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .shot-caption {
     display: block;
     padding: 9px 14px;
@@ -438,10 +502,32 @@
       <a class="repo" href="https://github.com/skyhong2002/tag.observe.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/tag.observe.tw</a>
     </div>
   </div>
-  <a class="shot" href="https://tag.observe.tw" target="_blank" rel="noopener" aria-label="News Tags website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-tag.webp?v=2761f2ccc212" alt="Screenshot of News Tags" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:tag -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="News Tags screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">News highlights and trending keywords</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="tag-shot-1" href="https://tag.observe.tw/" target="_blank" rel="noopener" data-label="News highlights and trending keywords" aria-label="News Tags · News highlights and trending keywords">
+        <img src="/assets/shot-tag.webp?v=2761f2ccc212" alt="News Tags: News highlights and trending keywords" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="tag-shot-2" href="https://tag.observe.tw/eve/914/" target="_blank" rel="noopener" data-label="Headlines and event context" aria-label="News Tags · Headlines and event context" hidden>
+        <img data-src="/assets/shot-tag-event.webp?v=ab4077eae79c" alt="News Tags: Headlines and event context" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="tag-shot-3" href="https://tag.observe.tw/similarity/" target="_blank" rel="noopener" data-label="Connections between news outlets" aria-label="News Tags · Connections between news outlets" hidden>
+        <img data-src="/assets/shot-tag-relations.webp?v=ceb6f0335966" alt="News Tags: Connections between news outlets" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="tag-shot-1" aria-label="1. News highlights and trending keywords" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="tag-shot-2" aria-label="2. Headlines and event context" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="tag-shot-3" aria-label="3. Connections between news outlets" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:tag -->
 </section>
 
 <section class="site flip" id="youtube" data-tags="youtube news politics">
@@ -469,10 +555,32 @@
       <a class="repo" href="https://github.com/skyhong2002/youtube-board" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/youtube-board</a>
     </div>
   </div>
-  <a class="shot" href="https://youtube.observe.tw" target="_blank" rel="noopener" aria-label="YouTube Board website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-youtube.webp?v=10ea3807602f" alt="Screenshot of YouTube Board" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:youtube -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="YouTube Board screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Trending keywords and channel activity</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="youtube-shot-1" href="https://youtube.observe.tw/" target="_blank" rel="noopener" data-label="Trending keywords and channel activity" aria-label="YouTube Board · Trending keywords and channel activity">
+        <img src="/assets/shot-youtube.webp?v=10ea3807602f" alt="YouTube Board: Trending keywords and channel activity" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="youtube-shot-2" href="https://youtube.observe.tw/live/current?or=1,2,12,13,14,81" target="_blank" rel="noopener" data-label="Live streams and audience rankings" aria-label="YouTube Board · Live streams and audience rankings" hidden>
+        <img data-src="/assets/shot-youtube-live.webp?v=4f4467a8a6e2" alt="YouTube Board: Live streams and audience rankings" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="youtube-shot-3" href="https://youtube.observe.tw/ai/days" target="_blank" rel="noopener" data-label="Daily topics across channels" aria-label="YouTube Board · Daily topics across channels" hidden>
+        <img data-src="/assets/shot-youtube-topics.webp?v=55dcb9011711" alt="YouTube Board: Daily topics across channels" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="youtube-shot-1" aria-label="1. Trending keywords and channel activity" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="youtube-shot-2" aria-label="2. Live streams and audience rankings" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="youtube-shot-3" aria-label="3. Daily topics across channels" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:youtube -->
 </section>
 
 <section class="site" id="blogs" data-tags="blog">
@@ -500,11 +608,33 @@
       <a class="repo" href="https://github.com/skyhong2002/blog-observe-tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/blog-observe-tw</a>
     </div>
   </div>
-  <a class="shot" href="https://weblog.tw/blogs/" target="_blank" rel="noopener" aria-label="Blog Watch website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-blogs.webp?v=f0dffbc9ba65" alt="Screenshot of Blog Watch" width="1080" height="675" loading="lazy">
-    <span class="shot-caption">Blog directory</span>
-  </a>
+  <!-- gallery:blogs -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Blog Watch screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Shared topics and blog references</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="blogs-shot-1" href="https://weblog.tw/" target="_blank" rel="noopener" data-label="Shared topics and blog references" aria-label="Blog Watch · Shared topics and blog references">
+        <img src="/assets/shot-blogs.webp?v=513540518934" alt="Blog Watch: Shared topics and blog references" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="blogs-shot-2" href="https://weblog.tw/mentions/" target="_blank" rel="noopener" data-label="References in the original text" aria-label="Blog Watch · References in the original text" hidden>
+        <img data-src="/assets/shot-blogs-mentions.webp?v=0709f1775476" alt="Blog Watch: References in the original text" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="blogs-shot-3" href="https://weblog.tw/relations/" target="_blank" rel="noopener" data-label="Blog reference network" aria-label="Blog Watch · Blog reference network" hidden>
+        <img data-src="/assets/shot-blogs-relations.webp?v=07a955951656" alt="Blog Watch: Blog reference network" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="blogs-shot-1" aria-label="1. Shared topics and blog references" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="blogs-shot-2" aria-label="2. References in the original text" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="blogs-shot-3" aria-label="3. Blog reference network" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="shot-caption">Shared topics · Article references · Link network</span>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:blogs -->
 </section>
 
 <section class="site flip" id="rep0rter" data-tags="news civic ai">
@@ -531,10 +661,32 @@
       <a class="repo" href="https://github.com/rep0rter/rep0rter" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>rep0rter/rep0rter</a>
     </div>
   </div>
-  <a class="shot" href="https://rep0rter.observe.tw" target="_blank" rel="noopener" aria-label="rep0rter website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-rep0rter.webp?v=ae7fbcbfbb36" alt="Screenshot of rep0rter" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:rep0rter -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="rep0rter screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Multilingual community reporting</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="rep0rter-shot-1" href="https://rep0rter.observe.tw/index.html?lang=ZH" target="_blank" rel="noopener" data-label="Multilingual community reporting" aria-label="rep0rter · Multilingual community reporting">
+        <img src="/assets/shot-rep0rter-zh.webp?v=e9b0d27acff0" alt="rep0rter: Multilingual community reporting" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="rep0rter-shot-2" href="https://rep0rter.observe.tw/posts/337/index.html?lang=EN" target="_blank" rel="noopener" data-label="Stories with original sources" aria-label="rep0rter · Stories with original sources" hidden>
+        <img data-src="/assets/shot-rep0rter-story.webp?v=22c9eedb443f" alt="rep0rter: Stories with original sources" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="rep0rter-shot-3" href="https://rep0rter.observe.tw/index.html?lang=EN" target="_blank" rel="noopener" data-label="Community news in English" aria-label="rep0rter · Community news in English" hidden>
+        <img data-src="/assets/shot-rep0rter.webp?v=ae7fbcbfbb36" alt="rep0rter: Community news in English" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="rep0rter-shot-1" aria-label="1. Multilingual community reporting" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="rep0rter-shot-2" aria-label="2. Stories with original sources" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="rep0rter-shot-3" aria-label="3. Community news in English" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:rep0rter -->
 </section>
 
 <section class="site" id="site" data-tags="news blog">
@@ -561,10 +713,32 @@
       <span class="repo"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/traffic.observe.tw (private)</span>
     </div>
   </div>
-  <a class="shot" href="https://site.observe.tw" target="_blank" rel="noopener" aria-label="Site Radar website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-site.webp?v=c989f819519b" alt="Screenshot of Site Radar" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:site -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Site Radar screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Website traffic and monthly comparisons</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="site-shot-1" href="https://site.observe.tw/#to=202610&amp;from=202609" target="_blank" rel="noopener" data-label="Website traffic and monthly comparisons" aria-label="Site Radar · Website traffic and monthly comparisons">
+        <img src="/assets/shot-site.webp?v=c989f819519b" alt="Site Radar: Website traffic and monthly comparisons" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="site-shot-2" href="https://site.observe.tw/tag/" target="_blank" rel="noopener" data-label="Traffic by topic" aria-label="Site Radar · Traffic by topic" hidden>
+        <img data-src="/assets/shot-site-tags.webp?v=5ba886f3e656" alt="Site Radar: Traffic by topic" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="site-shot-3" href="https://site.observe.tw/tech/" target="_blank" rel="noopener" data-label="Website technology landscape" aria-label="Site Radar · Website technology landscape" hidden>
+        <img data-src="/assets/shot-site-tech.webp?v=02e7c1de34e9" alt="Site Radar: Website technology landscape" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="site-shot-1" aria-label="1. Website traffic and monthly comparisons" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="site-shot-2" aria-label="2. Traffic by topic" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="site-shot-3" aria-label="3. Website technology landscape" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:site -->
 </section>
 
 <section class="site flip" id="urtube" data-tags="youtube lifelog">
@@ -591,10 +765,32 @@
       <a class="repo" href="https://github.com/skyhong2002/urtube.observe.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/urtube.observe.tw</a>
     </div>
   </div>
-  <a class="shot" href="https://urtube.observe.tw" target="_blank" rel="noopener" aria-label="urtube website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-urtube.webp?v=f8c3605786e4" alt="Screenshot of urtube" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:urtube -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="urtube screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">A public member’s viewing recap</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="urtube-shot-1" href="https://urtube.observe.tw/skyhong.tw?lang=zh" target="_blank" rel="noopener" data-label="A public member’s viewing recap" aria-label="urtube · A public member’s viewing recap">
+        <img src="/assets/shot-urtube-overview.webp?v=8995a2dd9bd0" alt="urtube: A public member’s viewing recap" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="urtube-shot-2" href="https://urtube.observe.tw/skyhong.tw/insights?range=365d&amp;sort=duration" target="_blank" rel="noopener" data-label="Viewing patterns and attention trends" aria-label="urtube · Viewing patterns and attention trends" hidden>
+        <img data-src="/assets/shot-urtube-insights.webp?v=1884890c68b0" alt="urtube: Viewing patterns and attention trends" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="urtube-shot-3" href="https://urtube.observe.tw/" target="_blank" rel="noopener" data-label="Introducing a private viewing archive" aria-label="urtube · Introducing a private viewing archive" hidden>
+        <img data-src="/assets/shot-urtube.webp?v=f8c3605786e4" alt="urtube: Introducing a private viewing archive" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="urtube-shot-1" aria-label="1. A public member’s viewing recap" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="urtube-shot-2" aria-label="2. Viewing patterns and attention trends" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="urtube-shot-3" aria-label="3. Introducing a private viewing archive" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:urtube -->
 </section>
 
 <section class="site" id="myzilla" data-tags="lifelog">
@@ -621,10 +817,33 @@
       <a class="repo" href="https://github.com/skyhong2002/MyZilla" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/MyZilla</a>
     </div>
   </div>
-  <a class="shot" href="https://myzilla.observe.tw" target="_blank" rel="noopener" aria-label="MyZilla website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-myzilla.webp?v=aa6349b88e6c" alt="Screenshot of MyZilla" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:myzilla -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="MyZilla screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Bookmarks, clippings and a personal portal</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="myzilla-shot-1" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Bookmarks, clippings and a personal portal" aria-label="MyZilla · Bookmarks, clippings and a personal portal">
+        <img src="/assets/shot-myzilla.webp?v=956ff79ee21f" alt="MyZilla: Bookmarks, clippings and a personal portal" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="myzilla-shot-2" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Browsing history and time spent" aria-label="MyZilla · Browsing history and time spent" hidden>
+        <img data-src="/assets/shot-myzilla-overview.webp?v=a9c2f5ac1697" alt="MyZilla: Browsing history and time spent" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="myzilla-shot-3" href="https://myzilla.observe.tw/" target="_blank" rel="noopener" data-label="Curated collections with personal notes" aria-label="MyZilla · Curated collections with personal notes" hidden>
+        <img data-src="/assets/shot-myzilla-collections.webp?v=697282dc893c" alt="MyZilla: Curated collections with personal notes" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="myzilla-shot-1" aria-label="1. Bookmarks, clippings and a personal portal" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="myzilla-shot-2" aria-label="2. Browsing history and time spent" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="myzilla-shot-3" aria-label="3. Curated collections with personal notes" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="shot-caption">Actual interface · Synthetic demo data</span>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:myzilla -->
 </section>
 
 <section class="site flip" id="harmonica" data-tags="social harmonica">
@@ -652,10 +871,32 @@
       <a class="repo" href="https://github.com/skyhong2002/harmonica-observatory" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/harmonica-observatory</a>
     </div>
   </div>
-  <a class="shot" href="https://harmonica.observe.tw" target="_blank" rel="noopener" aria-label="Harmonica Observatory website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-harmonica.webp?v=00d7de5a2156" alt="Screenshot of Harmonica Observatory" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:harmonica -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Harmonica Observatory screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Harmonica community updates and events</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="harmonica-shot-1" href="https://harmonica.observe.tw/" target="_blank" rel="noopener" data-label="Harmonica community updates and events" aria-label="Harmonica Observatory · Harmonica community updates and events">
+        <img src="/assets/shot-harmonica.webp?v=00d7de5a2156" alt="Harmonica Observatory: Harmonica community updates and events" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="harmonica-shot-2" href="https://harmonica.observe.tw/events/?lang=zh-Hant" target="_blank" rel="noopener" data-label="Harmonica events worldwide" aria-label="Harmonica Observatory · Harmonica events worldwide" hidden>
+        <img data-src="/assets/shot-harmonica-events.webp?v=38c762e07f78" alt="Harmonica Observatory: Harmonica events worldwide" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="harmonica-shot-3" href="https://harmonica.observe.tw/scores/?lang=zh-Hant" target="_blank" rel="noopener" data-label="Competition repertoire and sheet music" aria-label="Harmonica Observatory · Competition repertoire and sheet music" hidden>
+        <img data-src="/assets/shot-harmonica-scores.webp?v=2ce638acf2c3" alt="Harmonica Observatory: Competition repertoire and sheet music" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="harmonica-shot-1" aria-label="1. Harmonica community updates and events" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="harmonica-shot-2" aria-label="2. Harmonica events worldwide" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="harmonica-shot-3" aria-label="3. Competition repertoire and sheet music" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:harmonica -->
 </section>
 
 <section class="site" id="chumei" data-tags="social campus">
@@ -682,10 +923,32 @@
       <a class="repo" href="https://github.com/skyhong2002/chumei" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/chumei</a>
     </div>
   </div>
-  <a class="shot" href="https://chumei.observe.tw" target="_blank" rel="noopener" aria-label="Chumei Campus Events website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-chumei.webp?v=e59e0b9eeab1" alt="Screenshot of Chumei Campus Events" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:chumei -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Chumei Campus Events screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Public campus updates</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="chumei-shot-1" href="https://chumei.observe.tw/" target="_blank" rel="noopener" data-label="Public campus updates" aria-label="Chumei Campus Events · Public campus updates">
+        <img src="/assets/shot-chumei.webp?v=e59e0b9eeab1" alt="Chumei Campus Events: Public campus updates" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="chumei-shot-2" href="https://chumei.observe.tw/calendar/" target="_blank" rel="noopener" data-label="A shared campus event calendar" aria-label="Chumei Campus Events · A shared campus event calendar" hidden>
+        <img data-src="/assets/shot-chumei-calendar.webp?v=b1b1a9b16fc3" alt="Chumei Campus Events: A shared campus event calendar" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="chumei-shot-3" href="https://chumei.observe.tw/events/" target="_blank" rel="noopener" data-label="Campus events, times and venues" aria-label="Chumei Campus Events · Campus events, times and venues" hidden>
+        <img data-src="/assets/shot-chumei-events.webp?v=e16cf27a27c8" alt="Chumei Campus Events: Campus events, times and venues" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="chumei-shot-1" aria-label="1. Public campus updates" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="chumei-shot-2" aria-label="2. A shared campus event calendar" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="chumei-shot-3" aria-label="3. Campus events, times and venues" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:chumei -->
 </section>
 
 <section class="site flip" id="mayor2026" data-tags="politics social civic">
@@ -712,10 +975,32 @@
       <a class="repo" href="https://github.com/skyhong2002/mayor2026" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/mayor2026</a>
     </div>
   </div>
-  <a class="shot" href="https://mayor2026.observe.tw" target="_blank" rel="noopener" aria-label="Mayor 2026 Observatory website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-mayor2026.webp?v=bd073771a35e" alt="Screenshot of Mayor 2026 Observatory" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:mayor2026 -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Mayor 2026 Observatory screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Official candidate posts in one timeline</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="mayor2026-shot-1" href="https://mayor2026.observe.tw/" target="_blank" rel="noopener" data-label="Official candidate posts in one timeline" aria-label="Mayor 2026 Observatory · Official candidate posts in one timeline">
+        <img src="/assets/shot-mayor2026.webp?v=bd073771a35e" alt="Mayor 2026 Observatory: Official candidate posts in one timeline" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="mayor2026-shot-2" href="https://mayor2026.observe.tw/spectrum/" target="_blank" rel="noopener" data-label="Candidates’ issue spectrum" aria-label="Mayor 2026 Observatory · Candidates’ issue spectrum" hidden>
+        <img data-src="/assets/shot-mayor2026-spectrum.webp?v=c2b4fe973ca9" alt="Mayor 2026 Observatory: Candidates’ issue spectrum" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="mayor2026-shot-3" href="https://mayor2026.observe.tw/compare/taipei/" target="_blank" rel="noopener" data-label="Compare policies within a city" aria-label="Mayor 2026 Observatory · Compare policies within a city" hidden>
+        <img data-src="/assets/shot-mayor2026-compare.webp?v=651b200c5b3e" alt="Mayor 2026 Observatory: Compare policies within a city" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="mayor2026-shot-1" aria-label="1. Official candidate posts in one timeline" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="mayor2026-shot-2" aria-label="2. Candidates’ issue spectrum" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="mayor2026-shot-3" aria-label="3. Compare policies within a city" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:mayor2026 -->
 </section>
 
 <section class="site" id="plaud" data-tags="ai lifelog selfhost">
@@ -742,11 +1027,33 @@
       <a class="repo" href="https://github.com/skyhong2002/localplaud" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/localplaud</a>
     </div>
   </div>
-  <a class="shot" href="https://skyhong2002.github.io/localplaud/demo/" target="_blank" rel="noopener" aria-label="localplaud website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-plaud.webp?v=d3170af72f3e" alt="Screenshot of localplaud" width="1080" height="675" loading="lazy">
+  <!-- gallery:plaud -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="localplaud screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Recording library</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="plaud-shot-1" href="https://skyhong2002.github.io/localplaud/demo/" target="_blank" rel="noopener" data-label="Recording library" aria-label="localplaud · Recording library">
+        <img src="/assets/shot-plaud.webp?v=d3170af72f3e" alt="localplaud: Recording library" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="plaud-shot-2" href="https://skyhong2002.github.io/localplaud/demo/file/904813b8118c1515cb314263?return_to=%2F" target="_blank" rel="noopener" data-label="Recording summaries and action items" aria-label="localplaud · Recording summaries and action items" hidden>
+        <img data-src="/assets/shot-plaud-recording.webp?v=118e317efc01" alt="localplaud: Recording summaries and action items" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="plaud-shot-3" href="https://skyhong2002.github.io/localplaud/demo/file/904813b8118c1515cb314263?view=corrected&amp;revision=2&amp;tab=transcript&amp;return_to=%2F" target="_blank" rel="noopener" data-label="Speaker labels and transcripts" aria-label="localplaud · Speaker labels and transcripts" hidden>
+        <img data-src="/assets/shot-plaud-transcript.webp?v=8a086d772495" alt="localplaud: Speaker labels and transcripts" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="plaud-shot-1" aria-label="1. Recording library" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="plaud-shot-2" aria-label="2. Recording summaries and action items" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="plaud-shot-3" aria-label="3. Speaker labels and transcripts" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
     <span class="shot-caption">Actual interface · Synthetic demo data</span>
-  </a>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:plaud -->
 </section>
 
 <section class="more" id="more">
@@ -778,11 +1085,33 @@
       <a class="repo" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/PocketLog</a>
     </div>
   </div>
-  <a class="shot" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" aria-label="PocketLog website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-pocketlog.webp?v=5a203878874e" alt="Screenshot of PocketLog" width="1440" height="900" loading="lazy">
+  <!-- gallery:pocketlog -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="PocketLog screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Daily activity cards</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="pocketlog-shot-1" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Daily activity cards" aria-label="PocketLog · Daily activity cards">
+        <img src="/assets/shot-pocketlog.webp?v=5a203878874e" alt="PocketLog: Daily activity cards" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="pocketlog-shot-2" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Activity sources and context" aria-label="PocketLog · Activity sources and context" hidden>
+        <img data-src="/assets/shot-pocketlog-sources.webp?v=619535106738" alt="PocketLog: Activity sources and context" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="pocketlog-shot-3" href="https://github.com/skyhong2002/PocketLog" target="_blank" rel="noopener" data-label="Activity details and categories" aria-label="PocketLog · Activity details and categories" hidden>
+        <img data-src="/assets/shot-pocketlog-inspector.webp?v=d67d7bcbb1e2" alt="PocketLog: Activity details and categories" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="pocketlog-shot-1" aria-label="1. Daily activity cards" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="pocketlog-shot-2" aria-label="2. Activity sources and context" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="pocketlog-shot-3" aria-label="3. Activity details and categories" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
     <span class="shot-caption">Actual web interface · Synthetic demo data</span>
-  </a>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:pocketlog -->
 </section>
 
 <section class="site" id="afterimage" data-tags="lifelog">
@@ -809,10 +1138,32 @@
       <a class="repo" href="https://github.com/skyhong2002/afterimage" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/afterimage</a>
     </div>
   </div>
-  <a class="shot" href="https://afterimage.skyhong.tw" target="_blank" rel="noopener" aria-label="AfterImage website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-afterimage.webp?v=9c4e95e8f183" alt="Screenshot of AfterImage" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:afterimage -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="AfterImage screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">A visual wallpaper gallery</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="afterimage-shot-1" href="https://afterimage.skyhong.tw/" target="_blank" rel="noopener" data-label="A visual wallpaper gallery" aria-label="AfterImage · A visual wallpaper gallery">
+        <img src="/assets/shot-afterimage.webp?v=9c4e95e8f183" alt="AfterImage: A visual wallpaper gallery" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="afterimage-shot-2" href="https://afterimage.skyhong.tw/" target="_blank" rel="noopener" data-label="Explore wallpapers by work" aria-label="AfterImage · Explore wallpapers by work" hidden>
+        <img data-src="/assets/shot-afterimage-work.webp?v=b4c6374e3bdb" alt="AfterImage: Explore wallpapers by work" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="afterimage-shot-3" href="https://afterimage.skyhong.tw/#99f52f81bb15" target="_blank" rel="noopener" data-label="Image details and visual associations" aria-label="AfterImage · Image details and visual associations" hidden>
+        <img data-src="/assets/shot-afterimage-detail.webp?v=467cdad79abc" alt="AfterImage: Image details and visual associations" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="afterimage-shot-1" aria-label="1. A visual wallpaper gallery" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="afterimage-shot-2" aria-label="2. Explore wallpapers by work" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="afterimage-shot-3" aria-label="3. Image details and visual associations" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:afterimage -->
 </section>
 
 <section class="site flip" id="blog" data-tags="blog lifelog selfhost">
@@ -839,10 +1190,32 @@
       <a class="repo" href="https://github.com/skyhong2002/skychopath-theme" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/skychopath-theme</a>
     </div>
   </div>
-  <a class="shot" href="https://skyhong.tw" target="_blank" rel="noopener" aria-label="Skychopath. website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-blog.webp?v=ff67734c7195" alt="Screenshot of Skychopath." width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:blog -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Skychopath. screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Personal blog homepage</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="blog-shot-1" href="https://skyhong.tw/" target="_blank" rel="noopener" data-label="Personal blog homepage" aria-label="Skychopath. · Personal blog homepage">
+        <img src="/assets/shot-blog.webp?v=ff67734c7195" alt="Skychopath.: Personal blog homepage" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="blog-shot-2" href="https://skyhong.tw/tag/articles/" target="_blank" rel="noopener" data-label="Essays and project notes" aria-label="Skychopath. · Essays and project notes" hidden>
+        <img data-src="/assets/shot-blog-articles.webp?v=bf16d2ad3b56" alt="Skychopath.: Essays and project notes" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="blog-shot-3" href="https://skyhong.tw/now" target="_blank" rel="noopener" data-label="What I’m working on now" aria-label="Skychopath. · What I’m working on now" hidden>
+        <img data-src="/assets/shot-blog-now.webp?v=5e756a444141" alt="Skychopath.: What I’m working on now" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="blog-shot-1" aria-label="1. Personal blog homepage" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="blog-shot-2" aria-label="2. Essays and project notes" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="blog-shot-3" aria-label="3. What I’m working on now" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:blog -->
 </section>
 
 <section class="site" id="weave" data-tags="meeting ai">
@@ -869,10 +1242,32 @@
       <a class="repo" href="https://github.com/JacobLinCool/Weave-In" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>JacobLinCool/Weave-In</a>
     </div>
   </div>
-  <a class="shot" href="https://weave.nycu.ai" target="_blank" rel="noopener" aria-label="Weave In website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-weave.webp?v=32075f00f9dc" alt="Screenshot of Weave In" width="1440" height="900" loading="lazy">
-  </a>
+  <!-- gallery:weave -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Weave In screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Meeting entry and product overview</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="weave-shot-1" href="https://weave.nycu.ai/" target="_blank" rel="noopener" data-label="Meeting entry and product overview" aria-label="Weave In · Meeting entry and product overview">
+        <img src="/assets/shot-weave.webp?v=32075f00f9dc" alt="Weave In: Meeting entry and product overview" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="weave-shot-2" href="https://weave.nycu.ai/#agents" target="_blank" rel="noopener" data-label="Meet Omni, Muse and Codex" aria-label="Weave In · Meet Omni, Muse and Codex" hidden>
+        <img data-src="/assets/shot-weave-agents.webp?v=33bba389adc1" alt="Weave In: Meet Omni, Muse and Codex" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="weave-shot-3" href="https://weave.nycu.ai/#whiteboard" target="_blank" rel="noopener" data-label="Shared whiteboard demonstration" aria-label="Weave In · Shared whiteboard demonstration" hidden>
+        <img data-src="/assets/shot-weave-whiteboard.webp?v=4fb9f1ce07e4" alt="Weave In: Shared whiteboard demonstration" width="1440" height="900" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="weave-shot-1" aria-label="1. Meeting entry and product overview" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="weave-shot-2" aria-label="2. Meet Omni, Muse and Codex" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="weave-shot-3" aria-label="3. Shared whiteboard demonstration" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:weave -->
 </section>
 
 <section class="site flip" id="infovore" data-tags="lifelog">
@@ -899,10 +1294,32 @@
       <a class="repo" href="https://github.com/skyhong2002/infovore" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/infovore</a>
     </div>
   </div>
-  <a class="shot" href="https://infovore.skyhong.tw" target="_blank" rel="noopener" aria-label="infovore website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-infovore.webp?v=3114ccaf530c" alt="Screenshot of infovore" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:infovore -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="infovore screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Life across platforms</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="infovore-shot-1" href="https://infovore.skyhong.tw/" target="_blank" rel="noopener" data-label="Life across platforms" aria-label="infovore · Life across platforms">
+        <img src="/assets/shot-infovore.webp?v=3114ccaf530c" alt="infovore: Life across platforms" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="infovore-shot-2" href="https://infovore.skyhong.tw/stats" target="_blank" rel="noopener" data-label="Time distribution and yearly reviews" aria-label="infovore · Time distribution and yearly reviews" hidden>
+        <img data-src="/assets/shot-infovore-time.webp?v=af45680c59aa" alt="infovore: Time distribution and yearly reviews" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="infovore-shot-3" href="https://infovore.skyhong.tw/now" target="_blank" rel="noopener" data-label="Works in progress" aria-label="infovore · Works in progress" hidden>
+        <img data-src="/assets/shot-infovore-now.webp?v=f6d3475f4824" alt="infovore: Works in progress" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="infovore-shot-1" aria-label="1. Life across platforms" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="infovore-shot-2" aria-label="2. Time distribution and yearly reviews" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="infovore-shot-3" aria-label="3. Works in progress" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:infovore -->
 </section>
 
 <section class="site" id="status" data-tags="selfhost">
@@ -929,10 +1346,32 @@
       <a class="repo" href="https://github.com/skyhong2002/status.skyhong.tw" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/status.skyhong.tw</a>
     </div>
   </div>
-  <a class="shot" href="https://status.skyhong.tw" target="_blank" rel="noopener" aria-label="Sky Status website">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    <img src="/assets/shot-status.webp?v=cf3b3f90f6f6" alt="Screenshot of Sky Status" width="1080" height="675" loading="lazy">
-  </a>
+  <!-- gallery:status -->
+  <div class="shot gallery" role="region" aria-roledescription="carousel" aria-label="Sky Status screenshots">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">Live status of self-hosted services</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="status-shot-1" href="https://status.skyhong.tw/" target="_blank" rel="noopener" data-label="Live status of self-hosted services" aria-label="Sky Status · Live status of self-hosted services">
+        <img src="/assets/shot-status.webp?v=cf3b3f90f6f6" alt="Sky Status: Live status of self-hosted services" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="status-shot-2" href="https://status.skyhong.tw/#products" target="_blank" rel="noopener" data-label="Availability history by service" aria-label="Sky Status · Availability history by service" hidden>
+        <img data-src="/assets/shot-status-products.webp?v=856026d7f5f1" alt="Sky Status: Availability history by service" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="status-shot-3" href="https://status.skyhong.tw/#certificates" target="_blank" rel="noopener" data-label="Certificate and domain expiration" aria-label="Sky Status · Certificate and domain expiration" hidden>
+        <img data-src="/assets/shot-status-certificates.webp?v=816be8e6f340" alt="Sky Status: Certificate and domain expiration" width="1080" height="675" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="Previous screenshot">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="Next screenshot">›</button>
+        <div class="gallery-dots" role="group" aria-label="Choose a screenshot">
+          <button type="button" data-slide="0" aria-controls="status-shot-1" aria-label="1. Live status of self-hosted services" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="status-shot-2" aria-label="2. Availability history by service" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="status-shot-3" aria-label="3. Certificate and domain expiration" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:status -->
 </section>
 
 <p class="note">
@@ -999,5 +1438,6 @@
   if (initial && topics.some((b) => b.dataset.tag === initial)) apply(initial);
 })();
 </script>
+<script defer src="/scripts/gallery.js?v=da42d92e4a7f"></script>
 </body>
 </html>

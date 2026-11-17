@@ -3,6 +3,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { PROJECTS } from '../demo/projects.js';
+import { renderGallery } from './render-gallery.mjs';
 
 const main = ['tag', 'youtube', 'blogs', 'rep0rter', 'site', 'urtube', 'myzilla', 'harmonica', 'chumei', 'mayor2026', 'plaud'];
 const more = ['pocketlog', 'afterimage', 'blog', 'weave', 'infovore', 'status'];
@@ -11,9 +12,7 @@ const projects = [...main, ...more].map((id) => {
   if (!p) throw new Error(`Missing visible project: ${id}`);
   return p;
 });
-const shotVersions = Object.fromEntries(await Promise.all(projects.filter((p) => p.shot).map(async (p) => [
-  p.id, createHash('sha256').update(await readFile(new URL(`../assets/${p.shot}`, import.meta.url))).digest('hex').slice(0, 12),
-])));
+const galleries = Object.fromEntries(await Promise.all(projects.map(async (p) => [p.id, await renderGallery(p)])));
 const tags = {
   meeting: '會議工具', ai: 'AI 應用', news: '新聞媒體', politics: '選舉政治', civic: '公民科技',
   social: '社群貼文', youtube: 'YouTube', lifelog: '個人數位足跡', harmonica: '口琴',
@@ -28,10 +27,6 @@ function logo(p, size = 44) {
     : `<span class="logo mono" aria-hidden="true">${esc(p.name.slice(0, 1))}</span>`;
 }
 function section(p, index) {
-  const href = p.shotUrl || p.url || p.repoUrl;
-  const preview = p.shot
-    ? `<img src="assets/${esc(p.shot)}?v=${shotVersions[p.id]}" alt="${esc(p.name)} 截圖" width="${p.shotWidth ?? 1280}" height="${(p.shotWidth ?? 1280) * 5 / 8}" loading="lazy">`
-    : `<div class="ph">${p.logo ? `<img src="${esc(p.logo)}" alt="" width="72" height="72">` : ''}<span>${esc(p.ph)}</span></div>`;
   return `<section class="site${index % 2 ? ' flip' : ''}" id="${p.id}" data-tags="${p.tags.join(' ')}">
   <div class="info">
     <div class="site-head">
@@ -54,10 +49,7 @@ ${p.feats.map(([title, text]) => `      <li><b>${title}</b> — ${text}</li>`).j
       ${p.repoUrl ? `<a class="repo" href="${esc(p.repoUrl)}" target="_blank" rel="noopener">${gh}${esc(p.repo)}</a>` : `<span class="repo">${gh}${esc(p.repo)}（私人）</span>`}
     </div>
   </div>
-  <a class="shot${p.shot ? '' : ' placeholder'}" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(p.name)} ${p.shot ? '網站截圖' : '專案'}">
-    <div class="shot-bar"><span></span><span></span><span></span></div>
-    ${preview}${p.shotCaption ? `\n    <span class="shot-caption">${esc(p.shotCaption)}</span>` : ''}
-  </a>
+  ${galleries[p.id]}
 </section>`;
 }
 
@@ -74,6 +66,9 @@ ${Object.entries(tags).map(([tag, label]) => `      <button type="button" data-t
 html = html.replace(/<nav class="toc"[\s\S]*?<\/nav>/, `<nav class="toc" aria-label="專案">
 ${projects.map((p) => `      <a href="#${p.id}">${p.id}</a>`).join('\n')}
     </nav>`);
+const galleryVersion = createHash('sha256').update(await readFile(new URL('./gallery.js', import.meta.url))).digest('hex').slice(0, 12);
+html = html.replace(/\n<script[^>]*src="\/scripts\/gallery\.js[^>]*><\/script>/, '');
+html = html.replace('</body>', `<script defer src="/scripts/gallery.js?v=${galleryVersion}"></script>\n</body>`);
 await writeFile(new URL('../index.html', import.meta.url), html);
 
 const row = (id) => {
@@ -103,6 +98,7 @@ PocketLog 目前沒有公開服務網址；按鈕連到開源 repo。OmniObserve
 ## 更新內容
 
 - 繁中專案介紹：\`demo/projects.js\`；英文：\`demo/projects.en.js\`。
+- 每個專案三張功能截圖：\`demo/screenshots.js\`；拍攝來源與示範資料說明：\`.github/SCREENSHOTS.md\`。預設手動切換，支援箭頭、圓點、左右鍵與手機滑動。
 - 執行 \`node scripts/build-home.mjs && node scripts/build-en.mjs\`，同步首頁、主題數量、導覽及本 README。
 - 執行 \`node scripts/pulse.mjs\` 更新 demo 使用的公開讀數。部署 workflow 每小時取得新讀數，失敗的項目保留上次數值並標為過期。
 - \`demo/5\`、\`demo/6\`、\`demo/7\` 是歷史版型快照，不隨本次內容更新重建。

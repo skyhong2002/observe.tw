@@ -278,8 +278,8 @@ export const PROJECTS = [
     "repoUrl": "https://github.com/skyhong2002/blog-observe-tw",
     "shot": "shot-blogs.webp",
     "shotWidth": 1080,
-    "shotUrl": "https://weblog.tw/blogs/",
-    "shotCaption": "部落格目錄",
+    "shotUrl": "https://weblog.tw/",
+    "shotCaption": "共同話題 · 文章引用 · 關係圖",
     "ph": null,
     "label": {
       "since": "2026-10",
@@ -569,6 +569,7 @@ export const PROJECTS = [
     "repoUrl": "https://github.com/skyhong2002/MyZilla",
     "shot": "shot-myzilla.webp",
     "shotWidth": 1080,
+    "shotCaption": "實際介面 · 合成示範資料",
     "ph": null,
     "label": {
       "since": "2026-09",
