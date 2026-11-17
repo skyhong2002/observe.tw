@@ -1,6 +1,7 @@
 // Refresh the existing home-page sections from the shared project copy.
 // Layout, fonts and page behavior stay in index.html.
 import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { PROJECTS } from '../demo/projects.js';
 
 const main = ['tag', 'youtube', 'blogs', 'rep0rter', 'site', 'urtube', 'myzilla', 'harmonica', 'chumei', 'mayor2026', 'plaud'];
@@ -10,6 +11,9 @@ const projects = [...main, ...more].map((id) => {
   if (!p) throw new Error(`Missing visible project: ${id}`);
   return p;
 });
+const shotVersions = Object.fromEntries(await Promise.all(projects.filter((p) => p.shot).map(async (p) => [
+  p.id, createHash('sha256').update(await readFile(new URL(`../assets/${p.shot}`, import.meta.url))).digest('hex').slice(0, 12),
+])));
 const tags = {
   meeting: '會議工具', ai: 'AI 應用', news: '新聞媒體', politics: '選舉政治', civic: '公民科技',
   social: '社群貼文', youtube: 'YouTube', lifelog: '個人數位足跡', harmonica: '口琴',
@@ -24,9 +28,9 @@ function logo(p, size = 44) {
     : `<span class="logo mono" aria-hidden="true">${esc(p.name.slice(0, 1))}</span>`;
 }
 function section(p, index) {
-  const href = p.url || p.repoUrl;
+  const href = p.shotUrl || p.url || p.repoUrl;
   const preview = p.shot
-    ? `<img src="assets/${esc(p.shot)}" alt="${esc(p.name)} 截圖" width="1280" height="800" loading="lazy">`
+    ? `<img src="assets/${esc(p.shot)}?v=${shotVersions[p.id]}" alt="${esc(p.name)} 截圖" width="1280" height="800" loading="lazy">`
     : `<div class="ph">${p.logo ? `<img src="${esc(p.logo)}" alt="" width="72" height="72">` : ''}<span>${esc(p.ph)}</span></div>`;
   return `<section class="site${index % 2 ? ' flip' : ''}" id="${p.id}" data-tags="${p.tags.join(' ')}">
   <div class="info">
@@ -52,7 +56,7 @@ ${p.feats.map(([title, text]) => `      <li><b>${title}</b> — ${text}</li>`).j
   </div>
   <a class="shot${p.shot ? '' : ' placeholder'}" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(p.name)} ${p.shot ? '網站截圖' : '專案'}">
     <div class="shot-bar"><span></span><span></span><span></span></div>
-    ${preview}
+    ${preview}${p.shotCaption ? `\n    <span class="shot-caption">${esc(p.shotCaption)}</span>` : ''}
   </a>
 </section>`;
 }

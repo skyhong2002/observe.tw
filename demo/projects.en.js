@@ -62,6 +62,7 @@ export const EN = {
     label: { subject: 'Traffic, popularity and technology of Taiwanese websites', cadence: 'Hourly', outputs: ['Web', 'API', 'CSV'] },
   },
   blogs: {
+    shotCaption: 'Blog directory',
     name: 'Blog Watch',
     sub: 'Every kind of life, each written its own way',
     desc: 'A sister site to tag.observe.tw that turns the same methods on <b>independent blogs</b>: it collects articles from public RSS, Atom and sitemaps, then finds where blogs quote one another in their posts and which topics many of them are writing about right now.',
@@ -140,6 +141,7 @@ export const EN = {
     label: { subject: 'My browsing history and foreground time', cadence: 'Recorded live · daily AI review', outputs: ['Web', 'Chrome / Firefox extension'] },
   },
   plaud: {
+    shotCaption: 'Actual interface · Synthetic demo data',
     sub: 'A self-hosted pipeline for Plaud recordings',
     desc: 'Keep using the Plaud recorder and its official upload, but run <b>transcription, speaker diarization, summaries, search and Q&amp;A</b> on my own machines — the raw audio comes back through Plaud’s Open API, and everything derived from it stays with me.',
     feats: [
@@ -182,6 +184,7 @@ export const EN = {
     pulseLabel: 'life-log entries',
   },
   pocketlog: {
+    shotCaption: 'Actual web interface · Synthetic demo data · Nov 14, 2026',
     sub: 'Your day, in context',
     desc: 'A self-hosted <b>private activity journal for Android and the web</b>. With explicit consent, it records app usage and optional screen context into a timeline you can review, categorize and correct. Your own server keeps the data; AI analysis requires provider setup and a separate opt-in.',
     feats: [

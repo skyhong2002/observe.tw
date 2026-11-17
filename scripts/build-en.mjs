@@ -39,6 +39,10 @@ for (const p of PROJECTS.filter((p) => !p.hidden)) {
     .replace(/(<a class="shot[^"]*"[^>]*aria-label=")[^"]*"/, `$1${name} website"`)
     .replace(/alt="[^"]*截圖"/, `alt="Screenshot of ${name}"`);
   if (e.ph) s = s.replace(/(<div class="ph">[\s\S]*?<span>)[^<]*(<\/span>)/, `$1${e.ph}$2`);
+  if (p.shotCaption) {
+    if (!e.shotCaption) throw new Error(`Missing English screenshot caption: ${p.id}`);
+    s = s.replace(`<span class="shot-caption">${p.shotCaption}</span>`, `<span class="shot-caption">${e.shotCaption}</span>`);
+  }
   html = html.replace(section, s);
 }
 

@@ -272,6 +272,8 @@ export const PROJECTS = [
     "repo": "skyhong2002/blog-observe-tw",
     "repoUrl": "https://github.com/skyhong2002/blog-observe-tw",
     "shot": "shot-blogs.webp",
+    "shotUrl": "https://weblog.tw/blogs/",
+    "shotCaption": "部落格目錄",
     "ph": null,
     "label": {
       "since": "2026-10",
@@ -601,7 +603,9 @@ export const PROJECTS = [
     "visit": "登入使用",
     "repo": "skyhong2002/localplaud",
     "repoUrl": "https://github.com/skyhong2002/localplaud",
-    "shot": null,
+    "shot": "shot-plaud.webp",
+    "shotUrl": "https://skyhong2002.github.io/localplaud/demo/",
+    "shotCaption": "實際介面 · 合成示範資料",
     "ph": "私人服務 · 需要登入",
     "label": {
       "since": "2026-07",
@@ -830,7 +834,8 @@ export const PROJECTS = [
     "visit": "查看專案",
     "repo": "skyhong2002/PocketLog",
     "repoUrl": "https://github.com/skyhong2002/PocketLog",
-    "shot": null,
+    "shot": "shot-pocketlog.webp",
+    "shotCaption": "實際 web 介面 · 合成示範資料 · 2026/11/14",
     "ph": "Android · Web 私人日誌 · 開發中",
     "label": {
       "since": "2026-11",
@@ -874,7 +879,7 @@ export const PROJECTS = [
     "visit": "前往網站",
     "repo": "skyhong2002/afterimage",
     "repoUrl": "https://github.com/skyhong2002/afterimage",
-    "shot": null,
+    "shot": "shot-afterimage.webp",
     "ph": "殘影 · 公開桌布畫廊",
     "label": {
       "since": "2026-11",
