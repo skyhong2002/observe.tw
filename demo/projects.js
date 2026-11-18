@@ -354,7 +354,7 @@ export const PROJECTS = [
     "name": "有影儀表板",
     "domain": "youtube.observe.tw",
     "private": false,
-    "logo": "assets/youtube-logo.svg",
+    "logo": "assets/youtube-logo.svg?v=feb7d2685dfb",
     "boxed": false,
     "sub": "同一件事，各台怎麼說",
     "desc": "觀測<b>三千多個公開 YouTube 頻道、百萬支以上影片</b>：新聞台、電視台與政治頻道正在直播什麼、哪些議題在升溫，並以新文易數的新聞標籤比對影片標題，看各台怎麼談同一件事。",
