@@ -21,7 +21,7 @@ const tags = {
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 let html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const gh = html.match(/<svg width="14"[\s\S]*?<\/svg>/)[0];
-function logo(p, size = 44) {
+function logo(p, size = 56) {
   return p.logo
     ? `<img class="logo${p.boxed ? ' boxed' : ''}" src="${esc(p.logo)}" alt="${esc(p.name)} logo" width="${size}" height="${size}">`
     : `<span class="logo mono" aria-hidden="true">${esc(p.name.slice(0, 1))}</span>`;
