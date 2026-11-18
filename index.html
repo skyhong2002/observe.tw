@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://observe.tw/">
 <title>observe.tw — 觀測站群</title>
-<meta name="description" content="自動化觀測站與個人工具：新聞、部落格、網站流量、校園與口琴活動、地方選舉、YouTube 興趣，以及 PocketLog 活動日誌與 AfterImage 視覺記憶庫。">
+<meta name="description" content="自動化觀測站與個人工具：新聞、部落格、網站流量、校園與口琴活動、地方選舉、YouTube 興趣，以及 PocketLog 活動日誌、AfterImage 視覺記憶庫與 HarpScore 口琴編譜 skill。">
 <meta property="og:title" content="observe.tw — 觀測站群">
 <meta property="og:description" content="一群自動化觀測站：持續收集、整理、公開各種值得被記錄的事。">
 <link rel="alternate" hreflang="zh-Hant" href="https://observe.tw/">
@@ -442,16 +442,16 @@
       持續收集、整理、公開某個值得被記錄的主題。
     </p>
     <div class="topics" role="group" aria-label="依主題篩選">
-      <button type="button" data-tag="" aria-pressed="true">全部 <span>17</span></button>
+      <button type="button" data-tag="" aria-pressed="true">全部 <span>18</span></button>
       <button type="button" data-tag="meeting" aria-pressed="false">會議工具 <span>1</span></button>
-      <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>4</span></button>
+      <button type="button" data-tag="ai" aria-pressed="false">AI 應用 <span>5</span></button>
       <button type="button" data-tag="news" aria-pressed="false">新聞媒體 <span>4</span></button>
       <button type="button" data-tag="politics" aria-pressed="false">選舉政治 <span>3</span></button>
       <button type="button" data-tag="civic" aria-pressed="false">公民科技 <span>2</span></button>
       <button type="button" data-tag="social" aria-pressed="false">社群貼文 <span>3</span></button>
       <button type="button" data-tag="youtube" aria-pressed="false">YouTube <span>2</span></button>
       <button type="button" data-tag="lifelog" aria-pressed="false">個人數位足跡 <span>7</span></button>
-      <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>1</span></button>
+      <button type="button" data-tag="harmonica" aria-pressed="false">口琴 <span>2</span></button>
       <button type="button" data-tag="campus" aria-pressed="false">校園 <span>1</span></button>
       <button type="button" data-tag="selfhost" aria-pressed="false">自架維運 <span>4</span></button>
       <button type="button" data-tag="blog" aria-pressed="false">部落格 <span>3</span></button>
@@ -474,6 +474,7 @@
       <a href="#weave">weave</a>
       <a href="#infovore">infovore</a>
       <a href="#status">status</a>
+      <a href="#harpscore">harpscore</a>
     </nav>
   </div>
 </header>
@@ -1374,6 +1375,58 @@
     <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
   </div>
   <!-- /gallery:status -->
+</section>
+
+<section class="site flip" id="harpscore" data-tags="ai harmonica">
+  <div class="info">
+    <div class="site-head">
+      <img class="logo" src="assets/harpscore-logo.svg" alt="HarpScore logo" width="44" height="44">
+      <div class="site-head-text">
+        <span class="domain"><span class="dot"></span>skyhong2002.github.io/harpscore</span>
+        <h2>HarpScore</h2>
+      </div>
+    </div>
+    <p class="sub">讓 agent 認真編口琴譜，把簡譜寫清楚</p>
+    <div class="tags"><button type="button" data-tag="ai">AI 應用</button><button type="button" data-tag="harmonica">口琴</button></div>
+    <p class="desc">
+      給 AI agent 使用的<b>口琴編曲與 MuseScore 簡譜製作 skill</b>：把配器、可吹性、記譜與交付檢查整理成可重用的規則，先試排代表段落，再核對實際譜面與播放。網站提供同一份手冊、曲目展示、需求產生器與下載，讓每次協作的修正能留給下一首。
+    </p>
+    <ul class="feats">
+      <li><b>配器與簡譜規則</b> — 獨奏、鋼琴伴奏與重奏，兼顧樂句交接、Bass／Chord 分工與可吹性</li>
+      <li><b>先試排再驗證</b> — 核對 MuseScore 實際譜面與播放，曲目展示保留各版本與驗收狀態</li>
+      <li><b>需求與可攜下載</b> — 依編制、程度與交付方式產生 agent 指令，下載 skill、文件包與 MuseScore 版式</li>
+    </ul>
+    <div class="links">
+      <a class="visit" href="https://skyhong2002.github.io/harpscore/" target="_blank" rel="noopener">前往網站 ↗</a>
+      <a class="repo" href="https://github.com/skyhong2002/harpscore" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>skyhong2002/harpscore</a>
+    </div>
+  </div>
+  <!-- gallery:harpscore -->
+  <div class="shot gallery" role="region" aria-roledescription="圖片輪播" aria-label="HarpScore 功能截圖">
+    <div class="shot-bar"><i></i><i></i><i></i><span class="gallery-label">編譜 skill 與實際譜面</span><span class="gallery-count" aria-hidden="true">1 / 3</span></div>
+    <div class="gallery-stage">
+      <a class="gallery-slide" id="harpscore-shot-1" href="https://skyhong2002.github.io/harpscore/" target="_blank" rel="noopener" data-label="編譜 skill 與實際譜面" aria-label="HarpScore · 編譜 skill 與實際譜面">
+        <img src="/assets/shot-harpscore.avif?v=4c16635a396a" alt="HarpScore：編譜 skill 與實際譜面截圖" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="harpscore-shot-2" href="https://skyhong2002.github.io/harpscore/pieces/" target="_blank" rel="noopener" data-label="曲目版本與可編輯樂譜" aria-label="HarpScore · 曲目版本與可編輯樂譜" hidden>
+        <img data-src="/assets/shot-harpscore-pieces.avif?v=669760012b8e" alt="HarpScore：曲目版本與可編輯樂譜截圖" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <a class="gallery-slide" id="harpscore-shot-3" href="https://skyhong2002.github.io/harpscore/brief/" target="_blank" rel="noopener" data-label="編制與交付需求產生器" aria-label="HarpScore · 編制與交付需求產生器" hidden>
+        <img data-src="/assets/shot-harpscore-brief.avif?v=d6bd24791ae7" alt="HarpScore：編制與交付需求產生器截圖" width="1600" height="1000" loading="lazy" decoding="async" draggable="false">
+      </a>
+      <div class="gallery-controls" hidden>
+        <button type="button" class="gallery-arrow gallery-prev" aria-label="上一張截圖">‹</button>
+        <button type="button" class="gallery-arrow gallery-next" aria-label="下一張截圖">›</button>
+        <div class="gallery-dots" role="group" aria-label="選擇截圖">
+          <button type="button" data-slide="0" aria-controls="harpscore-shot-1" aria-label="1. 編譜 skill 與實際譜面" aria-pressed="true"><span></span></button>
+          <button type="button" data-slide="1" aria-controls="harpscore-shot-2" aria-label="2. 曲目版本與可編輯樂譜" aria-pressed="false"><span></span></button>
+          <button type="button" data-slide="2" aria-controls="harpscore-shot-3" aria-label="3. 編制與交付需求產生器" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </div>
+    <span class="gallery-status sr-only" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <!-- /gallery:harpscore -->
 </section>
 
 <p class="note">

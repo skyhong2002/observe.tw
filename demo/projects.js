@@ -908,5 +908,50 @@ export const PROJECTS = [
         "API"
       ]
     }
+  },
+  {
+    "id": "harpscore",
+    "tags": [
+      "ai",
+      "harmonica"
+    ],
+    "name": "HarpScore",
+    "domain": "skyhong2002.github.io/harpscore",
+    "private": false,
+    "logo": "assets/harpscore-logo.svg",
+    "boxed": false,
+    "sub": "讓 agent 認真編口琴譜，把簡譜寫清楚",
+    "desc": "給 AI agent 使用的<b>口琴編曲與 MuseScore 簡譜製作 skill</b>：把配器、可吹性、記譜與交付檢查整理成可重用的規則，先試排代表段落，再核對實際譜面與播放。網站提供同一份手冊、曲目展示、需求產生器與下載，讓每次協作的修正能留給下一首。",
+    "feats": [
+      [
+        "配器與簡譜規則",
+        "獨奏、鋼琴伴奏與重奏，兼顧樂句交接、Bass／Chord 分工與可吹性"
+      ],
+      [
+        "先試排再驗證",
+        "核對 MuseScore 實際譜面與播放，曲目展示保留各版本與驗收狀態"
+      ],
+      [
+        "需求與可攜下載",
+        "依編制、程度與交付方式產生 agent 指令，下載 skill、文件包與 MuseScore 版式"
+      ]
+    ],
+    "url": "https://skyhong2002.github.io/harpscore/",
+    "visit": "前往網站",
+    "repo": "skyhong2002/harpscore",
+    "repoUrl": "https://github.com/skyhong2002/harpscore",
+    "shot": "shot-harpscore.avif",
+    "shotWidth": 1600,
+    "ph": null,
+    "label": {
+      "since": "2026-11",
+      "subject": "口琴編曲與簡譜製作",
+      "cadence": "隨編譜經驗更新",
+      "outputs": [
+        "Web",
+        "Skill",
+        "MuseScore"
+      ]
+    }
   }
 ];

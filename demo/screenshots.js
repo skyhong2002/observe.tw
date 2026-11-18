@@ -447,5 +447,31 @@ export const SCREENSHOTS = {
       "width": 1600,
       "date": "2026-11-17"
     }
+  ],
+  "harpscore": [
+    {
+      "src": "shot-harpscore.avif",
+      "url": "https://skyhong2002.github.io/harpscore/",
+      "label": "編譜 skill 與實際譜面",
+      "en": "Arranging skill and actual score preview",
+      "width": 1600,
+      "date": "2026-11-18"
+    },
+    {
+      "src": "shot-harpscore-pieces.avif",
+      "url": "https://skyhong2002.github.io/harpscore/pieces/",
+      "label": "曲目版本與可編輯樂譜",
+      "en": "Score editions and editable files",
+      "width": 1600,
+      "date": "2026-11-18"
+    },
+    {
+      "src": "shot-harpscore-brief.avif",
+      "url": "https://skyhong2002.github.io/harpscore/brief/",
+      "label": "編制與交付需求產生器",
+      "en": "Build an arranging brief",
+      "width": 1600,
+      "date": "2026-11-18"
+    }
   ]
 };

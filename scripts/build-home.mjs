@@ -6,7 +6,7 @@ import { PROJECTS } from '../demo/projects.js';
 import { renderGallery } from './render-gallery.mjs';
 
 const main = ['tag', 'youtube', 'blogs', 'rep0rter', 'site', 'urtube', 'myzilla', 'harmonica', 'chumei', 'mayor2026', 'plaud'];
-const more = ['pocketlog', 'afterimage', 'blog', 'weave', 'infovore', 'status'];
+const more = ['pocketlog', 'afterimage', 'blog', 'weave', 'infovore', 'status', 'harpscore'];
 const projects = [...main, ...more].map((id) => {
   const p = PROJECTS.find((p) => p.id === id && !p.hidden);
   if (!p) throw new Error(`Missing visible project: ${id}`);

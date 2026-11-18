@@ -49,7 +49,7 @@ swap('<html lang="zh-Hant-TW">', '<html lang="en">');
 swap('<link rel="canonical" href="https://observe.tw/">', '<link rel="canonical" href="https://observe.tw/en/">');
 swap('<title>observe.tw — 觀測站群</title>', '<title>observe.tw — a cluster of observatories</title>');
 html = html.replace(/<meta name="description" content="[^"]*">/,
-  '<meta name="description" content="Automated observatories and personal tools: news, blogs, website traffic, campus and harmonica events, local elections, YouTube interests, PocketLog activity journals and AfterImage visual memories.">');
+  '<meta name="description" content="Automated observatories and personal tools: news, blogs, website traffic, campus and harmonica events, local elections, YouTube interests, PocketLog activity journals, AfterImage visual memories and the HarpScore harmonica arranging skill.">');
 html = html.replace(/<meta property="og:title" content="[^"]*">/, '<meta property="og:title" content="observe.tw — a cluster of observatories">');
 html = html.replace(/<meta property="og:description" content="[^"]*">/,
   '<meta property="og:description" content="Automated observatories that keep collecting, organizing and publishing things worth keeping a record of.">');

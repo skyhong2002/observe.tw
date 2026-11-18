@@ -30,6 +30,7 @@ observe.tw 的入口頁，介紹觀測站群與最近在做的個人工具。
 | [weave.nycu.ai](https://weave.nycu.ai) | Weave In — Keep the thread. Weave everyone in. | [JacobLinCool/Weave-In](https://github.com/JacobLinCool/Weave-In) |
 | [infovore.skyhong.tw](https://infovore.skyhong.tw) | infovore — 生活年輪 | [skyhong2002/infovore](https://github.com/skyhong2002/infovore) |
 | [status.skyhong.tw](https://status.skyhong.tw) | Sky Status — 自架服務的公開維運儀表板 | [skyhong2002/status.skyhong.tw](https://github.com/skyhong2002/status.skyhong.tw) |
+| [skyhong2002.github.io/harpscore](https://skyhong2002.github.io/harpscore/) | HarpScore — 讓 agent 認真編口琴譜，把簡譜寫清楚 | [skyhong2002/harpscore](https://github.com/skyhong2002/harpscore) |
 
 PocketLog 目前沒有公開服務網址；按鈕連到開源 repo。OmniObserve 與 StanceLab 保留在專案資料中，維持首頁隱藏。
 

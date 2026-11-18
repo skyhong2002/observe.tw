@@ -218,4 +218,14 @@ export const EN = {
     label: { subject: 'Self-hosted services, Docker and hosts', cadence: 'Every minute', outputs: ['Web', 'API', 'RSS', 'Prometheus'] },
     pulseLabel: 'public services up',
   },
+  harpscore: {
+    sub: 'Helping agents arrange harmonica music and write clear numbered notation',
+    desc: 'A <b>harmonica arranging and MuseScore numbered-notation skill for AI agents</b>. Reusable rules cover instrumentation, playability, notation and delivery checks: try a representative passage first, then inspect the actual score and playback. The website offers the same handbook, score editions, a brief builder and downloads, so lessons from one collaboration carry into the next piece.',
+    feats: [
+      ['Arranging and notation rules', 'solos, piano accompaniment and ensembles, with phrase handoffs, Bass/Chord roles and playability in mind'],
+      ['Try a passage, then verify', 'check the actual MuseScore layout and playback; score editions retain their review status'],
+      ['Briefs and portable downloads', 'generate agent instructions for the ensemble, level and deliverables; download the skill, document pack and MuseScore styles'],
+    ],
+    label: { subject: 'Harmonica arranging and numbered notation', cadence: 'As arranging experience grows', outputs: ['Web', 'Skill', 'MuseScore'] },
+  },
 };
